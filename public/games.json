@@ -1,0 +1,61 @@
+[
+  {
+    "title": "2048",
+    "description": "2048 clone. Slide the tiles, match them, keep going.",
+    "game_image_icon": "",
+    "category": "Puzzle",
+    "tags": [
+      "numbers",
+      "classic"
+    ],
+    "featured": true,
+    "url": "https://mitchgu.github.io/GetMIT/"
+  },
+  {
+    "title": "Hextris",
+    "description": "Tetris on a spinning hexagon.",
+    "game_image_icon": "",
+    "category": "Puzzle",
+    "tags": [
+      "fast",
+      "classic"
+    ],
+    "featured": true,
+    "url": "https://hextris.io/"
+  },
+  {
+    "title": "Clumsy Bird",
+    "description": "Flappy Bird clone. Tap to flap.",
+    "game_image_icon": "",
+    "category": "Arcade",
+    "tags": [
+      "hard"
+    ],
+    "featured": false,
+    "url": "https://ellisonleao.github.io/clumsy-bird/"
+  },
+  {
+    "title": "Astray",
+    "description": "Roll a marble through a 3D maze.",
+    "game_image_icon": "",
+    "category": "Arcade",
+    "tags": [
+      "3d",
+      "maze"
+    ],
+    "featured": false,
+    "url": "https://wwwtyro.github.io/Astray/"
+  },
+  {
+    "title": "Untrusted",
+    "description": "Escape the maze by rewriting the game's own code.",
+    "game_image_icon": "",
+    "category": "Puzzle",
+    "tags": [
+      "coding",
+      "long"
+    ],
+    "featured": false,
+    "url": "https://alexnisnevich.github.io/untrusted/"
+  }
+]
