@@ -122,7 +122,7 @@ export default function App() {
           <LuminLibrary
             key={settings.theme}
             theme={settings.theme}
-            onUseLocal={() => set({ library: 'local' })}
+            onSwitchLibrary={() => set({ library: 'selenite' })}
           />
           <footer>
             <span className="brand-sm">Blocked</span>

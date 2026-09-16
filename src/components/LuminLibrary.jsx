@@ -110,7 +110,7 @@ function waitForContent(el, timeout = CONTENT_TIMEOUT) {
   })
 }
 
-export default function LuminLibrary({ theme, onUseLocal }) {
+export default function LuminLibrary({ theme, onSwitchLibrary }) {
   const containerRef = useRef(null)
   const [error, setError] = useState(null)
   const [ready, setReady] = useState(false)
@@ -157,7 +157,9 @@ export default function LuminLibrary({ theme, onUseLocal }) {
 
         setReady(true)
       } catch (e) {
-        if (active) setError(e.message || 'Could not load the game library right now.')
+        // Logged, not rendered. The panel shows something a person can act on.
+        console.warn('[Blocked] Lumin library did not load:', e.message)
+        if (active) setError(e.message || 'unknown')
       }
     }
 
@@ -180,15 +182,12 @@ export default function LuminLibrary({ theme, onUseLocal }) {
 
       {error ? (
         <div className="lumin-error">
-          <strong>{error}</strong>
-          <p>
-            This library is loaded from a third party CDN, and it checks the domain it runs on. It
-            does not work from localhost, so this is expected until the site is deployed. A school
-            network can also block it outright.
-          </p>
-          {onUseLocal && (
-            <button className="btn" onClick={onUseLocal}>
-              Use the built in list instead
+          {/* The SDK's own message, "domain fetch failed", meant nothing to
+              anyone reading it, so it is logged rather than shown. */}
+          <p className="lumin-note">Not loading? Try a different library and check here later.</p>
+          {onSwitchLibrary && (
+            <button className="btn" onClick={onSwitchLibrary}>
+              Use Selenite instead
             </button>
           )}
         </div>

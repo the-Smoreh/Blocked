@@ -1504,7 +1504,9 @@ body::before {
 
 .lumin-error {
   border-style: solid;
-  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--line));
+  gap: 22px;
+  padding: 44px 24px 50px;
 }
 
 .lumin-error strong {
@@ -1515,6 +1517,17 @@ body::before {
   margin: 0;
   max-width: 46ch;
   font-size: 13px;
+}
+
+/* Sits about twice as far down as the old headline did, so the panel reads as
+   one calm line rather than an error stack. */
+.lumin-note {
+  margin: 0;
+  padding-top: 26px;
+  max-width: 46ch;
+  font-size: 14px;
+  font-weight: 550;
+  color: var(--text);
 }
 
 /* ---------------------------- Settings sheet ---------------------------- */

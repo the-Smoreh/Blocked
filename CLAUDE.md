@@ -474,6 +474,22 @@ What it actually does, verified 2026-09-16:
   does advertise `getGames getCategories getGameUrl getImageUrl loadGame
   search destroy on off`, is unreachable until the worker boots.
 
+Its picker row shows **2500**, which is the size the SDK advertises rather
+than a verified count. Nothing here can confirm it, because its API never
+settles from localhost, so it is deliberately left out of the "credited
+libraries" total in the settings header.
+
+The failure panel shows **no SDK text**. "domain fetch failed" meant nothing to
+anyone reading it, so the real message goes to `console.warn` and the panel
+says "Not loading? Try a different library and check here later." with a button
+that switches to Selenite.
+
+**That button has to point at a library that exists.** It pointed at `local`,
+which was deleted when Selenite replaced the built in list, so clicking it set
+an unknown id. App falls back to `LIBRARIES.lumin` for an unknown id, which
+meant the one escape hatch out of the embed left you exactly where you were.
+If a library is ever removed again, grep for its id first.
+
 Three failure modes are guarded. `init` races a 20 second timeout. A container
 that never receives content is treated as a failure, so the page cannot sit on
 a spinner forever. And crucially the content check **waits** via a
