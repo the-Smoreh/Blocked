@@ -5,9 +5,13 @@
    ============================================================ */
 
 :root {
-  --bg: #08080a;
-  --bg-2: #0d0d10;
-  --panel: #131317;
+  --bg: var(--slate-bg, #08080a);
+  --bg-2: var(--slate-bg-2, #0d0d10);
+  --panel: var(--slate-panel, #131317);
+  --bg-scrim-rgb: 0, 0, 0;
+  --card-min: 168px;
+  --card-basis: 172px;
+  --card-ratio: 1;
   --panel-2: #1a1a20;
   --panel-3: #22222a;
   --line: #26262f;
@@ -40,9 +44,10 @@
 }
 
 :root[data-theme="light"] {
-  --bg: #fbfbfc;
-  --bg-2: #ffffff;
-  --panel: #ffffff;
+  --bg: var(--slate-bg, #fbfbfc);
+  --bg-2: var(--slate-bg-2, #ffffff);
+  --panel: var(--slate-panel, #ffffff);
+  --bg-scrim-rgb: 255, 255, 255;
   --panel-2: #f2f2f5;
   --panel-3: #e7e7ec;
   --line: #e2e2e8;
@@ -529,8 +534,8 @@ footer {
   inset: 0;
   background: linear-gradient(
     var(--ang),
-    hsl(var(--h) var(--art-s) var(--art-l1)),
-    hsl(var(--h2) var(--art-s) var(--art-l2))
+    hsl(calc(var(--art-base, 0deg) + var(--h) * 1deg) var(--art-s) var(--art-l1)),
+    hsl(calc(var(--art-base, 0deg) + var(--h2) * 1deg) var(--art-s) var(--art-l2))
   );
   opacity: 0.9;
 }
@@ -692,7 +697,7 @@ footer {
 }
 
 .track > .card {
-  flex: 0 0 172px;
+  flex: 0 0 var(--card-basis);
   scroll-snap-align: start;
 }
 
@@ -700,7 +705,7 @@ footer {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-min), 1fr));
   gap: 15px;
 }
 
@@ -750,7 +755,7 @@ footer {
 .thumb {
   position: relative;
   flex: 1;
-  aspect-ratio: 1;
+  aspect-ratio: var(--card-ratio);
   overflow: hidden;
 }
 
@@ -766,8 +771,8 @@ footer {
   inset: 0;
   background: linear-gradient(
     var(--ang),
-    hsl(var(--h) var(--art-s) var(--art-l1)),
-    hsl(var(--h2) var(--art-s) var(--art-l2))
+    hsl(calc(var(--art-base, 0deg) + var(--h) * 1deg) var(--art-s) var(--art-l1)),
+    hsl(calc(var(--art-base, 0deg) + var(--h2) * 1deg) var(--art-s) var(--art-l2))
   );
 }
 
@@ -1041,8 +1046,8 @@ footer {
   border-radius: 9px;
   background: linear-gradient(
     var(--ang),
-    hsl(var(--h) var(--art-s) var(--art-l1)),
-    hsl(var(--h2) var(--art-s) var(--art-l2))
+    hsl(calc(var(--art-base, 0deg) + var(--h) * 1deg) var(--art-s) var(--art-l1)),
+    hsl(calc(var(--art-base, 0deg) + var(--h2) * 1deg) var(--art-s) var(--art-l2))
   );
   color: #fff;
   font-size: 15px;
@@ -1276,5 +1281,456 @@ footer {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ======================================================================
+   Settings driven options. Everything below is switched by a data
+   attribute or a custom property that src/settings.js writes onto <html>.
+   ====================================================================== */
+
+/* ---------------------------- Background ---------------------------- */
+
+/* A fixed layer behind everything. The body keeps a solid colour underneath
+   so a transparent PNG or a slow loading image never shows white. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+:root[data-bg="gradient"] body::before {
+  background-image: var(--bg-gradient);
+}
+
+:root[data-bg="image"] body::before {
+  /* The scrim sits above the photo in the same shorthand, first layer wins.
+     It lightens in light mode and darkens in dark mode, so text stays
+     readable either way. */
+  background-image:
+    linear-gradient(
+      rgba(var(--bg-scrim-rgb), var(--bg-dim, 0.55)),
+      rgba(var(--bg-scrim-rgb), var(--bg-dim, 0.55))
+    ),
+    var(--bg-image);
+}
+
+/* ---------------------------- Card shape ---------------------------- */
+
+:root[data-shape="portrait"] {
+  --card-min: 152px;
+  --card-basis: 156px;
+  --card-ratio: 3 / 4;
+}
+
+:root[data-shape="landscape"] {
+  --card-min: 238px;
+  --card-basis: 244px;
+  --card-ratio: 16 / 10;
+}
+
+/* ---------------------------- Titles off ---------------------------- */
+
+:root[data-titles="off"] .meta {
+  display: none;
+}
+
+/* With no text bar the tile needs its own rounding. The card keeps a title
+   attribute and an aria-label, so the game is still identifiable. */
+:root[data-titles="off"] .thumb {
+  border-radius: calc(var(--radius) - 1px);
+}
+
+/* ---------------------------- Section tones ---------------------------- */
+
+:root {
+  --tone-0: #8b93a7;
+  --tone-1: #35c76a;
+  --tone-2: #ff8a3d;
+  --tone-3: #ffd23d;
+  --tone-4: #c23bb0;
+  --tone-5: #00bcd4;
+  --tone-6: #4d8dff;
+  --tone-7: #a06bff;
+  --tone-8: #ff4d4d;
+  --tone-9: #ff6ec7;
+  --tone-10: #b5834f;
+  --tone-11: #ff5722;
+  --tone-12: #26d07c;
+  --tone-13: #00a3ff;
+}
+
+.secicon[data-tone="0"], .tag[data-tone="0"], .rail-item[data-tone="0"] { --tone: var(--tone-0); }
+.secicon[data-tone="1"], .tag[data-tone="1"], .rail-item[data-tone="1"] { --tone: var(--tone-1); }
+.secicon[data-tone="2"], .tag[data-tone="2"], .rail-item[data-tone="2"] { --tone: var(--tone-2); }
+.secicon[data-tone="3"], .tag[data-tone="3"], .rail-item[data-tone="3"] { --tone: var(--tone-3); }
+.secicon[data-tone="4"], .tag[data-tone="4"], .rail-item[data-tone="4"] { --tone: var(--tone-4); }
+.secicon[data-tone="5"], .tag[data-tone="5"], .rail-item[data-tone="5"] { --tone: var(--tone-5); }
+.secicon[data-tone="6"], .tag[data-tone="6"], .rail-item[data-tone="6"] { --tone: var(--tone-6); }
+.secicon[data-tone="7"], .tag[data-tone="7"], .rail-item[data-tone="7"] { --tone: var(--tone-7); }
+.secicon[data-tone="8"], .tag[data-tone="8"], .rail-item[data-tone="8"] { --tone: var(--tone-8); }
+.secicon[data-tone="9"], .tag[data-tone="9"], .rail-item[data-tone="9"] { --tone: var(--tone-9); }
+.secicon[data-tone="10"], .tag[data-tone="10"], .rail-item[data-tone="10"] { --tone: var(--tone-10); }
+.secicon[data-tone="11"], .tag[data-tone="11"], .rail-item[data-tone="11"] { --tone: var(--tone-11); }
+.secicon[data-tone="12"], .tag[data-tone="12"], .rail-item[data-tone="12"] { --tone: var(--tone-12); }
+.secicon[data-tone="13"], .tag[data-tone="13"], .rail-item[data-tone="13"] { --tone: var(--tone-13); }
+
+.secicon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  color: var(--muted);
+}
+
+:root[data-tint="on"] .secicon {
+  color: var(--tone, var(--muted));
+  background: color-mix(in srgb, var(--tone, transparent) 16%, transparent);
+}
+
+:root[data-tint="on"] .card:hover .tag {
+  color: var(--tone, var(--accent));
+}
+
+/* The rail is where colour coding helps most, since every row is a category.
+   A dot rather than a tinted icon, so the active red bar stays readable. */
+:root[data-tint="on"] .rail-item::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tone, transparent);
+  opacity: 0.85;
+}
+
+/* ---------------------------- Idle shimmer ---------------------------- */
+
+/* One card at a time, picked in src/lib.js. Reuses the hover sweep element
+   so nothing extra is added to 450 cards. */
+.card.idle .shine {
+  animation: idlesweep 1.15s cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.card.idle {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+
+@keyframes idlesweep {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: translateX(110%);
+  }
+}
+
+/* ---------------------------- No rail layout ---------------------------- */
+
+.shell.no-rail {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* ---------------------------- Lumin embed ---------------------------- */
+
+.lumin-mount {
+  min-height: 40vh;
+}
+
+/* The embed brings its own markup, so give it room rather than restyling
+   internals we do not control. */
+.lumin-mount :is(img, canvas, iframe, video) {
+  max-width: 100%;
+}
+
+.lumin-loading,
+.lumin-error {
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  padding: 50px 24px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  color: var(--muted);
+  text-align: center;
+}
+
+.lumin-error {
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+}
+
+.lumin-error strong {
+  color: var(--text);
+}
+
+.lumin-error p {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 13px;
+}
+
+/* ---------------------------- Settings sheet ---------------------------- */
+
+.sheet-scrim {
+  display: none;
+}
+
+.sheet-scrim.on {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: var(--scrim);
+  backdrop-filter: blur(2px);
+}
+
+.sheet {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 41;
+  width: min(392px, 100vw);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-2);
+  border-left: 1px solid var(--line);
+  box-shadow: -20px 0 50px -24px rgba(0, 0, 0, 0.7);
+  transform: translateX(100%);
+  transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sheet.open {
+  transform: none;
+}
+
+.sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.sheet-head h2 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--text);
+}
+
+.sheet-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 6px 16px 26px;
+}
+
+.sheet-body h3 {
+  margin: 22px 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.srow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.slabel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.slabel span {
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.slabel em {
+  font-style: normal;
+  font-size: 11.5px;
+  color: var(--muted-2);
+}
+
+.scontrol {
+  flex: 0 0 auto;
+}
+
+.snote {
+  margin: 8px 0 0;
+  padding: 9px 11px;
+  background: var(--accent-soft);
+  border-radius: 9px;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.snote.bad {
+  color: var(--accent-hot);
+}
+
+.sheet-foot {
+  margin-top: 26px;
+}
+
+.stack {
+  display: flex;
+  gap: 8px;
+}
+
+/* Segmented control */
+.seg {
+  display: flex;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+.seg button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.14s,
+    color 0.14s;
+}
+
+.seg button:hover {
+  color: var(--text);
+}
+
+.seg button.on {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* Switch */
+.switch {
+  width: 42px;
+  height: 24px;
+  padding: 3px;
+  background: var(--panel-3);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.16s;
+}
+
+.switch span {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.18s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.switch.on {
+  background: var(--accent);
+}
+
+.switch.on span {
+  transform: translateX(18px);
+}
+
+/* Swatch grid */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(6, 26px);
+  gap: 7px;
+}
+
+.swatch {
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    transform 0.14s,
+    border-color 0.14s;
+}
+
+.swatch:hover {
+  transform: scale(1.12);
+}
+
+.swatch.on {
+  border-color: var(--text);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.range {
+  width: 150px;
+  accent-color: var(--accent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: var(--text);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* Visually hidden but still read out. */
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 460px) {
+  .sheet {
+    width: 100vw;
   }
 }

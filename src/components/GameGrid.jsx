@@ -5,11 +5,15 @@ import Icon from './Icon.jsx'
 // rhythm instead of reading as one uniform sheet of squares.
 const BIG_EVERY = 7
 
-export default function GameGrid({ title, icon, games, favorites, onFavorite, empty, bento }) {
+export default function GameGrid({ title, icon, tone, games, favorites, onFavorite, empty, bento }) {
   return (
     <section>
       <h2>
-        {icon && <Icon name={icon} size={15} />}
+        {icon && (
+          <span className="secicon" data-tone={tone}>
+            <Icon name={icon} size={15} />
+          </span>
+        )}
         {title}
         <span className="rule" />
         <span className="count">{games.length}</span>

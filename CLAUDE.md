@@ -30,12 +30,14 @@ is missing from a shell, that shell started before the PATH change.
 
 ```
 public/games.json        all game data, the only file you edit to add games
-src/lib.js               routing, data loading, favorites, recent, theme, badges
+src/lib.js               routing, data loading, favorites, recent, badges,
+                         idle shimmer
+src/settings.js          every user option, its presets, and the uploader
 src/art.js               generated cover art, hash to hue/pattern/initials
-src/icons.js             svg path data and the category to icon map
+src/icons.js             svg path data, category icon and tone maps
 src/App.jsx              state, filtering, route switch, layout
 src/components/          Header Sidebar Hero Row GameGrid GameCard
-                         GamePlayer Skeleton Icon
+                         GamePlayer Skeleton Icon Settings LuminLibrary
 src/styles.css           one stylesheet, CSS variables at the top
 scripts/categorize.mjs   derive categories from titles
 scripts/checklinks.mjs   check which game urls are alive and embeddable
@@ -147,16 +149,60 @@ versus one that loads but refuses to be framed. Run it from Node, never from
 the browser: a `fetch` from the page origin returns "Failed to fetch" for CORS
 and looks identical to a real outage.
 
-## Theme
+## Settings
 
-Red accent on a near black ground, with a white light mode. Both palettes are
-CSS variable blocks at the top of `src/styles.css`, `:root` for dark and
-`:root[data-theme='light']` for light. **Add colours as variables in both
-blocks**, never as literals in a rule, or light mode ends up half dark.
+Everything adjustable lives in one object in `src/settings.js`, persisted whole
+to `blocked:settings`. `read()` merges the saved blob over `DEFAULTS`, so an old
+save missing a new key still loads. **To add an option: add it to `DEFAULTS`,
+add a row to `Settings.jsx`, and nothing else.**
 
-`useTheme` in `src/lib.js` stamps `data-theme` on the root element and persists
-the choice to localStorage. Dark is the default. The toggle lives in the header,
-so it is not on screen while a game is open, but the theme still applies there.
+`useSettings` writes the whole state onto `<html>` on every change. Attributes
+drive layout (`data-theme`, `data-shape`, `data-titles`, `data-tint`,
+`data-bg`), custom properties drive colour. That keeps the stylesheet in charge
+of how each option looks, so most new options are CSS only.
+
+The gear in the header opens the sheet. There is no standalone light/dark
+toggle any more, mode lives inside settings.
+
+Options: library source, mode, accent, background (solid / gradient / uploaded
+image with a dim slider), card shape, titles on/off, idle shimmer, coloured
+section icons.
+
+**Accent drives the card art.** `src/art.js` returns hue *offsets*, not
+absolute hues, and the stylesheet adds `--art-base` which settings sets from
+the accent's `hue`. So picking an accent retints all 450 cards. If you add an
+accent, give it a `hue`.
+
+**Mode and background are paired.** `setTheme` in `Settings.jsx` moves a
+mismatched solid or gradient to its counterpart, because a dark slate under
+light text is unreadable.
+
+**Uploaded backgrounds are resized first.** `prepareBackgroundImage` downscales
+to 1920px and re-encodes as JPEG 0.82. A 5.4MB 3000x2000 PNG came out at 39KB.
+Without that step localStorage, which holds about 5MB and inflates by a third
+for base64, blows its quota on the first phone photo.
+
+## The Lumin library
+
+`src/components/LuminLibrary.jsx` mounts a third party catalogue and is the
+**default** library, because the built in link list is mostly dead.
+
+What is actually known about it, verified 2026-09-16:
+
+- The repo `luminsdk/script` has **no tags and no releases**, so `@latest`
+  resolves to the default branch HEAD and changes on every push. Nothing here
+  reviews what arrives. Pin a commit hash when convenient.
+- It holds two files, `lumin.min.js` and `fonts.min.js`, which are **byte
+  identical**, same sha256. The "fonts" name is a decoy for network filters,
+  so the loader tries both in order and a filter blocking one by URL usually
+  lets the other through.
+- The bundle is obfuscated with no readable URLs and builds its request
+  targets at runtime, so what it talks to cannot be read off the source.
+- It boots a **Worker**. On localhost that worker fails with
+  `[Lumin] Worker connection failed: domain fetch failed`, which reads like a
+  domain check. **Expect it to only work from a real deployed domain**, so
+  testing it means deploying. The error panel says so and offers a one click
+  switch to the built in list.
 
 ## Writing style
 

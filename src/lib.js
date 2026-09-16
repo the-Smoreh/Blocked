@@ -28,11 +28,12 @@ export function navigate(path) {
   window.location.hash = '/' + path
 }
 
-export function useGames() {
+export function useGames({ enabled = true } = {}) {
   const [games, setGames] = useState(null)
   const [error, setError] = useState(null)
 
   useEffect(() => {
+    if (!enabled) return
     let cancelled = false
     // no-cache revalidates instead of serving a stale copy. Without it the
     // browser keeps an old games.json and newly added games never appear
@@ -74,7 +75,7 @@ export function useGames() {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [enabled])
 
   return { games, error }
 }
@@ -109,31 +110,6 @@ export function useFavorites() {
   }
 
   return { favorites, toggle }
-}
-
-const THEME_KEY = 'blocked:theme'
-
-// Dark is the default. The choice is written to the root element so the CSS
-// variable overrides in styles.css can pick it up.
-export function useTheme() {
-  const [theme, setTheme] = useState(() => {
-    try {
-      return localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark'
-    } catch {
-      return 'dark'
-    }
-  })
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    try {
-      localStorage.setItem(THEME_KEY, theme)
-    } catch {
-      // Same story as favorites. Not persisting is acceptable.
-    }
-  }, [theme])
-
-  return { theme, toggleTheme: () => setTheme((t) => (t === 'dark' ? 'light' : 'dark')) }
 }
 
 const RECENT_KEY = 'blocked:recent'
@@ -195,4 +171,55 @@ export function usePrefersReducedMotion() {
   }, [])
 
   return reduced
+}
+
+// Picks one random on screen card every few seconds and lets it shimmer, so
+// the wall has a small sign of life without 450 cards pulsing in unison.
+//
+// It walks the DOM rather than holding React state on purpose: re-rendering
+// the whole grid to highlight one tile would be far more work than adding a
+// class, and the effect is decoration that never needs to survive a render.
+export function useIdleShimmer(enabled) {
+  useEffect(() => {
+    if (!enabled) return
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
+
+    const SHIMMER_MS = 1150
+    const GAP_MS = 1500
+    let timer = 0
+    let current = null
+
+    const clear = () => {
+      if (current) current.classList.remove('idle')
+      current = null
+    }
+
+    const tick = () => {
+      // Only cards actually in view are worth animating.
+      const cards = [...document.querySelectorAll('.card')].filter((el) => {
+        const r = el.getBoundingClientRect()
+        return r.bottom > 0 && r.top < window.innerHeight && r.width > 0
+      })
+
+      if (cards.length) {
+        current = cards[Math.floor(Math.random() * cards.length)]
+        current.classList.add('idle')
+      }
+
+      // Drop the class as soon as the sweep ends rather than at the next
+      // tick, otherwise the highlighted border never goes away and the wall
+      // always has one lit card instead of an occasional one.
+      timer = window.setTimeout(() => {
+        clear()
+        timer = window.setTimeout(tick, GAP_MS)
+      }, SHIMMER_MS)
+    }
+
+    timer = window.setTimeout(tick, GAP_MS)
+
+    return () => {
+      window.clearTimeout(timer)
+      clear()
+    }
+  }, [enabled])
 }

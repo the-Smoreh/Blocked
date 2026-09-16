@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { artFor } from '../art.js'
 import { badgeFor } from '../lib.js'
 import Icon from './Icon.jsx'
-import { categoryIcon } from '../icons.js'
+import { categoryIcon, categoryTone } from '../icons.js'
 
 export default function GameCard({ game, isFavorite, onFavorite, size = 'sm', index = 0 }) {
   const [broken, setBroken] = useState(false)
@@ -14,6 +14,8 @@ export default function GameCard({ game, isFavorite, onFavorite, size = 'sm', in
     <a
       className={`card card-${size}`}
       href={`#/game/${game.slug}`}
+      title={game.title}
+      aria-label={game.title}
       style={{ ...art.style, '--i': index }}
       data-pattern={art.pattern}
     >
@@ -52,7 +54,7 @@ export default function GameCard({ game, isFavorite, onFavorite, size = 'sm', in
 
       <div className="meta">
         <h3>{game.title}</h3>
-        <span className="tag">
+        <span className="tag" data-tone={categoryTone(game.category)}>
           <Icon name={categoryIcon(game.category)} size={13} />
           {game.category}
         </span>

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import Icon from './Icon.jsx'
 
-export default function Header({ query, onQuery, theme, onTheme, onMenu, count }) {
+export default function Header({ query, onQuery, onSettings, onMenu, count, showMenu }) {
   const inputRef = useRef(null)
 
   // "/" jumps to search, the shortcut every site with a search box has.
@@ -23,9 +23,11 @@ export default function Header({ query, onQuery, theme, onTheme, onMenu, count }
   return (
     <header>
       <div className="bar">
-        <button className="iconbtn only-narrow" onClick={onMenu} title="Categories">
-          <Icon name="menu" />
-        </button>
+        {showMenu && (
+          <button className="iconbtn only-narrow" onClick={onMenu} title="Categories">
+            <Icon name="menu" />
+          </button>
+        )}
 
         <a className="brand" href="#/">
           <span className="brandmark" aria-hidden="true">
@@ -55,12 +57,8 @@ export default function Header({ query, onQuery, theme, onTheme, onMenu, count }
           )}
         </div>
 
-        <button
-          className="iconbtn"
-          onClick={onTheme}
-          title={theme === 'dark' ? 'Switch to light' : 'Switch to dark'}
-        >
-          <Icon name={theme === 'dark' ? 'sun' : 'moon'} />
+        <button className="iconbtn" onClick={onSettings} title="Settings">
+          <Icon name="settings" />
         </button>
       </div>
     </header>

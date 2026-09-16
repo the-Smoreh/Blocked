@@ -1,5 +1,5 @@
 import Icon from './Icon.jsx'
-import { categoryIcon } from '../icons.js'
+import { categoryIcon, categoryTone } from '../icons.js'
 
 export default function Sidebar({ categories, category, onCategory, open, onClose, counts }) {
   return (
@@ -11,6 +11,7 @@ export default function Sidebar({ categories, category, onCategory, open, onClos
             <button
               key={c}
               className={c === category ? 'rail-item on' : 'rail-item'}
+              data-tone={categoryTone(c)}
               onClick={() => {
                 onCategory(c)
                 onClose()

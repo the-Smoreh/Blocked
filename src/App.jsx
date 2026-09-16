@@ -3,10 +3,12 @@ import {
   useGames,
   useHashRoute,
   useFavorites,
-  useTheme,
   useRecent,
   usePrefersReducedMotion,
+  useIdleShimmer,
 } from './lib.js'
+import { useSettings } from './settings.js'
+import { categoryTone } from './icons.js'
 import Header from './components/Header.jsx'
 import Sidebar from './components/Sidebar.jsx'
 import Hero from './components/Hero.jsx'
@@ -14,34 +16,43 @@ import Row from './components/Row.jsx'
 import GameGrid from './components/GameGrid.jsx'
 import GamePlayer from './components/GamePlayer.jsx'
 import Skeleton from './components/Skeleton.jsx'
+import Settings from './components/Settings.jsx'
+import LuminLibrary from './components/LuminLibrary.jsx'
 
 export default function App() {
   const route = useHashRoute()
-  const { games, error } = useGames()
+  const { settings, set, reset } = useSettings()
   const { favorites, toggle } = useFavorites()
-  const { theme, toggleTheme } = useTheme()
   const { recent, push } = useRecent()
   const reduced = usePrefersReducedMotion()
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('All')
   const [menu, setMenu] = useState(false)
+  const [panel, setPanel] = useState(false)
+
+  const usingLumin = settings.library === 'lumin'
+
+  // The built in list is only fetched when it is the selected library, so
+  // choosing Lumin does not pull a 4500 line json nobody will look at.
+  const { games, error } = useGames({ enabled: !usingLumin })
 
   const playing = route.startsWith('game/') ? route.slice('game/'.length) : null
+
+  useIdleShimmer(settings.idleShimmer && !playing)
 
   useEffect(() => {
     document.documentElement.dataset.motion = reduced ? 'reduced' : 'full'
   }, [reduced])
 
-  // Opening a game records it. Keyed on the slug so a reload of the same game
-  // does not push a duplicate.
   useEffect(() => {
     if (playing) push(playing)
   }, [playing]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // The player is a full screen view, so the wall must not scroll behind it.
+  // The player and the settings sheet are both full bleed, so the wall behind
+  // them must not scroll.
   useEffect(() => {
-    document.body.classList.toggle('locked', Boolean(playing))
-  }, [playing])
+    document.body.classList.toggle('locked', Boolean(playing) || panel)
+  }, [playing, panel])
 
   const categories = useMemo(() => {
     if (!games) return ['All']
@@ -72,25 +83,79 @@ export default function App() {
     })
   }, [games, query, category])
 
-  if (error) {
+  const sheet = (
+    <Settings
+      open={panel}
+      onClose={() => setPanel(false)}
+      settings={settings}
+      set={set}
+      reset={reset}
+    />
+  )
+
+  // --- The third party library replaces the whole browsing UI. ---
+  if (usingLumin && !playing) {
     return (
-      <div className="state">
-        <h2>Could not load the game list</h2>
-        <p>{error}</p>
+      <div className="shell no-rail">
+        <Header
+          query={query}
+          onQuery={setQuery}
+          onSettings={() => setPanel(true)}
+          onMenu={() => setMenu(false)}
+          count={0}
+          showMenu={false}
+        />
+        <main>
+          <LuminLibrary
+            key={settings.theme}
+            theme={settings.theme}
+            onUseLocal={() => set({ library: 'local' })}
+          />
+          <footer>
+            <span className="brand-sm">Blocked</span>
+            <span>Lumin library</span>
+          </footer>
+        </main>
+        {sheet}
       </div>
     )
   }
 
-  if (!games) return <Skeleton />
+  if (error) {
+    return (
+      <>
+        <div className="state">
+          <h2>Could not load the game list</h2>
+          <p>{error}</p>
+          <button className="cta" onClick={() => setPanel(true)}>
+            Open settings
+          </button>
+        </div>
+        {sheet}
+      </>
+    )
+  }
+
+  if (!games) {
+    return (
+      <>
+        <Skeleton />
+        {sheet}
+      </>
+    )
+  }
 
   if (playing) {
     return (
-      <GamePlayer
-        key={playing}
-        game={games.find((g) => g.slug === playing)}
-        isFavorite={favorites.has(playing)}
-        onFavorite={toggle}
-      />
+      <>
+        <GamePlayer
+          key={playing}
+          game={games.find((g) => g.slug === playing)}
+          isFavorite={favorites.has(playing)}
+          onFavorite={toggle}
+        />
+        {sheet}
+      </>
     )
   }
 
@@ -109,10 +174,10 @@ export default function App() {
       <Header
         query={query}
         onQuery={setQuery}
-        theme={theme}
-        onTheme={toggleTheme}
+        onSettings={() => setPanel(true)}
         onMenu={() => setMenu((m) => !m)}
         count={games.length}
+        showMenu
       />
 
       <Sidebar
@@ -131,6 +196,7 @@ export default function App() {
           <Row
             title="Jump back in"
             icon="clock"
+            tone={9}
             games={recentGames}
             favorites={favorites}
             onFavorite={toggle}
@@ -141,6 +207,7 @@ export default function App() {
           <Row
             title="Your favorites"
             icon="star"
+            tone={3}
             games={favoriteGames}
             favorites={favorites}
             onFavorite={toggle}
@@ -151,6 +218,7 @@ export default function App() {
           <Row
             title="Featured"
             icon="action"
+            tone={11}
             games={featured}
             favorites={favorites}
             onFavorite={toggle}
@@ -160,6 +228,7 @@ export default function App() {
         <GameGrid
           title={browsing ? 'Results' : 'All games'}
           icon={browsing ? 'search' : 'all'}
+          tone={browsing ? categoryTone(category) : 0}
           games={visible}
           favorites={favorites}
           onFavorite={toggle}
@@ -174,6 +243,8 @@ export default function App() {
           </span>
         </footer>
       </main>
+
+      {sheet}
     </div>
   )
 }

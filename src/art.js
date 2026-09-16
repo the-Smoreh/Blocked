@@ -20,13 +20,14 @@ export function hash32(str) {
   return h >>> 0
 }
 
-// Hues are picked from a fixed family instead of the whole wheel. A free
-// hue would give a rainbow of 450 unrelated colors. Anchored hues keep the
-// grid looking like one set while still making each game distinct.
-// The family runs crimson to orange to magenta, because red is the site's
-// own colour. Variety comes from lightness, pattern and angle instead of
-// from hue, which is what stops 450 cards turning into a rainbow.
-const HUES = [352, 2, 12, 24, 36, 334, 316, 8]
+// These are OFFSETS in degrees, not absolute hues. The stylesheet adds
+// --art-base, which settings.js sets from the chosen accent, so switching
+// accent retints all 450 cards at once.
+//
+// Offsets rather than a free hue because a free hue would give a rainbow of
+// 450 unrelated colours. A narrow family keeps the grid reading as one set,
+// and the variety comes from lightness, pattern and angle instead.
+const HUE_OFFSETS = [-8, 2, 12, 24, 36, -26, -44, 8]
 
 const PATTERNS = 6
 const ANGLES = [25, 65, 115, 155, 205, 245, 295, 335]
@@ -60,15 +61,15 @@ export function artFor(title, category) {
 
   // Separate bit ranges per decision, so two games that share a hue do not
   // also share a pattern and an angle.
-  const anchor = HUES[h % HUES.length]
+  const anchor = HUE_OFFSETS[h % HUE_OFFSETS.length]
   const jitter = ((h >>> 3) % 21) - 10
-  const hue = (anchor + jitter + 360) % 360
+  const hue = anchor + jitter
 
   // Second stop stays analogous, 24 to 56 degrees away, so gradients read as
   // one color moving rather than two colors fighting.
   const spread = 24 + ((h >>> 8) % 33)
   const dir = (h >>> 6) & 1 ? 1 : -1
-  const hue2 = (hue + dir * spread + 360) % 360
+  const hue2 = hue + dir * spread
 
   return {
     pattern: String((h >>> 13) % PATTERNS),

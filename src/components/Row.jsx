@@ -5,7 +5,7 @@ import Icon from './Icon.jsx'
 // A horizontal shelf with paging arrows, the shape every big game site uses
 // for "recently played" and "featured". Arrows hide when there is nothing
 // further to scroll to, so they never sit there dead.
-export default function Row({ title, icon, games, favorites, onFavorite }) {
+export default function Row({ title, icon, tone, games, favorites, onFavorite }) {
   const trackRef = useRef(null)
   const [edge, setEdge] = useState({ start: true, end: false })
 
@@ -36,7 +36,11 @@ export default function Row({ title, icon, games, favorites, onFavorite }) {
   return (
     <section className="shelf">
       <h2>
-        {icon && <Icon name={icon} size={15} />}
+        {icon && (
+          <span className="secicon" data-tone={tone}>
+            <Icon name={icon} size={15} />
+          </span>
+        )}
         {title}
         <span className="rule" />
         <span className="arrows">
