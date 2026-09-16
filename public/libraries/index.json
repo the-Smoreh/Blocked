@@ -1,0 +1,70 @@
+{
+  "libraries": [
+    {
+      "id": "goblin",
+      "name": "Goblin Kingdom",
+      "author": "goblinkingdev",
+      "credit": "https://github.com/goblinkingdev/unblocked-games",
+      "licence": "none stated",
+      "host": "https://goblinkingdev.github.io/unblocked-games/game/",
+      "count": 633,
+      "file": "libraries/goblin.json"
+    },
+    {
+      "id": "hell",
+      "name": "Hell",
+      "author": "D3ch",
+      "credit": "https://github.com/D3ch/hell",
+      "licence": "none stated",
+      "host": "https://d3ch.github.io/hell/Games/",
+      "count": 228,
+      "file": "libraries/hell.json"
+    },
+    {
+      "id": "alexx",
+      "name": "Alexx743",
+      "author": "Alexx743",
+      "credit": "https://github.com/Alexx743/Alexx743-games",
+      "licence": "none stated",
+      "host": "https://alexx743-games-unblocked.vercel.app/",
+      "count": 71,
+      "file": "libraries/alexx.json"
+    },
+    {
+      "id": "gams",
+      "name": "Gams Offline",
+      "author": "Gams-Offline",
+      "credit": "https://github.com/Gams-Offline/Gams",
+      "licence": "none stated",
+      "host": "https://gams-offline.github.io/Gams/g/",
+      "count": 59,
+      "file": "libraries/gams.json"
+    }
+  ],
+  "rejected": [
+    {
+      "name": "Seraph",
+      "credit": "https://github.com/a456pur/seraph",
+      "games": 494,
+      "reason": "No working public host. a456pur.github.io/seraph/ fails DNS repeatedly and the custom domain seraph.reveriestudios.online has no DNS record."
+    },
+    {
+      "name": "UGS-Assets",
+      "credit": "https://github.com/bubbls/UGS-Assets",
+      "games": 384,
+      "reason": "No GitHub Pages (404) and its intended delivery is jsDelivr, which serves HTML as text/plain so a browser will not render it in a frame."
+    },
+    {
+      "name": "Ruby",
+      "credit": "https://github.com/ruby-network/ruby",
+      "games": 68,
+      "reason": "Site returns HTTP 523 and sends X-Frame-Options SAMEORIGIN, so it refuses framing even when up. Its asset repo ruby-network/ruby-assets is 404."
+    },
+    {
+      "name": "Dropbox folder",
+      "credit": "dropbox.com shared folder",
+      "games": null,
+      "reason": "Dropbox does not serve shared HTML as a rendered page, so a game cannot run in a frame from it. Re-host the contents to use them."
+    }
+  ]
+}

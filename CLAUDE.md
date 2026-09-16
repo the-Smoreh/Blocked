@@ -182,10 +182,68 @@ to 1920px and re-encodes as JPEG 0.82. A 5.4MB 3000x2000 PNG came out at 39KB.
 Without that step localStorage, which holds about 5MB and inflates by a third
 for base64, blows its quota on the first phone photo.
 
+## Libraries
+
+Every selectable library is registered in `LIBRARIES` in `src/settings.js`.
+`useGames({ file })` loads whichever one is selected, so adding a library is a
+data file plus one entry there.
+
+| id | name | games | source |
+|----|------|-------|--------|
+| `lumin` | Lumin | embed | third party CDN, see below |
+| `goblin` | Goblin Kingdom | 633 | github.com/goblinkingdev/unblocked-games |
+| `hell` | Hell | 207 | github.com/D3ch/hell |
+| `alexx` | Alexx743 | 71 | github.com/Alexx743/Alexx743-games |
+| `gams` | Gams Offline | 59 | github.com/Gams-Offline/Gams |
+| `local` | Built in | 451 | the old import, mostly dead, kept for reference |
+
+**We link, we never copy.** Every url points at the source's own host, so they
+serve the game and get the traffic, and nothing is mirrored here. That is also
+why a 14GB asset repo was never a problem, and it is the narrow path that
+avoids redistributing anything.
+
+**Attribution is wired into the UI**, not just the docs. The library picker
+names the author and links the repo, and the footer credits whichever library
+is on screen. This was the point of splitting by source rather than merging
+everything into one pile. Note for the record: naming a source is attribution,
+not a licence. Four of these repos state no licence, which under default
+copyright means no permission is granted to redistribute, so linking matters.
+Delist anyone who asks.
+
+Rebuild with `node scripts/build-libraries.mjs --write`, then
+`node scripts/categorize.mjs --file libraries/<id>.json --write`. Both
+`checklinks.mjs` and `categorize.mjs` take `--file <path under public/>`.
+
+Verified live on 2026-09-16 with a full check, not a sample: goblin 633/633,
+alexx 71/71, gams 59/59 all at 100%, hell 207/228 after
+`checklinks.mjs --file libraries/hell.json --all --prune` removed 21 folders
+with no index file.
+
+### Sources that were checked and left out
+
+Recorded in `REJECTED` in `build-libraries.mjs` so nobody re-derives it:
+
+- **Seraph** (494 games) `a456pur/seraph`. No working public host.
+  `a456pur.github.io/seraph/` fails DNS repeatedly even though the user's
+  github.io root answers, and the custom domain has no DNS record.
+- **UGS-Assets** (384) `bubbls/UGS-Assets`. No GitHub Pages, and its intended
+  delivery is jsDelivr, which serves HTML as `text/plain` so a browser will
+  not render it in a frame.
+- **Ruby** (68) `ruby-network/ruby`. Has a real catalogue at
+  `src/public/games.json` with tags and thumbnails, but its site returns HTTP
+  523 and sends `X-Frame-Options: SAMEORIGIN`, and its asset repo
+  `ruby-network/ruby-assets` is 404.
+- **The Dropbox folder.** Dropbox does not serve shared HTML as a rendered
+  page, so a game cannot run in a frame from it. Its listing is also JS
+  rendered, so it cannot be enumerated with a plain fetch.
+
+Any of these become usable the moment their files sit on a host that serves
+`text/html` and does not refuse framing.
+
 ## The Lumin library
 
 `src/components/LuminLibrary.jsx` mounts a third party catalogue and is the
-**default** library, because the built in link list is mostly dead.
+**default**.
 
 What is actually known about it, verified 2026-09-16:
 
@@ -202,7 +260,12 @@ What is actually known about it, verified 2026-09-16:
   `[Lumin] Worker connection failed: domain fetch failed`, which reads like a
   domain check. **Expect it to only work from a real deployed domain**, so
   testing it means deploying. The error panel says so and offers a one click
-  switch to the built in list.
+  switch to another library.
+
+Because embed mode has no game list, a `#/game/` route cannot resolve there.
+App redirects such a route home; without that it sat on the loading skeleton
+forever, since `games` stays null in embed mode and the player branch runs
+before the embed branch.
 
 ## Writing style
 

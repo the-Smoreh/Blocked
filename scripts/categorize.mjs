@@ -9,13 +9,18 @@
 //
 //   node scripts/categorize.mjs            report only, writes nothing
 //   node scripts/categorize.mjs --write     writes public/games.json
+//   node scripts/categorize.mjs --file libraries/goblin.json --write
+//       --file takes a path under public/, so the per source libraries can be
+//       categorized the same way as the built in list
 //
 // To correct a game, add a word from its title to the right rule below, or set
 // its category by hand in games.json and add the title to KEEP.
 
 import { readFileSync, writeFileSync } from 'node:fs'
 
-const FILE = new URL('../public/games.json', import.meta.url)
+const fileAt = process.argv.indexOf('--file')
+const REL = fileAt === -1 ? 'games.json' : process.argv[fileAt + 1]
+const FILE = new URL(`../public/${REL}`, import.meta.url)
 
 // Titles whose hand set category must never be overwritten.
 const KEEP = new Set([])
@@ -153,14 +158,14 @@ for (const game of games) {
 }
 
 const report = Object.entries(counts).sort((a, b) => b[1] - a[1])
-console.log(`${games.length} games, ${changed} recategorized\n`)
+console.log(`${REL}: ${games.length} games, ${changed} recategorized\n`)
 for (const [name, n] of report) {
   console.log(`  ${String(n).padStart(4)}  ${name}`)
 }
 
 if (write) {
   writeFileSync(FILE, JSON.stringify(games, null, 2) + '\n')
-  console.log('\nwrote public/games.json')
+  console.log(`\nwrote public/${REL}`)
 } else {
   console.log('\ndry run, pass --write to save')
 }

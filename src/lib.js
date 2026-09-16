@@ -28,19 +28,23 @@ export function navigate(path) {
   window.location.hash = '/' + path
 }
 
-export function useGames({ enabled = true } = {}) {
-  const [games, setGames] = useState(null)
-  const [error, setError] = useState(null)
+// `file` is a path under public/, so the same hook serves the built in list
+// and every per source library.
+export function useGames({ enabled = true, file = 'games.json' } = {}) {
+  // The loaded file is stored alongside its games, so "this result belongs to
+  // a library we are no longer showing" is derived during render instead of
+  // being cleared by a setState inside the effect.
+  const [loaded, setLoaded] = useState({ file: null, games: null, error: null })
 
   useEffect(() => {
-    if (!enabled) return
+    if (!enabled || !file) return
     let cancelled = false
     // no-cache revalidates instead of serving a stale copy. Without it the
     // browser keeps an old games.json and newly added games never appear
     // after a deploy, which is silent and very confusing.
-    fetch('games.json', { cache: 'no-cache' })
+    fetch(file, { cache: 'no-cache' })
       .then((r) => {
-        if (!r.ok) throw new Error('games.json returned ' + r.status)
+        if (!r.ok) throw new Error(file + ' returned ' + r.status)
         return r.json()
       })
       .then((data) => {
@@ -69,15 +73,18 @@ export function useGames({ enabled = true } = {}) {
           taken.add(slug)
           return { ...g, slug }
         })
-        setGames(withSlugs)
+        setLoaded({ file, games: withSlugs, error: null })
       })
-      .catch((e) => !cancelled && setError(e.message))
+      .catch((e) => !cancelled && setLoaded({ file, games: null, error: e.message }))
     return () => {
       cancelled = true
     }
-  }, [enabled])
+  }, [enabled, file])
 
-  return { games, error }
+  // A result for a different file is stale, so report "still loading" rather
+  // than showing the previous library's games under the new library's name.
+  const fresh = loaded.file === file
+  return { games: fresh ? loaded.games : null, error: fresh ? loaded.error : null }
 }
 
 const FAVORITES_KEY = 'blocked:favorites'

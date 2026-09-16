@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { ACCENTS, GRADIENTS, SLATES, prepareBackgroundImage } from '../settings.js'
+import { ACCENTS, GRADIENTS, LIBRARIES, SLATES, prepareBackgroundImage } from '../settings.js'
 import Icon from './Icon.jsx'
 
 function Row({ label, hint, children }) {
@@ -121,21 +121,39 @@ export default function Settings({ open, onClose, settings, set, reset }) {
         </header>
 
         <div className="sheet-body">
-          <h3>Games</h3>
-          <Row label="Library" hint="Where the games come from">
-            <Segments
-              value={settings.library}
-              onChange={(library) => set({ library })}
-              options={[
-                { value: 'lumin', label: 'Lumin', hint: 'Third party library, its own catalogue' },
-                { value: 'local', label: 'Built in', hint: 'The imported link list' },
-              ]}
-            />
-          </Row>
+          <h3>Library</h3>
+          <div className="libs">
+            {Object.entries(LIBRARIES).map(([id, lib]) => (
+              <button
+                key={id}
+                className={id === settings.library ? 'lib on' : 'lib'}
+                onClick={() => set({ library: id })}
+              >
+                <span className="lib-main">
+                  <strong>{lib.label}</strong>
+                  {lib.count != null && <span className="lib-count">{lib.count}</span>}
+                </span>
+                <span className="lib-sub">
+                  {lib.author ? `by ${lib.author}` : lib.note}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {LIBRARIES[settings.library]?.credit && (
+            <p className="snote">
+              Games served by {LIBRARIES[settings.library].author}, linked straight from their
+              host.{' '}
+              <a href={LIBRARIES[settings.library].credit} target="_blank" rel="noreferrer">
+                View the source
+              </a>
+            </p>
+          )}
+
           {settings.library === 'local' && (
             <p className="snote">
-              Most links in the built in list point at a host that no longer exists, so they open
-              blank. Four are known to work.
+              Most links here point at a host that no longer exists, so they open blank. Four are
+              known to work. Kept only for reference.
             </p>
           )}
 

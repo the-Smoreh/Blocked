@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
+  navigate,
   useGames,
   useHashRoute,
   useFavorites,
@@ -7,7 +8,7 @@ import {
   usePrefersReducedMotion,
   useIdleShimmer,
 } from './lib.js'
-import { useSettings } from './settings.js'
+import { useSettings, LIBRARIES, libraryFile } from './settings.js'
 import { categoryTone } from './icons.js'
 import Header from './components/Header.jsx'
 import Sidebar from './components/Sidebar.jsx'
@@ -30,11 +31,15 @@ export default function App() {
   const [menu, setMenu] = useState(false)
   const [panel, setPanel] = useState(false)
 
-  const usingLumin = settings.library === 'lumin'
+  const activeLib = LIBRARIES[settings.library] || LIBRARIES.lumin
+  const usingLumin = activeLib.kind === 'embed'
 
-  // The built in list is only fetched when it is the selected library, so
-  // choosing Lumin does not pull a 4500 line json nobody will look at.
-  const { games, error } = useGames({ enabled: !usingLumin })
+  // Only the selected library is fetched, so picking one of the small ones
+  // does not pull a 4500 line json nobody will look at.
+  const { games, error } = useGames({
+    enabled: !usingLumin,
+    file: libraryFile(settings.library),
+  })
 
   const playing = route.startsWith('game/') ? route.slice('game/'.length) : null
 
@@ -47,6 +52,14 @@ export default function App() {
   useEffect(() => {
     if (playing) push(playing)
   }, [playing]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // A #/game/ route only means something for our own libraries. The embedded
+  // library has no list to resolve a slug against, so without this the app
+  // sat on the loading skeleton forever: `games` stays null in embed mode,
+  // and the player branch runs before the embed branch.
+  useEffect(() => {
+    if (usingLumin && playing) navigate('')
+  }, [usingLumin, playing])
 
   // The player and the settings sheet are both full bleed, so the wall behind
   // them must not scroll.
@@ -113,7 +126,7 @@ export default function App() {
           />
           <footer>
             <span className="brand-sm">Blocked</span>
-            <span>Lumin library</span>
+            <span className="credit">Lumin library</span>
           </footer>
         </main>
         {sheet}
@@ -139,7 +152,7 @@ export default function App() {
   if (!games) {
     return (
       <>
-        <Skeleton />
+        {!usingLumin && <Skeleton />}
         {sheet}
       </>
     )
@@ -238,8 +251,19 @@ export default function App() {
 
         <footer>
           <span className="brand-sm">Blocked</span>
-          <span>
-            {games.length} games, {categories.length - 1} categories
+          <span className="credit">
+            {activeLib.credit ? (
+              <>
+                {games.length} games from <strong>{activeLib.label}</strong> by{' '}
+                <a href={activeLib.credit} target="_blank" rel="noreferrer">
+                  {activeLib.author}
+                </a>
+              </>
+            ) : (
+              <>
+                {games.length} games, {categories.length - 1} categories
+              </>
+            )}
           </span>
         </footer>
       </main>

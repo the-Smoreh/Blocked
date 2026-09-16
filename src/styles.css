@@ -1734,3 +1734,83 @@ body::before {
     width: 100vw;
   }
 }
+
+/* ---------------------------- Library picker ---------------------------- */
+
+.libs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 10px 0 4px;
+}
+
+.lib {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 12px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.14s,
+    background 0.14s;
+}
+
+.lib:hover {
+  border-color: var(--accent);
+}
+
+.lib.on {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.lib-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lib-main strong {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.lib-count {
+  padding: 1px 7px;
+  background: var(--panel-3);
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.lib.on .lib-count {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.lib-sub {
+  font-size: 11.5px;
+  color: var(--muted-2);
+}
+
+/* Attribution. The whole point of splitting libraries by source is that the
+   source is named wherever its games are shown. */
+.credit a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.credit a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.credit strong {
+  color: var(--text);
+  font-weight: 650;
+}

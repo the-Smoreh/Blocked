@@ -7,9 +7,62 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 
 const KEY = 'blocked:settings'
 
+// Every selectable library. `file` is a path under public/. Each community
+// source keeps its own name and a link to its repo, shown in the app whenever
+// that library is active, so the people who assembled it get the credit and
+// the traffic. Nothing is mirrored here, every url points at their host.
+//
+// Counts are the live-verified totals at the time they were built, see
+// scripts/build-libraries.mjs and scripts/checklinks.mjs.
+export const LIBRARIES = {
+  lumin: {
+    label: 'Lumin',
+    note: 'Third party catalogue, loaded from a CDN',
+    kind: 'embed',
+  },
+  goblin: {
+    label: 'Goblin Kingdom',
+    author: 'goblinkingdev',
+    credit: 'https://github.com/goblinkingdev/unblocked-games',
+    file: 'libraries/goblin.json',
+    count: 633,
+  },
+  hell: {
+    label: 'Hell',
+    author: 'D3ch',
+    credit: 'https://github.com/D3ch/hell',
+    file: 'libraries/hell.json',
+    count: 207,
+  },
+  alexx: {
+    label: 'Alexx743',
+    author: 'Alexx743',
+    credit: 'https://github.com/Alexx743/Alexx743-games',
+    file: 'libraries/alexx.json',
+    count: 71,
+  },
+  gams: {
+    label: 'Gams Offline',
+    author: 'Gams-Offline',
+    credit: 'https://github.com/Gams-Offline/Gams',
+    file: 'libraries/gams.json',
+    count: 59,
+  },
+  local: {
+    label: 'Built in',
+    note: 'The old imported link list, mostly dead',
+    file: 'games.json',
+    count: 451,
+  },
+}
+
+export function libraryFile(id) {
+  return LIBRARIES[id]?.file || null
+}
+
 export const DEFAULTS = {
-  // The imported link library is off by default. It is kept, not deleted,
-  // because 439 of its 451 urls point at a host that no longer resolves.
+  // Lumin stays the default per the earlier decision. Note that it fails on
+  // localhost, so during development pick one of the community libraries.
   library: 'lumin',
 
   theme: 'dark',

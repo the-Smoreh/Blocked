@@ -4,9 +4,13 @@
 // This exists because hotlinked games rot constantly and a dead link looks
 // identical to a slow one in the player: a blank frame, no error event.
 //
-//   node scripts/checklinks.mjs                 sample 40 urls
-//   node scripts/checklinks.mjs --all           check every url
-//   node scripts/checklinks.mjs --all --json out.json   also write a report
+//   node scripts/checklinks.mjs                        sample 40 urls
+//   node scripts/checklinks.mjs --all                  check every url
+//   node scripts/checklinks.mjs --file libraries/goblin.json --all
+//   node scripts/checklinks.mjs --all --json out.json  also write a report
+//
+// --file takes a path under public/, so any of the per source libraries can
+// be checked the same way as the built in list.
 //
 // Two things make a game unplayable in the frame, and they are separate:
 //   dead      the host is gone, or returns 4xx/5xx
@@ -14,7 +18,9 @@
 
 import { readFileSync, writeFileSync } from 'node:fs'
 
-const FILE = new URL('../public/games.json', import.meta.url)
+const fileAt = process.argv.indexOf('--file')
+const REL = fileAt === -1 ? 'games.json' : process.argv[fileAt + 1]
+const FILE = new URL(`../public/${REL}`, import.meta.url)
 const games = JSON.parse(readFileSync(FILE, 'utf8'))
 
 const all = process.argv.includes('--all')
@@ -110,4 +116,20 @@ for (const [label, list] of [
 if (jsonAt !== -1 && process.argv[jsonAt + 1]) {
   writeFileSync(process.argv[jsonAt + 1], JSON.stringify(results, null, 2) + '\n')
   console.log(`\nwrote ${process.argv[jsonAt + 1]}`)
+}
+
+// Pruning only makes sense after checking everything. On a sample it would
+// delete entries that were never tested.
+//   node scripts/checklinks.mjs --file libraries/hell.json --all --prune
+if (process.argv.includes('--prune')) {
+  if (!all) {
+    console.log('\n--prune needs --all, otherwise untested entries get dropped')
+  } else if (!dead.length) {
+    console.log('\nnothing to prune')
+  } else {
+    const drop = new Set(dead.map((d) => d.url))
+    const kept = games.filter((g) => !drop.has(g.url))
+    writeFileSync(FILE, JSON.stringify(kept, null, 2) + '\n')
+    console.log(`\npruned ${games.length - kept.length}, ${kept.length} left in ${REL}`)
+  }
 }
