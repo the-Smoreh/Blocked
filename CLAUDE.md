@@ -203,7 +203,51 @@ accent, give it a `hue`.
 
 **Mode and background are paired.** `setTheme` in `Settings.jsx` moves a
 mismatched solid or gradient to its counterpart, because a dark slate under
-light text is unreadable.
+light text is unreadable. Gradients pair `slosh` with `sloshlight`, and a
+deliberate pick of any other gradient is left alone.
+
+## Light mode
+
+**The slate tokens must only be set when the background is a flat colour.**
+This was the bug that broke light mode wholesale. The stylesheet reads
+`--panel: var(--slate-panel, #ffffff)`, and `useSettings` used to write
+`--slate-*` unconditionally. So with the gradient background selected, a dark
+slate left over from an earlier choice won the fallback and light mode
+rendered dark panels, black card title bars, a dark rail and unreadable intro
+text on a white page. `useSettings` now clears those properties unless
+`bgKind === 'slate'`, which lets each theme's own defaults win. Dark mode is
+unaffected: its fallbacks are identical to the ink slate.
+
+**The moving background is theme aware through tokens**, not duplicated
+rules. `--fx-1` through `--fx-5` set each blob's strength and `--fx-blend` and
+`--fx-opacity` set how the over-the-wall layer composites. Light mode uses
+**multiply at 0.3** with much weaker blobs; dark mode uses soft-light at 0.85.
+Soft-light on a near white page hazes everything pink and flattens the
+contrast of whatever is underneath, whereas multiply darkens where the blob is
+and reads as a tint.
+
+**Light mode separates surfaces with elevation, dark mode with borders.** A
+1px border works on black because it is lighter than the ground; on near white
+the same border is nearly invisible and the wall reads as flat. So light mode
+adds card shadows, and gives the translucent header and rail a stronger
+dividing line.
+
+Other light specific corrections, all at the end of the stylesheet: near white
+swatches get an edge so the light gradients are visible next to the dark ones,
+the preview panel gets its own ground since `--bg` is nearly the panel colour,
+and the scroll cue track, segment tracks and switch knobs get more definition.
+
+The generated card art runs lighter in light mode (`--art-l1: 52%`), so the
+initials carry a text shadow rather than relying on the art being dark.
+
+Colours that stay hardcoded are the ones painted on saturated art: the hero
+scrim and its white text, the card art pattern overlays, the favourite button
+scrim. Those are correct in both themes because the surface underneath is
+always a strong colour.
+
+**The player sits at `z-index: 20`.** The moving overlay is at 12, and without
+this it composited drifting red over the game itself, tinting whatever was
+being played. Still below the settings sheet at 41.
 
 **Uploaded backgrounds are resized first.** `prepareBackgroundImage` downscales
 to 1920px and re-encodes as JPEG 0.82. A 5.4MB 3000x2000 PNG came out at 39KB.

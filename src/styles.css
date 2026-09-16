@@ -36,6 +36,19 @@
   --art-l2: 24%;
   --art-s: 70%;
 
+  /* Strength of each background blob, and how the layer over the wall is
+     composited. Light mode overrides all of these: on a near white page
+     soft-light hazes the whole thing pink instead of tinting it. */
+  --fx-1: 62%;
+  --fx-2: 85%;
+  --fx-3: 40%;
+  --fx-4: 52%;
+  --fx-5: 78%;
+  --fx-blend: soft-light;
+  --fx-opacity: 0.85;
+  --sheet-shadow: -26px 0 60px -30px rgba(0, 0, 0, 0.75);
+  --gate-glow: 0 6px 40px rgba(0, 0, 0, 0.5);
+
   --radius: 14px;
   --radius-sm: 10px;
   --head-h: 62px;
@@ -71,6 +84,19 @@
   --art-l1: 52%;
   --art-l2: 32%;
   --art-s: 74%;
+
+  /* Far weaker, and multiply rather than soft-light. Multiply darkens where
+     the blob is, which reads as a tint on white; soft-light just washes it
+     out and drops the contrast of everything underneath. */
+  --fx-1: 20%;
+  --fx-2: 24%;
+  --fx-3: 14%;
+  --fx-4: 18%;
+  --fx-5: 22%;
+  --fx-blend: multiply;
+  --fx-opacity: 0.3;
+  --sheet-shadow: -22px 0 50px -34px rgba(30, 20, 24, 0.35);
+  --gate-glow: 0 6px 34px rgba(190, 40, 50, 0.16);
   color-scheme: light;
 }
 
@@ -1027,6 +1053,12 @@ footer {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  /* Above the moving overlay, which sits at 12. Without this the drifting
+     red was composited over the game itself, tinting whatever was being
+     played. Still below the settings sheet at 41. */
+  position: relative;
+  z-index: 20;
+  background: var(--bg);
 }
 
 .playerbar {
@@ -1772,7 +1804,7 @@ body::before {
   width: min(430px, 100vw);
   background: var(--bg-2);
   border-left: 1px solid var(--line);
-  box-shadow: -26px 0 60px -30px rgba(0, 0, 0, 0.75);
+  box-shadow: var(--sheet-shadow);
 }
 
 /* ---- Header ---- */
@@ -2405,7 +2437,7 @@ body::before {
   height: 70%;
   background: radial-gradient(
     circle at 50% 50%,
-    color-mix(in srgb, var(--accent) 62%, transparent),
+    color-mix(in srgb, var(--accent) var(--fx-1), transparent),
     transparent 68%
   );
   animation: slosh-a 8s ease-in-out infinite alternate;
@@ -2418,7 +2450,7 @@ body::before {
   height: 72%;
   background: radial-gradient(
     circle at 50% 50%,
-    color-mix(in srgb, var(--accent-deep) 85%, transparent),
+    color-mix(in srgb, var(--accent-deep) var(--fx-2), transparent),
     transparent 70%
   );
   animation: slosh-b 11s ease-in-out infinite alternate;
@@ -2431,7 +2463,7 @@ body::before {
   height: 52%;
   background: radial-gradient(
     circle at 50% 50%,
-    color-mix(in srgb, var(--accent-hot) 40%, transparent),
+    color-mix(in srgb, var(--accent-hot) var(--fx-3), transparent),
     transparent 66%
   );
   animation: slosh-c 6.5s ease-in-out infinite alternate;
@@ -2445,7 +2477,7 @@ body::before {
   height: 64%;
   background: radial-gradient(
     circle at 50% 50%,
-    color-mix(in srgb, var(--accent) 52%, transparent),
+    color-mix(in srgb, var(--accent) var(--fx-4), transparent),
     transparent 68%
   );
   animation: slosh-d 9.5s ease-in-out infinite alternate;
@@ -2459,7 +2491,7 @@ body::before {
   height: 66%;
   background: radial-gradient(
     circle at 50% 50%,
-    color-mix(in srgb, var(--accent-deep) 78%, transparent),
+    color-mix(in srgb, var(--accent-deep) var(--fx-5), transparent),
     transparent 70%
   );
   animation: slosh-e 7.5s ease-in-out infinite alternate;
@@ -2537,8 +2569,8 @@ body::before {
   pointer-events: none;
   overflow: hidden;
   display: none;
-  mix-blend-mode: soft-light;
-  opacity: 0.85;
+  mix-blend-mode: var(--fx-blend);
+  opacity: var(--fx-opacity);
 }
 
 :root[data-bg="gradient"] .bgfx-over {
@@ -2714,7 +2746,7 @@ body.gated {
   line-height: 0.9;
   letter-spacing: -0.045em;
   color: var(--text);
-  text-shadow: 0 6px 40px rgba(0, 0, 0, 0.5);
+  text-shadow: var(--gate-glow);
 }
 
 /* ---- The scroll cue ---- */
@@ -2774,4 +2806,91 @@ body.gated {
   .gate-inner {
     transform: none;
   }
+}
+
+/* ======================================================================
+   Light mode corrections.
+
+   Dark mode separates surfaces with a 1px border, which works because the
+   border is lighter than the ground. On a near white page that same border
+   is almost invisible and the whole wall reads as flat, so light mode
+   separates with elevation instead.
+   ====================================================================== */
+
+:root[data-theme="light"] .card {
+  box-shadow:
+    0 1px 2px rgba(22, 22, 32, 0.05),
+    0 8px 18px -12px rgba(22, 22, 32, 0.22);
+}
+
+:root[data-theme="light"] .card:hover {
+  box-shadow:
+    0 2px 4px rgba(22, 22, 32, 0.06),
+    0 16px 30px -14px var(--accent-glow);
+}
+
+:root[data-theme="light"] .card.idle {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+}
+
+:root[data-theme="light"] .hero,
+:root[data-theme="light"] .sgroup,
+:root[data-theme="light"] .lib {
+  box-shadow: 0 1px 2px rgba(22, 22, 32, 0.04);
+}
+
+/* The header and rail are translucent so the moving background shows through.
+   On white that leaves them almost edgeless, so the dividing lines have to do
+   more work than in dark mode. */
+:root[data-theme="light"] header,
+:root[data-theme="light"] .rail {
+  border-color: #dcdce4;
+}
+
+/* The generated art runs lighter in light mode, so the initials need a
+   shadow to stay legible rather than relying on the art being dark. */
+:root[data-theme="light"] .art-initials {
+  text-shadow: 0 2px 10px rgba(40, 20, 25, 0.45);
+}
+
+/* Badges keep white text, so they need a slightly deeper fill on a light
+   card or they glow. */
+:root[data-theme="light"] .badge {
+  box-shadow: 0 2px 6px rgba(22, 22, 32, 0.22);
+}
+
+/* A near white swatch on a white panel has no edge at all, so the light
+   gradients were invisible next to the dark ones. */
+:root[data-theme="light"] .swatch {
+  border-color: #d5d5e0;
+  box-shadow: inset 0 0 0 1px rgba(22, 22, 32, 0.04);
+}
+
+:root[data-theme="light"] .swatch.on {
+  border-color: var(--text);
+  box-shadow:
+    0 0 0 3px var(--accent-soft),
+    0 1px 3px rgba(22, 22, 32, 0.16);
+}
+
+/* The preview sits on --bg, which is nearly the same white as the panel it
+   sits in, so it needs its own edge. */
+:root[data-theme="light"] .spreview {
+  border-color: #e4e4ec;
+  background: #f7f7fa;
+}
+
+/* The scroll cue track is nearly invisible on white. */
+:root[data-theme="light"] .gate-track {
+  background: rgba(22, 22, 32, 0.12);
+}
+
+/* Segment and switch tracks need a touch more definition on white. */
+:root[data-theme="light"] .seg,
+:root[data-theme="light"] .switch {
+  border-color: #dcdce6;
+}
+
+:root[data-theme="light"] .switch:not(.on) span {
+  background: #9a9aa6;
 }

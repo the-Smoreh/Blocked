@@ -166,6 +166,17 @@ export const GRADIENTS = {
     label: 'Coals',
     css: 'radial-gradient(90% 60% at 15% 0%, #2a0b0d 0%, transparent 60%), radial-gradient(80% 60% at 85% 10%, #1a0a1e 0%, transparent 62%), #08080a',
   },
+  // The light counterpart to slosh. Near white, with faint warm corners for
+  // the blobs to move over. A dark base here would fight light mode's text.
+  sloshlight: {
+    label: 'Slosh light',
+    css:
+      'radial-gradient(95% 75% at 12% 0%, #ffeceb 0%, transparent 62%), ' +
+      'radial-gradient(90% 70% at 88% 4%, #fdebf1 0%, transparent 62%), ' +
+      'radial-gradient(95% 75% at 90% 100%, #ffe9e6 0%, transparent 62%), ' +
+      'radial-gradient(90% 70% at 8% 96%, #fdecea 0%, transparent 62%), ' +
+      '#fbfbfc',
+  },
   paper: { label: 'Paper', css: 'linear-gradient(170deg, #ffffff 0%, #f1f1f4 100%)' },
 }
 
@@ -231,12 +242,22 @@ export function useSettings() {
     root.style.setProperty('--accent-glow', hexA(accent.a, 0.4))
     root.style.setProperty('--art-base', `${accent.hue ?? 358}deg`)
 
-    // A custom slate only makes sense when the background is a flat colour.
-    // Under a gradient or an image the panel tokens still come from it, so
-    // cards keep sitting on something solid.
-    root.style.setProperty('--slate-bg', slate.bg)
-    root.style.setProperty('--slate-bg-2', slate.bg2)
-    root.style.setProperty('--slate-panel', slate.panel)
+    // The slate only applies when the background actually is a flat colour.
+    //
+    // These used to be set unconditionally, which quietly broke light mode:
+    // the stylesheet reads `--panel: var(--slate-panel, #ffffff)`, so a dark
+    // slate left over from a previous choice won the fallback and light mode
+    // rendered dark panels, dark card title bars and unreadable intro text on
+    // a white page. Clearing them lets each theme's own default win.
+    if (settings.bgKind === 'slate') {
+      root.style.setProperty('--slate-bg', slate.bg)
+      root.style.setProperty('--slate-bg-2', slate.bg2)
+      root.style.setProperty('--slate-panel', slate.panel)
+    } else {
+      root.style.removeProperty('--slate-bg')
+      root.style.removeProperty('--slate-bg-2')
+      root.style.removeProperty('--slate-panel')
+    }
     root.style.setProperty('--bg-gradient', grad.css)
     root.style.setProperty('--bg-dim', String(settings.bgDim / 100))
     root.style.setProperty('--bg-image', settings.bgImage ? `url("${settings.bgImage}")` : 'none')

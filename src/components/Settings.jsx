@@ -157,8 +157,11 @@ export default function Settings({ open, onClose, settings, set, reset }) {
       if (!goingLight && settings.bgSlate === 'bone') patch.bgSlate = 'ink'
     }
     if (settings.bgKind === 'gradient') {
-      if (goingLight && settings.bgGradient !== 'paper') patch.bgGradient = 'paper'
-      if (!goingLight && settings.bgGradient === 'paper') patch.bgGradient = 'slosh'
+      // Only move between the two animated ones and their opposites. A
+      // deliberate pick of some other gradient is left alone.
+      const LIGHT_SET = new Set(['sloshlight', 'paper'])
+      if (goingLight && !LIGHT_SET.has(settings.bgGradient)) patch.bgGradient = 'sloshlight'
+      if (!goingLight && LIGHT_SET.has(settings.bgGradient)) patch.bgGradient = 'slosh'
     }
     set(patch)
   }
