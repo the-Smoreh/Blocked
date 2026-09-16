@@ -134,13 +134,14 @@
   {
     "title": "Cookie Clicker",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://play-lh.googleusercontent.com/7QdF1mILpUj-xtZGzNwECuVHaVKJHobvYh45z9q7hGvCbmjH1oD_ZfRxbEqbB_yb6Dk",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://alexx743-games-unblocked.vercel.app/cookie%20clicker.html",
     "source": "alexx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "games.json"
   },
   {
     "title": "Crossy Road",

@@ -2201,25 +2201,6 @@ body::before {
   height: 16px;
 }
 
-/* The credit link is its own target, so picking a library and visiting the
-   author are separate actions rather than one fighting the other. */
-.lib-link {
-  display: grid;
-  place-items: center;
-  flex: 0 0 auto;
-  width: 40px;
-  border-left: 1px solid var(--line);
-  color: var(--muted-2);
-  transition:
-    color 0.14s,
-    background 0.14s;
-}
-
-.lib-link:hover {
-  color: var(--accent);
-  background: var(--panel-3);
-}
-
 /* ---- Preview ---- */
 
 .spreview {

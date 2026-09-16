@@ -216,9 +216,45 @@ not a licence. Four of these repos state no licence, which under default
 copyright means no permission is granted to redistribute, so linking matters.
 Delist anyone who asks.
 
-Rebuild with `node scripts/build-libraries.mjs --write`, then
-`node scripts/categorize.mjs --file libraries/<id>.json --write`. Both
-`checklinks.mjs` and `categorize.mjs` take `--file <path under public/>`.
+### Rebuild order
+
+`build-libraries.mjs` regenerates entries from scratch, so it wipes borrowed
+icons and derived categories. Run the steps in this order:
+
+```
+node scripts/build-libraries.mjs --write                       1. fetch listings
+node scripts/checklinks.mjs --file libraries/<id>.json --all --prune   2. verify
+node scripts/share-icons.mjs --write                           3. lend icons
+node scripts/categorize.mjs --file libraries/<id>.json --write 4. categories
+```
+
+Only step 2 is slow and only step 2 needs the network hammered, so in practice
+step 1 is rare. `checklinks.mjs` and `categorize.mjs` both take
+`--file <path under public/>`.
+
+### Shared cover art
+
+Only Alexx743 ships thumbnails, 58 of them. Every other repo was checked for an
+image folder and has none: nova's `imgs` holds three site icons, goblin's
+`cache/upload/thumb` holds one placeholder, hell has no images directory.
+
+`share-icons.mjs` closes part of that gap. The same games recur across
+collections, so a game with no icon borrows from a same-named game that has
+one. 89 games picked up real art this way. Two rules keep it honest:
+
+- **A donor must be an original icon, never a borrowed one.** Borrowed entries
+  are stamped `icon_from`, and those are excluded as donors. Without that, a
+  second run would chain one image across the wall.
+- **A donor url must actually load**, checked with a request that also
+  requires an `image/*` content type. 392 of the built in list's icons sit on
+  the dead host, and lending those would replace working generated art with a
+  broken image.
+
+Matching is on the title reduced to `[a-z0-9]`, so "1v1 Lol" lends to
+"1v1lol" and "Paper Io" to "Paperio". A one character difference also counts,
+but **only when neither title contains a digit**, otherwise "geometrydash2"
+would borrow from "geometrydash3" and "ducklife2" from "ducklife3", which are
+different games.
 
 Verified with a full check, not a sample. goblin 633/633, alexx 71/71,
 gams 59/59 at 100%. hell 207 after 21 folders with no index file were pruned,
@@ -299,9 +335,13 @@ What it actually does, verified 2026-09-16:
   does advertise `getGames getCategories getGameUrl getImageUrl loadGame
   search destroy on off`, is unreachable until the worker boots.
 
-Both failure modes are now guarded: `init` races a 20 second timeout, and a
-container left empty is treated as a failure. Without that the page sat on a
-spinner forever with no error. The error panel offers a one click switch.
+Three failure modes are guarded. `init` races a 20 second timeout. A container
+that never receives content is treated as a failure, so the page cannot sit on
+a spinner forever. And crucially the content check **waits** via a
+MutationObserver rather than reading the container the instant init resolves:
+the first version of that check reported "returned no games" on a library that
+was about to paint fine, which showed the error panel over a working embed.
+The error panel offers a one click switch.
 
 If the worker ever does boot on a real domain, the better integration is to
 call `getGames()` and render the results in our own card UI rather than
@@ -325,6 +365,10 @@ which is most of what stops it reading as a raw form. The Cards and Look tabs
 carry a live `Preview` of three miniature cards built with the real `.card`
 markup and `artFor`, so shape, titles, accent and art update as you change
 them.
+
+The picker deliberately has **no per row link to each source**. Those were
+removed; a dedicated links page is planned instead. Attribution still shows in
+the sheet footer and the site footer.
 
 Watch for duplicate CSS when reworking it. The second pass was appended while
 the first pass was still in the file, and the leftover `.lib { flex-direction:

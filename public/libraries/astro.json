@@ -79,13 +79,14 @@
   {
     "title": "Chrome Dino",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/chrome%20dino.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20chrome-dino/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "Craftmine",
@@ -101,13 +102,14 @@
   {
     "title": "Csgo Clicker",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/csgo%20clicker.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20csgo-clicker/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "DogeMiner",
@@ -145,24 +147,26 @@
   {
     "title": "Draw the Hill",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/draw%20the%20hill.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20draw-the-hill/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "Drift Boss",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/drift%20boss.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20drift-boss/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "Ducklife2",
@@ -189,13 +193,14 @@
   {
     "title": "Flappy Bird",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/flappy%20bird.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20flappy-bird/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "Getaway Shootout",

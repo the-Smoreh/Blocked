@@ -24,6 +24,8 @@ const SOURCES = [
 const MOUNT_ID = 'lumin-games-root'
 const LOAD_TIMEOUT = 20000
 const INIT_TIMEOUT = 20000
+// How long the embed gets to paint something after init resolves.
+const CONTENT_TIMEOUT = 12000
 
 let loader = null
 
@@ -86,6 +88,28 @@ function ensureLuminLoaded() {
   return loader
 }
 
+// Resolves true as soon as the container has any content, false if it is
+// still empty when the window closes. A MutationObserver rather than polling,
+// so a library that paints quickly is not held back.
+function waitForContent(el, timeout = CONTENT_TIMEOUT) {
+  if (el.children.length) return Promise.resolve(true)
+
+  return new Promise((resolve) => {
+    const observer = new MutationObserver(() => {
+      if (el.children.length) {
+        observer.disconnect()
+        clearTimeout(timer)
+        resolve(true)
+      }
+    })
+    const timer = setTimeout(() => {
+      observer.disconnect()
+      resolve(el.children.length > 0)
+    }, timeout)
+    observer.observe(el, { childList: true, subtree: true })
+  })
+}
+
 export default function LuminLibrary({ theme, onUseLocal }) {
   const containerRef = useRef(null)
   const [error, setError] = useState(null)
@@ -123,11 +147,13 @@ export default function LuminLibrary({ theme, onUseLocal }) {
 
         if (!active) return
 
-        // init can resolve having rendered nothing at all. Treat an empty
-        // container as a failure rather than showing a blank page.
-        if (!containerRef.current.children.length) {
-          throw new Error('The library started but returned no games.')
-        }
+        // init can resolve before the library has painted anything, so
+        // checking the container straight away reported "no games" on a
+        // library that was about to load fine. Wait for the first child
+        // instead, and only fail if nothing ever arrives.
+        const painted = await waitForContent(containerRef.current)
+        if (!active) return
+        if (!painted) throw new Error('The library started but returned no games.')
 
         setReady(true)
       } catch (e) {

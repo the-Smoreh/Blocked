@@ -101,13 +101,14 @@
   {
     "title": "Backrooms",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/backrooms.jpg",
     "category": "Horror",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g44/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "Baldi's Basics",
@@ -134,13 +135,14 @@
   {
     "title": "Basket Bros",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/basketbros.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g28/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "Basket Random Unblocked",
@@ -200,13 +202,14 @@
   {
     "title": "Boxing Random",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/boxing%20random.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g46/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "Case Clicker 2 - MTSL",
@@ -222,13 +225,14 @@
   {
     "title": "Cookie Clicker",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://play-lh.googleusercontent.com/7QdF1mILpUj-xtZGzNwECuVHaVKJHobvYh45z9q7hGvCbmjH1oD_ZfRxbEqbB_yb6Dk",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g57/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "games.json"
   },
   {
     "title": "CrazyCattle3D",
@@ -266,13 +270,14 @@
   {
     "title": "Drive Mad",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/drive%20mad.jpg",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g11/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "Eagle Ride Unblocked - ubg235 Poki",
@@ -640,13 +645,14 @@
   {
     "title": "Monkey Mart",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/monkey%20mart.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g47/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "New Tab",
@@ -728,13 +734,14 @@
   {
     "title": "Retro Bowl",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/retro%20bowl.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g30/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "s&#8202;l&#8202;o&#8202;w&nbsp;&nbsp;r&#8202;o&#8202",
@@ -761,13 +768,14 @@
   {
     "title": "ShellShockers",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/shellshockers.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g20/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "Silk &ndash; Interactive Generative Art",
@@ -827,13 +835,14 @@
   {
     "title": "Subway Surfers",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://ik.imagekit.io/yyjyznrctj/SubwaySurfIcon06.webp",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g26/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "games.json"
   },
   {
     "title": "SUPERHOT",

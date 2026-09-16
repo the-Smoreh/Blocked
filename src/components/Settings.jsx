@@ -239,17 +239,6 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                           </span>
                         )}
                       </button>
-                      {lib.credit && (
-                        <a
-                          className="lib-link"
-                          href={lib.credit}
-                          target="_blank"
-                          rel="noreferrer"
-                          title={`Open ${lib.author} on GitHub`}
-                        >
-                          <Icon name="external" size={15} />
-                        </a>
-                      )}
                     </div>
                   )
                 })}
