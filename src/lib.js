@@ -42,7 +42,11 @@ export function useGames({ enabled = true, file = 'games.json' } = {}) {
     // no-cache revalidates instead of serving a stale copy. Without it the
     // browser keeps an old games.json and newly added games never appear
     // after a deploy, which is silent and very confusing.
-    fetch(file, { cache: 'no-cache' })
+    // Prefix the base so the data files are found wherever the site is
+    // served from. A bare relative fetch happens to work with hash routing,
+    // but it breaks the moment anything is served from a deeper path, and
+    // BASE_URL costs nothing.
+    fetch(import.meta.env.BASE_URL + file, { cache: 'no-cache' })
       .then((r) => {
         if (!r.ok) throw new Error(file + ' returned ' + r.status)
         return r.json()

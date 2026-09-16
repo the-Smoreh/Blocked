@@ -1,0 +1,61 @@
+# Builds the site and publishes it to GitHub Pages.
+#
+# Before the first run, set Settings -> Pages -> Source to "GitHub Actions".
+# Nothing else needs configuring: vite.config.js uses a relative base, so this
+# works whether the repo is a project site at <user>.github.io/<repo>/ or a
+# user site at <user>.github.io/, and on a custom domain.
+
+name: Deploy to Pages
+
+on:
+  push:
+    branches: [main]
+  # Lets you publish by hand from the Actions tab without pushing.
+  workflow_dispatch:
+
+# Read the repo, write the Pages deployment, and mint the deploy token.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time. Do not cancel a run in progress, so a deploy that
+# is already publishing is allowed to finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # npm ci needs the lockfile to match package.json. It does here, and it
+      # is the reproducible choice over npm install.
+      - run: npm ci
+
+      - run: npm run lint
+
+      - run: npm run build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -120,8 +120,36 @@ whether the host is actually dead.
 confirmed playable and carry `"verified": true` in games.json: Clumsy Bird,
 Astray, Untrusted and 2048.
 
-Hosting is undecided. Nothing in the code assumes a host, but if it ends up on
-GitHub Pages under a subpath, `base` needs setting in `vite.config.js`.
+## Hosting
+
+Set up for GitHub Pages. `.github/workflows/deploy.yml` builds and publishes on
+push to `main`; the repo owner has to set Settings -> Pages -> Source to
+"GitHub Actions" once.
+
+`vite.config.js` uses **`base: './'`**, not a hardcoded `/Blocked/`. Relative
+asset paths mean one build works at a project site
+(`<user>.github.io/<repo>/`), a user site (`<user>.github.io/`) and a custom
+domain. Hardcoding the repo name would break the other two and local previews.
+
+This is only safe because of **hash routing**: the document is always served
+from the base itself, so relative paths always resolve against it. If a real
+router is ever introduced, this breaks, and Pages has no rewrite rules so it
+would also need a `404.html` shim.
+
+Data files are fetched as `import.meta.env.BASE_URL + file` rather than a bare
+relative path. A bare path happens to work with hash routing but breaks as soon
+as anything is served deeper.
+
+`public/.nojekyll` disables Jekyll, which otherwise skips paths starting with
+an underscore.
+
+Verified with one `dist` folder on 2026-09-16: served at `/Blocked/` and at
+`/`, both rendered 633 cards with no console errors, and the deep link
+`/Blocked/#/game/2048-balls` opened the player. Local configs `blocked-pages`
+(port 5175, subpath) and `blocked-root` (5176) reproduce both.
+
+No mixed content: every game url and icon url in every library is `https`,
+checked. Pages is HTTPS only, so an `http` url would be blocked outright.
 
 ## The dead host, the biggest open problem
 
