@@ -1,92 +1,14 @@
 {
   "libraries": [
     {
-      "id": "goblin",
-      "name": "Goblin Kingdom",
-      "author": "goblinkingdev",
-      "credit": "https://github.com/goblinkingdev/unblocked-games",
+      "id": "selenite",
+      "name": "Selenite",
+      "author": "Selenite",
+      "credit": "https://music.lyrica24.top/",
       "licence": "none stated",
-      "host": "https://goblinkingdev.github.io/unblocked-games/game/",
-      "count": 633,
-      "file": "libraries/goblin.json",
-      "stale": true
-    },
-    {
-      "id": "hell",
-      "name": "Hell",
-      "author": "D3ch",
-      "credit": "https://github.com/D3ch/hell",
-      "licence": "none stated",
-      "host": "https://d3ch.github.io/hell/Games/",
-      "count": 207,
-      "file": "libraries/hell.json",
-      "stale": true
-    },
-    {
-      "id": "alexx",
-      "name": "Alexx743",
-      "author": "Alexx743",
-      "credit": "https://github.com/Alexx743/Alexx743-games",
-      "licence": "none stated",
-      "host": "https://alexx743-games-unblocked.vercel.app/",
-      "count": 71,
-      "file": "libraries/alexx.json",
-      "stale": true
-    },
-    {
-      "id": "gams",
-      "name": "Gams Offline",
-      "author": "Gams-Offline",
-      "credit": "https://github.com/Gams-Offline/Gams",
-      "licence": "none stated",
-      "host": "https://gams-offline.github.io/Gams/g/",
-      "count": 59,
-      "file": "libraries/gams.json",
-      "stale": true
-    },
-    {
-      "id": "nova",
-      "name": "Nova Arcade",
-      "author": "Beefalo1234",
-      "credit": "https://github.com/Beefalo1234/nova-arcade",
-      "licence": "WTFPL",
-      "host": "https://beefalo1234.github.io/nova-arcade/games/",
-      "count": 151,
-      "file": "libraries/nova.json",
-      "stale": true
-    },
-    {
-      "id": "p0xx",
-      "name": "p0xx",
-      "author": "p0xx",
-      "credit": "https://github.com/p0xx/p0xx.github.io",
-      "licence": "none stated",
-      "host": "https://p0xx.github.io/g/games/",
-      "count": 51,
-      "file": "libraries/p0xx.json",
-      "stale": true
-    },
-    {
-      "id": "astro",
-      "name": "Astro v2",
-      "author": "MNblocker",
-      "credit": "https://github.com/MNblocker/Astro-v2",
-      "licence": "NOASSERTION",
-      "host": "https://mnblocker.github.io/Astro-v2/Games/",
-      "count": 24,
-      "file": "libraries/astro.json",
-      "stale": true
-    },
-    {
-      "id": "amplify",
-      "name": "Amplify",
-      "author": "joeyc1pro",
-      "credit": "https://github.com/joeyc1pro/amplify-home-xyz",
-      "licence": "none stated",
-      "host": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/",
-      "count": 80,
-      "file": "libraries/amplify.json",
-      "stale": true
+      "host": "https://music.lyrica24.top/resources/semag/",
+      "count": 915,
+      "file": "libraries/selenite.json"
     }
   ],
   "rejected": [

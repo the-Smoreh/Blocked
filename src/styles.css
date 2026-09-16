@@ -2894,3 +2894,13 @@ body.gated {
 :root[data-theme="light"] .switch:not(.on) span {
   background: #9a9aa6;
 }
+
+/* A third line in a library row, for a credit that needs more than "by X". */
+.lib-text small {
+  font-size: 10.5px;
+  color: var(--muted-2);
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

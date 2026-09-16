@@ -13,14 +13,14 @@
   {
     "title": "1v1.lol",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/1v1%20lol.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/1v1lol/splash.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/1v1.lol.html",
     "source": "p0xx",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Baldi",
@@ -36,14 +36,14 @@
   {
     "title": "Basketbros",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/basketbros.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/basketbros/thumb.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/basketbros.html",
     "source": "p0xx",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bob",
@@ -158,13 +158,14 @@
   {
     "title": "Dogeminer2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/dogeminer2/dogeloader.svg",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/dogeminer2.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Drift",
@@ -213,24 +214,26 @@
   {
     "title": "Jetpack",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/jetpackjoyride/logo.jpeg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/jetpack.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Mariokart",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/mariokartds/mariokartds.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/retro/mariokart.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Megaman1",
@@ -246,35 +249,38 @@
   {
     "title": "Megaman2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/megaman2/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/retro/megaman2.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Megaman3",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/megaman3/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/retro/megaman3.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Megaman4",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/megaman4/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/retro/megaman4.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Mine",
@@ -312,13 +318,14 @@
   {
     "title": "Pokemonemerald",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/pokemonemerald/pokemonemerald-sq-1644346782465.webp",
     "category": "Adventure",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/retro/pokemonemerald.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Pokemongreen",
@@ -334,35 +341,38 @@
   {
     "title": "Pokemonred",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/pokemonred/pokemonred.jpg",
     "category": "Adventure",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/retro/pokemonred.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Pokemonruby",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/pokemonruby/pokemonruby.jpeg",
     "category": "Adventure",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/retro/pokemonruby.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Pokemonsap",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/pokemonsapphire/pokemonsapphire.jpg",
     "category": "Adventure",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/retro/pokemonsap.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Saga",
@@ -389,14 +399,14 @@
   {
     "title": "Slope",
     "description": "",
-    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsloperun.org%2Fdata%2Fimage%2Fposts%2Fslope-image.jpg&f=1&nofb=1&ipt=4d8f1ee1c1861ab829c5bf338f75d03662df04c6b730de500331e7eafe9a5291",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/slope/slope4.jpeg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/slope.html",
     "source": "p0xx",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Smashkarts",
@@ -424,35 +434,38 @@
   {
     "title": "Sonic1",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/sonic/cover.svg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/retro/sonic1.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Sonic2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/2sonic/cover.svg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/retro/sonic2.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Sonic3",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/3sonic/cover.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/retro/sonic3.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Stars",
@@ -479,13 +492,14 @@
   {
     "title": "Stickman",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/stickmanboost/base%2Fimg1.jpg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://p0xx.github.io/g/games/stickman.html",
     "source": "p0xx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Subway",

@@ -13,14 +13,14 @@
   {
     "title": "2048",
     "description": "",
-    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdXgpqDJNhyHTfk7Gf4cchux_m4gtbOvMFPw&s",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/2048/icon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/2048/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "8 Ball Pool",
@@ -36,13 +36,14 @@
   {
     "title": "A Dark Room",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/adarkroom/favicon.ico",
     "category": "Horror",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/a-dark-room/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Abandoned 2",
@@ -113,13 +114,14 @@
   {
     "title": "Awesome Tanks",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/awesometanks/cover.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/awesome-tanks/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Awesome Tanks 2",
@@ -146,26 +148,26 @@
   {
     "title": "Basket Random",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/basket%20random.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/basketrandom/test.png",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/basket-random/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Basketball Stars",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/basketball%20stars.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/basketball-stars/icon.png",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/basketball-stars/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bingo Caller",
@@ -181,14 +183,14 @@
   {
     "title": "Bit Life",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/bitlife.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/bitlife/bitlife.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/bit-life/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Blackjack",
@@ -215,14 +217,14 @@
   {
     "title": "Boxing Random",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/boxing%20random.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/boxingrandom/512x512.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/boxing-random/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Brawl Stars Project Laser",
@@ -282,13 +284,14 @@
   {
     "title": "Bubble Shooter",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/bub/cover.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/bubble-shooter/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Chrome Dino",
@@ -316,47 +319,50 @@
   {
     "title": "Clicker Heroes",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/clickerheroes/clicker-heroes.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/clicker-heroes/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Connect Four Game",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/c4/cover.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/connect-four-game/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Conways Game of Life",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/life/logo.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/conways-game-of-life/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Cookie Clicker",
     "description": "",
-    "game_image_icon": "https://play-lh.googleusercontent.com/7QdF1mILpUj-xtZGzNwECuVHaVKJHobvYh45z9q7hGvCbmjH1oD_ZfRxbEqbB_yb6Dk",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/cookieclicker/img%2FperfectCookie.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/cookie-clicker/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Core Ball",
@@ -383,83 +389,86 @@
   {
     "title": "Crossy Road",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/crossy%20road.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/crossyroad/chicken.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/crossy-road/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Cut the Rope",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/cuttherope/icon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/cut-the-rope/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Doge Miner",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/dogeminer/img%2Fdogeminer_300x300.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/doge-miner/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Doodle Jump",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/doodlejump/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/doodle-jump/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Drift Boss",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/drift%20boss.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/drift-boss/icon.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/drift-boss/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Drive Mad",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/drive%20mad.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/drivemad/icons%2Ficon-128.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/drive-mad/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Drive Mad S",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/drive%20mad.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/drivemad/icons%2Ficon-128.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/drive-mad-s/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Dune",
@@ -531,58 +540,62 @@
   {
     "title": "Fireboy and Watergirl 2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/fireboywatergirl2/Untitled.jpeg",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/fireboy-and-watergirl-2/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Fireboy and Watergirl 3",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/fireboywatergirl3/icon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/fireboy-and-watergirl-3/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Fireboy and Watergirl 4",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/fireboywatergirl4/300.jpg",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/fireboy-and-watergirl-4/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Flappy Bird",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/flappy%20bird.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/flappybird/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/flappy-bird/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Frogger",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/frogger/cover.png",
     "category": "Retro",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/frogger/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Fruit Slicer",
@@ -631,13 +644,14 @@
   {
     "title": "Getaway Shootout",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/getawayshooter/Untitled.jpeg",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/getaway-shootout/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Gons Io",
@@ -708,25 +722,26 @@
   {
     "title": "Hextris",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/hextris/images%2Ficons%2Fapple-touch-152.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/hextris/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Idle Breakout",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/idle%20breakout.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/idlebreakout/image.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/idle-breakout/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Incremancer",
@@ -819,47 +834,50 @@
   {
     "title": "Minesweeper",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/minesweeper/cover.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/minesweeper/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Monkey Mart",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/monkey%20mart.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/monkeymart/unnamed.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/monkey-mart/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Motox3m",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/motox3m/splash.jpg",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/motox3m/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "N Gon",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ngon/favicon.ico",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/n-gon/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "N Step Steve Part 2",
@@ -974,13 +992,14 @@
   {
     "title": "Pong",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/pong/cover.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/pong/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Progress Knight Quest",
@@ -1051,26 +1070,26 @@
   {
     "title": "Retro Bowl",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/retro%20bowl.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/retrobowl/img%2Ficon.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/retro-bowl/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Retro Bowl Old",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/retro%20bowl.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/retrobowl/img%2Ficon.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/retro-bowl-old/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Rift Shift",
@@ -1108,13 +1127,14 @@
   {
     "title": "Rooftop Snipers",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/rooftopsnipers/logo.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/rooftop-snipers/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Rookie Bowman",
@@ -1141,14 +1161,14 @@
   {
     "title": "Run 3",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/run3.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/run3/icon.jpeg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/run-3/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Run 3 Beta",
@@ -1230,14 +1250,14 @@
   {
     "title": "Slope",
     "description": "",
-    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsloperun.org%2Fdata%2Fimage%2Fposts%2Fslope-image.jpg&f=1&nofb=1&ipt=4d8f1ee1c1861ab829c5bf338f75d03662df04c6b730de500331e7eafe9a5291",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/slope/slope4.jpeg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/slope/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Slot Spinner",
@@ -1276,37 +1296,38 @@
   {
     "title": "Snake",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/snake.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/snake/snake.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/snake/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Soccer Random",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/soccer%20random.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/soccerrandom/test.png",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/soccer-random/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Space Invader",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/spaceinvaders/spaceinvaders.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/space_invader/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Speed Match",
@@ -1333,59 +1354,62 @@
   {
     "title": "Stickman Hook",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/stickman-hook/icon.jpg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/stickman-hook/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Subway Surfers Ny",
     "description": "",
-    "game_image_icon": "https://ik.imagekit.io/yyjyznrctj/SubwaySurfIcon06.webp",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/subway-surfers-ny/NewYorkIcon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/subway-surfers-ny/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Sudoku",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/sudo/cover.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/sudoku/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Temple Run 2",
     "description": "",
-    "game_image_icon": "https://upload.wikimedia.org/wikipedia/en/9/98/Temple_Run_2.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/templerun2/img%2Ficons%2Ficon-128x128.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/temple-run-2/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Tetris",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/tetris/favico.ico",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/tetris/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "The Final Earth",
@@ -1401,13 +1425,14 @@
   {
     "title": "There Is No Game",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/thereisnogame/icon-256.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/there-is-no-game/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Tictactoe",
@@ -1423,35 +1448,38 @@
   {
     "title": "Time Shooter",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/timeshooter1/logo.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/time-shooter/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Time Shooter 3",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/timeshooter3/logo.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/time-shooter-3/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Tiny Fishing",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/tinyfishing/tiny-fishing.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/tiny-fishing/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Tower Defense",
@@ -1489,25 +1517,26 @@
   {
     "title": "Tunnel Rush",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/tunnel%20rush.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/tunnelrush/tunnel.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/tunnel-rush/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Two Ball 3d",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/two/cover.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/two-ball-3d/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Typing Test",
@@ -1545,69 +1574,74 @@
   {
     "title": "Vex 3",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex3/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/vex-3/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Vex 4",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex4/vex4.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/vex-4/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Vex 5",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex5/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/vex-5/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Vex 6",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex6/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/vex-6/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Vex 7",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex7/icon.jpeg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/vex-7/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Volley Random",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/volly%20random.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/volleyrandom/cover.webp",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/volley-random/",
     "source": "nova",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Web Osu",

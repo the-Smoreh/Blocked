@@ -13,13 +13,14 @@
   {
     "title": "10 Minutes Till Dawn | Seraph",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/10minutestilldawn/splash.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g31/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "2DOOM - A bloody cute demake by Valryon, Plius and",
@@ -46,13 +47,14 @@
   {
     "title": "A Dark Room",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/adarkroom/favicon.ico",
     "category": "Horror",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g35/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "A jam about time",
@@ -113,49 +115,50 @@
   {
     "title": "Baldi's Basics",
     "description": "",
-    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7hk_-Bp_APA4P3QBIazul3h_gYt8dVRlSAw&s",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/baldis-basics/splash.png",
     "category": "Horror",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g5/",
     "source": "amplify",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "BASEBALL BROS! | Official Site",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/baseball/CTA.png",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g27/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Basket Bros",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/basketbros.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/basketbros/thumb.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g28/",
     "source": "amplify",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Basket Random Unblocked",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/basket%20random.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/basketrandom/test.png",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g6/",
     "source": "amplify",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "BitLife | 3kh0",
@@ -171,24 +174,26 @@
   {
     "title": "Block Blast Puzzle",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/blockblast/blockblast.webp",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g8/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bloxorz",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/bloxors/bloxorz.webp",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g9/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "BottleFlip3D",
@@ -204,14 +209,14 @@
   {
     "title": "Boxing Random",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/boxing%20random.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/boxingrandom/512x512.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g46/",
     "source": "amplify",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Case Clicker 2 - MTSL",
@@ -227,25 +232,26 @@
   {
     "title": "Cookie Clicker",
     "description": "",
-    "game_image_icon": "https://play-lh.googleusercontent.com/7QdF1mILpUj-xtZGzNwECuVHaVKJHobvYh45z9q7hGvCbmjH1oD_ZfRxbEqbB_yb6Dk",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/cookieclicker/img%2FperfectCookie.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g57/",
     "source": "amplify",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "CrazyCattle3D",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/crazycattle/CrazyCattle3D.icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g62/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "CrazyChicken3D Remaster",
@@ -272,14 +278,14 @@
   {
     "title": "Drive Mad",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/drive%20mad.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/drivemad/icons%2Ficon-128.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g11/",
     "source": "amplify",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Eagle Ride Unblocked - ubg235 Poki",
@@ -361,35 +367,38 @@
   {
     "title": "Five Nights at Freddy's 2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/fnaf2/project%2Fsplash.webp",
     "category": "Horror",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g67/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Five Nights at Freddy's 3",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/fnaf3/project%2Fsplash.webp",
     "category": "Horror",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g68/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Five Nights at Winston's",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/fnaw/favicon.ico",
     "category": "Horror",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g69/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "G21",
@@ -570,14 +579,14 @@
   {
     "title": "Geometry Dash SubZero",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/geometry%20dash.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/webdash/gd.webp",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g50/",
     "source": "amplify",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Granny Original",
@@ -615,13 +624,14 @@
   {
     "title": "Just Fall",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/justfalllol/unnamed.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g14/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "LAST BREATH",
@@ -648,14 +658,14 @@
   {
     "title": "Monkey Mart",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/monkey%20mart.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/monkeymart/unnamed.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g47/",
     "source": "amplify",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "New Tab",
@@ -704,24 +714,26 @@
   {
     "title": "Raft Wars",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/raftwars/raft-wars.avif",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g17/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Raft Wars 2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/raftwars2/raft-wars-2.avif",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g18/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Ragdoll Hit",
@@ -737,14 +749,14 @@
   {
     "title": "Retro Bowl",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/retro%20bowl.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/retrobowl/img%2Ficon.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g30/",
     "source": "amplify",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "s&#8202;l&#8202;o&#8202;w&nbsp;&nbsp;r&#8202;o&#8202",
@@ -794,70 +806,74 @@
   {
     "title": "Snow Rider 3D Unblocked - Play Online",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/snow%20rider%203D.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/snowrider3d/snow.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g23/",
     "source": "amplify",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Snowball.IO",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/snow/cover.png",
     "category": "IO",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g24/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Soundboard",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/soundboard/bleep.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g48/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Stair Race 3D",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/stairrace3d/favicon.ico",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g25/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Subway Surfers",
     "description": "",
-    "game_image_icon": "https://ik.imagekit.io/yyjyznrctj/SubwaySurfIcon06.webp",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/subway-surfers-ny/NewYorkIcon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g26/",
     "source": "amplify",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "SUPERHOT",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/superhot/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g54/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Tag",

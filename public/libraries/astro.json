@@ -2,25 +2,26 @@
   {
     "title": "Amazing Rope Police",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/amazing-rope-police/splash.jpeg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20amazing-rope-police/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Baldis Basics",
     "description": "",
-    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7hk_-Bp_APA4P3QBIazul3h_gYt8dVRlSAw&s",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/baldis-basics/splash.png",
     "category": "Horror",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20baldis-basics/",
     "source": "astro",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bloonstd2",
@@ -58,13 +59,14 @@
   {
     "title": "Cell Machine",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/cell-machine/img%2Ficon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20cell-machine/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Championarcher",
@@ -115,35 +117,38 @@
   {
     "title": "DogeMiner",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/dogeminer/img%2Fdogeminer_300x300.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20DogeMiner/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Dogeminer2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/dogeminer2/dogeloader.svg",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20Dogeminer2/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Doodle Jump",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/doodlejump/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20doodle-jump/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Draw the Hill",
@@ -160,25 +165,26 @@
   {
     "title": "Drift Boss",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/drift%20boss.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/drift-boss/icon.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20drift-boss/",
     "source": "astro",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Ducklife2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ducklife2/ducklife2.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20ducklife2/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Eel Slap",
@@ -194,25 +200,26 @@
   {
     "title": "Flappy Bird",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/flappy%20bird.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/flappybird/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20flappy-bird/",
     "source": "astro",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Getaway Shootout",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/getawayshooter/Untitled.jpeg",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20getaway-shootout/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Glass City",
@@ -250,13 +257,14 @@
   {
     "title": "HexGL",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/hexgl/icon_128.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://mnblocker.github.io/Astro-v2/Games/MNblocker%203kh0-Assets%20main%20HexGL/",
     "source": "astro",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Highrisehop",

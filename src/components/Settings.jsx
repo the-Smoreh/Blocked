@@ -234,6 +234,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                         <span className="lib-text">
                           <strong>{lib.label}</strong>
                           <em>{lib.author ? `by ${lib.author}` : lib.note}</em>
+                          {lib.author && lib.note && <small>{lib.note}</small>}
                         </span>
                         {lib.count != null && <span className="lib-count">{lib.count}</span>}
                         {on && (
@@ -247,12 +248,6 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                 })}
               </div>
 
-              {settings.library === 'local' && (
-                <p className="snote bad">
-                  Most links here point at a host that no longer exists, so they open blank. Kept
-                  for reference only.
-                </p>
-              )}
               {settings.library === 'lumin' && (
                 <p className="snote">
                   Loaded from a third party CDN, and it checks the domain it runs on, so it does not

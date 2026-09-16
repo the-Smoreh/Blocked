@@ -11,6 +11,13 @@
 //   node scripts/share-icons.mjs --max-distance 2      tighter matching
 //   node scripts/share-icons.mjs --min-length 10       only longer titles
 //   node scripts/share-icons.mjs --reset --write       re-lend from scratch
+//   node scripts/share-icons.mjs --verify-own --write   blank dead own icons
+//
+// --verify-own requests every entry's own icon and clears the ones that do
+// not return an image. Selenite's catalogue lists a cover filename per game
+// and roughly one in seven is stale, so without this those cards fire a
+// request that 404s before falling back to the generated art, and a dead url
+// could be lent to another library as a donor.
 //
 // Matching runs in three passes, loosest last:
 //   1. exact, on the title reduced to [a-z0-9]
@@ -31,7 +38,9 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 
 const DIR = new URL('../public/', import.meta.url)
 const FILES = [
-  'games.json',
+  // Selenite first: it has a cover for nearly every one of its 914 games, so
+  // it is by far the biggest donor pool.
+  'libraries/selenite.json',
   'libraries/goblin.json',
   'libraries/hell.json',
   'libraries/nova.json',
@@ -47,6 +56,7 @@ const verify = !process.argv.includes('--no-verify')
 // Clears previously borrowed icons first, so changing the matching rules
 // re-lends from scratch instead of being blocked by last run's results.
 const reset = process.argv.includes('--reset')
+const verifyOwn = process.argv.includes('--verify-own')
 
 // Hosts known to be gone. Checked, not guessed: this subdomain is NXDOMAIN.
 const DEAD_HOSTS = new Set(['mathematics-lessons.eclipsecastellon.com'])
@@ -147,6 +157,9 @@ for (const rel of FILES) {
 }
 
 // ---------------------------------------------------------------- donors
+//
+// Built after --verify-own has had its say, so a dead cover is never offered
+// to another library.
 
 const donors = new Map() // strict key -> { url, from, title }
 const loose = new Map() // loose key -> same
@@ -180,6 +193,38 @@ if (reset) {
     }
   }
   console.log(`cleared ${cleared} previously borrowed icons`)
+}
+
+if (verifyOwn) {
+  const own = []
+  for (const lib of loaded) {
+    for (const g of lib.games) {
+      if (!g.game_image_icon || g.icon_from) continue
+      let host
+      try {
+        host = new URL(g.game_image_icon).hostname
+      } catch {
+        continue
+      }
+      if (DEAD_HOSTS.has(host)) continue
+      own.push(g)
+    }
+  }
+
+  let cursor = 0
+  let blanked = 0
+  const POOL = 8
+  await Promise.all(
+    Array.from({ length: POOL }, async () => {
+      while (cursor < own.length) {
+        const g = own[cursor++]
+        if (await alive(g.game_image_icon)) continue
+        g.game_image_icon = ''
+        blanked++
+      }
+    }),
+  )
+  console.log(`checked ${own.length} own icons, blanked ${blanked} that did not return an image`)
 }
 
 console.log(`${donors.size} candidate donor icons from ${loaded.length} files`)

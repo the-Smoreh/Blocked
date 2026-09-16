@@ -2,13 +2,14 @@
   {
     "title": "1",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/1/cover.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/1/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "10 103",
@@ -24,70 +25,74 @@
   {
     "title": "10 Minutes Till Dawn",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/10minutestilldawn/splash.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/10-minutes-till-dawn/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "1v1lol",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/1v1%20lol.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/1v1lol/splash.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/1v1lol/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "2048",
     "description": "",
-    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdXgpqDJNhyHTfk7Gf4cchux_m4gtbOvMFPw&s",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/2048/icon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/2048/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "9007199254740992",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/9007199254740992/cover.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/9007199254740992/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "A Dance of Fire and Ice",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/adofai/splash.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/a-dance-of-fire-and-ice/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Achievementunlocked",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/achieveunlocked/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/achievementunlocked/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Acsiispace",
@@ -103,24 +108,26 @@
   {
     "title": "Adarkroom",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/adarkroom/favicon.ico",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/adarkroom/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Adventure Drivers",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/adventure/cover.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/adventure-drivers/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Ages of Conflict",
@@ -147,14 +154,14 @@
   {
     "title": "Aquapark Slides",
     "description": "",
-    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmo8ES8aTt6maTZ27TrRqwkYxYi9ZmgpgfQA&s",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/aquaparkslides/splash.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/aquapark-slides/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Awesometanks2",
@@ -170,13 +177,14 @@
   {
     "title": "Awesometanksfiles",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/awesometanks/cover.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/awesometanksfiles/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Backrooms",
@@ -193,13 +201,14 @@
   {
     "title": "Bacon May Die",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/baconmaydie/splash.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/bacon-may-die/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bad Flesh",
@@ -215,71 +224,74 @@
   {
     "title": "Bad Ice Cream",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/badicecream/bad-ice-cream.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/bad-ice-cream/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bad Ice Cream 2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/badicecream2/bad-ice-cream-2.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/bad-ice-cream-2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bad Ice Cream 3",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/badicecream3/bad-ice-cream-3.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/bad-ice-cream-3/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Baldis Basics",
     "description": "",
-    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7hk_-Bp_APA4P3QBIazul3h_gYt8dVRlSAw&s",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/baldis-basics/splash.png",
     "category": "Horror",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/baldis-basics/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Basketball Stars",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/basketball%20stars.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/basketball-stars/icon.png",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/basketball-stars/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Basketbros Io",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/basketbros.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/basketbros/thumb.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/basketbros-io/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bb",
@@ -317,14 +329,14 @@
   {
     "title": "Bitlife",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/bitlife.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/bitlife/bitlife.png",
     "category": "Strategy",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/bitlife/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bloonstd",
@@ -362,13 +374,14 @@
   {
     "title": "Bobtherobber2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/bobtherobber2/logo.avif",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/bobtherobber2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bottle Flip 3d",
@@ -395,13 +408,14 @@
   {
     "title": "Burger and Frights",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/burgerandfrights/icon.png",
     "category": "Horror",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/burger-and-frights/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Cannon Basketball 4",
@@ -428,13 +442,14 @@
   {
     "title": "Cell Machine",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/cell-machine/img%2Ficon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/cell-machine/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Chainsaw Dance",
@@ -473,60 +488,62 @@
   {
     "title": "Clicker Heroes",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/clickerheroes/clicker-heroes.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/clicker-heroes/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Cluster Rush",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/cluster-rush/icon.jpg",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/cluster-rush/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Cookie Clicker",
     "description": "",
-    "game_image_icon": "https://play-lh.googleusercontent.com/7QdF1mILpUj-xtZGzNwECuVHaVKJHobvYh45z9q7hGvCbmjH1oD_ZfRxbEqbB_yb6Dk",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/cookieclicker/img%2FperfectCookie.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/cookie-clicker/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Cookieclickeralt",
     "description": "",
-    "game_image_icon": "https://play-lh.googleusercontent.com/7QdF1mILpUj-xtZGzNwECuVHaVKJHobvYh45z9q7hGvCbmjH1oD_ZfRxbEqbB_yb6Dk",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/cookieclicker/img%2FperfectCookie.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/cookieclickeralt/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Crossyroad",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/crossy%20road.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/crossyroad/chicken.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/crossyroad/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Crss Rd Space",
@@ -565,13 +582,14 @@
   {
     "title": "Cuttherope Timetravel",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ctrtimetravel/ttsplash.webp",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/cuttherope-Timetravel/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Dead Trigger 2",
@@ -587,58 +605,62 @@
   {
     "title": "Death Run 3d",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/death%20run3D.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/death-run-3d/img%2Fdeath.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/death-run-3d/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Deepest Sword",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/deepestsword/logo.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/deepest-sword/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Defend the Tank",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/defendthetank/landscape.jpg",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/defend-the-tank/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "DogeMiner",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/dogeminer/img%2Fdogeminer_300x300.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/DogeMiner/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Doodle Jump",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/doodlejump/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/doodle-jump/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "DOOMORI",
@@ -665,58 +687,62 @@
   {
     "title": "Drift Hunters",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/drifthunters/icon.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/drift-hunters/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Drive Mad",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/drive%20mad.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/drivemad/icons%2Ficon-128.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/drive-mad/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Ducklife1",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ducklife1/ducklife1.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/ducklife1/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Ducklife2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ducklife2/ducklife2.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/ducklife2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Ducklife3",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ducklife3/ducklife3.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/ducklife3/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Eagl152",
@@ -732,13 +758,14 @@
   {
     "title": "Earntodie",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ern/cover.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/earntodie/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Earthtaken3",
@@ -864,13 +891,14 @@
   {
     "title": "Fireboy and Watergirl 2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/fireboywatergirl2/Untitled.jpeg",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/fireboy-and-watergirl-2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Fireboywatergirlforesttemple",
@@ -897,14 +925,13 @@
   {
     "title": "Fnaf3",
     "description": "",
-    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Ffa%2F70%2F84%2Ffa70846c2e28da478d1a7fa0247d5b2f.gif&f=1&nofb=1&ipt=ef273c013ceb5c9820d1d2345e4e10347019ab705144759eeacb2d0cdd785e9b",
+    "game_image_icon": "",
     "category": "Horror",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/fnaf3/",
     "source": "hell",
-    "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "category_raw": "Arcade"
   },
   {
     "title": "Fnaw",
@@ -931,25 +958,26 @@
   {
     "title": "Fruitninja",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/Fruit%20Ninja.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/fruitninja/FruitNinjaTeaser.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/fruitninja/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Funny Shooter2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/funnyshooter2/894abba63a6b23fed823f404831f444f.jpeg",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/funny-shooter2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Game Inside",
@@ -976,13 +1004,14 @@
   {
     "title": "Getaway Shootout",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/getawayshooter/Untitled.jpeg",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/getaway-shootout/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Gimme the Airpod",
@@ -1031,24 +1060,26 @@
   {
     "title": "Gunmayhem2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/gunmayhem2/icon.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/gunmayhem2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "GunMayhem2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/gunmayhem2/icon.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/GunMayhem2.html",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Gunspinn",
@@ -1075,24 +1106,26 @@
   {
     "title": "Happywheels",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/happywheels/Untitled.jpeg",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/happywheels/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "HexGL",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/hexgl/icon_128.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/HexGL/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Hoh",
@@ -1108,13 +1141,14 @@
   {
     "title": "Hole Io",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/holeio/feature800x470.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/hole-io.com/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Horde Killer You vs 100",
@@ -1152,25 +1186,26 @@
   {
     "title": "Idlebreakout",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/idle%20breakout.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/idlebreakout/image.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/idlebreakout/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Jetpack Joyride",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/jetpackjoyride/logo.jpeg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/jetpack-joyride/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Johnnytriggerhtml",
@@ -1186,13 +1221,14 @@
   {
     "title": "Just Fall",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/justfalllol/unnamed.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/just-fall/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Just One Boss",
@@ -1220,24 +1256,26 @@
   {
     "title": "Learntofly",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/learntofly/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/learntofly/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Learntofly2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/learntofly2/logo.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/learntofly2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Madalin Stunt Cars 2",
@@ -1275,14 +1313,14 @@
   {
     "title": "Mario",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/Mario.gif",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/mario/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/mario/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Mfp",
@@ -1331,69 +1369,74 @@
   {
     "title": "Monkey Mart",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/monkey%20mart.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/monkeymart/unnamed.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/monkey-mart/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Moto X3M",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/motox3m/splash.jpg",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/Moto-X3M/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Motox3m Pool",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/motox3m-pool/splash.jpg",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/motox3m-pool/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Motox3m Spooky",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/motox3m-spooky/icon.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/motox3m-spooky/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Motox3m Winter",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/motox3m-winter/download.jpeg",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/motox3m-winter/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Motox3m2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/motox3m2/motox3m2.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/motox3m2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Mr Bullet",
@@ -1453,35 +1496,38 @@
   {
     "title": "Ovo",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ovo/ovo3.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/ovo/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Ovo2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ovo2/img.webp",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/ovo2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Pandemic2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/pandemic2/pan2.webp",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/pandemic2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Paperio2",
@@ -1563,13 +1609,14 @@
   {
     "title": "Raftwars",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/raftwars/raft-wars.avif",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/raftwars.html",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Rb",
@@ -1607,124 +1654,134 @@
   {
     "title": "Riddleschool",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/riddleschool/RiddleSchool2.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/riddleschool/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Riddleschool2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/riddleschool2/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/riddleschool2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Riddleschool3",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/riddleschool3/riddle-school-3.webp",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/riddleschool3/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Riddleschool4",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/riddleschool4/Untitled.jpeg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/riddleschool4/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Riddleschool5",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/riddleschool5/Untitled.jpeg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/riddleschool5/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Riddletransfer",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/riddleschooltransfer/Untitled.jpeg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/riddletransfer/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Riddletransfer2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/riddleschooltransfer2/aUntitled.jpeg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/riddletransfer2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Rocket League",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/rocketleague/splash.webp",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/Rocket-League/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Run",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/run/icon.jpeg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/run/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Run2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/run2/icon.jpg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/run2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Run3",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/run3.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/run3/icon.jpeg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/run3/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Santy",
@@ -1752,26 +1809,26 @@
   {
     "title": "Slope",
     "description": "",
-    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsloperun.org%2Fdata%2Fimage%2Fposts%2Fslope-image.jpg&f=1&nofb=1&ipt=4d8f1ee1c1861ab829c5bf338f75d03662df04c6b730de500331e7eafe9a5291",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/slope/slope4.jpeg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/slope/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Slope 2",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/slope2.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/slope2/slope-2-logo.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/slope-2/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Smallworldcup",
@@ -1799,26 +1856,26 @@
   {
     "title": "Snow Rider3d",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/snow%20rider%203D.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/snowrider3d/snow.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/snow-rider3d/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Snowrider3d",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/snow%20rider%203D.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/snowrider3d/snow.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/snowrider3d/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "SoccerHeads",
@@ -1900,13 +1957,14 @@
   {
     "title": "Stickman Hook",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/stickman-hook/icon.jpg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/stickman-hook/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Subway Surfer Beijing",
@@ -1922,14 +1980,14 @@
   {
     "title": "Subwaysurfers Sf",
     "description": "",
-    "game_image_icon": "https://ik.imagekit.io/yyjyznrctj/SubwaySurfIcon06.webp",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/subway-surfers-ny/NewYorkIcon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/subwaysurfers-sf/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Supauto",
@@ -1945,13 +2003,14 @@
   {
     "title": "Superhot",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/superhot/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/superhot/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Surviv",
@@ -1967,69 +2026,74 @@
   {
     "title": "Tanuki Sunset",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/tanukisunset/cover.jpeg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/tanuki-sunset/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Temple Run 2",
     "description": "",
-    "game_image_icon": "https://upload.wikimedia.org/wikipedia/en/9/98/Temple_Run_2.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/templerun2/img%2Ficons%2Ficon-128x128.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/temple-run-2/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Territorial",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/territorialio/territorialio.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/territorial.io/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Theimpossiblequiz",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/theimpossiblequiz/tiq.avif",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/theimpossiblequiz/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Theimpossiblequiz2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/theimpossiblequiz2/the-impossible-quiz-2.avif",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/theimpossiblequiz2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "There Is No Game",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/thereisnogame/icon-256.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/there-is-no-game/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Thermomorph",
@@ -2045,13 +2109,14 @@
   {
     "title": "Thisistheonlylevel",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/thisistheonlylevel/logo.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/thisistheonlylevel/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Thwack",
@@ -2067,13 +2132,14 @@
   {
     "title": "Time Shooter 2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/timeshooter2/ts2.jpg",
     "category": "Shooter",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/time-shooter-2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Tomb",
@@ -2111,14 +2177,14 @@
   {
     "title": "Tunnel Rush",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/tunnel%20rush.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/tunnelrush/tunnel.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/tunnel-rush/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Tunnel2",
@@ -2178,102 +2244,110 @@
   {
     "title": "Vex3",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex3/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/vex3/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Vex4",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex4/vex4.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/vex4/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Vex5",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex5/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/vex5/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Vex6",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex6/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/vex6/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Vex7",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex7/icon.jpeg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/vex7/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Webgl Fluid Simulation",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/fluidsim/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/webgl-fluid-simulation/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Worlds Hardest Game",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/worlds%20hardest%20game.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/worldshardestgame/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/worlds-hardest-game/",
     "source": "hell",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Worlds Hardest Game 2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/worldhardestgame2/the-worlds-hardest-game-2.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/worlds-hardest-game-2/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Xx142 B2exe",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/xx142-b2.exe/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://d3ch.github.io/hell/Games/xx142-b2exe/",
     "source": "hell",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Yesg",

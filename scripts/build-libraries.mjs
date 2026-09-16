@@ -84,6 +84,18 @@ const SOURCES = [
     mode: 'files',
   },
   {
+    id: 'selenite',
+    name: 'Selenite',
+    credit: 'https://music.lyrica24.top/',
+    author: 'Selenite',
+    licence: 'none stated',
+    host: 'https://music.lyrica24.top/resources/semag/',
+    // Not a GitHub repo. This site publishes its own catalogue, so the whole
+    // library comes from one request instead of a directory listing, and it
+    // brings real titles, real per game covers and real tags with it.
+    catalogue: 'https://music.lyrica24.top/resources/games.json',
+  },
+  {
     id: 'nova',
     name: 'Nova Arcade',
     credit: 'https://github.com/Beefalo1234/nova-arcade',
@@ -197,6 +209,59 @@ export const REJECTED = [
       'The repo is empty apart from site pages (allgames, blog, flash, fps). It holds no game files, so there is nothing to index.',
   },
 ]
+
+// Selenite tags every game, so its categories come from those rather than
+// from keyword matching on the title. Order matters: a game tagged both
+// "horror" and "platformer" is a horror game first.
+const TAG_CATEGORY = [
+  ['Horror', ['horror', 'gore']],
+  ['IO', ['io']],
+  ['Strategy', ['tower-defense', 'strategy', 'tycoon']],
+  ['Racing', ['racing']],
+  ['Sports', ['sports']],
+  ['Shooter', ['fps', 'shooter']],
+  ['Platformer', ['metroidvania', 'platformer']],
+  ['Puzzle', ['puzzle', 'point-and-click', 'word', 'card']],
+  ['Clicker', ['idle']],
+  ['Sandbox', ['sandbox', 'farming', 'survival']],
+  ['Adventure', ['rpg', 'visual novel', 'adventure']],
+  ['Retro', ['emulator', 'flash', 'pinball']],
+  ['Action', ['fighting', 'beat-em-up', 'stealth', 'roguelike', 'action']],
+]
+
+function categoryFromTags(tags = []) {
+  const set = new Set(tags.map((t) => String(t).toLowerCase()))
+  for (const [name, keys] of TAG_CATEGORY) {
+    if (keys.some((k) => set.has(k))) return name
+  }
+  return 'Arcade'
+}
+
+async function fromCatalogue(src) {
+  const res = await fetch(src.catalogue, { headers: { 'user-agent': 'blocked-library-builder' } })
+  if (!res.ok) throw new Error(`${src.catalogue} returned ${res.status}`)
+  const rows = await res.json()
+
+  return rows
+    .filter((r) => r && r.name && r.directory)
+    .map((r) => ({
+      title: String(r.name).trim(),
+      description: '',
+      // The cover filename differs per game, webp, png, jpg, ico, avif and
+      // svg all appear, so it has to come from the data. Assuming cover.png
+      // would miss most of them.
+      game_image_icon: r.image
+        ? src.host + encodeURIComponent(r.directory) + '/' + encodeURIComponent(r.image)
+        : '',
+      category: categoryFromTags(r.tags),
+      tags: Array.isArray(r.tags) ? r.tags : [],
+      // "top" is the site's own featured marker.
+      featured: Array.isArray(r.tags) && r.tags.includes('top'),
+      url: src.host + encodeURIComponent(r.directory) + '/index.html',
+      source: src.id,
+    }))
+    .sort((a, b) => a.title.localeCompare(b.title))
+}
 
 const SMALL = new Set(['a', 'an', 'and', 'の', 'of', 'the', 'to', 'vs', 'v', 'in', 'on', 'for'])
 
@@ -352,13 +417,18 @@ let skipped = 0
 for (const src of SOURCES) {
   if (only && src.id !== only) continue
   try {
-    const items = await listing(src.repo, src.path)
-    const entries = buildEntries(src, items)
+    let entries
+    if (src.catalogue) {
+      entries = await fromCatalogue(src)
+    } else {
+      const items = await listing(src.repo, src.path)
+      entries = buildEntries(src, items)
 
-    // A source can spread its games over more than one folder.
-    for (const extra of src.extraPaths || []) {
-      const more = await listing(src.repo, extra.path)
-      entries.push(...buildEntries(src, more, extra.prefix || ''))
+      // A source can spread its games over more than one folder.
+      for (const extra of src.extraPaths || []) {
+        const more = await listing(src.repo, extra.path)
+        entries.push(...buildEntries(src, more, extra.prefix || ''))
+      }
     }
 
     // Drop anything already proved dead before spending fetches on titles.

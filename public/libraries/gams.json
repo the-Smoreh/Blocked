@@ -2,25 +2,26 @@
   {
     "title": "1on1soccer",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/1on1soccer/logo.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/1on1soccer.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "2048",
     "description": "",
-    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdXgpqDJNhyHTfk7Gf4cchux_m4gtbOvMFPw&s",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/2048/icon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/2048.html",
     "source": "gams",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "40xescape",
@@ -36,13 +37,14 @@
   {
     "title": "Agariolite",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/agariolite/cover.png",
     "category": "IO",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/agariolite.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bloonstowerdefense1",
@@ -58,35 +60,38 @@
   {
     "title": "Bloonstowerdefense2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/btd2/logo.webp",
     "category": "Strategy",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/bloonstowerdefense2.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bloonstowerdefense5",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/btd5/wogo.png",
     "category": "Strategy",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/bloonstowerdefense5.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Bloxorz",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/bloxors/bloxorz.webp",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/bloxorz.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Breakingthebank",
@@ -135,57 +140,62 @@
   {
     "title": "Ducklife1",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ducklife1/ducklife1.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/ducklife1.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Ducklife2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ducklife2/ducklife2.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/ducklife2.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Ducklife3",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ducklife3/ducklife3.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/ducklife3.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Ducklife4",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ducklife4/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/ducklife4.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Ducklife5",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/ducklife5/ducklife5.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/ducklife5.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Edgenotfound",
@@ -256,25 +266,26 @@
   {
     "title": "Geometrydash",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/geometry%20dash.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/webdash/gd.webp",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/geometrydash.html",
     "source": "gams",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Holeio",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/holeio/feature800x470.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/holeio.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Infiltratingtheairship",
@@ -323,35 +334,38 @@
   {
     "title": "Learntofly2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/learntofly2/logo.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/learntofly2.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Learntofly3",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/fly3/cover.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/learntofly3.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Learntoflyidle",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/learntoflyidle/icon.jpg",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/learntoflyidle.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Mountainmaze",
@@ -378,24 +392,26 @@
   {
     "title": "Offlineparadise",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/offlineparadise/icon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/offlineparadise.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Pacman",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/pacman/icon.png",
     "category": "Retro",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/pacman.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Paperio2",
@@ -433,24 +449,26 @@
   {
     "title": "Raftwars",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/raftwars/raft-wars.avif",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/raftwars.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Raftwars2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/raftwars2/raft-wars-2.avif",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/raftwars2.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Rollingforests",
@@ -466,47 +484,50 @@
   {
     "title": "Sandgame",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/sand/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/sandgame.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Slope",
     "description": "",
-    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsloperun.org%2Fdata%2Fimage%2Fposts%2Fslope-image.jpg&f=1&nofb=1&ipt=4d8f1ee1c1861ab829c5bf338f75d03662df04c6b730de500331e7eafe9a5291",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/slope/slope4.jpeg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/slope.html",
     "source": "gams",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Spacebarclicker",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/spacebar-clicker/logo.jpg",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/spacebarclicker.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Stack",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/stack/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/stack.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Stealingthediamond",
@@ -522,13 +543,14 @@
   {
     "title": "Stickmanhook",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/stickman-hook/icon.jpg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/stickmanhook.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Stickmanlife",
@@ -544,46 +566,50 @@
   {
     "title": "Supermario64",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/supermario64/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/supermario64.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Supermariorpg",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/supermariorpg/super-mario-rpg-remake_krwz.128.webp",
     "category": "Adventure",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/supermariorpg.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Tetris",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/tetris/favico.ico",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/tetris.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Theimpossiblequiz",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/theimpossiblequiz/tiq.avif",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/theimpossiblequiz.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Trex",
@@ -599,14 +625,14 @@
   {
     "title": "Tubejumpers",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/tube%20jumpers.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/tube-jumpers/cover.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/tubejumpers.html",
     "source": "gams",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Useboxmen",
@@ -622,36 +648,37 @@
   {
     "title": "Webretro",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/webretro/assets%2Ficons%2Ficon204.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/webretro.html",
     "source": "gams",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Wordle",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/wordle.png",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/wordle/icon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/wordle.html",
     "source": "gams",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Worldshardestgame",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/worlds%20hardest%20game.jpg",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/worldshardestgame/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://gams-offline.github.io/Gams/g/worldshardestgame.html",
     "source": "gams",
     "category_raw": "Arcade",
-    "icon_from": "libraries/alexx.json"
+    "icon_from": "libraries/selenite.json"
   }
 ]

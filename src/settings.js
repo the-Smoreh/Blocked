@@ -20,6 +20,17 @@ export const LIBRARIES = {
     note: 'Third party catalogue, loaded from a CDN',
     kind: 'embed',
   },
+  selenite: {
+    label: 'Selenite',
+    // The label is the library, the author is who serves it, so the footer
+    // reads "from Selenite by music.lyrica24.top" rather than repeating the
+    // same word twice.
+    author: 'music.lyrica24.top',
+    note: '914 games with their own cover art',
+    credit: 'https://music.lyrica24.top/',
+    file: 'libraries/selenite.json',
+    count: 914,
+  },
   goblin: {
     label: 'Goblin Kingdom',
     author: 'goblinkingdev',
@@ -76,12 +87,6 @@ export const LIBRARIES = {
     file: 'libraries/astro.json',
     count: 24,
   },
-  local: {
-    label: 'Built in',
-    note: 'The old imported link list, mostly dead',
-    file: 'games.json',
-    count: 451,
-  },
 }
 
 export function libraryFile(id) {
@@ -89,15 +94,16 @@ export function libraryFile(id) {
 }
 
 export const DEFAULTS = {
-  // Goblin Kingdom is the default because it is the largest fully verified
-  // library, 633 of 633 urls live and frameable.
+  // Selenite is the default: 914 of 915 urls verified live and frameable, and
+  // it is the only library that ships a cover for nearly every game, 804 of
+  // them. Goblin Kingdom is bigger on titles alone but has no art of its own.
   //
   // Lumin was the default until its behaviour was pinned down: init resolves
   // but renders nothing, every other method on its Proxy queues forever
   // because its worker reports "domain fetch failed", and getGames() never
   // settles. A default that shows an error to every visitor is a defect, so
   // it is still selectable, just not first.
-  library: 'goblin',
+  library: 'selenite',
 
   theme: 'dark',
   accent: 'crimson',

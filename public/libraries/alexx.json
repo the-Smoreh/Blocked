@@ -134,14 +134,14 @@
   {
     "title": "Cookie Clicker",
     "description": "",
-    "game_image_icon": "https://play-lh.googleusercontent.com/7QdF1mILpUj-xtZGzNwECuVHaVKJHobvYh45z9q7hGvCbmjH1oD_ZfRxbEqbB_yb6Dk",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/cookieclicker/img%2FperfectCookie.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
     "url": "https://alexx743-games-unblocked.vercel.app/cookie%20clicker.html",
     "source": "alexx",
     "category_raw": "Arcade",
-    "icon_from": "games.json"
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Crossy Road",
@@ -344,13 +344,14 @@
   {
     "title": "Infinite Craft",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/infi/cover.png",
     "category": "Sandbox",
     "tags": [],
     "featured": false,
     "url": "https://alexx743-games-unblocked.vercel.app/infinite%20craft.html",
     "source": "alexx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Jeff Bazos",
@@ -762,13 +763,14 @@
   {
     "title": "Worlds Hardest Game2",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://music.lyrica24.top/resources/semag/worldhardestgame2/the-worlds-hardest-game-2.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://alexx743-games-unblocked.vercel.app/worlds%20hardest%20game2.html",
     "source": "alexx",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/selenite.json"
   },
   {
     "title": "Youtube",

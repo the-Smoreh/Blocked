@@ -151,17 +151,15 @@ Verified with one `dist` folder on 2026-09-16: served at `/Blocked/` and at
 No mixed content: every game url and icon url in every library is `https`,
 checked. Pages is HTTPS only, so an `http` url would be blocked outright.
 
-## The dead host, the biggest open problem
+## The dead host, now resolved
 
-439 of the 451 games point at one hostname,
-`mathematics-lessons.eclipsecastellon.com`. That subdomain was **NXDOMAIN** on
-2026-09-15. The parent `eclipsecastellon.com` still resolves to 79.112.1.140,
-only the subdomain is gone. This is why almost every game opens as a blank
-frame: nothing is wrong with the player.
+The old built in library's 439 games all pointed at
+`mathematics-lessons.eclipsecastellon.com`, which went NXDOMAIN. That library
+has been **replaced by Selenite**, the same site software on `music.lyrica24.top`,
+which serves 914 games with their own covers and verified 914 of 915 live. The
+old `public/games.json` was deleted; it is in git history if ever needed.
 
-The whole library is therefore **one hostname away from working**, and the
-titles, thumbnails, categories and descriptions are all still good. Find a host
-that serves the same paths, then:
+`scripts/rehost.mjs` still exists for the next time a host moves:
 
 ```
 node scripts/rehost.mjs --probe                       which hosts are alive
@@ -169,8 +167,8 @@ node scripts/rehost.mjs --from <dead> --to <new>      dry run
 node scripts/rehost.mjs --from <dead> --to <new> --write
 ```
 
-Then spot check in the player. A host answering 200 does not prove it serves
-the same game paths.
+A host answering 200 does not prove it serves the same game paths, so spot
+check in the player afterwards.
 
 `scripts/checklinks.mjs` separates the two distinct failure modes, a dead host
 versus one that loads but refuses to be framed. Run it from Node, never from
@@ -262,6 +260,7 @@ data file plus one entry there.
 
 | id | name | games | source |
 |----|------|-------|--------|
+| `selenite` | Selenite | 914 | music.lyrica24.top |
 | `goblin` | Goblin Kingdom | 633 | github.com/goblinkingdev/unblocked-games |
 | `hell` | Hell | 207 | github.com/D3ch/hell |
 | `nova` | Nova Arcade | 151 | github.com/Beefalo1234/nova-arcade |
@@ -271,9 +270,43 @@ data file plus one entry there.
 | `p0xx` | p0xx | 51 | github.com/p0xx/p0xx.github.io |
 | `astro` | Astro v2 | 24 | github.com/MNblocker/Astro-v2 |
 | `lumin` | Lumin | embed | third party CDN, returns no games, see below |
-| `local` | Built in | 451 | the old import, mostly dead, kept for reference |
 
-**1276 games.** `goblin` is the default: largest library, 633 of 633 verified.
+**2190 games.** `selenite` is the default: 914 of 915 urls verified live and
+frameable, and it is the only library that ships its own cover for nearly
+every game.
+
+### Selenite
+
+The replacement for the old built in list, which pointed at
+`mathematics-lessons.eclipsecastellon.com` and went NXDOMAIN. Same site
+software on a live domain, with twice the games, so the old library was deleted
+rather than rehosted.
+
+It is the only **catalogue** source: it publishes
+`/resources/games.json`, so the whole library comes from one request instead of
+a directory listing. `fromCatalogue` in `build-libraries.mjs` handles it, and
+adding another site like this needs a `catalogue` url rather than a `repo`.
+
+Its rows give `name`, `directory`, `image` and `tags`:
+
+- url is `<host>/resources/semag/<directory>/index.html`
+- cover is `<host>/resources/semag/<directory>/<image>`
+
+**The cover filename has to come from the data.** It is `cover.png` for some
+games but `icon.png`, `logo.jpg`, `splash.png`, `gd.webp` and
+`buckshot-roulette.apple-touch-icon.png` for others: png, jpg, jpeg, webp,
+avif, ico, svg and gif all appear. Assuming `cover.png` would miss most of
+them.
+
+**Its categories come from its tags, not from `categorize.mjs`.** Every game is
+tagged, across 42 tags, so `TAG_CATEGORY` in the builder maps them in priority
+order: a game tagged both `horror` and `platformer` is horror first. Do not run
+`categorize.mjs` on this library, it would overwrite real tags with keyword
+guesses. The site's own `top` tag becomes `featured`.
+
+Those tags also include content markers, `13+` on 20 games, `gore` on 15 and
+`18+` on 5. They are preserved in each entry's `tags`, so filtering on them
+later is a data question rather than a re-extraction.
 
 **We link, we never copy.** Every url points at the source's own host, so they
 serve the game and get the traffic, and nothing is mirrored here. That is also
@@ -351,7 +384,16 @@ Tuning flags: `--max-distance`, `--min-length`, `--prefix-min`, and
 Every inexact match is printed in full rather than sampled, because those are
 the ones worth eyeballing.
 
-With these rules 108 games borrow art, up from 89 with exact plus one edit.
+**310 games borrow art** with these rules, up from 108 before Selenite
+arrived. Selenite is the donor pool that made the difference: it ships 804
+working covers against Alexx743's 58, so hell went from 32 borrowed to 106,
+gams from 6 to 33, and goblin from 20 to 42.
+
+**`--verify-own` blanks dead covers.** Selenite lists a cover filename per game
+and roughly one in seven is stale, so 110 were cleared. Without that those
+cards fire a request that 404s before falling back to the generated art, and a
+dead url could be lent onward as a donor. The donor index is deliberately
+built after this pass.
 
 Verified with a full check, not a sample. goblin 633/633, alexx 71/71,
 gams 59/59 at 100%. hell 207 after 21 folders with no index file were pruned,
