@@ -145,7 +145,15 @@ export const GRADIENTS = {
   // top of it and a bright base would leave nowhere for them to show.
   slosh: {
     label: 'Slosh',
-    css: 'radial-gradient(120% 90% at 15% 0%, #23090b 0%, transparent 55%), radial-gradient(110% 80% at 85% 100%, #1c070f 0%, transparent 58%), #08080a',
+    // A stop in all four corners. The first version only had top left and
+    // bottom right, which put the still base on the same diagonal as the
+    // moving blobs and left the other two corners permanently black.
+    css:
+      'radial-gradient(95% 75% at 12% 0%, #23090b 0%, transparent 60%), ' +
+      'radial-gradient(90% 70% at 88% 4%, #1e0810 0%, transparent 60%), ' +
+      'radial-gradient(95% 75% at 90% 100%, #1c070f 0%, transparent 60%), ' +
+      'radial-gradient(90% 70% at 8% 96%, #210a0c 0%, transparent 60%), ' +
+      '#08080a',
   },
   emberfade: { label: 'Ember fade', css: 'linear-gradient(160deg, #1a0708 0%, #08080a 55%)' },
   duskrise: { label: 'Dusk rise', css: 'linear-gradient(200deg, #1b0d24 0%, #08080a 60%)' },

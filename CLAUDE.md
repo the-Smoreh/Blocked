@@ -434,10 +434,20 @@ Red on black, animated, and the default (`bgKind: 'gradient'`,
 `bgGradient: 'slosh'`). Switchable off with the "Moving background" toggle in
 settings, and it holds still under OS reduced motion.
 
-It is **three blobs on separate timings** (23s, 31s, 19s), not one animated
-gradient. A single gradient can only slide; separate blobs drift past each
-other, which is what makes it slosh. They are tinted with `color-mix` from
-`--accent`, so the background follows whatever accent is chosen.
+It is **five blobs on separate timings** (8s, 11s, 6.5s, 9.5s, 7.5s), not one
+animated gradient. A single gradient can only slide; separate blobs drift past
+each other, which is what makes it slosh. They are tinted with `color-mix`
+from `--accent`, so the background follows whatever accent is chosen.
+
+**One blob per corner, plus one in the middle.** The first version had three,
+and all three sat on the top left to bottom right diagonal, which left the top
+right and bottom left corners permanently black. The base gradient had the same
+bias, two stops on the same diagonal, so it now has a stop in all four corners
+too. If a corner ever looks dead again, check both layers, not just the blobs.
+
+Measured displacement is 7 to 71 px per second depending on where each blob is
+in its eased curve. The durations were 23s, 31s and 19s before, which read as
+static.
 
 The blobs are rendered **twice**, in `Gate.jsx` so they exist on every route:
 

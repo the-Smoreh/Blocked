@@ -26,12 +26,18 @@ const COMMIT_AT = 0.42
 // mid animation.
 const COMMIT_MS = 760
 
-// Three drifting blobs. Used behind the intro and behind the site, so the two
+// Five drifting blobs. Used behind the intro and behind the site, so the two
 // share the same moving red, which is what makes the handoff read as one
 // surface rather than two screens.
+//
+// Five rather than three because the first three all sat on the same diagonal,
+// top left to bottom right, which left the top right and bottom left corners
+// permanently black. Four and five cover those.
 function Fx() {
   return (
     <span className="fx" aria-hidden="true">
+      <i />
+      <i />
       <i />
       <i />
       <i />
