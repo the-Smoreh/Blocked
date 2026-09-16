@@ -8,6 +8,14 @@
 //   node scripts/share-icons.mjs             report only
 //   node scripts/share-icons.mjs --write     write the libraries
 //   node scripts/share-icons.mjs --write --no-verify   skip donor checks
+//   node scripts/share-icons.mjs --max-distance 2      tighter matching
+//   node scripts/share-icons.mjs --min-length 10       only longer titles
+//   node scripts/share-icons.mjs --reset --write       re-lend from scratch
+//
+// Matching runs in three passes, loosest last:
+//   1. exact, on the title reduced to [a-z0-9]
+//   2. loose, with filler words like "game" and "unblocked" dropped first
+//   3. fuzzy, an edit distance scaled to the length of the title
 //
 // Two rules that matter:
 //
@@ -36,18 +44,43 @@ const FILES = [
 
 const write = process.argv.includes('--write')
 const verify = !process.argv.includes('--no-verify')
+// Clears previously borrowed icons first, so changing the matching rules
+// re-lends from scratch instead of being blocked by last run's results.
+const reset = process.argv.includes('--reset')
 
 // Hosts known to be gone. Checked, not guessed: this subdomain is NXDOMAIN.
 const DEAD_HOSTS = new Set(['mathematics-lessons.eclipsecastellon.com'])
+
+const MAX_DISTANCE = num('--max-distance', 3)
+const MIN_LENGTH = num('--min-length', 8)
+
+function num(flag, fallback) {
+  const i = process.argv.indexOf(flag)
+  if (i === -1) return fallback
+  const v = Number(process.argv[i + 1])
+  return Number.isFinite(v) ? v : fallback
+}
 
 const key = (title) =>
   String(title)
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '')
 
-// Levenshtein, capped. Only ever called on two short strings.
-function distance(a, b) {
-  if (Math.abs(a.length - b.length) > 1) return 9
+// Words that say nothing about which game this is. Dropping them lets
+// "Slope Game" match "Slope" and "1v1 LOL unblocked" match "1v1lol".
+const FILLER = /(game|games|gaming|online|unblocked|unblock|play|playable|free|the|a|an|official|html5|io|version|new|full)/g
+
+const looseKey = (title) =>
+  String(title)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(FILLER, ' ')
+    .replace(/\s+/g, '')
+
+// Levenshtein. Only ever called on two short strings.
+function distance(a, b, cap = MAX_DISTANCE) {
+  // A length gap bigger than the allowance can never come back under it.
+  if (Math.abs(a.length - b.length) > cap) return cap + 1
   const prev = Array.from({ length: b.length + 1 }, (_, i) => i)
   for (let i = 1; i <= a.length; i++) {
     let last = prev[0]
@@ -65,13 +98,43 @@ function distance(a, b) {
   return prev[b.length]
 }
 
-// A one character difference is only a near match when no digit is involved.
-// Otherwise "geometrydash2" would borrow from "geometrydash3", and
-// "ducklife2" from "ducklife3", which are different games.
+// Sequel numbers have to agree exactly. Comparing the digits rather than
+// banning them outright is what lets "cookieclicker2" match
+// "cookieclicker2online" while still refusing "geometrydash2" against
+// "geometrydash3", and "ducklife2" against "ducklife3".
+const digitsOf = (s) => (s.match(/\d+/g) || []).join('.')
+
+// The allowance scales with length, because three characters out of nine is a
+// different game while three out of twenty is a spelling variant. Short
+// titles get no fuzzy matching at all: at eight characters almost anything is
+// within two edits of something else.
+function allowanceFor(a, b) {
+  const longest = Math.max(a.length, b.length)
+  return Math.min(MAX_DISTANCE, Math.max(1, Math.floor(longest / 5)))
+}
+
 function nearMatch(a, b) {
-  if (a.length < 8 || b.length < 8) return false
-  if (/\d/.test(a) || /\d/.test(b)) return false
-  return distance(a, b) === 1
+  if (a.length < MIN_LENGTH || b.length < MIN_LENGTH) return false
+  if (digitsOf(a) !== digitsOf(b)) return false
+  const allowed = allowanceFor(a, b)
+  return distance(a, b, allowed) <= allowed
+}
+
+// A variant that only adds words catches what edit distance cannot:
+// "Subway Surfers Winter" is six edits from "Subway Surfers" but obviously
+// the same game. Requiring the shorter title to be a long prefix of the
+// longer one is what keeps this from turning into a free for all. Seven
+// characters means "drift" is too short to lend to every drift game, while
+// "subwaysurfers" and "geometrydash" are long enough to be specific.
+const PREFIX_MIN = num('--prefix-min', 7)
+
+function prefixMatch(a, b) {
+  const [short, long] = a.length <= b.length ? [a, b] : [b, a]
+  if (short.length < PREFIX_MIN) return false
+  if (short === long) return false
+  if (!long.startsWith(short)) return false
+  // The suffix must not introduce a different sequel number.
+  return digitsOf(a) === digitsOf(b) || !/\d/.test(long.slice(short.length))
 }
 
 // ---------------------------------------------------------------- load
@@ -85,7 +148,8 @@ for (const rel of FILES) {
 
 // ---------------------------------------------------------------- donors
 
-const donors = new Map() // key -> { url, from, title }
+const donors = new Map() // strict key -> { url, from, title }
+const loose = new Map() // loose key -> same
 for (const lib of loaded) {
   for (const g of lib.games) {
     if (!g.game_image_icon || g.icon_from) continue
@@ -97,9 +161,25 @@ for (const lib of loaded) {
     }
     if (DEAD_HOSTS.has(host)) continue
     const k = key(g.title)
-    if (!k || donors.has(k)) continue
-    donors.set(k, { url: g.game_image_icon, from: lib.rel, title: g.title })
+    if (!k) continue
+    const donor = { url: g.game_image_icon, from: lib.rel, title: g.title }
+    if (!donors.has(k)) donors.set(k, donor)
+    const lk = looseKey(g.title)
+    if (lk && !loose.has(lk)) loose.set(lk, donor)
   }
+}
+
+if (reset) {
+  let cleared = 0
+  for (const lib of loaded) {
+    for (const g of lib.games) {
+      if (!g.icon_from) continue
+      delete g.icon_from
+      g.game_image_icon = ''
+      cleared++
+    }
+  }
+  console.log(`cleared ${cleared} previously borrowed icons`)
 }
 
 console.log(`${donors.size} candidate donor icons from ${loaded.length} files`)
@@ -134,6 +214,9 @@ if (verify) {
         const [k, d] = entries[cursor++]
         if (!(await alive(d.url))) {
           donors.delete(k)
+          // Drop it from the loose index too, otherwise a donor proved dead
+          // would still be lent through the second pass.
+          for (const [lk, ld] of loose) if (ld.url === d.url) loose.delete(lk)
           dropped++
         }
       }
@@ -147,9 +230,10 @@ if (verify) {
 // ---------------------------------------------------------------- lend
 
 const donorKeys = [...donors.keys()]
-let exact = 0
-let near = 0
-const examples = []
+const counts = { exact: 0, loose: 0, prefix: 0, fuzzy: 0 }
+const fuzzyLog = []
+const looseLog = []
+const prefixLog = []
 
 for (const lib of loaded) {
   for (const g of lib.games) {
@@ -161,24 +245,77 @@ for (const lib of loaded) {
     let how = 'exact'
 
     if (!hit) {
-      const nk = donorKeys.find((d) => nearMatch(k, d))
-      if (nk) {
-        hit = donors.get(nk)
-        how = 'near'
+      const lk = looseKey(g.title)
+      if (lk) {
+        hit = loose.get(lk)
+        if (hit) how = 'loose'
       }
     }
+
+    if (!hit) {
+      // A donor whose whole title is a prefix of this one. Longest wins, so
+      // "Subway Surfers Winter" prefers "Subway Surfers" over "Subway".
+      let best = null
+      for (const d of donorKeys) {
+        if (!prefixMatch(k, d)) continue
+        if (!best || d.length > best.length) best = d
+      }
+      if (best) {
+        hit = donors.get(best)
+        how = 'prefix'
+      }
+    }
+
+    if (!hit) {
+      // Prefer the closest donor rather than the first one that happens to
+      // fall inside the allowance.
+      let best = null
+      let bestAt = Infinity
+      for (const d of donorKeys) {
+        if (!nearMatch(k, d)) continue
+        const at = distance(k, d)
+        if (at < bestAt) {
+          bestAt = at
+          best = d
+        }
+      }
+      if (best) {
+        hit = donors.get(best)
+        how = 'fuzzy'
+      }
+    }
+
     if (!hit) continue
 
     g.game_image_icon = hit.url
     g.icon_from = hit.from
-    if (how === 'exact') exact++
-    else near++
-    if (examples.length < 12) examples.push(`${g.title}  <-  ${hit.title} (${hit.from}, ${how})`)
+    counts[how]++
+    const line = `${g.title}  <-  ${hit.title}   (${hit.from})`
+    if (how === 'fuzzy') fuzzyLog.push(line)
+    else if (how === 'loose') looseLog.push(line)
+    else if (how === 'prefix') prefixLog.push(line)
   }
 }
 
-console.log(`\nlent ${exact} exact and ${near} near matches`)
-for (const e of examples) console.log('  ' + e)
+console.log(
+  `\nlent ${counts.exact} exact, ${counts.loose} loose, ${counts.prefix} prefix, ${counts.fuzzy} fuzzy` +
+    `  (max distance ${MAX_DISTANCE}, min length ${MIN_LENGTH})`,
+)
+
+// The inexact passes are the ones worth eyeballing, so print all of them
+// rather than a sample.
+if (looseLog.length) {
+  console.log('\nloose matches, filler words ignored:')
+  for (const l of looseLog) console.log('  ' + l)
+}
+if (prefixLog.length) {
+  console.log('\nprefix matches, a longer name reusing a shorter one:')
+  for (const l of prefixLog) console.log('  ' + l)
+}
+if (fuzzyLog.length) {
+  console.log('\nfuzzy matches, check these:')
+  for (const l of fuzzyLog) console.log('  ' + l)
+}
 
 console.log('\nper library:')
 const onDeadHost = (g) => {

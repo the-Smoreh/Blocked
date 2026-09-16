@@ -278,11 +278,36 @@ one. 89 games picked up real art this way. Two rules keep it honest:
   the dead host, and lending those would replace working generated art with a
   broken image.
 
-Matching is on the title reduced to `[a-z0-9]`, so "1v1 Lol" lends to
-"1v1lol" and "Paper Io" to "Paperio". A one character difference also counts,
-but **only when neither title contains a digit**, otherwise "geometrydash2"
-would borrow from "geometrydash3" and "ducklife2" from "ducklife3", which are
-different games.
+Matching runs in four passes, loosest last, on the title reduced to
+`[a-z0-9]`:
+
+1. **exact.** "1v1 Lol" lends to "1v1lol", "Paper Io" to "Paperio".
+2. **loose.** Filler words are dropped first (`game`, `unblocked`, `online`,
+   `play`, `free`, `io`, `version`), so "Slope Game" can match "Slope".
+3. **prefix.** A donor whose whole title is a prefix of this one, minimum
+   seven characters, longest donor winning. This is the pass that actually
+   pays: "Geometry Dash Unblocked", "Retro Bowl Old",
+   "Snow Rider 3D Unblocked - Play Online" and "Basket Random Unblocked" are
+   all many edits from their donor but obviously the same game. Seven
+   characters is the floor because "drift" would otherwise lend to every
+   drift game.
+4. **fuzzy.** Levenshtein, with the allowance scaled to length,
+   `floor(longest / 5)` capped at `--max-distance` (3 by default) and
+   nothing under `--min-length` (8). Three characters out of nine is a
+   different game, three out of twenty is a spelling variant. This is what
+   catches "Volley Random" borrowing from "Volly Random".
+
+**Sequel numbers must agree exactly.** The digits in both titles are compared
+rather than digits being banned outright, so "cookieclicker2" can still match
+a longer variant while "geometrydash2" is refused against "geometrydash3" and
+"ducklife2" against "ducklife3".
+
+Tuning flags: `--max-distance`, `--min-length`, `--prefix-min`, and
+`--reset` to clear previous borrows so changed rules re-lend from scratch.
+Every inexact match is printed in full rather than sampled, because those are
+the ones worth eyeballing.
+
+With these rules 108 games borrow art, up from 89 with exact plus one edit.
 
 Verified with a full check, not a sample. goblin 633/633, alexx 71/71,
 gams 59/59 at 100%. hell 207 after 21 folders with no index file were pruned,
@@ -402,6 +427,32 @@ Watch for duplicate CSS when reworking it. The second pass was appended while
 the first pass was still in the file, and the leftover `.lib { flex-direction:
 column }` made every library row wrap its credit link onto a second line. The
 superseded block was removed, not overridden.
+
+## The intro gate
+
+`src/components/Gate.jsx` wraps the app in `main.jsx`, so it covers every route
+including the player without being threaded through App's several early
+returns. It shows on **every load** and is never remembered.
+
+It **does not move**. Only its opacity changes as you scroll, so the site is
+revealed through it rather than from under it. `--p` is written by the
+component and the stylesheet derives opacity from it, with no transition, so it
+tracks the wheel one to one and reverses if you scroll back up.
+
+Progress comes from accumulated wheel and touch input, not real document
+scroll. A spacer plus native scroll would have to be removed at the end, which
+jumps the page, and it fights the player view's own locked scrolling.
+
+A click, Enter, Space, Escape or arrow also lets you in, which is the way
+through for anyone who cannot scroll or who has reduced motion on.
+
+The only text is the wordmark. There is no tagline and no "scroll to enter"
+label, just a bar that fills.
+
+Testing note: the preview pane emits its own wheel events, five at -100 then
+two at +100 in one sample, which sometimes dismisses the gate between tool
+calls. That is the harness scrolling, not a bug. Verify the fade by setting
+`--p` directly rather than relying on the gate surviving between calls.
 
 ## Writing style
 

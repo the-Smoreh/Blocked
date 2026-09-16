@@ -2364,3 +2364,159 @@ body::before {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* ======================================================================
+   Intro gate. Covers the whole site on every load and lifts away as you
+   scroll. --p is the progress from 0 to 1, written by Gate.jsx.
+   ====================================================================== */
+
+/* The site is held still underneath while the gate is up. */
+body.gated {
+  overflow: hidden;
+}
+
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  overflow: hidden;
+  background: var(--bg);
+  cursor: pointer;
+  user-select: none;
+
+  /* Stays exactly where it is and only fades. The site is revealed through
+     it rather than from under it.
+     No transition: the opacity tracks the wheel one to one, which is what
+     makes it feel attached to the scroll rather than animated. */
+  opacity: calc(1 - var(--p, 0));
+}
+
+/* The same drifting blooms as the hero, so the intro belongs to the site. */
+.gate-mesh {
+  position: absolute;
+  inset: -25%;
+  background:
+    radial-gradient(42% 48% at 28% 30%, var(--accent-glow), transparent 70%),
+    radial-gradient(38% 44% at 74% 68%, color-mix(in srgb, var(--accent) 55%, #000), transparent 72%);
+  animation: drift 19s ease-in-out infinite alternate;
+  opacity: calc(0.85 - var(--p, 0) * 0.5);
+}
+
+/* A hairline of accent along the bottom edge, so as the panel lifts there is
+   a defined edge rather than a soft fade. */
+.gate::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+  opacity: 0.7;
+}
+
+.gate-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+  padding: 24px;
+  /* Fades a touch ahead of the panel, so the wordmark clears before the
+     backdrop does. No movement. */
+  opacity: calc(1 - var(--p, 0) * 1.25);
+}
+
+/* The wordmark bars, larger than in the header. */
+.gate-mark {
+  display: flex;
+  align-items: flex-end;
+  gap: 7px;
+  height: 58px;
+}
+
+.gate-mark i {
+  width: 13px;
+  border-radius: 5px;
+  background: linear-gradient(to top, var(--accent), var(--accent-hot));
+  box-shadow: 0 8px 26px -8px var(--accent-glow);
+  animation: eq 1.5s ease-in-out infinite;
+}
+
+.gate-mark i:nth-child(1) {
+  height: 32px;
+  animation-delay: 0s;
+}
+
+.gate-mark i:nth-child(2) {
+  height: 58px;
+  animation-delay: 0.18s;
+}
+
+.gate-mark i:nth-child(3) {
+  height: 42px;
+  animation-delay: 0.36s;
+}
+
+.gate h1 {
+  margin: 0;
+  font-size: clamp(52px, 12vw, 132px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  color: var(--text);
+  text-shadow: 0 6px 40px rgba(0, 0, 0, 0.5);
+}
+
+.gate p {
+  margin: 0;
+  font-size: clamp(14px, 2vw, 17px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+/* ---- The scroll cue ---- */
+
+.gate-cue {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  padding: 0 24px 44px;
+  opacity: calc(1 - var(--p, 0) * 1.5);
+}
+
+.gate-track {
+  display: block;
+  width: 132px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--panel-3);
+  overflow: hidden;
+}
+
+/* Fills as you scroll, so the gate says how much further it needs. */
+.gate-fill {
+  display: block;
+  height: 100%;
+  width: calc(var(--p, 0) * 100%);
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--accent), var(--accent-hot));
+}
+
+/* Reduced motion: no drifting mesh, no bouncing chevron, no pulsing bars.
+   The gate still lifts with the scroll, because that is the interaction
+   rather than decoration. */
+@media (prefers-reduced-motion: reduce) {
+  .gate-mesh {
+    animation: none;
+  }
+
+  .gate-mark i {
+    animation: none;
+  }
+
+}

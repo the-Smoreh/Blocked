@@ -113,13 +113,14 @@
   {
     "title": "Baldi's Basics",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7hk_-Bp_APA4P3QBIazul3h_gYt8dVRlSAw&s",
     "category": "Horror",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g5/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "games.json"
   },
   {
     "title": "BASEBALL BROS! | Official Site",
@@ -147,13 +148,14 @@
   {
     "title": "Basket Random Unblocked",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/basket%20random.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g6/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "BitLife | 3kh0",
@@ -568,13 +570,14 @@
   {
     "title": "Geometry Dash SubZero",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/geometry%20dash.jpg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g50/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "Granny Original",
@@ -791,13 +794,14 @@
   {
     "title": "Snow Rider 3D Unblocked - Play Online",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/snow%20rider%203D.jpg",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
     "url": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/g23/",
     "source": "amplify",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "Snowball.IO",

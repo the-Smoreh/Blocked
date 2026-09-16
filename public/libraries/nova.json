@@ -1063,13 +1063,14 @@
   {
     "title": "Retro Bowl Old",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/retro%20bowl.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/retro-bowl-old/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "libraries/alexx.json"
   },
   {
     "title": "Rift Shift",
@@ -1343,13 +1344,14 @@
   {
     "title": "Subway Surfers Ny",
     "description": "",
-    "game_image_icon": "",
+    "game_image_icon": "https://ik.imagekit.io/yyjyznrctj/SubwaySurfIcon06.webp",
     "category": "Arcade",
     "tags": [],
     "featured": false,
     "url": "https://beefalo1234.github.io/nova-arcade/games/subway-surfers-ny/",
     "source": "nova",
-    "category_raw": "Arcade"
+    "category_raw": "Arcade",
+    "icon_from": "games.json"
   },
   {
     "title": "Sudoku",
