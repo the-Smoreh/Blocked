@@ -30,11 +30,20 @@ is missing from a shell, that shell started before the PATH change.
 
 ```
 public/games.json        all game data, the only file you edit to add games
-src/lib.js               hash router, data loading, favorites, slugify
-src/App.jsx              state, filtering, route switch
-src/components/          Header, GameGrid, GameCard, GamePlayer
+src/lib.js               routing, data loading, favorites, recent, theme, badges
+src/art.js               generated cover art, hash to hue/pattern/initials
+src/icons.js             svg path data and the category to icon map
+src/App.jsx              state, filtering, route switch, layout
+src/components/          Header Sidebar Hero Row GameGrid GameCard
+                         GamePlayer Skeleton Icon
 src/styles.css           one stylesheet, CSS variables at the top
+scripts/categorize.mjs   derive categories from titles
+scripts/checklinks.mjs   check which game urls are alive and embeddable
+scripts/rehost.mjs       bulk repoint game urls from one host to another
 ```
+
+`icons.js` holds the path data rather than `Icon.jsx` because a file that
+exports both a component and a constant breaks Vite fast refresh.
 
 **Hash routing** (`#/game/<slug>`), hand-rolled in `src/lib.js`, no
 react-router. This keeps every URL a single static file request so the site
@@ -105,18 +114,38 @@ whether the host is actually dead.
 
 ## Current state
 
-Four seed games, **all four confirmed to actually play** in the iframe as of
-2026-09-15: 2048, Clumsy Bird, Astray, Untrusted. Two seeds were removed after
-testing, `javascript-racer` (dead host) and `hextris.io` (loads blank).
+451 games. **439 of them do not work**, see the section below. Four are
+confirmed playable and carry `"verified": true` in games.json: Clumsy Bird,
+Astray, Untrusted and 2048.
 
-Note that the 2048 entry points at `mitchgu.github.io/GetMIT`, a working 2048
-clone that is heavily MIT branded. Fine as a placeholder, worth replacing.
+Hosting is undecided. Nothing in the code assumes a host, but if it ends up on
+GitHub Pages under a subpath, `base` needs setting in `vite.config.js`.
 
-Open decision the user has not answered yet: copy the 450 DeblockedX games,
-self-host games instead, or curate a fresh list for Blocked.
+## The dead host, the biggest open problem
 
-Hosting is also undecided. Nothing in the code assumes a host, but if it ends up
-on GitHub Pages under a subpath, `base` needs setting in `vite.config.js`.
+439 of the 451 games point at one hostname,
+`mathematics-lessons.eclipsecastellon.com`. That subdomain was **NXDOMAIN** on
+2026-09-15. The parent `eclipsecastellon.com` still resolves to 79.112.1.140,
+only the subdomain is gone. This is why almost every game opens as a blank
+frame: nothing is wrong with the player.
+
+The whole library is therefore **one hostname away from working**, and the
+titles, thumbnails, categories and descriptions are all still good. Find a host
+that serves the same paths, then:
+
+```
+node scripts/rehost.mjs --probe                       which hosts are alive
+node scripts/rehost.mjs --from <dead> --to <new>      dry run
+node scripts/rehost.mjs --from <dead> --to <new> --write
+```
+
+Then spot check in the player. A host answering 200 does not prove it serves
+the same game paths.
+
+`scripts/checklinks.mjs` separates the two distinct failure modes, a dead host
+versus one that loads but refuses to be framed. Run it from Node, never from
+the browser: a `fetch` from the page origin returns "Failed to fetch" for CORS
+and looks identical to a real outage.
 
 ## Theme
 

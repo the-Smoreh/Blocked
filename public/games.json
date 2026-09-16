@@ -1,17 +1,5 @@
 [
   {
-    "title": "2048",
-    "description": "2048 clone. Slide the tiles, match them, keep going.",
-    "game_image_icon": "",
-    "category": "Puzzle",
-    "tags": [
-      "numbers",
-      "classic"
-    ],
-    "featured": true,
-    "url": "https://mitchgu.github.io/GetMIT/"
-  },
-  {
     "title": "Clumsy Bird",
     "description": "Flappy Bird clone. Tap to flap.",
     "game_image_icon": "",
@@ -19,8 +7,9 @@
     "tags": [
       "hard"
     ],
-    "featured": false,
-    "url": "https://ellisonleao.github.io/clumsy-bird/"
+    "featured": true,
+    "url": "https://ellisonleao.github.io/clumsy-bird/",
+    "verified": true
   },
   {
     "title": "Astray",
@@ -32,7 +21,8 @@
       "maze"
     ],
     "featured": true,
-    "url": "https://wwwtyro.github.io/Astray/"
+    "url": "https://wwwtyro.github.io/Astray/",
+    "verified": true
   },
   {
     "title": "Untrusted",
@@ -43,7 +33,4489 @@
       "coding",
       "long"
     ],
+    "featured": true,
+    "url": "https://alexnisnevich.github.io/untrusted/",
+    "verified": true
+  },
+  {
+    "title": "Suggest Game/Report Bugs",
+    "description": "You can fill this google form or just tell me in person",
+    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbrandlogos.net%2Fwp-content%2Fuploads%2F2021%2F10%2Fgoogle-forms-logo.png&f=1&nofb=1&ipt=4385f08f829b26b55c871c2c209168631e14fc4d830b3f62de86fe1508081638",
+    "category": "Arcade",
+    "tags": [],
     "featured": false,
-    "url": "https://alexnisnevich.github.io/untrusted/"
+    "url": "https://forms.gle/dVMtwaFZj7GiPv6v9",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Minecraft Launcher",
+    "description": "Versions from 1.12.2, to Multipule Clients for FPS",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLR9c7MHvHeFPc1vc5I_c8slS1JzASidL-4Q&s",
+    "category": "Sandbox",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/eag/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bendy and the Ink Machine",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsDZD08LE1j2nyQrTVL6VFOilI52_JTqEHb_jZfoK43_ed320zTRNNKcgcFAQkPcOPk-g&usqp=CAU",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bendy/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Cookie Clicker",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://play-lh.googleusercontent.com/7QdF1mILpUj-xtZGzNwECuVHaVKJHobvYh45z9q7hGvCbmjH1oD_ZfRxbEqbB_yb6Dk",
+    "category": "Clicker",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cookieclicker/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Voicemod Soundboard",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://mp-cdn.elgato.com/media/ec172e17-7e9a-43a5-841f-2d91a87589d5/10932f38-27ba-4e15-9f89-53cc25d8a188/Voicemod-preview-optimized-d286e918-bd1b-43a0-ba3d-1df333c176f8.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": true,
+    "url": "https://tuna.voicemod.net/sounds/",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Slender",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://static.tvtropes.org/pmwiki/pub/images/slender.png",
+    "category": "Horror",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/slender/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Getting Over It",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNw9ye_URmWBYf9z2z-VH3DkskFEUgU7jdyw&s",
+    "category": "Platformer",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/getting-over-it/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Tattle Tail",
+    "description": "Laggyish",
+    "game_image_icon": "https://m.media-amazon.com/images/M/MV5BMmQ3Njc2MzUtMWI5Yi00ODEyLWE4MTgtZGUyNTE4OTdkNTI0XkEyXkFqcGc@._V1_.jpg",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tattletail/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Deltarune",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/deltarune.jpeg",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/deltarune/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Football Bros",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRobLtyKqzknSHGbE1RI6OaUsaCVCLoGVjblQ&s",
+    "category": "Sports",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/footballbros/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "R.E.P.O",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2025%2F03%2Fr-e-p-o-tag-page-cover-art.jpg&f=1&nofb=1&ipt=33e4c4ea2892dbd6bfe6cca4fa767143dfb8906463325d6c738a041d3d309d95",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/repo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "2048",
+    "description": "Cool Board Game",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdXgpqDJNhyHTfk7Gf4cchux_m4gtbOvMFPw&s",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": true,
+    "url": "https://mitchgu.github.io/GetMIT/",
+    "category_raw": "Arcade",
+    "verified": true
+  },
+  {
+    "title": "Amanda the Adventurer",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.api.playstation.com%2Fvulcan%2Fap%2Frnd%2F202409%2F2320%2F341c818d8c456411d1014912a29c82a90c3dfbb67cf8afa9.png&f=1&nofb=1&ipt=873efe2ac6a0b5fba4c50338fff534a963a741aab628cfd88c45a256c9f812b9",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/amanda-the-adventurer/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Temple Run 2",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://upload.wikimedia.org/wikipedia/en/9/98/Temple_Run_2.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/templerun2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Draw Climber",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fplay-lh.googleusercontent.com%2F70T7qV9LvT2RyB7WtE2Z88I6oZfS6Gq9Wd6mTUbFweoLUHkEjduBsc2rprDuxfa7lw&f=1&nofb=1&ipt=4479d72ea7d2043f74d827aa202d102e3c161fc8e1fea229c71ae18095aac41b",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/drawclimber/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Universe Sandbox Old Version",
+    "description": "Super good, Loads Fast, only features is that you can view the planets and starts and Milky Way",
+    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FA5NWYfzjvtk%2Fmaxresdefault.jpg&f=1&nofb=1&ipt=dfed9dc9eb788fd41c0ff1b101153bdec0b377900d9c2b5fda05261ad8c351a0",
+    "category": "Sandbox",
+    "tags": [],
+    "featured": false,
+    "url": "https://www.solarsystemscope.com/iframe",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Cuphead",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://user-images.githubusercontent.com/53346722/66120658-fa659480-e5a0-11e9-9c6a-247a1605159e.jpg",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cuphead/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Hollow Knight",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKxwFbL-3n08lpsFf7VdeJdDilR6XGn3utcg&s",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/hollowknight/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Buckshot Roulette",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAXc6jiuw5uQUIrjycUC7aXv6jXL9gLYhuPw&s",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/buckshot-roulette/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Undertale",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://fbi.cults3d.com/uploaders/17252574/illustration-file/04894095-d2b9-41a4-a04b-e5d831d16ebe/Picsart_25-07-22_10-27-22-017.png",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/undertale/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Undertale Yellow",
+    "description": "If it fails to load, just refresh like 5 times, and it will load, takes a bit tho",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpsuK9gEdJa0BD3I7_FOM3KfvBJiKpySLIujfAhOoLnzlx0qI:https://static.wikia.nocookie.net/undertaleyellow/images/6/60/Undertale_Yellow_artwork_Game_Jolt.png/revision/latest%3Fcb%3D20231203220943&s",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/undertale-yellow/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "People Playground",
+    "description": "WARNING: This is a 2D Semi-Realistic Game that has Blood",
+    "game_image_icon": "https://m.media-amazon.com/images/M/MV5BMDU4NjMzMDUtNWZkYS00NzIwLWI3YjUtMDA1ZTAzNjEyOGRkXkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg",
+    "category": "Sandbox",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/people-playground/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Classic Deblocked",
+    "description": "Navigate a ball through a twisting 3D tunnel, avoiding obstacles in this fast-paced game!",
+    "game_image_icon": "https://m.media-amazon.com/images/I/61mJeUOYsnL._AC_UF894,1000_QL80_.jpg",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://docs.google.com/presentation/d/1SdIdhrXCsrNeS6Cy2mI2An_HtxCSjqjYhABwpXenThc",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "V6.Wiki",
+    "description": "Navigate a ball through a twisting 3D tunnel, avoiding obstacles in this fast-paced game!",
+    "game_image_icon": "https://avatars.githubusercontent.com/u/124852579?s=280&v=4",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://enchiladasdelicioso.gmsexpress.org/",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Subway Surfers",
+    "description": "test test test ",
+    "game_image_icon": "https://ik.imagekit.io/yyjyznrctj/SubwaySurfIcon06.webp",
+    "category": "Arcade",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/subway-surfers-ny/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Slope",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsloperun.org%2Fdata%2Fimage%2Fposts%2Fslope-image.jpg&f=1&nofb=1&ipt=4d8f1ee1c1861ab829c5bf338f75d03662df04c6b730de500331e7eafe9a5291",
+    "category": "Platformer",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/slope/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Silk",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://weavesilk.s3.amazonaws.com/v4/uploads/thumb/kba4s6cb5t.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/weavesilk/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "1v1.lol",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/1v1lol/splash.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/1v1lol/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Basketball Stars",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/basketball-stars/icon.png",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/basketball-stars/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fnaf 1",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fnaf/splash.jpg",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fnaf/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fnaf 2",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Ff2%2F57%2Feb%2Ff257eb50874698d6dbeccbabad7d1718.gif&f=1&nofb=1&ipt=5a34a30ff2aff275bf6764c06559a6d4a6db87ca6cb5f4ccd1ed5dc7d7d1b4d5",
+    "category": "Horror",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fnaf2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fnaf 3",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Ffa%2F70%2F84%2Ffa70846c2e28da478d1a7fa0247d5b2f.gif&f=1&nofb=1&ipt=ef273c013ceb5c9820d1d2345e4e10347019ab705144759eeacb2d0cdd785e9b",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fnaf3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fnaf 4",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fnaf4/project/splash.webp",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fnaf4/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fnaf Sister Location",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.wikia.nocookie.net%2Ffnaf-sister-location%2Fimages%2F3%2F39%2FSite-community-image%2Frevision%2Flatest%3Fcb%3D20230428125220&f=1&nofb=1&ipt=414b05a094402b17a046c95d9bf869b78c7186909c709561d4d00651b22a7ed4",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fnaf-sl/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fnaf 6 Pizzeria Simulator",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgameyoungerdns.com%2Fgames%2Fimages%2F20230309%2Ffnaf_6_pizzeria_simulator.jpg&f=1&nofb=1&ipt=c4e5558fbdb64e65e05952833554c0f6dc10b741c692a726c755ccbfa24f1abf",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgameyoungerdns.com%2Fgames%2Fimages%2F20230309%2Ffnaf_6_pizzeria_simulator.jpg&f=1&nofb=1&ipt=c4e5558fbdb64e65e05952833554c0f6dc10b741c692a726c755ccbfa24f1abf",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fnaf Unlimate Custom Night",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.api.playstation.com%2Fvulcan%2Fimg%2Frnd%2F202104%2F2723%2FpsrxE7pFEwTJqOVLuNqwm00N.png&f=1&nofb=1&ipt=b669e9e7126823ae975b61e9794b166f926cf5e5d59fbadda290a32c6bfdb827",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fnaf-ucn/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Baldi's Basics",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/baldis-basics/splash.png",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/baldis-basics/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Baldi's Basics Plus+",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbODgVzOpYAU_O3P2Ulumze3xr6dR3suEvoA&s",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/baldi-plus/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Baldi's Basics Remastered",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7hk_-Bp_APA4P3QBIazul3h_gYt8dVRlSAw&s",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/loader.html?title=Baldi%27s%20Basics%20Classic%20Remastered&dir=baldi-remaster&img=logo.png&type=g",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Death Run 3D",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/death-run-3d/img/death.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/death-run-3d/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Drift Boss",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/drift-boss/icon.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/drift-boss/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bad Piggies",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/badpiggies/badpiggies.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/badpiggies/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Altered Beast",
+    "description": "A sample game from Deblocked, test your skills in this interactive scenario!",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7C5QGtf-tJ3Hjw4odGzgAEkUorWxwxfK7hQ&s",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/alteredbeast/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "1 on 1 Soccer",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/1on1soccer/logo.jpg",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/1on1soccer/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "10 Minutes Till Dawn",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/10minutestilldawn/splash.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/10minutestilldawn/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "13",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/13/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/13/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "2D Rocket League",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2drocketleague/unnamed.png",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2drocketleague/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "3 Line",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/3line/cover.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/3line/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Pinball",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pinball/cover.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pinball/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "60s Burger Run",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/60sburgerrun/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/60sburgerrun/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "9007199254740992",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/9007199254740992/cover.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/9007199254740992/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "A Dance of Fire and Ice",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/adofai/splash.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/adofai/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "A Dark Room",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/adarkroom/favicon.ico",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/adarkroom/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Achievement Unlocked",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/achieveunlocked/icon.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/achieveunlocked/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Achievement Unlocked 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/achieveunlocked2/icon.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/achieveunlocked2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Achievement Unlocked 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7jn9xnTOWb7fteD6O5VOjCyHZPq06YSdRfA&s",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/achievementunlocked3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Achiles",
+    "description": "No description available yet.",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbgrB35pnpfxq6yMIijx974biOlci8iA8ytg&s",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/achilles/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Adventure",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/adventure/cover.png",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/adventure/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Advance Wars",
+    "description": "No description available yet.",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNUxCA5GTgdln6K2d0Vt60fNXDhthkfFPJhw&s",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/advancewars/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Advance Wars 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0891qTQyfucTrsDpfkPdILbl1Nx415MZjbg&s",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/advancewars2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Advance Wars 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://i.ytimg.com/vi/Xg12ypmeE2k/hqdefault.jpg",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/advancewars3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Advance Wars: Days of Ruin",
+    "description": "No description available yet.",
+    "game_image_icon": "https://assets-prd.ignimgs.com/2022/01/18/advancewarsdaysofruin-sq-1642535645783.jpg",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/advancewarsdaysofruin/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Adventure Capitalist",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/adventure-capitalist/logo.webp",
+    "category": "Clicker",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/adventure-capitalist/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Adventure Time: Hey Ice King",
+    "description": "No description available yet.",
+    "game_image_icon": "https://assets-prd.ignimgs.com/2022/04/01/adventuretimegarbage-1648840055876.jpg",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/adventuretime/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Agar.io",
+    "description": "No description available yet.",
+    "game_image_icon": "https://i.ytimg.com/vi/eiANtr94Fo4/maxresdefault.jpg",
+    "category": "IO",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/agariolite/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Age of War",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ageofwar/warofage.jpg",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ageofwar/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Age of War 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/aow2/cover.png",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/aow2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "SEGA: Altered Beast",
+    "description": "No description available yet.",
+    "game_image_icon": "https://ih1.redbubble.net/image.3191790174.3378/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/alteredbeast/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Amazing Rope Police",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/amazing-rope-police/splash.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/amazing-rope-police/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "American Racing",
+    "description": "No description available yet.",
+    "game_image_icon": "https://store-images.s-microsoft.com/image/apps.12944.13630543070149701.43925b12-4d18-473e-a5bf-ed30e68b1b5e.c2c94298-cf51-4ca4-8aa1-c6824b52951a",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://store-images.s-microsoft.com/image/apps.12944.13630543070149701.43925b12-4d18-473e-a5bf-ed30e68b1b5e.c2c94298-cf51-4ca4-8aa1-c6824b52951a",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "American Racing 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYic2-MQOSeNuNYOBQ53fvVRq6R3nwREDz2Q&s",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/americanracing2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Among Us (Classic)",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/amongus/amgojs]_.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/amongus/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Among Us (new Fan Made)",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/amongusnew/amgojs]_.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/amongusnew/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Amoprhous",
+    "description": "No description available yet.",
+    "game_image_icon": "https://f4.bcbits.com/img/a2978714572_5.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/amorphous/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Animal Crossing Wild World",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/animalcrossingwildworld/animalcrossingwildworld.png",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/animalcrossingwildworld/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Anti Matter Dimensions",
+    "description": "No description available yet.",
+    "game_image_icon": "https://i.ytimg.com/vi/WYmdg5xMy4Y/maxresdefault.jpg",
+    "category": "Clicker",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/antimatterdimensions/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Anton Blast",
+    "description": "No description available yet.",
+    "game_image_icon": "https://upload.wikimedia.org/wikipedia/en/2/2e/Antonblast_Steam_Banner_Dec_2024.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/antonblast/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Apes Vs Helium",
+    "description": "No description available yet.",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl2PRrmVkKxuLqZ5865F49nBa_yNGWIHHxSg&s",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/apesvshelium/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Aqua Park Slides (HORRID)",
+    "description": "THIS IS ABSOLUTLEY HORRID",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmo8ES8aTt6maTZ27TrRqwkYxYi9ZmgpgfQA&s",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/aquaparkslides/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Avalanche",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/avalanche/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/avalanche/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Awesome Tanks",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/awesometanks/cover.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/awesometanks/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Backrooms 2D",
+    "description": "No description available yet.",
+    "game_image_icon": "https://lh3.googleusercontent.com/hB4J2lV7GR5iAUmYZN8ZNJxqOogjW2kR-mN4P6Qt-2zl-FApRY-PXXLWTfKmSRHXgaRX6nKV1DYmdMeGpj-D5ki0qC54I1eH_xk=h200",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2d/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bacon May Fry",
+    "description": "No description available yet.",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlgNyBQroC5JSJh1gOrStxprpzi0u95828vA&s",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/baconmaydie/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bad Ice Cream",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/badicecream/bad-ice-cream.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/badicecream/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bad Ice Cream 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/badicecream2/bad-ice-cream-2.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/badicecream2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bad Ice Cream 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/badicecream3/bad-ice-cream-3.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/badicecream3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sans Full Battle",
+    "description": "No description available yet.",
+    "game_image_icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj0BuT-QxnEKjb3kAY160IGu5iYiR1RG1B9jeUyBM9_JUK8Go:https://i.pinimg.com/originals/a5/b4/f5/a5b4f526fc905806a9b38b839d49f838.gif&s",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/badtimesimulator/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "balatro",
+    "description": "No description available yet.",
+    "game_image_icon": "https://upload.wikimedia.org/wikipedia/en/8/89/Balatro_cover.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/balatro/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Baldur's Gate",
+    "description": "No description available yet.",
+    "game_image_icon": "https://upload.wikimedia.org/wikipedia/en/8/89/Balatro_cover.jpg",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://upload.wikimedia.org/wikipedia/en/d/d0/Baldur%27s_Gate_box.PNG",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Banjo Kazooie",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/banjokazooie/banjokazooie.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/banjokazooie/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Basket Bros",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/basketbros/thumb.jpg",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/basketbros/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Basket Random",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/basketrandom/test.png",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/basketrandom/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bike Champ",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bikechamp/logo.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bikechamp/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bike Champ 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bikechamp2/logo.jpg",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bikechamp2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bit Planes",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bit-planes/bitplanes.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bit-planes/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "BitLife",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bitlife/bitlife.png",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bitlife/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Block Zappers",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/blockzappers/logo.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/blockzappers/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Blood Tournament",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bloodtournament/blood-tournament.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bloodtournament/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bloons Tower Defense",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/btd/logo.webp",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/btd/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bloons Tower Defense 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/btd2/logo.webp",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/btd2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bloons Tower Defense 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/btd3/icon.png",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/btd3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bloons Tower Defense 4",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/btd4/logo.jpg",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/btd4/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bloons Tower Defense 5",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/btd5/wogo.png",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/btd5/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bloons Tower Defense 6",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/btd6/uwu.png",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/btd6/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bob the Robber 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bobtherobber2/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bobtherobber2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bounce",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bounce/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bounce/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Boxing Physics 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/boxingphysics2/icon.png",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/boxingphysics2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Boxing Random",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/boxingrandom/512x512.jpg",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/boxingrandom/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Bub",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bub/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bub/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Burger and Frights",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/burgerandfrights/icon.png",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/burgerandfrights/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Burrito Bison",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/burritobison/Build/logo.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/burritobison/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Subway",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/subway/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/subway/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Celeste",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/celeste/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/celeste/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Cell Machine",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cell-machine/img/icon.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cell-machine/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Champion Island",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/championisland/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/championisland/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Chess",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/chess/icon.png",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/chess/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Chibi Knight",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/chibiknight/icon.png",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/chibiknight/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "CircloO",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/circloo/icon.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/circloo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Clicker Heroes",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/clickerheroes/clicker-heroes.png",
+    "category": "Clicker",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/clickerheroes/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Cluster Rush",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cluster-rush/icon.jpg",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cluster-rush/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Color Switch",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/colorswitch/colorswitch.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/colorswitch/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Commodore Clicker",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/commodoreclicker/test.jpg",
+    "category": "Clicker",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/commodoreclicker/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Connect 4",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/c4/cover.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/c4/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Copter",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/copter/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/copter/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Corp",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/corp/cover.png",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/corp/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "CDS",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cds/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cds/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "2 Flash",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2flash/cover.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2flash/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "3 Flash",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/3flash/cover.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/3flash/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "4 Flash",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/4flash/cover.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/4flash/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "5 Flash",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/5flash/cover.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/5flash/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "6 Flash",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/6flash/cover.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/6flash/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Crazy Taxi",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/crtaxi/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/crtaxi/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Crazy",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/crazy/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/crazy/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Creeper Craft",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/creepercraft/cover.png",
+    "category": "Sandbox",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/creepercraft/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Crimson Fantasia",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/crimsonfantasia/14qAOu.png",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/crimsonfantasia/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Cross N Road",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/crossnroad/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/crossnroad/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "CSGO Clicker",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/csgoclicker/images/case1.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/csgoclicker/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Cubefield",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cubefield/assets/unnamed.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cubefield/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Cut the Rope",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cuttherope/icon.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cuttherope/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Cut the Rope Holiday",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cuttherope-holiday/Holiday_Gift.webp",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/cuttherope-holiday/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Dadish",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/dadish/favicon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/dadish/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Dadish 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/dadish2/favicon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/dadish2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Dadish 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/dadish3/splash.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/dadish3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Dante",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/dante/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/dante/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Deepest Sword",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/deepestsword/logo.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/deepestsword/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Dino",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/dino/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/dino/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Dogeminer",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/dogeminer/img/dogeminer_300x300.png",
+    "category": "Clicker",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/dogeminer/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Donkey Kong",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/kong/cover.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/kong/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Donkey Kong 64",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/donkeykong64/donkeykong64.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/donkeykong64/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Doodle Jump",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/doodlejump/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/doodlejump/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "DOOM",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/doom/logo.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/doom/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "DOOM 64",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/doom64/doom64.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/doom64/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Drift Hunters",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/drifthunters/icon.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/drifthunters/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "King",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/king/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/king/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Drift",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/drift/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/drift/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Drive Mad",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/drivemad/icons/icon-128.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/drivemad/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Driving",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/driving/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/driving/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Duck Life",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ducklife1/ducklife1.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ducklife1/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Duck Life 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ducklife2/ducklife2.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ducklife2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Duck Life 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ducklife3/ducklife3.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ducklife3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Duck Life 4",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ducklife4/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ducklife4/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Duck Life 5",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ducklife5/ducklife5.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ducklife5/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Duck Life 6",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ducklife6/ducklife5.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ducklife6/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Earn to Die",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ern/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ern/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Factory Balls",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/factoryballs/fac.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/factoryballs/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Factory Balls Forever",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/factoryballsforever/fac.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/factoryballsforever/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fancy Pants Adventures",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fancypantsadventures/fpa.webp",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fancypantsadventures/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fancy Pants Adventures 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fancypantsadventures2/fpa2.avif",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fancypantsadventures2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Final",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/final/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/final/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fireboy and Watergirl",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fireboywatergirl/icon.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fireboywatergirl/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fireboy and Watergirl 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fireboywatergirl2/Untitled.jpeg",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fireboywatergirl2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fireboy and Watergirl 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fireboywatergirl3/icon.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fireboywatergirl3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fireboy and Watergirl 4",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fireboywatergirl4/300.jpg",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fireboywatergirl4/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Flap",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/flap/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/flap/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Flappy Bird",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/flappybird/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/flappybird/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Flappy Copter",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/flappycopter/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/flappycopter/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Flood Runner",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fld/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fld/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Flappy Race",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/flappyrace/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/flappyrace/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Flippy Fish",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/flippyfish/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/flippyfish/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fort",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fort/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fort/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Friday Night Funkin",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fridaynightfunkin/favicon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fridaynightfunkin/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Frogger",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/frogger/cover.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/frogger/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fruit",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fruit/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fruit/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fruit Ninja",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fruitninja/FruitNinjaTeaser.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fruitninja/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Funny Ball Game",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/funnyballgame/ball.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/funnyballgame/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Funny Mad Racing",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/funnymadracing/logo.webp",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/funnymadracing/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Funny Shooter",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/funnyshooter/icon.jpeg",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/funnyshooter/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Funny Shooter 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/funnyshooter2/894abba63a6b23fed823f404831f444f.jpeg",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/funnyshooter2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Game Maker",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gamemaker/images.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gamemaker/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Geometry Dash",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/geometrydash/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/geometrydash/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Geometry Dash Lite",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gdlite/logo.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gdlite/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Geo Dash RM",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/geodashrm/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/geodashrm/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Geo Dash Sky",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/geodashsky/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/geodashsky/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Geo Jump",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/geojump/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/geojump/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Geo Melt",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/geomelt/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/geomelt/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Geometry Rash",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/geometryrash/icon-114.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/geometryrash/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Getaway Shooter",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/getawayshooter/Untitled.jpeg",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/getawayshooter/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Gladihoppers",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gladihoppers/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gladihoppers/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Glass",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/glass/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/glass/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Gloom",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gloom/cover.png",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gloom/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Gold Digger FRVR",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/golddiggerfrvr/images.jpeg",
+    "category": "Clicker",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/golddiggerfrvr/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "GoldenEye",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/goldeneye/goldeneye007.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/goldeneye/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Grand Stick Adventures",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gsa/cover.png",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gsa/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Grand Truckismo",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/grandtruckismo/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/grandtruckismo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "GTA 1",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gta1/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gta1/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "GTA 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gta2/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gta2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Advance GTA",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/advgta/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/advgta/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Guilty Gear",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/guiltygear/ggx.jpg",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/guiltygear/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Gun Knight",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gunknight/cover.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gunknight/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Gun Mayhem",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gunmayhem/icon.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gunmayhem/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Gun Mayhem 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gunmayhem2/icon.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gunmayhem2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Gun Mayhem Redux",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gunmayhemredux/icon.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/gunmayhemredux/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Brick Breaker",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/brick/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/brick/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fest",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fest/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fest/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Halloween 2016",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/halloween2016/logo.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/halloween2016/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Happy Wheels",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/happywheels/Untitled.jpeg",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/happywheels/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Headcase",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/headcase/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/headcase/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Helix Jump",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/helixjump/gameIcon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/helixjump/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Breaking the Bank",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/breakingthebank/balling.avif",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/breakingthebank/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Escaping the Prison",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/escapingtheprison/pwison.avif",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/escapingtheprison/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fleeing the Complex",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fleeingthecomplex/flee.jpg",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fleeingthecomplex/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Infiltrating the Airship",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/infiltratingtheairship/air.avif",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/infiltratingtheairship/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Stealing the Diamond",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stealingthediamond/diamante.avif",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stealingthediamond/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "HexGL",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/hexgl/icon_128.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/hexgl/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Hextris",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/hextris/images/icons/apple-touch-152.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/hextris/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Hill Climb Racing",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/hillclimbracing/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/hillclimbracing/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Hill Climb Racing 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/hillclimbracing2/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/hillclimbracing2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Hobo",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/1hobo/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/1hobo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Hobo 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2hobo/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2hobo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Hobo 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/3hobo/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/3hobo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Hobo 4",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/4hobo/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/4hobo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Hobo 5",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/5hobo/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/5hobo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Hobo 6",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/6hobo/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/6hobo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Hobo 7",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/7hobo/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/7hobo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Hole.io",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/holeio/feature800x470.png",
+    "category": "IO",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/holeio/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "House of Hazards",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/houseofhazards/favicon.ico",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/houseofhazards/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "I Wanna Be The Crimson",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/iwbtc/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/iwbtc/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Idle Breakout",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/idlebreakout/image.png",
+    "category": "Clicker",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/idlebreakout/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Idle Research",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/idleresearch/cover-1660205761867.png",
+    "category": "Clicker",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/idleresearch/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Infinity",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/infi/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/infi/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Jake",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/jake/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/jake/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Jetpack Joyride",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/jetpackjoyride/logo.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/jetpackjoyride/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Just Fall LOL",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/justfalllol/unnamed.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/justfalllol/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Kick The Buddy",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/kickthatbuddy/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/kickthatbuddy/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Knife Hit",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/knifehit/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/knifehit/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Last Horizon",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/lasthorizon/wogo%20owo.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/lasthorizon/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Lazy Jump 3D",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/lazyjump3d/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/lazyjump3d/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Learn to Fly",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/learntofly/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/learntofly/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Learn to Fly 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/learntofly2/logo.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/learntofly2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Learn to Fly Idle",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/learntoflyidle/icon.jpg",
+    "category": "Clicker",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/learntoflyidle/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Legend of Zelda: Ocarina of Time",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ocarinaoftime/oc.jpg",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ocarinaoftime/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Line Rider",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/linerider/boosh.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/linerider/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Little Alchemy",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/littlealchemy/images/192-alpha.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/littlealchemy/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Low's Adventures 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/lowsadventures2/icon.png",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/lowsadventures2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Madalin Cars",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/madalincars/icon.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/madalincars/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Legend of Zelda: Majora's Mask",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/majorasmask/majorasmask.png",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/majorasmask/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Mario",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/mario/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/mario/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Mario Kart DS",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/mariokartds/mariokartds.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/mariokartds/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Mario Party",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/marioparty/marioparty.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/marioparty/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Mario Party 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/marioparty2/marioparty2.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/marioparty2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Mario Party 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/marioparty3/marioparty3.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/marioparty3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Mario Party DS",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/mariopartyds/mariopartyds.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/mariopartyds/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Meteor",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/meteor/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/meteor/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Metroid Zero Mission",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/metroidzeromission/zero.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/metroidzeromission/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Mind",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/mind/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/mind/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Minors",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/minors/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/minors/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Minesweeper",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/minesweeper/cover.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/minesweeper/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Monkey Mart",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/monkeymart/unnamed.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/monkeymart/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Monster Tracks",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/monstertracks/webapp/cover.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/monstertracks/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Moto X3M",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/motox3m/splash.jpg",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/motox3m/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Moto X3M Pool",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/motox3m-pool/splash.jpg",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/motox3m-pool/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Moto X3M Spooky",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/motox3m-spooky/icon.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/motox3m-spooky/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Moto X3M Winter",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/motox3m-winter/download.jpeg",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/motox3m-winter/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Mut",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/mut/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/mut/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Ngon",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ngon/favicon.ico",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ngon/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Nintendogs",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/nintendogs/nintendogs.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/nintendogs/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Nitme",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/nitme/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/nitme/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Nut Simulator",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/nutsim/images/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/nutsim/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Offline Paradise",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/offlineparadise/icon.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/offlineparadise/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Osu!",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/osu/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/osu/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Osu! Mania",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/osumania/mania.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/osumania/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "OvO",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ovo/ovo3.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ovo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Pac-Man",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pacman/icon.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pacman/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Pako",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pako/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pako/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Pandemic",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pandemic/sddefault.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pandemic/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Pandemic 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pandemic2/pan2.webp",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pandemic2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Papa's Bakeria",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papasbakeria/papasbakeria.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papasbakeria/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Papa's Burgeria",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papasburgeria/images.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papasburgeria/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Papa's Cheeseria",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papascheeseria/papascheeseria.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papascheeseria/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Papa's Donuteria",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papasdonuteria/papasdonuteria.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papasdonuteria/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Papa's Freezeria",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papasfreezeria/images.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papasfreezeria/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Papa's Pancakeria",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papaspancakeria/papaspancakeria.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papaspancakeria/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Papa's Pastaria",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papaspastaria/papaspastaria.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papaspastaria/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Papa's Pizzeria",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papaspizzeria/images.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papaspizzeria/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Papa's Scooperia",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papasscooperia/papasscooperia.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papasscooperia/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Papa's Sushiria",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papassushiria/papassushiria.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papassushiria/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Papa's Taco Mia",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papastacomia/papastacomia.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papastacomia/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Papa's Wingeria",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papaswingeria/papaswingeria.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papaswingeria/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Paper Mario",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papermario/papermario.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/papermario/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Paper.io",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/paperio/icon.png",
+    "category": "IO",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/paperio/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Pick",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pick/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pick/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Plants vs Zombies",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pvz/cover.png",
+    "category": "Horror",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pvz/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Plu",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/plu/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/plu/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Pokemon",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pokemon/logo.jpg",
+    "category": "Adventure",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pokemon/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Pong",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pong/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pong/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Pool",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pool/cover.png",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pool/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Poom",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/poom/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/poom/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Ritz",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ritz/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ritz/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Pyong",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pyong/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/pyong/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Quake 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/quake3/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/quake3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Racer",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/racer/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/racer/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Recoil",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/recoil/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/recoil/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Red Ball",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/redball/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/redball/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Red Ball 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/redball3/redball3.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/redball3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Red Ball 4",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/redball4/redball4.webp",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/redball4/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Red Ball 4 Vol 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/redball4vol2/redball4vol2.webp",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/redball4vol2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Red Ball 4 Vol 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/redball4vol3/redball4vol3.webp",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/redball4vol3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Retro Bowl",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/retrobowl/img/icon.jpg",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/retrobowl/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Retro Bowl College",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/retrobowlcollege/unnamed.png",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/retrobowlcollege/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Riddle School",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschool/RiddleSchool2.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschool/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Riddle School 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschool2/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschool2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Riddle School 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschool3/riddle-school-3.webp",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschool3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Riddle School 4",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschool4/Untitled.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschool4/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Riddle School 5",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschool5/Untitled.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschool5/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Riddle School Transfer",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschooltransfer/Untitled.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschooltransfer/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Riddle School Transfer 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschooltransfer2/aUntitled.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/riddleschooltransfer2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Rise Higher",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/risehigher/media/graphics/promo/Icons/128x128.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/risehigher/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Robo",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/robo/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/robo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Rocket",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/rocket/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/rocket/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Rocket League 2D",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/rocketleague/splash.webp",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/rocketleague/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Rooftop Snipers",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/rooftopsnipers/logo.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/rooftopsnipers/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Rooftop Snipers 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/rooftopsnipers2/icon.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/rooftopsnipers2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Rough Dino",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/roughdino/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/roughdino/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Run",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/run/icon.jpeg",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/run/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Run 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/run2/icon.jpg",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/run2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Run 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/run3/icon.jpeg",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/run3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Scratch Editor",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/editor/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/editor/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Russian Car Driver",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/russiancardriver/russian-car-driver.webp",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/russiancardriver/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sand",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sand/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sand/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sand Box",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/box/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/box/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sandtrix",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sandtrix/assets/sprites/appicon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sandtrix/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Shape",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/shape/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/shape/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Shapez",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/shapez/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/shapez/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sim City",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/simcity/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/simcity/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sim City 2000",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2000si/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2000si/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Simon",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/simon/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/simon/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Skate",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/skate/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/skate/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Skibidi Toilet",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/skibiditoilet/logo.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/skibiditoilet/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Skibidi Toilet Attack",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/skibiditoiletattack/logo.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/skibiditoiletattack/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sky",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sky/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sky/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Slope 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/slope2/slope-2-logo.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/slope2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Slope 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/slope3/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/slope3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Slope Ball",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/slope-ball/icon.jpg",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/slope-ball/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Ball Slope",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ballslo/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/ballslo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Snake",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/snake/snake.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/snake/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Snot",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/snot/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/snot/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Snow Rider 3D",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/snowrider3d/snow.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/snowrider3d/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Snow",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/snow/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/snow/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Soccer Random",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/soccerrandom/test.png",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/soccerrandom/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Solitaire",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/solitaire/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/solitaire/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Knuckles Chaotix",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/knuck/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/knuck/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sonic",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sonic/cover.svg",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sonic/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sonic 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2sonic/cover.svg",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2sonic/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sonic 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/3sonic/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/3sonic/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sonic Advance",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sadvance/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sadvance/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sonic Advance 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2sadv/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/2sadv/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sonic Advance 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/3sadv/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/3sadv/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Soundboard",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/soundboard/bleep.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/soundboard/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Spank the Monkey",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/spankthemonkey/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/spankthemonkey/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sprinter",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sprinter/icon.jpeg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sprinter/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Stack",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stack/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stack/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Star",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/star/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/star/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Star Fox 64",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/starfox64/starfox64.png",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/starfox64/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "State.io",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stateio/icon.webp",
+    "category": "IO",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stateio/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Stickman Boost",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stickmanboost/base/img1.jpg",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stickmanboost/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Stickman Climb",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stickmanclimb/icon.avif",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stickmanclimb/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Stickman Golf",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stickmangolf/gold.png",
+    "category": "Sports",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stickmangolf/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Stickman Hook",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stickman-hook/icon.jpg",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/stickman-hook/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Subway Surfers New York",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/subway-surfers-ny/NewYorkIcon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/subway-surfers-ny/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Sudoku",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sudo/cover.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/sudo/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Super Auto",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/auto/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/auto/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Super Mario 63",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/mario63/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/mario63/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Super Mario 64",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/supermario64/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/supermario64/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Super Mario 64 DS",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/supermario64ds/supermario64ds.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/supermario64ds/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Super Meat Boy",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/supermeatboy/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/supermeatboy/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Super Smash Bros",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/supersmashbros/logo.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/supersmashbros/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Super Smash Flash",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/supersmashflash/ssf.jpg",
+    "category": "Retro",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/supersmashflash/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Superhero",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/superhero/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/superhero/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Superhot",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/superhot/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/superhot/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Talking Tom 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tom2/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tom2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Tappy Plane",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tappyplane/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tappyplane/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Temple Run",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/temple/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/temple/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Terrifried",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/terrifried/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/terrifried/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Territorial.io",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/territorialio/territorialio.png",
+    "category": "IO",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/territorialio/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Tetris",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tetris/icon.png",
+    "category": "Puzzle",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tetris/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "The Binding of Isaac",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tboi/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tboi/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "The Enchanted Cave 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/enchantedcave2/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/enchantedcave2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "The Final Earth 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/thefinalearth2/icons/favicon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/thefinalearth2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "The Heist",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/heist/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/heist/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "The Impossible Game",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/theimpossiblegame/image.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/theimpossiblegame/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "The Impossible Quiz",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/theimpossiblequiz/tiq.avif",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/theimpossiblequiz/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Minion Rush",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/minion/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/minion/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Oregon Trail",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/oregon/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/oregon/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "BitLife Simulator",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bsims/cover.png",
+    "category": "Strategy",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/bsims/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Theme Hotel",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/themehotel/themehotel.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/themehotel/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "There Is No Game",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/thereisnogame/icon-256.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/thereisnogame/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Thirty Dollar Website",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/thirtydollarwebsite/assets/%F0%9F%97%BF.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/thirtydollarwebsite/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "This Is The Only Level",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/thisistheonlylevel/logo.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/thisistheonlylevel/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "This Is The Only Level 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/thisistheonlylevel2/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/thisistheonlylevel2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Thumb Fighter",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/thumbfighter/thumbfighter.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/thumbfighter/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Time Shooter",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/timeshooter1/logo.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/timeshooter1/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Time Shooter 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/timeshooter2/ts2.jpg",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/timeshooter2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Time Shooter 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/timeshooter3/logo.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/timeshooter3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Tiny Fishing",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tinyfishing/thumb.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tinyfishing/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Tomb of the Mask",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tombofthemask/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tombofthemask/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Totally Accurate Battle Simulator",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tabs/unnamed.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tabs/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Townscaper",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/townscaper/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/townscaper/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Train",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/train/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/train/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Tron",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tron/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tron/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "TU-46",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tu46/tu-46.webp",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tu46/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "TU-95",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tu95/tu-95.webp",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tu95/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Tube Jumpers",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tube-jumpers/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tube-jumpers/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Tunnel Rush",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tunnelrush/tunnel.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/tunnelrush/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Turbo Racing 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/turboracing3/cover.png",
+    "category": "Racing",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/turboracing3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Two",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/two/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/two/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Ultimate Flash Sonic",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/flash/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/flash/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Unfair Mario",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/unfmar/cover.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/unfmar/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Universal Paperclips",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/universal-paperclips/universal-paperclips.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/universal-paperclips/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Vex",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Vex 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex2/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Vex 3",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex3/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex3/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Vex 4",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex4/vex4.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex4/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Vex 5",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex5/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex5/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Vex 6",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex6/icon.png",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex6/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Vex 7",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex7/icon.jpeg",
+    "category": "Platformer",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/vex7/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Wall Smash",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/wallsmash/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/wallsmash/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "DOOM WebAssembly",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/doom-wasm/cover.png",
+    "category": "Shooter",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/doom-wasm/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Watermelon Game",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/watermelongame/assets/sprites/tittle.png",
+    "category": "Sandbox",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/watermelongame/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "We Become What We Behold",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/wbwwb/wbwwb.webp",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/wbwwb/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Weave Silk",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/weavesilk/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/weavesilk/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Fluid Simulation",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fluidsim/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/fluidsim/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "WebRetro",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/webretro/assets/icons/icon204.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/webretro/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "World's Hardest Game",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/worldshardestgame/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/worldshardestgame/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "World's Hardest Game 2",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/worldhardestgame2/the-worlds-hardest-game-2.jpg",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/worldhardestgame2/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Wubz",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/wubz/cover.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/wubz/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "xx142-b2.exe",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/xx142-b2.exe/icon.png",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/xx142-b2.exe/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Yohoho.io",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/yohoho/cover.png",
+    "category": "IO",
+    "tags": [],
+    "featured": true,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/yohoho/index.html",
+    "category_raw": "Arcade"
+  },
+  {
+    "title": "Zombocalypse",
+    "description": "No description available yet.",
+    "game_image_icon": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/zombocalypse/zombocalypse-2.webp",
+    "category": "Arcade",
+    "tags": [],
+    "featured": false,
+    "url": "https://mathematics-lessons.eclipsecastellon.com/resources/semag/zombocalypse/index.html",
+    "category_raw": "Arcade"
   }
 ]

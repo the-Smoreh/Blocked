@@ -23,8 +23,10 @@ export function hash32(str) {
 // Hues are picked from a fixed family instead of the whole wheel. A free
 // hue would give a rainbow of 450 unrelated colors. Anchored hues keep the
 // grid looking like one set while still making each game distinct.
-// The family leans violet because that is the site's own color.
-const HUES = [264, 278, 248, 232, 300, 320, 196, 172]
+// The family runs crimson to orange to magenta, because red is the site's
+// own colour. Variety comes from lightness, pattern and angle instead of
+// from hue, which is what stops 450 cards turning into a rainbow.
+const HUES = [352, 2, 12, 24, 36, 334, 316, 8]
 
 const PATTERNS = 6
 const ANGLES = [25, 65, 115, 155, 205, 245, 295, 335]
@@ -45,7 +47,10 @@ function initials(title) {
   // One big glyph for a single word reads as deliberate. Two words get two.
   if (use.length === 1) {
     const w = use[0]
-    return /^\d/.test(w) ? w.slice(0, 2).toUpperCase() : w.slice(0, 1).toUpperCase()
+    // A short all digit title is the name. "2048" must not become "20".
+    if (/^\d+$/.test(w)) return w.length <= 4 ? w : w.slice(0, 2)
+    if (/^\d/.test(w)) return w.slice(0, 2).toUpperCase()
+    return w.slice(0, 1).toUpperCase()
   }
   return (use[0][0] + use[1][0]).toUpperCase()
 }

@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
+import { artFor } from '../art.js'
+import Icon from './Icon.jsx'
+import { categoryIcon } from '../icons.js'
 
-export default function GamePlayer({ game }) {
+export default function GamePlayer({ game, isFavorite, onFavorite }) {
   const frameRef = useRef(null)
   const [slow, setSlow] = useState(false)
 
@@ -16,39 +19,71 @@ export default function GamePlayer({ game }) {
     return (
       <div className="state">
         <h2>Game not found</h2>
-        <a className="btn" href="#/">
+        <a className="cta" href="#/">
           Back to all games
         </a>
       </div>
     )
   }
 
-  const fullscreen = () => frameRef.current?.requestFullscreen?.()
+  const art = artFor(game.title, game.category)
 
   return (
-    <div className="player">
+    <div className="player" style={art.style}>
       <div className="playerbar">
-        <a className="btn" href="#/">
-          Back
+        <a className="iconbtn" href="#/" title="Back">
+          <Icon name="back" />
         </a>
-        <h1>{game.title}</h1>
-        <div className="spacer" />
-        <button className="btn" onClick={fullscreen}>
-          Fullscreen
+
+        <span className="nowplaying">
+          <span className="np-art" data-pattern={art.pattern} aria-hidden="true">
+            {art.initials}
+          </span>
+          <span className="np-text">
+            <strong>{game.title}</strong>
+            <em>
+              <Icon name={categoryIcon(game.category)} size={12} />
+              {game.category}
+            </em>
+          </span>
+        </span>
+
+        <span className="spacer" />
+
+        <button
+          className={isFavorite ? 'iconbtn fav-on' : 'iconbtn'}
+          onClick={() => onFavorite(game.slug)}
+          title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+        >
+          <Icon name="star" filled={isFavorite} />
         </button>
-        <a className="btn" href={game.url} target="_blank" rel="noreferrer">
-          New tab
+        <button
+          className="iconbtn"
+          onClick={() => frameRef.current?.requestFullscreen?.()}
+          title="Fullscreen"
+        >
+          <Icon name="expand" />
+        </button>
+        <a className="iconbtn" href={game.url} target="_blank" rel="noreferrer" title="Open in new tab">
+          <Icon name="external" />
         </a>
       </div>
-      <iframe
-        ref={frameRef}
-        src={game.url}
-        title={game.title}
-        allow="fullscreen; gamepad; autoplay"
-      />
+
+      <div className="stage">
+        <span className="stage-load" aria-hidden="true">
+          <span className="spinner" />
+        </span>
+        <iframe
+          ref={frameRef}
+          src={game.url}
+          title={game.title}
+          allow="fullscreen; gamepad; autoplay"
+        />
+      </div>
+
       {slow && (
         <p className="hint">
-          Not loading? Some sites refuse to run inside a frame. Use New tab.
+          Not loading? Some sites refuse to run inside a frame. Use the new tab button.
         </p>
       )}
     </div>

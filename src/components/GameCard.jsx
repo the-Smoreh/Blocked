@@ -1,21 +1,43 @@
 import { useState } from 'react'
+import { artFor } from '../art.js'
+import { badgeFor } from '../lib.js'
+import Icon from './Icon.jsx'
+import { categoryIcon } from '../icons.js'
 
-export default function GameCard({ game, isFavorite, onFavorite }) {
+export default function GameCard({ game, isFavorite, onFavorite, size = 'sm', index = 0 }) {
   const [broken, setBroken] = useState(false)
+  const art = artFor(game.title, game.category)
+  const badge = badgeFor(game)
+  const hasImage = game.game_image_icon && !broken
 
   return (
-    <a className="card" href={`#/game/${game.slug}`}>
+    <a
+      className={`card card-${size}`}
+      href={`#/game/${game.slug}`}
+      style={{ ...art.style, '--i': index }}
+      data-pattern={art.pattern}
+    >
       <div className="thumb">
-        {game.game_image_icon && !broken ? (
-          <img
-            src={game.game_image_icon}
-            alt=""
-            loading="lazy"
-            onError={() => setBroken(true)}
-          />
-        ) : (
-          <span className="fallback">{game.title.slice(0, 1)}</span>
+        {/* The generated art is always painted. A real image just covers it,
+            so a 404 leaves art behind instead of a hole. */}
+        <span className="art" aria-hidden="true" />
+        <span className="art-initials" aria-hidden="true">
+          {art.initials}
+        </span>
+        {hasImage && (
+          <img src={game.game_image_icon} alt="" loading="lazy" onError={() => setBroken(true)} />
         )}
+
+        <span className="shine" aria-hidden="true" />
+
+        <span className="playwrap" aria-hidden="true">
+          <span className="playbtn">
+            <Icon name="play" size={size === 'lg' ? 26 : 20} filled />
+          </span>
+        </span>
+
+        {badge && <span className={`badge badge-${badge}`}>{badge === 'hot' ? 'HOT' : 'NEW'}</span>}
+
         <button
           className={isFavorite ? 'fav on' : 'fav'}
           title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
@@ -24,12 +46,16 @@ export default function GameCard({ game, isFavorite, onFavorite }) {
             onFavorite(game.slug)
           }}
         >
-          {isFavorite ? '★' : '☆'}
+          <Icon name="star" size={15} filled={isFavorite} />
         </button>
       </div>
+
       <div className="meta">
         <h3>{game.title}</h3>
-        {game.category && <span className="tag">{game.category}</span>}
+        <span className="tag">
+          <Icon name={categoryIcon(game.category)} size={13} />
+          {game.category}
+        </span>
       </div>
     </a>
   )

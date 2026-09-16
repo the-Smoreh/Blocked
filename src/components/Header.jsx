@@ -1,44 +1,68 @@
-export default function Header({
-  query,
-  onQuery,
-  categories,
-  category,
-  onCategory,
-  theme,
-  onTheme,
-}) {
+import { useEffect, useRef } from 'react'
+import Icon from './Icon.jsx'
+
+export default function Header({ query, onQuery, theme, onTheme, onMenu, count }) {
+  const inputRef = useRef(null)
+
+  // "/" jumps to search, the shortcut every site with a search box has.
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === '/' && document.activeElement !== inputRef.current) {
+        e.preventDefault()
+        inputRef.current?.focus()
+      }
+      if (e.key === 'Escape' && document.activeElement === inputRef.current) {
+        onQuery('')
+        inputRef.current?.blur()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onQuery])
+
   return (
     <header>
       <div className="bar">
+        <button className="iconbtn only-narrow" onClick={onMenu} title="Categories">
+          <Icon name="menu" />
+        </button>
+
         <a className="brand" href="#/">
+          <span className="brandmark" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
           Blocked
         </a>
-        <input
-          className="search"
-          type="search"
-          value={query}
-          placeholder="Search games"
-          onChange={(e) => onQuery(e.target.value)}
-        />
+
+        <div className="searchwrap">
+          <Icon name="search" size={17} />
+          <input
+            ref={inputRef}
+            className="search"
+            type="search"
+            value={query}
+            placeholder={`Search ${count} games`}
+            onChange={(e) => onQuery(e.target.value)}
+          />
+          {query ? (
+            <button className="clear" onClick={() => onQuery('')} title="Clear">
+              &times;
+            </button>
+          ) : (
+            <kbd>/</kbd>
+          )}
+        </div>
+
         <button
-          className="theme"
+          className="iconbtn"
           onClick={onTheme}
           title={theme === 'dark' ? 'Switch to light' : 'Switch to dark'}
         >
-          {theme === 'dark' ? '☀' : '☽'}
+          <Icon name={theme === 'dark' ? 'sun' : 'moon'} />
         </button>
       </div>
-      <nav className="cats">
-        {categories.map((c) => (
-          <button
-            key={c}
-            className={c === category ? 'cat on' : 'cat'}
-            onClick={() => onCategory(c)}
-          >
-            {c}
-          </button>
-        ))}
-      </nav>
     </header>
   )
 }
