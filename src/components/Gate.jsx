@@ -1,42 +1,75 @@
 import { useEffect, useRef, useState } from 'react'
 
-// A full screen intro that sits in front of the entire site and fades away as
-// you scroll. It does not move: only its opacity changes, so the site is
-// revealed through it rather than from under it. A click also lets you in.
-// It appears on every load and is not remembered, so entering is always a
-// deliberate action.
+// A full screen intro in front of the whole site, shown on every load and
+// never remembered, so entering is always a deliberate action.
 //
 // It wraps the app rather than living inside it, so it covers every route
 // including the player, and does not have to be threaded through App's
 // several early returns.
 //
-// Scroll is driven by accumulated input rather than real document scroll.
-// A spacer plus native scroll would need the spacer removed at the end, which
-// jumps the page, and it fights the player view's own locked scrolling. This
-// way the gate owns its own progress and the document is never touched.
+// The handoff is not a plain fade. Scrolling drives a progress value that
+// pushes the intro away from the viewer while it blurs out, and pulls the site
+// up from behind it at the same time, so the two are one movement. Past a
+// commit point it finishes on its own, because requiring someone to scroll
+// exactly to the end felt like work.
+//
+// Progress comes from accumulated wheel and touch input rather than real
+// document scroll. A spacer plus native scroll would have to be removed at the
+// end, which jumps the page, and it fights the player view's own locked
+// scrolling.
 
 const KEYS = new Set(['ArrowDown', 'PageDown', ' ', 'Enter', 'Escape'])
 
+// Past this much scrolling the rest plays out by itself.
+const COMMIT_AT = 0.42
+// Has to match the transition in .gate.committing, or the layer is torn out
+// mid animation.
+const COMMIT_MS = 760
+
+// Three drifting blobs. Used behind the intro and behind the site, so the two
+// share the same moving red, which is what makes the handoff read as one
+// surface rather than two screens.
+function Fx() {
+  return (
+    <span className="fx" aria-hidden="true">
+      <i />
+      <i />
+      <i />
+    </span>
+  )
+}
+
 export default function Gate({ children }) {
   const [entered, setEntered] = useState(false)
-  // Kept in a ref as well, because the wheel handler is registered once and
-  // must not close over a stale value.
-  const progress = useRef(0)
+  const [committing, setCommitting] = useState(false)
   const [shown, setShown] = useState(0)
-  const layer = useRef(null)
+  // Also held in a ref, because the wheel handler is registered once and must
+  // not close over a stale value.
+  const progress = useRef(0)
+  const committed = useRef(false)
 
   useEffect(() => {
     if (entered) return
 
-    // The distance that counts as "one screen" of scrolling. A little more
-    // than the viewport, so a single flick does not blow straight through.
+    const commit = () => {
+      if (committed.current) return
+      committed.current = true
+      progress.current = 1
+      setShown(1)
+      setCommitting(true)
+      window.setTimeout(() => setEntered(true), COMMIT_MS)
+    }
+
+    // The distance that counts as one screen of scrolling. A little more than
+    // the viewport, so a single flick does not blow straight through.
     const travel = () => Math.max(320, window.innerHeight * 1.15)
 
     const advance = (amount) => {
+      if (committed.current) return
       const next = Math.min(1, Math.max(0, progress.current + amount / travel()))
       progress.current = next
       setShown(next)
-      if (next >= 1) setEntered(true)
+      if (next >= COMMIT_AT) commit()
     }
 
     const onWheel = (e) => {
@@ -56,13 +89,13 @@ export default function Gate({ children }) {
       lastTouch = y
     }
 
-    // Keyboard and a plain click are the way through for anyone who cannot
-    // scroll, or who has reduced motion turned on. The gate still has to be
-    // dismissed on purpose, it just does not demand a wheel.
+    // A key or a click runs the same commit, so it plays the transition rather
+    // than snapping. This is also the way through for anyone who cannot
+    // scroll, or who has reduced motion turned on.
     const onKey = (e) => {
       if (!KEYS.has(e.key)) return
       e.preventDefault()
-      setEntered(true)
+      commit()
     }
 
     window.addEventListener('wheel', onWheel, { passive: false })
@@ -78,8 +111,8 @@ export default function Gate({ children }) {
     }
   }, [entered])
 
-  // Hold the site still underneath. The class is removed on entry, and also
-  // if this unmounts mid gate, so the page can never be left unscrollable.
+  // Hold the site still underneath. Removed on entry, and on unmount too, so
+  // the page can never be left unscrollable.
   useEffect(() => {
     document.body.classList.toggle('gated', !entered)
     return () => document.body.classList.remove('gated')
@@ -87,19 +120,58 @@ export default function Gate({ children }) {
 
   return (
     <>
-      {children}
+      {/* The site's own moving background, always present. */}
+      <div className="bgfx" aria-hidden="true">
+        <Fx />
+      </div>
+
+      {/* The same blobs again, over the wall instead of behind it. On a dense
+          grid the layer behind is almost entirely covered by cards, so the
+          movement was invisible where it mattered. This sits above the cards
+          and below the header on soft-light, which tints the wall without
+          washing out the game art. */}
+      <div className="bgfx-over" aria-hidden="true">
+        <Fx />
+      </div>
+
+      {/* While the gate is up this scales and dims, so the site arrives
+          rather than simply being uncovered. The inline style and the class
+          are both dropped on entry, because a transform or a filter here
+          would otherwise become the containing block for the sticky header
+          and the settings sheet. */}
+      <div
+        className={entered ? 'under' : committing ? 'under gating committing' : 'under gating'}
+        style={entered ? undefined : { '--p': shown }}
+      >
+        {children}
+      </div>
 
       {!entered && (
         <div
-          className="gate"
-          ref={layer}
+          className={committing ? 'under-scrim committing' : 'under-scrim'}
           style={{ '--p': shown }}
-          onClick={() => setEntered(true)}
+          aria-hidden="true"
+        />
+      )}
+
+      {!entered && (
+        <div
+          className={committing ? 'gate committing' : 'gate'}
+          style={{ '--p': shown }}
+          onClick={() => {
+            if (!committed.current) {
+              committed.current = true
+              progress.current = 1
+              setShown(1)
+              setCommitting(true)
+              window.setTimeout(() => setEntered(true), COMMIT_MS)
+            }
+          }}
           role="button"
           tabIndex={0}
           aria-label="Scroll or press Enter to continue to Blocked"
         >
-          <span className="gate-mesh" aria-hidden="true" />
+          <Fx />
 
           <div className="gate-inner">
             <span className="gate-mark" aria-hidden="true">

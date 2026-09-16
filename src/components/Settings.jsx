@@ -158,7 +158,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
     }
     if (settings.bgKind === 'gradient') {
       if (goingLight && settings.bgGradient !== 'paper') patch.bgGradient = 'paper'
-      if (!goingLight && settings.bgGradient === 'paper') patch.bgGradient = 'emberfade'
+      if (!goingLight && settings.bgGradient === 'paper') patch.bgGradient = 'slosh'
     }
     set(patch)
   }
@@ -401,6 +401,13 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                     label="Show titles"
                     value={settings.showTitles}
                     onChange={(showTitles) => set({ showTitles })}
+                  />
+                </Field>
+                <Field label="Moving background" hint="The red drifts behind the wall">
+                  <Toggle
+                    label="Moving background"
+                    value={settings.bgAnimated}
+                    onChange={(bgAnimated) => set({ bgAnimated })}
                   />
                 </Field>
                 <Field label="Idle shimmer" hint="One random card at a time">

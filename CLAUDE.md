@@ -428,31 +428,77 @@ the first pass was still in the file, and the leftover `.lib { flex-direction:
 column }` made every library row wrap its credit link onto a second line. The
 superseded block was removed, not overridden.
 
+## Moving background
+
+Red on black, animated, and the default (`bgKind: 'gradient'`,
+`bgGradient: 'slosh'`). Switchable off with the "Moving background" toggle in
+settings, and it holds still under OS reduced motion.
+
+It is **three blobs on separate timings** (23s, 31s, 19s), not one animated
+gradient. A single gradient can only slide; separate blobs drift past each
+other, which is what makes it slosh. They are tinted with `color-mix` from
+`--accent`, so the background follows whatever accent is chosen.
+
+The blobs are rendered **twice**, in `Gate.jsx` so they exist on every route:
+
+- `.bgfx`, `z-index: -1`, behind everything.
+- `.bgfx-over`, `z-index: 12`, above the cards (which sit at 3) and below the
+  header (30), on `mix-blend-mode: soft-light`.
+
+The second layer is the point. On a 633 card wall the layer behind is almost
+entirely covered, so the movement was invisible exactly where the user looks.
+Soft-light over the grid tints it without washing out the game art, and the
+chrome stays crisp because the header and rail are above it. It is disabled
+when the background is an uploaded image, where it would fight the photo.
+
+The rail is translucent with a backdrop blur for the same reason: it is a tall
+opaque column sitting where the first blob drifts. It goes solid over an
+uploaded image so it stays readable.
+
 ## The intro gate
 
 `src/components/Gate.jsx` wraps the app in `main.jsx`, so it covers every route
 including the player without being threaded through App's several early
 returns. It shows on **every load** and is never remembered.
 
-It **does not move**. Only its opacity changes as you scroll, so the site is
-revealed through it rather than from under it. `--p` is written by the
-component and the stylesheet derives opacity from it, with no transition, so it
-tracks the wheel one to one and reverses if you scroll back up.
+**The handoff is not a fade.** Scrolling drives `--p`, which pushes the intro
+away from the viewer (`scale` to 1.16) while it blurs out (to 13px), and pulls
+the site up from behind it (`scale` 0.94 to 1) behind a scrim that lifts. The
+wordmark clears first, so the sequence has an order instead of everything
+leaving at once. The intro carries the same drifting blobs as the site, which
+is what makes the two read as one surface rather than two screens.
 
-Progress comes from accumulated wheel and touch input, not real document
-scroll. A spacer plus native scroll would have to be removed at the end, which
-jumps the page, and it fights the player view's own locked scrolling.
+**It commits at 42%.** Past that the rest plays out on its own over 760ms,
+because requiring someone to scroll exactly to the end felt like work. Only the
+committed run is animated; up to that point it tracks the wheel one to one and
+reverses if you scroll back up. A click, Enter, Space, Escape or an arrow runs
+the same commit, so those play the transition rather than snapping, and they
+are the way through for anyone who cannot scroll.
 
-A click, Enter, Space, Escape or arrow also lets you in, which is the way
-through for anyone who cannot scroll or who has reduced motion on.
+`COMMIT_MS` has to match the transition in `.gate.committing` or the layer is
+torn out mid animation.
 
-The only text is the wordmark. There is no tagline and no "scroll to enter"
-label, just a bar that fills.
+Two traps that were hit building this, both worth not repeating:
+
+- **`transform-origin` on `.under` must be in viewport units.** That element is
+  as tall as the whole document, so a percentage origin sits thousands of
+  pixels down the page and the scale drags the visible part right off centre.
+  Scroll is locked at the top while the gate is up, so `46vh` is the viewport
+  centre.
+- **The scrim is a sibling of `.under`, not a child.** A fixed child of a
+  transformed ancestor is positioned against that ancestor rather than the
+  viewport, so inside `.under` it was being scaled and offset along with the
+  site.
+
+The transform and the class are both dropped on entry, because a transform or
+a filter on `.under` would otherwise become the containing block for the
+sticky header and the fixed settings sheet. Verified after entry: `.under` has
+`transform: none` and `header` is back to `position: sticky`.
 
 Testing note: the preview pane emits its own wheel events, five at -100 then
 two at +100 in one sample, which sometimes dismisses the gate between tool
-calls. That is the harness scrolling, not a bug. Verify the fade by setting
-`--p` directly rather than relying on the gate surviving between calls.
+calls. That is the harness scrolling, not a bug. Drive `--p` directly rather
+than relying on the gate surviving between calls.
 
 ## Writing style
 

@@ -102,9 +102,13 @@ export const DEFAULTS = {
   theme: 'dark',
   accent: 'crimson',
 
-  bgKind: 'slate', // slate | gradient | image
+  // Gradient by default, and the default gradient is the animated red on
+  // black one. The blobs that do the moving live in Gate.jsx, and the
+  // gradient here is the still base they drift over.
+  bgKind: 'gradient', // slate | gradient | image
   bgSlate: 'ink',
-  bgGradient: 'emberfade',
+  bgGradient: 'slosh',
+  bgAnimated: true,
   bgImage: null, // data url, written by the uploader below
   bgDim: 55, // 0-90, converted to a 0..0.9 scrim alpha over a background image
 
@@ -137,6 +141,12 @@ export const SLATES = {
 }
 
 export const GRADIENTS = {
+  // The default. Deliberately dark, because three moving blobs are drawn on
+  // top of it and a bright base would leave nowhere for them to show.
+  slosh: {
+    label: 'Slosh',
+    css: 'radial-gradient(120% 90% at 15% 0%, #23090b 0%, transparent 55%), radial-gradient(110% 80% at 85% 100%, #1c070f 0%, transparent 58%), #08080a',
+  },
   emberfade: { label: 'Ember fade', css: 'linear-gradient(160deg, #1a0708 0%, #08080a 55%)' },
   duskrise: { label: 'Dusk rise', css: 'linear-gradient(200deg, #1b0d24 0%, #08080a 60%)' },
   deepsea: { label: 'Deep sea', css: 'linear-gradient(180deg, #07141f 0%, #08080a 62%)' },
@@ -204,6 +214,7 @@ export function useSettings() {
     root.dataset.titles = settings.showTitles ? 'on' : 'off'
     root.dataset.tint = settings.colorIcons ? 'on' : 'off'
     root.dataset.bg = settings.bgKind
+    root.dataset.bganim = settings.bgAnimated ? 'on' : 'off'
 
     root.style.setProperty('--accent', accent.a)
     root.style.setProperty('--accent-hot', accent.b)
