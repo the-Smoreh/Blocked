@@ -67,7 +67,11 @@ export function useFavorites() {
   const toggle = (slug) => {
     setFavorites((prev) => {
       const next = new Set(prev)
-      next.has(slug) ? next.delete(slug) : next.add(slug)
+      if (next.has(slug)) {
+        next.delete(slug)
+      } else {
+        next.add(slug)
+      }
       try {
         localStorage.setItem(FAVORITES_KEY, JSON.stringify([...next]))
       } catch {
@@ -79,4 +83,29 @@ export function useFavorites() {
   }
 
   return { favorites, toggle }
+}
+
+const THEME_KEY = 'blocked:theme'
+
+// Dark is the default. The choice is written to the root element so the CSS
+// variable overrides in styles.css can pick it up.
+export function useTheme() {
+  const [theme, setTheme] = useState(() => {
+    try {
+      return localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark'
+    } catch {
+      return 'dark'
+    }
+  })
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    try {
+      localStorage.setItem(THEME_KEY, theme)
+    } catch {
+      // Same story as favorites. Not persisting is acceptable.
+    }
+  }, [theme])
+
+  return { theme, toggleTheme: () => setTheme((t) => (t === 'dark' ? 'light' : 'dark')) }
 }

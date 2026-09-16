@@ -12,18 +12,6 @@
     "url": "https://mitchgu.github.io/GetMIT/"
   },
   {
-    "title": "Hextris",
-    "description": "Tetris on a spinning hexagon.",
-    "game_image_icon": "",
-    "category": "Puzzle",
-    "tags": [
-      "fast",
-      "classic"
-    ],
-    "featured": true,
-    "url": "https://hextris.io/"
-  },
-  {
     "title": "Clumsy Bird",
     "description": "Flappy Bird clone. Tap to flap.",
     "game_image_icon": "",
@@ -43,7 +31,7 @@
       "3d",
       "maze"
     ],
-    "featured": false,
+    "featured": true,
     "url": "https://wwwtyro.github.io/Astray/"
   },
   {

@@ -1,4 +1,12 @@
-export default function Header({ query, onQuery, categories, category, onCategory }) {
+export default function Header({
+  query,
+  onQuery,
+  categories,
+  category,
+  onCategory,
+  theme,
+  onTheme,
+}) {
   return (
     <header>
       <div className="bar">
@@ -12,6 +20,13 @@ export default function Header({ query, onQuery, categories, category, onCategor
           placeholder="Search games"
           onChange={(e) => onQuery(e.target.value)}
         />
+        <button
+          className="theme"
+          onClick={onTheme}
+          title={theme === 'dark' ? 'Switch to light' : 'Switch to dark'}
+        >
+          {theme === 'dark' ? '☀' : '☽'}
+        </button>
       </div>
       <nav className="cats">
         {categories.map((c) => (

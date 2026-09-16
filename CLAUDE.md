@@ -90,24 +90,44 @@ hotlinks.
 
 ### Verifying a game URL
 
-Do **not** verify by screenshotting the player. The preview browser pane does
-not render cross-origin iframes and logs no iframe network requests, so a
-working game and a broken one both look blank.
+The preview browser pane **does** render cross-origin iframes, so loading a game
+in the player and screenshotting it is a valid check. Give it 4 to 6 seconds
+first, since a blank frame early on often just means still loading.
 
-Navigate a tab **directly** to the game URL and read the page text instead. Note
-that a `fetch()` from the app origin returning "Failed to fetch" usually means
-CORS, not a 404, so it proves nothing either way.
+A screenshot may time out with "page did not finish rendering" on a game that
+animates constantly. That is not a failure, it usually means the game is
+running. Retry the screenshot on its own.
+
+Do **not** rely on `fetch()` from the app origin. "Failed to fetch" there
+usually means CORS, not a 404, so it proves nothing either way. If a frame stays
+blank, navigate a tab directly to the game URL and read the page text to see
+whether the host is actually dead.
 
 ## Current state
 
-Five seed games, all placeholders. Only their HTTP status was checked, **not**
-whether they actually play. Treat the list as unverified.
+Four seed games, **all four confirmed to actually play** in the iframe as of
+2026-09-15: 2048, Clumsy Bird, Astray, Untrusted. Two seeds were removed after
+testing, `javascript-racer` (dead host) and `hextris.io` (loads blank).
+
+Note that the 2048 entry points at `mitchgu.github.io/GetMIT`, a working 2048
+clone that is heavily MIT branded. Fine as a placeholder, worth replacing.
 
 Open decision the user has not answered yet: copy the 450 DeblockedX games,
 self-host games instead, or curate a fresh list for Blocked.
 
 Hosting is also undecided. Nothing in the code assumes a host, but if it ends up
 on GitHub Pages under a subpath, `base` needs setting in `vite.config.js`.
+
+## Theme
+
+Red accent on a near black ground, with a white light mode. Both palettes are
+CSS variable blocks at the top of `src/styles.css`, `:root` for dark and
+`:root[data-theme='light']` for light. **Add colours as variables in both
+blocks**, never as literals in a rule, or light mode ends up half dark.
+
+`useTheme` in `src/lib.js` stamps `data-theme` on the root element and persists
+the choice to localStorage. Dark is the default. The toggle lives in the header,
+so it is not on screen while a game is open, but the theme still applies there.
 
 ## Writing style
 

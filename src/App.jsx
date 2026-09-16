@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useGames, useHashRoute, useFavorites } from './lib.js'
+import { useGames, useHashRoute, useFavorites, useTheme } from './lib.js'
 import Header from './components/Header.jsx'
 import GameGrid from './components/GameGrid.jsx'
 import GamePlayer from './components/GamePlayer.jsx'
@@ -8,6 +8,7 @@ export default function App() {
   const route = useHashRoute()
   const { games, error } = useGames()
   const { favorites, toggle } = useFavorites()
+  const { theme, toggleTheme } = useTheme()
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('All')
 
@@ -64,6 +65,8 @@ export default function App() {
         categories={categories}
         category={category}
         onCategory={setCategory}
+        theme={theme}
+        onTheme={toggleTheme}
       />
       <main>
         {showFavorites && (
