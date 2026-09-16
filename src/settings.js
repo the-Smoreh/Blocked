@@ -27,12 +27,26 @@ export const LIBRARIES = {
     file: 'libraries/goblin.json',
     count: 633,
   },
+  nova: {
+    label: 'Nova Arcade',
+    author: 'Beefalo1234',
+    credit: 'https://github.com/Beefalo1234/nova-arcade',
+    file: 'libraries/nova.json',
+    count: 151,
+  },
   hell: {
     label: 'Hell',
     author: 'D3ch',
     credit: 'https://github.com/D3ch/hell',
     file: 'libraries/hell.json',
     count: 207,
+  },
+  amplify: {
+    label: 'Amplify',
+    author: 'joeyc1pro',
+    credit: 'https://github.com/joeyc1pro/amplify-home-xyz',
+    file: 'libraries/amplify.json',
+    count: 80,
   },
   alexx: {
     label: 'Alexx743',
@@ -48,6 +62,20 @@ export const LIBRARIES = {
     file: 'libraries/gams.json',
     count: 59,
   },
+  p0xx: {
+    label: 'p0xx',
+    author: 'p0xx',
+    credit: 'https://github.com/p0xx/p0xx.github.io',
+    file: 'libraries/p0xx.json',
+    count: 51,
+  },
+  astro: {
+    label: 'Astro v2',
+    author: 'MNblocker',
+    credit: 'https://github.com/MNblocker/Astro-v2',
+    file: 'libraries/astro.json',
+    count: 24,
+  },
   local: {
     label: 'Built in',
     note: 'The old imported link list, mostly dead',
@@ -61,9 +89,15 @@ export function libraryFile(id) {
 }
 
 export const DEFAULTS = {
-  // Lumin stays the default per the earlier decision. Note that it fails on
-  // localhost, so during development pick one of the community libraries.
-  library: 'lumin',
+  // Goblin Kingdom is the default because it is the largest fully verified
+  // library, 633 of 633 urls live and frameable.
+  //
+  // Lumin was the default until its behaviour was pinned down: init resolves
+  // but renders nothing, every other method on its Proxy queues forever
+  // because its worker reports "domain fetch failed", and getGames() never
+  // settles. A default that shows an error to every visitor is a defect, so
+  // it is still selectable, just not first.
+  library: 'goblin',
 
   theme: 'dark',
   accent: 'crimson',

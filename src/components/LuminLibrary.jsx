@@ -23,6 +23,7 @@ const SOURCES = [
 ]
 const MOUNT_ID = 'lumin-games-root'
 const LOAD_TIMEOUT = 20000
+const INIT_TIMEOUT = 20000
 
 let loader = null
 
@@ -101,13 +102,34 @@ export default function LuminLibrary({ theme, onUseLocal }) {
         if (!containerRef.current.id) containerRef.current.id = MOUNT_ID
         containerRef.current.innerHTML = ''
 
-        await lumin.init({
-          container: `#${containerRef.current.id}`,
-          theme,
-          gamesPerPage: 1000,
-        })
+        // Every method on the SDK is a Proxy that queues the call until its
+        // worker boots. When the worker cannot boot, and on localhost it
+        // reports "domain fetch failed", those promises never settle at all,
+        // so an unguarded await here leaves a spinner forever with no error.
+        // Verified: Lumin.getGames() also hangs indefinitely.
+        await Promise.race([
+          lumin.init({
+            container: `#${containerRef.current.id}`,
+            theme,
+            gamesPerPage: 1000,
+          }),
+          new Promise((_, reject) =>
+            setTimeout(
+              () => reject(new Error('The library did not finish starting up.')),
+              INIT_TIMEOUT,
+            ),
+          ),
+        ])
 
-        if (active) setReady(true)
+        if (!active) return
+
+        // init can resolve having rendered nothing at all. Treat an empty
+        // container as a failure rather than showing a blank page.
+        if (!containerRef.current.children.length) {
+          throw new Error('The library started but returned no games.')
+        }
+
+        setReady(true)
       } catch (e) {
         if (active) setError(e.message || 'Could not load the game library right now.')
       }

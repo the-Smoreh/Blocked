@@ -190,12 +190,18 @@ data file plus one entry there.
 
 | id | name | games | source |
 |----|------|-------|--------|
-| `lumin` | Lumin | embed | third party CDN, see below |
 | `goblin` | Goblin Kingdom | 633 | github.com/goblinkingdev/unblocked-games |
 | `hell` | Hell | 207 | github.com/D3ch/hell |
+| `nova` | Nova Arcade | 151 | github.com/Beefalo1234/nova-arcade |
+| `amplify` | Amplify | 80 | github.com/joeyc1pro/amplify-home-xyz |
 | `alexx` | Alexx743 | 71 | github.com/Alexx743/Alexx743-games |
 | `gams` | Gams Offline | 59 | github.com/Gams-Offline/Gams |
+| `p0xx` | p0xx | 51 | github.com/p0xx/p0xx.github.io |
+| `astro` | Astro v2 | 24 | github.com/MNblocker/Astro-v2 |
+| `lumin` | Lumin | embed | third party CDN, returns no games, see below |
 | `local` | Built in | 451 | the old import, mostly dead, kept for reference |
+
+**1276 games.** `goblin` is the default: largest library, 633 of 633 verified.
 
 **We link, we never copy.** Every url points at the source's own host, so they
 serve the game and get the traffic, and nothing is mirrored here. That is also
@@ -214,58 +220,116 @@ Rebuild with `node scripts/build-libraries.mjs --write`, then
 `node scripts/categorize.mjs --file libraries/<id>.json --write`. Both
 `checklinks.mjs` and `categorize.mjs` take `--file <path under public/>`.
 
-Verified live on 2026-09-16 with a full check, not a sample: goblin 633/633,
-alexx 71/71, gams 59/59 all at 100%, hell 207/228 after
-`checklinks.mjs --file libraries/hell.json --all --prune` removed 21 folders
-with no index file.
+Verified with a full check, not a sample. goblin 633/633, alexx 71/71,
+gams 59/59 at 100%. hell 207 after 21 folders with no index file were pruned,
+nova 151 after 2, astro 24 after 5, amplify 80 after 1. p0xx keeps all 51, of
+which 20 verified and 31 returned connect timeouts that are not proof of
+anything: a single request to those same urls returns 200.
+
+**Pruning is durable.** `checklinks.mjs --all --prune` records every removed
+url in `public/libraries/pruned.json`, and `build-libraries.mjs` skips those
+on both its rebuild path and its keep-from-disk path. Before that, every
+rebuild reinstated games already proved dead and the verification had to be
+redone from scratch.
+
+**The checker only prunes on 404 and 410.** A 429, a 5xx or a timeout is
+recorded as `unknown` and kept. This matters: an early version treated any
+non-ok response as dead and deleted 31 working p0xx games after GitHub Pages
+rate limited a burst of concurrent requests. Concurrency is 4 with 3 retries
+for that reason.
+
+**Amplify's titles come from each page's `<title>`.** Its folders are named
+g1..g81 on purpose, so the folder name carries nothing. 66 of 81 resolved.
+
+**Astro's folder names** are the import that produced them, so
+`stripPrefix` turns "MNblocker 3kh0-Assets main DogeMiner" into "DogeMiner".
+The url still uses the real folder name.
+
+**The GitHub API allows 60 unauthenticated calls an hour.** Running out mid
+build once dropped Amplify out of index.json while its data file sat there
+intact, which is why a failed listing now keeps what is already on disk.
 
 ### Sources that were checked and left out
 
 Recorded in `REJECTED` in `build-libraries.mjs` so nobody re-derives it:
 
-- **Seraph** (494 games) `a456pur/seraph`. No working public host.
+- **Seraph** (494) `a456pur/seraph`. No working public host.
   `a456pur.github.io/seraph/` fails DNS repeatedly even though the user's
   github.io root answers, and the custom domain has no DNS record.
-- **UGS-Assets** (384) `bubbls/UGS-Assets`. No GitHub Pages, and its intended
+- **PLEXILEARCADE** (248) `knwzero/PLEXILEARCADE`. 248 games in
+  `assets/games`, Apache-2.0, but Pages is off and plexilearcade.net no
+  longer resolves.
+- **UGS-Assets** (384) `bubbls/UGS-Assets`. No Pages, and its intended
   delivery is jsDelivr, which serves HTML as `text/plain` so a browser will
-  not render it in a frame.
-- **Ruby** (68) `ruby-network/ruby`. Has a real catalogue at
-  `src/public/games.json` with tags and thumbnails, but its site returns HTTP
-  523 and sends `X-Frame-Options: SAMEORIGIN`, and its asset repo
-  `ruby-network/ruby-assets` is 404.
+  not render it in a frame. That rules out jsDelivr as a game host generally.
+- **PeteZah** (156) `PeteZah-Games/PeteZahStatic`. Every path on
+  petezahgames.com redirects to `/verify?reason=activity`, a bot check, and
+  their Pages domain redirects there too. A framed game would show the check.
+  Working around a bot check is not on the table.
+- **Ruby** (68) `ruby-network/ruby`. Has a genuinely good catalogue at
+  `src/public/games.json` with tags and thumbnails, and its url pattern is
+  `gms/ruby-network/ruby-assets/main/<name-lowercased-hyphenated>/<baseFile>`.
+  But the site returns 523, sends `X-Frame-Options: SAMEORIGIN`, and the
+  asset repo is 404.
+- **julianlockibarra-cat/games**. Pages is off and there is no other host, so
+  UNITY GAMES, FLASH GAMES and the third folder cannot be served.
+- **schplay** `paralzyed/schplay.github.io`. Empty apart from site pages, no
+  game files to index.
 - **The Dropbox folder.** Dropbox does not serve shared HTML as a rendered
-  page, so a game cannot run in a frame from it. Its listing is also JS
-  rendered, so it cannot be enumerated with a plain fetch.
+  page, so a game cannot run in a frame from it. Its listing is JS rendered,
+  so a plain fetch cannot enumerate it either.
 
 Any of these become usable the moment their files sit on a host that serves
 `text/html` and does not refuse framing.
 
 ## The Lumin library
 
-`src/components/LuminLibrary.jsx` mounts a third party catalogue and is the
-**default**.
+`src/components/LuminLibrary.jsx` mounts a third party catalogue. It is still
+selectable but **no longer the default**, because it does not work.
 
-What is actually known about it, verified 2026-09-16:
+What it actually does, verified 2026-09-16:
 
-- The repo `luminsdk/script` has **no tags and no releases**, so `@latest`
-  resolves to the default branch HEAD and changes on every push. Nothing here
-  reviews what arrives. Pin a commit hash when convenient.
-- It holds two files, `lumin.min.js` and `fonts.min.js`, which are **byte
-  identical**, same sha256. The "fonts" name is a decoy for network filters,
-  so the loader tries both in order and a filter blocking one by URL usually
-  lets the other through.
-- The bundle is obfuscated with no readable URLs and builds its request
-  targets at runtime, so what it talks to cannot be read off the source.
-- It boots a **Worker**. On localhost that worker fails with
-  `[Lumin] Worker connection failed: domain fetch failed`, which reads like a
-  domain check. **Expect it to only work from a real deployed domain**, so
-  testing it means deploying. The error panel says so and offers a one click
-  switch to another library.
+- The script loads and installs a global `Lumin` whose methods are a Proxy
+  that queues every call until its worker boots.
+- Its worker reports `[Lumin] Worker connection failed: domain fetch failed`
+  on localhost, which reads like a domain check.
+- `init()` **resolves** but renders nothing into the container.
+- Every other method **never settles**. `Lumin.getGames()` was left running
+  for 45 seconds and did not return. So the richer API it advertises, and it
+  does advertise `getGames getCategories getGameUrl getImageUrl loadGame
+  search destroy on off`, is unreachable until the worker boots.
+
+Both failure modes are now guarded: `init` races a 20 second timeout, and a
+container left empty is treated as a failure. Without that the page sat on a
+spinner forever with no error. The error panel offers a one click switch.
+
+If the worker ever does boot on a real domain, the better integration is to
+call `getGames()` and render the results in our own card UI rather than
+letting it draw its own, so its games get the site's art and settings.
+
+Other facts worth keeping: the repo `luminsdk/script` has no tags, so
+`@latest` is branch HEAD and changes on every push. Its two files
+`lumin.min.js` and `fonts.min.js` are byte identical, same sha256, so "fonts"
+is a decoy name for network filters and the loader tries both.
 
 Because embed mode has no game list, a `#/game/` route cannot resolve there.
 App redirects such a route home; without that it sat on the loading skeleton
 forever, since `games` stays null in embed mode and the player branch runs
 before the embed branch.
+
+## Settings sheet
+
+Three tabs, Library / Look / Cards, so no tab is long enough to scroll hunt.
+Controls sit in `.sgroup` panels rather than a flat stack of hairline rows,
+which is most of what stops it reading as a raw form. The Cards and Look tabs
+carry a live `Preview` of three miniature cards built with the real `.card`
+markup and `artFor`, so shape, titles, accent and art update as you change
+them.
+
+Watch for duplicate CSS when reworking it. The second pass was appended while
+the first pass was still in the file, and the leftover `.lib { flex-direction:
+column }` made every library row wrap its credit link onto a second line. The
+superseded block was removed, not overridden.
 
 ## Writing style
 

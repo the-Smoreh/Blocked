@@ -26,7 +26,9 @@ const games = JSON.parse(readFileSync(FILE, 'utf8'))
 const all = process.argv.includes('--all')
 const jsonAt = process.argv.indexOf('--json')
 const SAMPLE = 40
-const CONCURRENCY = 10
+// Low enough that GitHub Pages does not start refusing the burst.
+const CONCURRENCY = 4
+const RETRIES = 3
 const TIMEOUT = 12000
 
 const targets = all
@@ -46,35 +48,59 @@ function blockedBy(headers) {
   return null
 }
 
-async function check(game) {
+// Only these mean the game is really gone. A 429 or a 5xx or a timeout means
+// we hammered the host or the network wobbled, and treating those as dead
+// once deleted 31 working games from p0xx: GitHub Pages rate limited a burst
+// of concurrent requests and every one of them looked like a 404.
+function isGone(status) {
+  return status === 404 || status === 410
+}
+
+async function attempt(url) {
   const ctl = new AbortController()
   const timer = setTimeout(() => ctl.abort(), TIMEOUT)
   try {
     // GET, not HEAD. Plenty of static hosts answer HEAD with 405.
-    const res = await fetch(game.url, {
+    const res = await fetch(url, {
       signal: ctl.signal,
       redirect: 'follow',
       headers: { 'user-agent': 'Mozilla/5.0 (compatible; blocked-linkcheck)' },
     })
-    const noframe = blockedBy(res.headers)
-    return {
-      title: game.title,
-      url: game.url,
-      status: res.status,
-      finalUrl: res.url !== game.url ? res.url : undefined,
-      verdict: !res.ok ? 'dead' : noframe ? 'noframe' : 'ok',
-      reason: !res.ok ? `HTTP ${res.status}` : noframe || undefined,
-    }
+    return { status: res.status, headers: res.headers, finalUrl: res.url }
   } catch (e) {
-    return {
-      title: game.title,
-      url: game.url,
-      status: 0,
-      verdict: 'dead',
-      reason: e.name === 'AbortError' ? `timeout after ${TIMEOUT}ms` : e.cause?.code || e.message,
-    }
+    return { status: 0, error: e.name === 'AbortError' ? `timeout after ${TIMEOUT}ms` : e.cause?.code || e.message }
   } finally {
     clearTimeout(timer)
+  }
+}
+
+async function check(game) {
+  let r
+  // Retry anything that is not a definite answer, with a growing pause.
+  for (let i = 0; i < RETRIES; i++) {
+    r = await attempt(game.url)
+    const settled = isGone(r.status) || (r.status >= 200 && r.status < 400)
+    if (settled) break
+    if (i < RETRIES - 1) await new Promise((res) => setTimeout(res, 700 * (i + 1)))
+  }
+
+  const base = { title: game.title, url: game.url, status: r.status }
+
+  if (r.status === 0) {
+    return { ...base, verdict: r.error?.startsWith('ENOTFOUND') ? 'dead' : 'unknown', reason: r.error }
+  }
+  if (isGone(r.status)) return { ...base, verdict: 'dead', reason: `HTTP ${r.status}` }
+  if (r.status >= 400) {
+    // Throttled or broken upstream. Not proof the game is gone.
+    return { ...base, verdict: 'unknown', reason: `HTTP ${r.status}, retried ${RETRIES}x` }
+  }
+
+  const noframe = blockedBy(r.headers)
+  return {
+    ...base,
+    finalUrl: r.finalUrl !== game.url ? r.finalUrl : undefined,
+    verdict: noframe ? 'noframe' : 'ok',
+    reason: noframe || undefined,
   }
 }
 
@@ -94,16 +120,19 @@ const by = (v) => results.filter((r) => r.verdict === v)
 const ok = by('ok')
 const noframe = by('noframe')
 const dead = by('dead')
+const unknown = by('unknown')
 const pct = (n) => `${Math.round((n / results.length) * 100)}%`
 
 console.log(`checked ${results.length} of ${games.length} game urls\n`)
 console.log(`  ok       ${String(ok.length).padStart(4)}  ${pct(ok.length)}`)
 console.log(`  noframe  ${String(noframe.length).padStart(4)}  ${pct(noframe.length)}`)
 console.log(`  dead     ${String(dead.length).padStart(4)}  ${pct(dead.length)}`)
+console.log(`  unknown  ${String(unknown.length).padStart(4)}  ${pct(unknown.length)}  (kept, not proof of anything)`)
 
 for (const [label, list] of [
   ['REFUSES TO EMBED', noframe],
   ['DEAD', dead],
+  ['UNKNOWN', unknown],
 ]) {
   if (!list.length) continue
   console.log(`\n${label}`)
@@ -130,6 +159,24 @@ if (process.argv.includes('--prune')) {
     const drop = new Set(dead.map((d) => d.url))
     const kept = games.filter((g) => !drop.has(g.url))
     writeFileSync(FILE, JSON.stringify(kept, null, 2) + '\n')
+
+    // Record the removal so it survives a rebuild. build-libraries.mjs reads
+    // this and skips these urls, otherwise every rebuild reinstates games we
+    // already proved were 404 and the verification has to be redone.
+    const LIST = new URL('../public/libraries/pruned.json', import.meta.url)
+    let prunedList = {}
+    try {
+      prunedList = JSON.parse(readFileSync(LIST, 'utf8'))
+    } catch {
+      // First prune, nothing to merge.
+    }
+    const today = new Date().toISOString().slice(0, 10)
+    for (const d of dead) prunedList[d.url] = { reason: d.reason, checked: today }
+    writeFileSync(LIST, JSON.stringify(prunedList, null, 2) + '\n')
+
     console.log(`\npruned ${games.length - kept.length}, ${kept.length} left in ${REL}`)
+    console.log(
+      `recorded in public/libraries/pruned.json, now ${Object.keys(prunedList).length} urls`,
+    )
   }
 }

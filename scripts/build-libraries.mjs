@@ -19,7 +19,7 @@
 // author's own host is the narrow path that avoids redistributing anything.
 // Anyone who asks to be delisted should be delisted.
 
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 
 const OUT_DIR = new URL('../public/libraries/', import.meta.url)
 const write = process.argv.includes('--write')
@@ -83,6 +83,58 @@ const SOURCES = [
     path: 'g',
     mode: 'files',
   },
+  {
+    id: 'nova',
+    name: 'Nova Arcade',
+    credit: 'https://github.com/Beefalo1234/nova-arcade',
+    author: 'Beefalo1234',
+    licence: 'WTFPL',
+    host: 'https://beefalo1234.github.io/nova-arcade/games/',
+    repo: ['Beefalo1234', 'nova-arcade'],
+    path: 'games',
+    mode: 'dirs',
+  },
+  {
+    id: 'p0xx',
+    name: 'p0xx',
+    credit: 'https://github.com/p0xx/p0xx.github.io',
+    author: 'p0xx',
+    licence: 'none stated',
+    host: 'https://p0xx.github.io/g/games/',
+    repo: ['p0xx', 'p0xx.github.io'],
+    path: 'g/games',
+    mode: 'files',
+    // A second folder of emulator titles sits under the first.
+    extraPaths: [{ path: 'g/games/retro', prefix: 'retro/' }],
+  },
+  {
+    id: 'astro',
+    name: 'Astro v2',
+    credit: 'https://github.com/MNblocker/Astro-v2',
+    author: 'MNblocker',
+    licence: 'NOASSERTION',
+    host: 'https://mnblocker.github.io/Astro-v2/Games/',
+    repo: ['MNblocker', 'Astro-v2'],
+    path: 'Games',
+    mode: 'dirs',
+    // Folders are named after the import that produced them, so
+    // "MNblocker 3kh0-Assets main DogeMiner" has to become "DogeMiner".
+    stripPrefix: /^MNblocker\s+3kh0-Assets\s+main\s+/i,
+  },
+  {
+    id: 'amplify',
+    name: 'Amplify',
+    credit: 'https://github.com/joeyc1pro/amplify-home-xyz',
+    author: 'joeyc1pro',
+    licence: 'none stated',
+    host: 'https://joeyc1pro.github.io/amplify-home-xyz/lessons/',
+    repo: ['joeyc1pro', 'amplify-home-xyz'],
+    path: 'lessons',
+    mode: 'dirs',
+    // Folders are deliberately disguised as g1..g81, so the only real name
+    // is inside each page. Fetch it.
+    resolveTitles: true,
+  },
 ]
 
 // Sources checked and deliberately left out, with the reason, so nobody has to
@@ -116,6 +168,34 @@ export const REJECTED = [
     reason:
       'Dropbox does not serve shared HTML as a rendered page, so a game cannot run in a frame from it. Re-host the contents to use them.',
   },
+  {
+    name: 'PeteZah',
+    credit: 'https://github.com/PeteZah-Games/PeteZahStatic',
+    games: 156,
+    reason:
+      'Every path on petezahgames.com redirects to /verify?reason=activity, a bot check, and their Pages domain redirects there too. A framed game would show the check, not the game. Working around it is not on the table.',
+  },
+  {
+    name: 'PLEXILEARCADE',
+    credit: 'https://github.com/knwzero/PLEXILEARCADE',
+    games: 248,
+    reason:
+      'No GitHub Pages (404) and plexilearcade.net no longer resolves, so its 248 games have nowhere to be served from.',
+  },
+  {
+    name: 'julianlockibarra-cat/games',
+    credit: 'https://github.com/julianlockibarra-cat/games',
+    games: null,
+    reason:
+      'GitHub Pages is not enabled and there is no other host, so UNITY GAMES, FLASH GAMES and the third folder cannot be served.',
+  },
+  {
+    name: 'schplay',
+    credit: 'https://github.com/paralzyed/schplay.github.io',
+    games: 0,
+    reason:
+      'The repo is empty apart from site pages (allgames, blog, flash, fps). It holds no game files, so there is nothing to index.',
+  },
 ]
 
 const SMALL = new Set(['a', 'an', 'and', 'の', 'of', 'the', 'to', 'vs', 'v', 'in', 'on', 'for'])
@@ -137,6 +217,60 @@ function titleFor(raw) {
     .join(' ')
 }
 
+// Some sources name folders after the import that produced them. The URL
+// still needs the real folder name, only the title is cleaned.
+function stripped(src, name) {
+  return src.stripPrefix ? name.replace(src.stripPrefix, '') : name
+}
+
+const ENTITIES = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'" }
+
+function cleanPageTitle(raw) {
+  let t = raw.replace(/&[a-z#0-9]+;/gi, (m) => ENTITIES[m.toLowerCase()] ?? m)
+  t = t.replace(/\s+/g, ' ').trim()
+  if (t.length > 52) {
+    // Cut at a separator rather than mid word.
+    const cut = t.slice(0, 52)
+    const at = Math.max(cut.lastIndexOf(' '), cut.lastIndexOf('|'), cut.lastIndexOf('-'))
+    t = (at > 20 ? cut.slice(0, at) : cut).trim()
+  }
+  return t
+}
+
+// Folders named g1..g81 carry no information, so the only real name is the
+// page's own <title>. Fetch them with a small pool.
+async function resolveTitles(entries) {
+  const POOL = 8
+  let cursor = 0
+  let found = 0
+
+  await Promise.all(
+    Array.from({ length: POOL }, async () => {
+      while (cursor < entries.length) {
+        const e = entries[cursor++]
+        try {
+          const ctl = new AbortController()
+          const timer = setTimeout(() => ctl.abort(), 15000)
+          const res = await fetch(e.url, { signal: ctl.signal }).finally(() => clearTimeout(timer))
+          if (!res.ok) continue
+          const html = await res.text()
+          const m = html.match(/<title[^>]*>([^<]{1,200})</i)
+          if (!m) continue
+          const t = cleanPageTitle(m[1])
+          // Reject placeholders that tell the reader nothing.
+          if (t.length < 2 || /^(document|index|untitled|home|page)$/i.test(t)) continue
+          e.title = t
+          found++
+        } catch {
+          // Leave the folder name in place.
+        }
+      }
+    }),
+  )
+
+  return found
+}
+
 async function listing(repo, path) {
   const url = `https://api.github.com/repos/${repo[0]}/${repo[1]}/contents/${path}?per_page=1000`
   const res = await fetch(url, { headers: { 'user-agent': 'blocked-library-builder' } })
@@ -144,7 +278,7 @@ async function listing(repo, path) {
   return res.json()
 }
 
-function buildEntries(src, items) {
+function buildEntries(src, items, urlPrefix = '') {
   const files = items.filter((x) => x.type === 'file')
   const dirs = items.filter((x) => x.type === 'dir')
 
@@ -166,13 +300,13 @@ function buildEntries(src, items) {
       if (NOT_GAMES.test(base)) continue
       const thumb = thumbs.get(base.toLowerCase())
       out.push({
-        title: titleFor(f.name),
+        title: titleFor(stripped(src, f.name)),
         description: '',
         game_image_icon: thumb ? src.host + encodeURIComponent(thumb) : '',
         category: 'Arcade',
         tags: [],
         featured: false,
-        url: src.host + encodeURIComponent(f.name),
+        url: src.host + urlPrefix + encodeURIComponent(f.name),
         source: src.id,
       })
     }
@@ -182,7 +316,7 @@ function buildEntries(src, items) {
     for (const d of dirs) {
       if (NOT_GAMES.test(d.name) || d.name.startsWith('.')) continue
       out.push({
-        title: titleFor(d.name),
+        title: titleFor(stripped(src, d.name)),
         description: '',
         game_image_icon: '',
         category: 'Arcade',
@@ -190,7 +324,8 @@ function buildEntries(src, items) {
         featured: false,
         // A trailing slash lets the host resolve its own index file, rather
         // than us guessing index.html for 221 folders.
-        url: src.host + encodeURIComponent(d.name) + '/' + (src.dirEntry || ''),
+        url:
+          src.host + urlPrefix + encodeURIComponent(d.name) + '/' + (src.dirEntry || ''),
         source: src.id,
       })
     }
@@ -200,14 +335,45 @@ function buildEntries(src, items) {
   return out
 }
 
+// URLs proved dead by checklinks.mjs --prune. Without honouring this, every
+// rebuild reinstates games already shown to be 404 and the verification has
+// to be repeated from scratch.
+let PRUNED = {}
+try {
+  PRUNED = JSON.parse(readFileSync(new URL('pruned.json', OUT_DIR), 'utf8'))
+} catch {
+  // No prune list yet.
+}
+
 const index = []
 let total = 0
+let skipped = 0
 
 for (const src of SOURCES) {
   if (only && src.id !== only) continue
   try {
     const items = await listing(src.repo, src.path)
     const entries = buildEntries(src, items)
+
+    // A source can spread its games over more than one folder.
+    for (const extra of src.extraPaths || []) {
+      const more = await listing(src.repo, extra.path)
+      entries.push(...buildEntries(src, more, extra.prefix || ''))
+    }
+
+    // Drop anything already proved dead before spending fetches on titles.
+    const beforePrune = entries.length
+    for (let i = entries.length - 1; i >= 0; i--) {
+      if (PRUNED[entries[i].url]) entries.splice(i, 1)
+    }
+    skipped += beforePrune - entries.length
+
+    if (src.resolveTitles) {
+      const n = await resolveTitles(entries)
+      console.log(`      resolved ${n} of ${entries.length} titles from page <title>`)
+    }
+
+    entries.sort((a, b) => a.title.localeCompare(b.title))
     total += entries.length
 
     console.log(`${String(entries.length).padStart(4)}  ${src.name.padEnd(16)} ${src.credit}`)
@@ -230,10 +396,40 @@ for (const src of SOURCES) {
     }
   } catch (e) {
     console.log(`  !!  ${src.name}: ${e.message}`)
+
+    // A failed listing must not delete a library that was already built and
+    // verified. The GitHub API allows 60 unauthenticated calls an hour, and
+    // running out once silently dropped Amplify out of index.json while its
+    // data file sat there intact. Keep the existing file and its entry.
+    const existing = new URL(`${src.id}.json`, OUT_DIR)
+    if (existsSync(existing)) {
+      const onDisk = JSON.parse(readFileSync(existing, 'utf8'))
+      // The prune list still applies on this path. A file written by an
+      // earlier rebuild can contain urls since proved dead.
+      const kept = onDisk.filter((g) => !PRUNED[g.url])
+      if (kept.length !== onDisk.length) {
+        skipped += onDisk.length - kept.length
+        if (write) writeFileSync(existing, JSON.stringify(kept, null, 2) + '\n')
+      }
+      console.log(`      keeping the ${kept.length} already on disk`)
+      total += kept.length
+      index.push({
+        id: src.id,
+        name: src.name,
+        author: src.author,
+        credit: src.credit,
+        licence: src.licence,
+        host: src.host,
+        count: kept.length,
+        file: `libraries/${src.id}.json`,
+        stale: true,
+      })
+    }
   }
 }
 
 console.log(`\n${total} games across ${index.length} libraries`)
+if (skipped) console.log(`${skipped} skipped from public/libraries/pruned.json`)
 console.log('\nleft out:')
 for (const r of REJECTED) console.log(`  ${r.name}: ${r.reason}`)
 

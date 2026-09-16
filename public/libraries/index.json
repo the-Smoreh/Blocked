@@ -8,7 +8,8 @@
       "licence": "none stated",
       "host": "https://goblinkingdev.github.io/unblocked-games/game/",
       "count": 633,
-      "file": "libraries/goblin.json"
+      "file": "libraries/goblin.json",
+      "stale": true
     },
     {
       "id": "hell",
@@ -17,8 +18,9 @@
       "credit": "https://github.com/D3ch/hell",
       "licence": "none stated",
       "host": "https://d3ch.github.io/hell/Games/",
-      "count": 228,
-      "file": "libraries/hell.json"
+      "count": 207,
+      "file": "libraries/hell.json",
+      "stale": true
     },
     {
       "id": "alexx",
@@ -28,7 +30,8 @@
       "licence": "none stated",
       "host": "https://alexx743-games-unblocked.vercel.app/",
       "count": 71,
-      "file": "libraries/alexx.json"
+      "file": "libraries/alexx.json",
+      "stale": true
     },
     {
       "id": "gams",
@@ -38,7 +41,52 @@
       "licence": "none stated",
       "host": "https://gams-offline.github.io/Gams/g/",
       "count": 59,
-      "file": "libraries/gams.json"
+      "file": "libraries/gams.json",
+      "stale": true
+    },
+    {
+      "id": "nova",
+      "name": "Nova Arcade",
+      "author": "Beefalo1234",
+      "credit": "https://github.com/Beefalo1234/nova-arcade",
+      "licence": "WTFPL",
+      "host": "https://beefalo1234.github.io/nova-arcade/games/",
+      "count": 151,
+      "file": "libraries/nova.json",
+      "stale": true
+    },
+    {
+      "id": "p0xx",
+      "name": "p0xx",
+      "author": "p0xx",
+      "credit": "https://github.com/p0xx/p0xx.github.io",
+      "licence": "none stated",
+      "host": "https://p0xx.github.io/g/games/",
+      "count": 51,
+      "file": "libraries/p0xx.json",
+      "stale": true
+    },
+    {
+      "id": "astro",
+      "name": "Astro v2",
+      "author": "MNblocker",
+      "credit": "https://github.com/MNblocker/Astro-v2",
+      "licence": "NOASSERTION",
+      "host": "https://mnblocker.github.io/Astro-v2/Games/",
+      "count": 24,
+      "file": "libraries/astro.json",
+      "stale": true
+    },
+    {
+      "id": "amplify",
+      "name": "Amplify",
+      "author": "joeyc1pro",
+      "credit": "https://github.com/joeyc1pro/amplify-home-xyz",
+      "licence": "none stated",
+      "host": "https://joeyc1pro.github.io/amplify-home-xyz/lessons/",
+      "count": 80,
+      "file": "libraries/amplify.json",
+      "stale": true
     }
   ],
   "rejected": [
@@ -65,6 +113,30 @@
       "credit": "dropbox.com shared folder",
       "games": null,
       "reason": "Dropbox does not serve shared HTML as a rendered page, so a game cannot run in a frame from it. Re-host the contents to use them."
+    },
+    {
+      "name": "PeteZah",
+      "credit": "https://github.com/PeteZah-Games/PeteZahStatic",
+      "games": 156,
+      "reason": "Every path on petezahgames.com redirects to /verify?reason=activity, a bot check, and their Pages domain redirects there too. A framed game would show the check, not the game. Working around it is not on the table."
+    },
+    {
+      "name": "PLEXILEARCADE",
+      "credit": "https://github.com/knwzero/PLEXILEARCADE",
+      "games": 248,
+      "reason": "No GitHub Pages (404) and plexilearcade.net no longer resolves, so its 248 games have nowhere to be served from."
+    },
+    {
+      "name": "julianlockibarra-cat/games",
+      "credit": "https://github.com/julianlockibarra-cat/games",
+      "games": null,
+      "reason": "GitHub Pages is not enabled and there is no other host, so UNITY GAMES, FLASH GAMES and the third folder cannot be served."
+    },
+    {
+      "name": "schplay",
+      "credit": "https://github.com/paralzyed/schplay.github.io",
+      "games": 0,
+      "reason": "The repo is empty apart from site pages (allgames, blog, flash, fps). It holds no game files, so there is nothing to index."
     }
   ]
 }

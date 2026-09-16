@@ -1735,68 +1735,6 @@ body::before {
   }
 }
 
-/* ---------------------------- Library picker ---------------------------- */
-
-.libs {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin: 10px 0 4px;
-}
-
-.lib {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 9px 12px;
-  background: var(--panel-2);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  text-align: left;
-  cursor: pointer;
-  transition:
-    border-color 0.14s,
-    background 0.14s;
-}
-
-.lib:hover {
-  border-color: var(--accent);
-}
-
-.lib.on {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-}
-
-.lib-main {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.lib-main strong {
-  font-size: 14px;
-  font-weight: 650;
-}
-
-.lib-count {
-  padding: 1px 7px;
-  background: var(--panel-3);
-  border-radius: 999px;
-  font-size: 10.5px;
-  font-weight: 700;
-  color: var(--muted);
-}
-
-.lib.on .lib-count {
-  background: var(--accent);
-  color: var(--on-accent);
-}
-
-.lib-sub {
-  font-size: 11.5px;
-  color: var(--muted-2);
-}
 
 /* Attribution. The whole point of splitting libraries by source is that the
    source is named wherever its games are shown. */
@@ -1813,4 +1751,635 @@ body::before {
 .credit strong {
   color: var(--text);
   font-weight: 650;
+}
+
+/* ======================================================================
+   Settings sheet, second pass. The first version was a stack of hairline
+   rows, which read as a raw form. Now: a header with context, tabs so the
+   list is never long enough to scroll hunt, grouped panels, big swatches
+   with a tick, and a live preview of the card options.
+   ====================================================================== */
+
+.sheet {
+  width: min(430px, 100vw);
+  background: var(--bg-2);
+  border-left: 1px solid var(--line);
+  box-shadow: -26px 0 60px -30px rgba(0, 0, 0, 0.75);
+}
+
+/* ---- Header ---- */
+
+.sheet-head {
+  position: relative;
+  padding: 16px 16px 15px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+}
+
+/* A thin accent edge, matching the site header. */
+.sheet-head::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), transparent 70%);
+  opacity: 0.55;
+}
+
+.sheet-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.sheet-glyph {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  color: #fff;
+  box-shadow: 0 5px 16px -6px var(--accent-glow);
+}
+
+.sheet-titletext {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.sheet-titletext strong {
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.sheet-titletext em {
+  font-style: normal;
+  font-size: 11.5px;
+  color: var(--muted-2);
+}
+
+/* ---- Tabs ---- */
+
+.stabs {
+  display: flex;
+  gap: 4px;
+  flex: 0 0 auto;
+  padding: 10px 12px 0;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
+.stab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: 1;
+  justify-content: center;
+  padding: 9px 10px;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 8px 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 0.14s,
+    background 0.14s,
+    border-color 0.14s;
+}
+
+.stab:hover {
+  color: var(--text);
+  background: var(--panel-2);
+}
+
+.stab.on {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---- Body and groups ---- */
+
+.sheet-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 14px 14px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sgroup {
+  margin: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.sgroup > header {
+  padding: 12px 14px 0;
+}
+
+.sgroup > header h4 {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.sgroup > header p {
+  margin: 5px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted-2);
+}
+
+.sgroup-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 14px 14px;
+}
+
+/* ---- Fields ---- */
+
+.sfield {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.sfield + .sfield {
+  padding-top: 12px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.sfield-label {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sfield-label span {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.sfield-label em {
+  font-style: normal;
+  font-size: 11.5px;
+  color: var(--muted-2);
+}
+
+.sfield-control {
+  flex: 0 0 auto;
+}
+
+/* ---- Segmented control ---- */
+
+.seg {
+  display: inline-flex;
+  padding: 3px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+}
+
+.seg.wide {
+  display: flex;
+  width: 100%;
+}
+
+.seg button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex: 1;
+  padding: 8px 12px;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    box-shadow 0.15s;
+}
+
+.seg button:hover:not(.on) {
+  color: var(--text);
+  background: var(--panel-3);
+}
+
+.seg button.on {
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 3px 10px -3px var(--accent-glow);
+}
+
+/* ---- Switch ---- */
+
+.switch {
+  width: 46px;
+  height: 26px;
+  padding: 3px;
+  background: var(--panel-3);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.18s,
+    border-color 0.18s;
+}
+
+.switch span {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.4, 0.64, 1),
+    background 0.18s;
+}
+
+.switch.on {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.switch.on span {
+  transform: translateX(20px);
+  background: #fff;
+}
+
+/* ---- Swatches ---- */
+
+.swatches {
+  display: grid;
+  gap: 9px;
+}
+
+.swatches.accent {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.swatches.slate,
+.swatches.gradient {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.swatch {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  background-size: cover;
+  transition:
+    transform 0.15s cubic-bezier(0.34, 1.4, 0.64, 1),
+    box-shadow 0.15s,
+    border-color 0.15s;
+}
+
+.swatches.accent .swatch {
+  height: 34px;
+}
+
+.swatch:hover {
+  transform: translateY(-2px);
+}
+
+.swatch.on {
+  border-color: var(--text);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.swatch svg {
+  width: 17px;
+  height: 17px;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+}
+
+/* A light swatch needs a dark tick. */
+.swatches.slate .swatch svg,
+.swatches.gradient .swatch svg {
+  color: #fff;
+  mix-blend-mode: difference;
+}
+
+/* ---- Library list ---- */
+
+.libs {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.lib {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+
+.lib:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+}
+
+.lib.on {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.lib-pick {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lib-badge {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--panel-3);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.lib.on .lib-badge {
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  color: #fff;
+}
+
+.lib-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.lib-text strong {
+  font-size: 13.5px;
+  font-weight: 650;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lib-text em {
+  font-style: normal;
+  font-size: 11px;
+  color: var(--muted-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lib-count {
+  flex: 0 0 auto;
+  padding: 2px 8px;
+  background: var(--panel-3);
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.lib.on .lib-count {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.lib-tick {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 18px;
+  color: var(--accent);
+}
+
+.lib-tick svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* The credit link is its own target, so picking a library and visiting the
+   author are separate actions rather than one fighting the other. */
+.lib-link {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 40px;
+  border-left: 1px solid var(--line);
+  color: var(--muted-2);
+  transition:
+    color 0.14s,
+    background 0.14s;
+}
+
+.lib-link:hover {
+  color: var(--accent);
+  background: var(--panel-3);
+}
+
+/* ---- Preview ---- */
+
+.spreview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 10px;
+  background: var(--bg);
+  border: 1px solid var(--line-soft);
+  border-radius: 11px;
+}
+
+/* The preview reuses .card, so it inherits shape, titles and art. Only the
+   interactive extras need stripping out. */
+.spreview .card {
+  animation: none;
+  pointer-events: none;
+}
+
+.spreview .card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.spreview .art-initials {
+  font-size: 26px;
+}
+
+.spreview .meta {
+  padding: 6px 7px 7px;
+}
+
+.spreview .meta h3 {
+  margin: 0;
+  font-size: 10px;
+}
+
+.spreview .tag {
+  font-size: 9px;
+}
+
+/* ---- Image background extras ---- */
+
+.sthumb {
+  height: 92px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background-size: cover;
+  background-position: center;
+}
+
+.rangewrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.range {
+  width: 130px;
+  accent-color: var(--accent);
+}
+
+.rangewrap b {
+  min-width: 34px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* ---- Notes, buttons, footer ---- */
+
+.snote {
+  margin: 0;
+  padding: 10px 12px;
+  background: var(--accent-soft);
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.snote.bad {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent-hot);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 14px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 0.14s,
+    color 0.14s,
+    background 0.14s;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn.primary {
+  flex: 1;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: var(--accent-hot);
+  border-color: var(--accent-hot);
+  color: var(--on-accent);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.sheet-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.sheet-credit {
+  font-size: 11.5px;
+  color: var(--muted-2);
+  text-align: right;
+}
+
+.sheet-credit a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.sheet-credit a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 460px) {
+  .sheet {
+    width: 100vw;
+  }
+
+  .swatches.accent {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
