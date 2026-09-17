@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import {
   useGames,
   useHashRoute,
@@ -17,7 +17,13 @@ import GameGrid from './components/GameGrid.jsx'
 import GamePlayer from './components/GamePlayer.jsx'
 import Skeleton from './components/Skeleton.jsx'
 import Settings from './components/Settings.jsx'
-import ChatRoom from './components/ChatRoom.jsx'
+// Loaded only when the room is opened, not on every visit.
+//
+// The Firebase sdk it pulls in is larger than the entire rest of the app:
+// bundling it in took the first load from 88kB to 248kB gzipped, for a
+// feature most visitors never touch. Split out, the wall loads at its old
+// weight and the chat fetches its own chunk on the click that needs it.
+const ChatRoom = lazy(() => import('./components/ChatRoom.jsx'))
 import { useLuminCatalogue } from './lumin.js'
 import { loadLuminDonors, loadSeleniteDonors, registerDonors } from './borrow.js'
 
@@ -225,7 +231,17 @@ export default function App() {
       />
 
       <main>
-        {chat && <ChatRoom onClose={() => setChat(false)} />}
+        {chat && (
+          <Suspense
+            fallback={
+              <div className="chat chat-state">
+                <span className="spinner" />
+              </div>
+            }
+          >
+            <ChatRoom onClose={() => setChat(false)} />
+          </Suspense>
+        )}
 
         {!chat && !browsing && hero && <Hero game={hero} />}
 

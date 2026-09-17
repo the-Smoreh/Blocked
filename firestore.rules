@@ -1,0 +1,100 @@
+rules_version = '2';
+
+// Security rules for the chat room.
+//
+// These are the only thing protecting the data. The config in
+// src/firebase.js ships to every browser by design, so "nobody knows the
+// key" is not a defence and was never meant to be one. Assume a stranger has
+// the config, can sign in anonymously, and is sending whatever they like
+// straight at the database with the browser console open. Everything below is
+// written for that reader, not for our own client.
+//
+// Test them before trusting them:
+//   npm.cmd run rules:test
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // The gap a sender has to leave between messages. Kept in step with
+    // SEND_INTERVAL_MS in src/chat.js, where it drives the visible
+    // countdown. This copy is the one that actually stops anyone.
+    function gap() {
+      return duration.value(2, 's');
+    }
+
+    function rateDoc(room, uid) {
+      return /databases/$(database)/documents/rooms/$(room)/rate/$(uid);
+    }
+
+    // A message has exactly these four fields and nothing else. `hasOnly`
+    // matters: without it, extra fields could be smuggled in, and anything
+    // the client later trusted from a message would be attacker controlled.
+    function validMessage(d) {
+      return d.keys().hasOnly(['uid', 'user', 'text', 'at'])
+        && d.keys().hasAll(['uid', 'user', 'text', 'at'])
+        // You may only post as yourself. Without this, anyone could write
+        // messages carrying someone else's uid.
+        && d.uid == request.auth.uid
+        && d.user is string && d.user.size() >= 1 && d.user.size() <= 18
+        && d.text is string && d.text.size() >= 1 && d.text.size() <= 240
+        // The server's own clock, not the sender's. A client supplied time
+        // would let someone post into the past or the future and sit at the
+        // top or bottom of the room forever.
+        && d.at == request.time;
+    }
+
+    // Has this sender waited long enough? First message is always allowed.
+    function offCooldown(room) {
+      return !exists(rateDoc(room, request.auth.uid))
+        || get(rateDoc(room, request.auth.uid)).data.last < request.time - gap();
+    }
+
+    // The rate marker must move forward in the same commit as the message.
+    // `getAfter` inspects the state the batch is about to leave behind, which
+    // is what makes the two writes inseparable: a message without the marker
+    // update is refused, so nobody can post repeatedly while leaving their
+    // marker stale.
+    function marksSelf(room) {
+      return getAfter(rateDoc(room, request.auth.uid)).data.last == request.time;
+    }
+
+    match /rooms/{room}/messages/{id} {
+      // Signed in only. Anonymous counts, so this is not a real barrier, but
+      // it means every read and write carries a uid the rules can reason
+      // about.
+      allow read: if request.auth != null;
+
+      allow create: if request.auth != null
+        && validMessage(request.resource.data)
+        && offCooldown(room)
+        && marksSelf(room);
+
+      // Nothing is editable or removable. Allowing deletes would let anyone
+      // clear the room; allowing edits would let them rewrite what someone
+      // else said. Pruning old messages is a job for an admin or a
+      // scheduled function, not for visitors.
+      allow update, delete: if false;
+    }
+
+    match /rooms/{room}/rate/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+
+      // Only your own marker, only the one field, and only ever set to the
+      // server's clock. Letting a sender choose the value would let them
+      // write a time far in the past and never be limited again.
+      allow write: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['last'])
+        && request.resource.data.last == request.time;
+
+      allow delete: if false;
+    }
+
+    // Everything else in the project is closed. Without this catch all, a
+    // collection added later would default to whatever the last matching
+    // rule happened to be.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

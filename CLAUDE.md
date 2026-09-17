@@ -811,11 +811,50 @@ picking a category, typing a search or reloading all leave it, which is the
 behaviour that was asked for. A route would survive a refresh and drop people
 back into a room they did not ask for. All three exits are verified.
 
-**The site is static, so there is nothing to store a message in.** A chat
-needs somewhere shared, which means a backend, and whether one exists depends
-on where the build is hosted. So the room checks and says so plainly rather
-than pretending. A chat that silently only talks to itself is worse than one
-that admits it is not connected.
+**The chat is on Firestore, and needs no backend of ours.** The browser talks
+to it directly, so the room works on any static host and locally. `connect()`
+in `src/chat.js` signs in anonymously and returns whether the room is usable;
+until `src/firebase.js` is filled in it returns false and the room says it is
+down, which is true and keeps the repo deployable before anyone touches
+Firebase.
+
+**There is no polling.** A snapshot listener delivers every change as it
+happens. The previous version asked an http endpoint every three seconds
+because it was written against the dumbest possible backend; that client, the
+D1 function and the node api are all in git history.
+
+**Everyone is signed in anonymously, and that is not about identity.** It
+gives each visitor an id that `firestore.rules` can hang the rate limit off.
+Without it there is no way to tell one person flooding the room from a
+hundred people talking. Nobody sees a login.
+
+**`firestore.rules` is the only thing protecting the data.** The Firebase
+config ships to every browser by design, so "nobody knows the key" is not a
+defence. The rules are written for a reader who has the config and a browser
+console, and they are tested rather than eyeballed:
+
+```
+npm.cmd run rules:test
+```
+
+21 cases against the real emulator, all passing. The one that matters most is
+"a message with no marker update is refused": the rate limit works by
+requiring a message and the sender's rate marker to move in the same commit,
+checked with `getAfter`, so nobody can post repeatedly while leaving their
+marker stale. Needs Java 21 or newer; this machine has 17 on the PATH and 22
+at `C:\Program Files\Java\jdk-22.0.2+9`, so pass `JAVA_HOME` if the
+emulator complains.
+
+**The chat is lazy loaded.** The Firebase sdk is larger than the rest of the
+app put together: bundled in, first load went from 88kB to 248kB gzipped for
+a feature most visitors never open. `App` pulls `ChatRoom` in with
+`React.lazy`, so the main bundle is back to 84kB and the 155kB chat chunk is
+fetched on the click that needs it.
+
+**200 is a read limit here, not a delete.** Old messages stay in Firestore.
+Pruning needs a scheduled function, which is not on the free plan, or letting
+visitors delete each other's messages, which is worse than a growing
+collection.
 
 `probeBackend()` in `src/chat.js` does that check, and **`res.ok` is not
 enough**. Plenty of static hosts answer an unknown path with their own

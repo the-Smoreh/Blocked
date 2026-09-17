@@ -2,15 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import {
   MAX_LENGTH,
   MAX_NAME,
-  POLL_MS,
   SEND_INTERVAL_MS,
   cleanName,
-  fetchMessages,
+  connect,
   hueFor,
   initialFor,
-  probeBackend,
   sendMessage,
-  trim,
+  watchMessages,
 } from '../chat.js'
 import Icon from './Icon.jsx'
 
@@ -20,7 +18,11 @@ import Icon from './Icon.jsx'
 // all leave it, which is what was asked for and falls out of holding the open
 // state in App rather than in the url.
 //
-// Three states: checking for a backend, no backend, and the room itself.
+// Three states: connecting, not connected, and the room itself.
+//
+// Messages arrive through a Firestore listener rather than being polled, so
+// there is no interval in here and nothing to tune. A message appears the
+// moment it is written.
 
 function Stamp({ at }) {
   const d = new Date(at)
@@ -156,36 +158,27 @@ export default function ChatRoom({ onClose }) {
 
   useEffect(() => {
     let cancelled = false
-    probeBackend().then((ok) => !cancelled && setLive(ok))
+    connect().then((ok) => !cancelled && setLive(ok))
     return () => {
       cancelled = true
     }
   }, [])
 
-  // Poll while the room is open and joined. Long polling or a socket would be
-  // better, but this has to work against the smallest possible backend.
+  // One listener for as long as the room is open. Firestore hands over every
+  // change as it happens, so this replaces what used to be a three second
+  // poll.
   useEffect(() => {
     if (!live || !user) return
 
-    let cancelled = false
-    const tick = async () => {
-      try {
-        const next = await fetchMessages()
-        if (!cancelled) {
-          setMessages(trim(next))
-          setError(null)
-        }
-      } catch (e) {
-        if (!cancelled) setError(e.message)
-      }
-    }
+    const stop = watchMessages(
+      (rows) => {
+        setMessages(rows)
+        setError(null)
+      },
+      (message) => setError(message),
+    )
 
-    tick()
-    const id = setInterval(tick, POLL_MS)
-    return () => {
-      cancelled = true
-      clearInterval(id)
-    }
+    return stop
   }, [live, user])
 
   // Follow new messages, but only while already at the bottom, so arrivals do
@@ -195,12 +188,13 @@ export default function ChatRoom({ onClose }) {
     if (el && pinnedRef.current) el.scrollTop = el.scrollHeight
   }, [messages])
 
+  // No refetch after sending: the listener delivers our own message along
+  // with everyone else's, so asking for the list again would only duplicate
+  // work the snapshot has already done.
   const onSend = async (text) => {
     setSending(true)
     try {
       await sendMessage(user, text)
-      const next = await fetchMessages()
-      setMessages(trim(next))
       setError(null)
       pinnedRef.current = true
       return true
@@ -271,8 +265,11 @@ export default function ChatRoom({ onClose }) {
             {messages.length === 0 && (
               <li className="chat-empty">Nothing yet. Say the first thing.</li>
             )}
+            {/* `mine` comes off the message's own uid rather than from
+                comparing names, so two people picking the same name are no
+                longer mistaken for each other. */}
             {messages.map((m) => (
-              <Message key={m.id} message={m} mine={m.user === user} />
+              <Message key={m.id} message={m} mine={m.mine} />
             ))}
           </ul>
 

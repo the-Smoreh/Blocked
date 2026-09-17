@@ -44,7 +44,84 @@ If it asks for a password, that is not your GitHub password: GitHub wants a
 personal access token. Easier is to install GitHub Desktop and publish from
 there, or install the `gh` CLI and run `gh auth login` first.
 
-## Step 2a: Cloudflare Pages
+## Step 2: the chat room, on Firebase
+
+Do this before or after picking a host, it does not matter which. The chat
+talks to Firestore straight from the browser, so it needs no backend of ours
+and works on **any** static host, Cloudflare Pages and plain GitHub Pages
+alike.
+
+In the Firebase console:
+
+1. **Create a new Firebase project**, called `blocked`. Keep it separate from
+   any other project so the two do not share a database. Analytics: off.
+2. **Build** → **Firestore Database** → **Create database** → **Start in
+   production mode**. Not test mode: that one expires after 30 days and then
+   locks the chat out. Pick the region nearest you, it cannot be changed
+   later.
+3. **Build** → **Authentication** → **Get started** → **Sign-in method** →
+   enable **Anonymous**.
+
+   This is what makes "just pick a name" safe. Firebase gives every visitor
+   an invisible id, with no login screen, and `firestore.rules` hangs the
+   rate limit off it. Without it there is no way to tell one person flooding
+   the room from a hundred people talking.
+4. Project Overview → the **`</>`** web icon → register an app → copy the
+   `firebaseConfig` block into `src/firebase.js`.
+5. Publish the rules. Either paste `firestore.rules` into the console under
+   **Firestore** → **Rules** → **Publish**, or from here:
+
+```bash
+npx --yes firebase-tools@latest deploy --only firestore:rules --project YOUR_PROJECT_ID
+```
+
+**Do not skip step 5.** In production mode the default rules deny everything,
+so the room will say it is down until the real ones are published.
+
+### The config is not a secret
+
+Those values ship to every browser by design, which is why they sit in
+`src/firebase.js` in the repo rather than in an environment variable: they
+have to reach the browser anyway, and keeping them here means no host needs
+configuring. What protects the data is `firestore.rules`.
+
+### Testing the rules
+
+They are the only thing standing between the chat and anyone with the config
+and a browser console, so they are tested rather than eyeballed:
+
+```bash
+npm.cmd run rules:test
+```
+
+21 cases, run against the real Firestore emulator: unauthenticated access,
+the rate limit, posting under someone else's id, posting without moving your
+own rate marker, oversized and malformed messages, forged timestamps, extra
+fields, editing and deleting other people's messages, and every other
+collection in the project. All 21 pass.
+
+The emulator needs **Java 21 or newer**. If it complains about the version,
+point it at a newer one first. On this machine:
+
+```bash
+JAVA_HOME="/c/Program Files/Java/jdk-22.0.2+9" npm.cmd run rules:test
+```
+
+### What is different from the old backend
+
+- **No polling.** Firestore pushes changes, so messages appear the instant
+  they are sent instead of up to three seconds later.
+- **200 is a read limit, not a delete.** Old messages stay in Firestore
+  rather than being dropped. Pruning them needs a scheduled function, which
+  is not on the free plan, or letting visitors delete each other's messages,
+  which is worse than a growing collection. At 240 characters each it is a
+  very long way from mattering against the free allowance.
+- **The http backends are no longer used by the chat.**
+  `functions/api/chat/messages.js` and the api half of `server/chat.mjs` are
+  left in place for now but nothing calls them. `server/chat.mjs` is still
+  what serves the site on Render.
+
+## Step 3a: Cloudflare Pages
 
 1. Sign up at <https://dash.cloudflare.com/sign-up>.
 2. **Workers & Pages** → **Create** → **Pages** → **Connect to Git**, and pick
@@ -74,7 +151,7 @@ automatically, no configuration, because Cloudflare maps the `functions`
 folder to url paths and that file's path is the one the client already asks
 for.
 
-## Step 2b: Render
+## Step 3b: Render
 
 1. Sign up at <https://dashboard.render.com>.
 2. **New** → **Blueprint**, and pick the repo. It reads `render.yaml` and
@@ -107,7 +184,7 @@ the chat keeps messages in memory, so a sleep empties the room. Paying lifts
 the sleeping. Keeping messages across restarts needs storage instead of the
 array, and nothing else in that file would change.
 
-## Step 3: your domain
+## Step 4: your domain
 
 **Your Route 53 domain is not wasted.** Route 53 is DNS and a registrar. It
 was never going to hold your files, but a domain registered there points
@@ -129,9 +206,11 @@ later though. Get the free link working first.
 
 ## What works only once it is deployed
 
-- **The chat room.** It needs a backend. On any static host, including GitHub
-  Pages, it will say it is down, and that is correct rather than broken.
 - **The Lumin library.** Their service checks the domain it runs on.
+
+The chat room used to be on this list. On Firestore it is not: it works from
+any static host, and locally too, as soon as `src/firebase.js` is filled in
+and the rules are published.
 
 Everything else, all 2190 games across the nine other libraries, works
 locally and deployed alike.
