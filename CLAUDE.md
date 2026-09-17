@@ -60,6 +60,25 @@ exist in the data. Adding a category needs no code change.
 **Favorites** are localStorage, wrapped in try/catch because private windows and
 blocked site data throw on access.
 
+**One badge, and it reads NEW.** There used to be a second one saying HOT on
+featured games. That word is gone at the user's request and is not coming
+back. A featured game is not literally new, so the badge is a highlight more
+than a date: no library ships an `added` field and Selenite's `featured` comes
+from its own `top` tag, so without folding the two together nothing on the
+wall would carry a badge at all.
+
+**No outbound links anywhere in the interface.** The footer credit and the
+settings sheet credit were both links and are now plain text. A single links
+page is planned to collect them instead, and the credit still names the
+source, which is the part that matters. Checked: zero `a[href^="http"]` in
+the rendered page.
+
+**The player bar shows time on the current game**, next to the frame counter.
+Counted from a timestamp rather than by adding a second per tick, because a
+backgrounded tab throttles the interval and a counter trusting its own tick
+count would drift minutes behind. It resets per game, since `App` keys the
+player by slug.
+
 ## Adding games
 
 One object per game in `public/games.json`:
@@ -743,6 +762,81 @@ writes a character class like [.*+?^${}()|[\]\] into a js file lands as an
 unterminated regex. Lint and build pass only after the fix, so a green build
 from before the patch proves nothing. Prefer the Edit tool for any line
 containing a backslash.
+
+## The chat room
+
+`src/components/ChatRoom.jsx`, opened from the button at the bottom of the
+rail, and it renders where the wall does.
+
+**It is not a route, on purpose.** The open state is a `useState` in `App`, so
+picking a category, typing a search or reloading all leave it, which is the
+behaviour that was asked for. A route would survive a refresh and drop people
+back into a room they did not ask for. All three exits are verified.
+
+**The site is static, so there is nothing to store a message in.** A chat
+needs somewhere shared, which means a backend, and whether one exists depends
+on where the build is hosted. So the room checks and says so plainly rather
+than pretending. A chat that silently only talks to itself is worse than one
+that admits it is not connected.
+
+`probeBackend()` in `src/chat.js` does that check, and **`res.ok` is not
+enough**. Plenty of static hosts answer an unknown path with their own
+index.html and a 200, which would convince a naive check that a backend
+exists and then fail on every read. So it also requires a json content type
+and an actual `messages` array. GitHub Pages returns a real 404, which is the
+easy case; the html-with-200 hosts are why the other two checks are there.
+
+The contract is two routes, kept small so anything can implement it:
+
+```
+GET  <base>/messages  -> { messages: [{ id, user, text, at }] }
+POST <base>/messages  <- { user, text }   -> { message } | 429
+```
+
+`<base>` is `VITE_CHAT_API` if set at build time, otherwise `api/chat` on the
+same origin.
+
+**`server/chat.mjs` is a working implementation**, no dependencies, about a
+hundred lines. It exists so the working path is verified rather than assumed,
+and as the smallest honest answer to what a host has to provide.
+
+```
+npm.cmd run chat        listens on 8787
+```
+
+The dev server proxies `/api/chat` to it, see `vite.config.js`. With it not
+running, the proxy fails, the probe returns false and the room shows its
+"does not work on this link" state, which is the same thing a static host
+produces. So both paths are testable locally.
+
+Messages are in memory there, so a restart loses them and two instances would
+each have their own room. For a real one, swap the array for shared storage
+and keep the rest.
+
+### What the room does
+
+- **A name, and that is the whole entry.** No account. It is remembered in
+  localStorage and prefilled, but re-entering the room asks again.
+- **Newest 200 kept**, oldest dropped, and the cap is enforced on both sides.
+  The client asking for 200 is a display choice, not a limit anyone is held
+  to, so the server slices as well. Verified: 250 in, 200 out, newest kept.
+- **Rate limited at 1500ms between sends.** The composer counts down so the
+  limit is visible rather than the button just refusing, but that is a
+  courtesy, not a control: anyone can post at the endpoint with curl. The
+  interval is enforced per address on the server, which is the only place it
+  means anything. Verified returning 429.
+- **32 colours, one per person.** Only the hue is stored on the element, in
+  `--u`; the lightness comes from the theme through `--chat-l`, because a hue
+  readable on the dark panel is far too pale on the light one. Hues are walked
+  by the golden angle rather than in order, so two names whose hashes land in
+  neighbouring slots still look different, and the hue comes from an FNV-1a of
+  the lowercased name so the same person is the same colour in everyone's
+  window. Measured over 2000 names: all 32 slots used, 53 to 73 per slot
+  against an even 62.5.
+- **Message text is rendered as text, never markup**, and wraps with
+  `overflow-wrap: anywhere` so a long unbroken string cannot widen the column.
+  The server strips control characters and clamps a name to 18 and a message
+  to 240, verified.
 
 ## Switching mode
 

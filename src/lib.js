@@ -162,12 +162,21 @@ export function useRecent() {
 // is invented from a hash, because a fake "HOT" on every card is noise.
 const NEW_DAYS = 14
 
+// One badge, and it says NEW.
+//
+// There used to be a second one reading HOT on featured games. That word is
+// gone at the user's request and is not coming back.
+//
+// A featured game is not literally new, so this is a highlight marker more
+// than a date: no library ships an `added` field, and Selenite's `featured`
+// comes from its own `top` tag, so without folding the two together nothing
+// on the wall would carry a badge at all.
 export function badgeFor(game) {
   if (game.added) {
     const age = (Date.now() - new Date(game.added).getTime()) / 86400000
     if (age >= 0 && age <= NEW_DAYS) return 'new'
   }
-  return game.featured ? 'hot' : null
+  return game.featured ? 'new' : null
 }
 
 // Respects the OS setting. Used to skip the staggered entry animation, which

@@ -8,6 +8,7 @@
     "build": "vite build",
     "lint": "oxlint",
     "check:presets": "node scripts/check-gradients.mjs",
+    "chat": "node server/chat.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

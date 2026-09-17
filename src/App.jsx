@@ -17,6 +17,7 @@ import GameGrid from './components/GameGrid.jsx'
 import GamePlayer from './components/GamePlayer.jsx'
 import Skeleton from './components/Skeleton.jsx'
 import Settings from './components/Settings.jsx'
+import ChatRoom from './components/ChatRoom.jsx'
 import { useLuminCatalogue } from './lumin.js'
 import { loadLuminDonors, loadSeleniteDonors, registerDonors } from './borrow.js'
 
@@ -34,6 +35,11 @@ export default function App() {
   const [category, setCategory] = useState('All')
   const [menu, setMenu] = useState(false)
   const [panel, setPanel] = useState(false)
+  // The chat room deliberately lives in state rather than in the url, which
+  // is what makes a category, a search or a reload leave it. Putting it on a
+  // route would survive a refresh, and being returned to a chat room you did
+  // not ask for is not what was wanted.
+  const [chat, setChat] = useState(false)
 
   const activeLib = LIBRARIES[settings.library] || LIBRARIES.lumin
   const usingLumin = activeLib.kind === 'embed'
@@ -192,7 +198,10 @@ export default function App() {
     <div className="shell">
       <Header
         query={query}
-        onQuery={setQuery}
+        onQuery={(q) => {
+          setQuery(q)
+          if (q) setChat(false)
+        }}
         onSettings={() => setPanel(true)}
         onMenu={() => setMenu((m) => !m)}
         count={games.length}
@@ -204,16 +213,23 @@ export default function App() {
       <Sidebar
         categories={categories}
         category={category}
-        onCategory={setCategory}
+        onCategory={(c) => {
+          setCategory(c)
+          setChat(false)
+        }}
         counts={counts}
         open={menu}
         onClose={() => setMenu(false)}
+        chatOpen={chat}
+        onChat={() => setChat((c) => !c)}
       />
 
       <main>
-        {!browsing && hero && <Hero game={hero} />}
+        {chat && <ChatRoom onClose={() => setChat(false)} />}
 
-        {!browsing && (
+        {!chat && !browsing && hero && <Hero game={hero} />}
+
+        {!chat && !browsing && (
           <Row
             title="Jump back in"
             icon="clock"
@@ -224,7 +240,7 @@ export default function App() {
           />
         )}
 
-        {!browsing && (
+        {!chat && !browsing && (
           <Row
             title="Your favorites"
             icon="star"
@@ -235,7 +251,7 @@ export default function App() {
           />
         )}
 
-        {!browsing && featured.length > 1 && (
+        {!chat && !browsing && featured.length > 1 && (
           <Row
             title="Featured"
             icon="action"
@@ -246,6 +262,7 @@ export default function App() {
           />
         )}
 
+        {!chat && (
         <GameGrid
           title={browsing ? 'Results' : 'All games'}
           icon={browsing ? 'search' : 'all'}
@@ -256,16 +273,19 @@ export default function App() {
           bento={!browsing}
           empty={`Nothing matched ${query ? `"${query}"` : 'that'}.`}
         />
+        )}
 
         <footer>
           <span className="brand-sm">Blocked</span>
           <span className="credit">
             {activeLib.credit ? (
               <>
+                {/* Plain text, not a link. Every outbound link is being
+                    collected onto one links page instead, so there are no
+                    stray redirects dotted around the interface. The credit
+                    itself stays, because naming the source is the point. */}
                 {games.length} games from <strong>{activeLib.label}</strong> by{' '}
-                <a href={activeLib.credit} target="_blank" rel="noreferrer">
-                  {activeLib.author}
-                </a>
+                <strong>{activeLib.author}</strong>
               </>
             ) : (
               <>

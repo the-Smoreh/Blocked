@@ -579,10 +579,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
             </button>
             {active?.credit && (
               <span className="sheet-credit">
-                Showing{' '}
-                <a href={active.credit} target="_blank" rel="noreferrer">
-                  {active.label}
-                </a>
+                Showing <strong>{active.label}</strong>
               </span>
             )}
           </div>

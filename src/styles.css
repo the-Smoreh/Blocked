@@ -383,7 +383,11 @@ header::after {
   align-self: start;
   height: calc(100vh - var(--head-h));
   overflow-y: auto;
-  padding: 16px 10px 30px;
+  /* A column, so the chat room button can sit at the bottom under the
+     categories however many of those there are. */
+  display: flex;
+  flex-direction: column;
+  padding: 16px 10px 16px;
   border-right: 1px solid var(--line);
   /* Translucent so the moving background shows through, since the rail is a
      tall opaque column sitting exactly where the first blob drifts. */
@@ -967,10 +971,6 @@ footer {
   letter-spacing: 0.07em;
   color: #fff;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
-}
-
-.badge-hot {
-  background: linear-gradient(135deg, var(--accent-hot), var(--accent-deep));
 }
 
 .badge-new {
@@ -3464,5 +3464,367 @@ body.gated {
   .fps {
     min-width: 34px;
     padding: 4px 6px;
+  }
+}
+
+/* Time on the current game, beside the frame counter. Tabular figures and a
+   fixed minimum width so the bar does not twitch every second as the digits
+   change. */
+.playtime {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--dim);
+  line-height: 1;
+  min-width: 68px;
+  justify-content: center;
+}
+
+.playtime b {
+  font-size: 12.5px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+@media (max-width: 620px) {
+  .playtime {
+    min-width: 0;
+    padding: 4px 7px;
+  }
+
+  .playtime svg {
+    display: none;
+  }
+}
+
+/* ======================================================================
+   Chat room.
+
+   Lives where the wall does, in main, and is held open by state in App
+   rather than by a route. Picking a category, searching or reloading all
+   leave it, which is the behaviour that was asked for and is exactly what
+   keeping it out of the url gives.
+   ====================================================================== */
+
+/* ---- The button in the rail ---- */
+
+.rail-foot {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.rail-item.chat-open .rail-label {
+  font-weight: 600;
+}
+
+/* ---- The room ---- */
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  /* Fills the space the wall would have, so the composer sits at the bottom
+     of the view instead of halfway up an empty column. */
+  height: calc(100vh - var(--head-h) - 48px);
+  min-height: 420px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.chat-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 15px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel-2);
+}
+
+.chat-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.chat-title h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.chat-title em {
+  font-size: 11.5px;
+  font-style: normal;
+  color: var(--dim);
+}
+
+/* Each person's own colour.
+
+   Only the hue is carried on the element, in --u. The lightness comes from
+   the theme, because a hue readable on the dark panel is far too pale on the
+   light one and a single fixed value would leave half the names hard to read
+   in one mode or the other. */
+:root {
+  --chat-l: 68%;
+}
+
+:root[data-theme="light"] {
+  --chat-l: 38%;
+}
+
+.chat-me {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  font-size: 12px;
+  font-weight: 650;
+  color: hsl(var(--u) 62% var(--chat-l));
+}
+
+.chat-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px 26px;
+  text-align: center;
+}
+
+.chat-state h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.chat-state p {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--dim);
+}
+
+.chat-note {
+  font-size: 11.5px;
+  color: var(--dim);
+}
+
+.chat-off .chat-join-glyph {
+  background: var(--panel-2);
+  color: var(--dim);
+  box-shadow: none;
+}
+
+/* ---- Picking a name ---- */
+
+.chat-join {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  padding: 30px 26px;
+  text-align: center;
+}
+
+.chat-join-glyph {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  color: #fff;
+  background: linear-gradient(140deg, var(--accent), var(--accent-hot));
+  box-shadow: 0 10px 24px -12px var(--accent-glow);
+}
+
+.chat-join h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.chat-join p {
+  margin: 0;
+  max-width: 40ch;
+  font-size: 13px;
+  color: var(--dim);
+}
+
+.chat-name {
+  width: min(280px, 100%);
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  text-align: center;
+}
+
+.chat-name:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ---- Messages ---- */
+
+.chat-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: 0;
+  padding: 14px 15px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.chat-empty {
+  margin: auto;
+  font-size: 13px;
+  color: var(--dim);
+}
+
+.msg {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.msg-badge {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 800;
+  color: hsl(var(--u) 62% var(--chat-l));
+  background: hsl(var(--u) 62% var(--chat-l) / 0.14);
+  border: 1px solid hsl(var(--u) 62% var(--chat-l) / 0.3);
+}
+
+.msg-body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.msg-head {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.msg-head b {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: hsl(var(--u) 62% var(--chat-l));
+}
+
+.msg-head time {
+  font-size: 10.5px;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.msg-text {
+  font-size: 13.5px;
+  line-height: 1.5;
+  /* Someone else typed this. Long unbroken strings must not widen the
+     column and push the layout sideways. */
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+/* Your own messages, marked quietly rather than moved to the other side. */
+.msg.mine .msg-text {
+  color: var(--text);
+}
+
+.msg.mine .msg-badge {
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+/* ---- Composing ---- */
+
+.chat-compose {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 12px;
+  border-top: 1px solid var(--line);
+  background: var(--panel-2);
+}
+
+.chat-compose input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 13px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 13.5px;
+}
+
+.chat-compose input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.chat-compose .cta {
+  flex: none;
+  min-width: 78px;
+  justify-content: center;
+}
+
+.chat-left {
+  flex: none;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--dim);
+}
+
+.chat-error {
+  margin: 0;
+  padding: 8px 15px 0;
+  font-size: 12px;
+  color: var(--accent-hot);
+}
+
+@media (max-width: 760px) {
+  .chat {
+    height: calc(100vh - var(--head-h) - 24px);
+  }
+
+  .chat-me {
+    display: none;
   }
 }

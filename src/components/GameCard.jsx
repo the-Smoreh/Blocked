@@ -39,7 +39,7 @@ export default function GameCard({ game, isFavorite, onFavorite, size = 'sm', in
           </span>
         </span>
 
-        {badge && <span className={`badge badge-${badge}`}>{badge === 'hot' ? 'HOT' : 'NEW'}</span>}
+        {badge && <span className={`badge badge-${badge}`}>NEW</span>}
 
         <button
           className={isFavorite ? 'fav on' : 'fav'}

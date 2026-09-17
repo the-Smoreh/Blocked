@@ -47,6 +47,40 @@ function useFps(enabled) {
   return fps
 }
 
+// How long this game has been open, this visit.
+//
+// Counted from a timestamp rather than by adding a second per tick, because
+// setInterval is not punctual and the error would accumulate: a tab left in
+// the background throttles the callback and a counter that trusted its own
+// tick count would drift minutes behind the clock.
+//
+// It resets on navigating to another game, since `App` gives the player a
+// `key` of the game slug and so remounts it.
+function useElapsed(active) {
+  const [seconds, setSeconds] = useState(0)
+
+  useEffect(() => {
+    if (!active) return
+
+    const started = Date.now()
+    const id = setInterval(() => {
+      setSeconds(Math.floor((Date.now() - started) / 1000))
+    }, 1000)
+
+    return () => clearInterval(id)
+  }, [active])
+
+  return seconds
+}
+
+function clock(total) {
+  const pad = (n) => String(n).padStart(2, '0')
+  const h = Math.floor(total / 3600)
+  const m = Math.floor((total % 3600) / 60)
+  const s = total % 60
+  return h ? `${h}:${pad(m)}:${pad(s)}` : `${m}:${pad(s)}`
+}
+
 export default function GamePlayer({ game, isFavorite, onFavorite, showFps = true }) {
   const frameRef = useRef(null)
   const [slow, setSlow] = useState(false)
@@ -55,6 +89,7 @@ export default function GamePlayer({ game, isFavorite, onFavorite, showFps = tru
   const [luminUrl, setLuminUrl] = useState(null)
   const [luminError, setLuminError] = useState(null)
   const fps = useFps(showFps && Boolean(game))
+  const elapsed = useElapsed(Boolean(game))
 
   useEffect(() => {
     if (!game?.luminId) return
@@ -108,6 +143,11 @@ export default function GamePlayer({ game, isFavorite, onFavorite, showFps = tru
         </span>
 
         <span className="spacer" />
+
+        <span className="playtime" title="Time on this game, this visit">
+          <Icon name="clock" size={12} />
+          <b>{clock(elapsed)}</b>
+        </span>
 
         {showFps && <Fps value={fps} />}
 
