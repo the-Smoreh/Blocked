@@ -744,6 +744,53 @@ unterminated regex. Lint and build pass only after the fix, so a green build
 from before the patch proves nothing. Prefer the Edit tool for any line
 containing a backslash.
 
+## Switching mode
+
+**There is a mode toggle in the header, left of the gear.** One click, from
+anywhere, no sheet.
+
+It matters that it is there. Mode used to be a header toggle, then the gear
+replaced it and mode moved inside settings, which put it three steps away:
+open the sheet, find the Look tab, scroll to Mode. That is too far for the
+option people change most often, and it is why a light theme can feel like
+being stuck in one. The gear still holds everything else.
+
+**`pairTheme(settings, theme)` in `src/settings.js` is the only copy of the
+mode/background pairing rule**, used by both the header toggle and the sheet.
+It was written inside the sheet first; a second copy in the header would have
+drifted from it the way the categorizer's two copies did.
+
+**`?theme=dark` or `?theme=light` overrides whatever is saved.** An escape
+hatch that does not depend on the interface being usable, since every option
+is stored and a bad saved state would otherwise only be reachable through the
+panel that is hard to read. It pairs the background too, so forcing dark onto
+a saved light gradient does not swap one unreadable combination for another.
+
+Two things make it an actual rescue rather than a demo:
+
+- **It is written to storage.** `read()` only seeds the state, so without a
+  save on mount the override lasted until the next navigation and rescued
+  nobody. That was the first version of it.
+- **The parameter is then stripped** with `history.replaceState`, so a copied
+  link does not pin whoever opens it to that mode, and the effect stops
+  matching once it has done its work.
+
+Verified: stranded on light with a light gradient, `?theme=dark` renders dark,
+writes `theme: dark` and `bgGradient: slosh`, cleans the url, and survives a
+reload with no parameter.
+
+A full reset is still the other way out: "Reset everything" in the sheet
+footer restores `DEFAULTS`, which is dark mode.
+
+Note for the next time a report like "stuck in light mode" comes in: it was
+not reproducible against the code at the time, from any `bgKind`, with the
+toggle working across repeated round trips and the gear measured at 5.76:1
+contrast in light mode so it was clearly visible. The likely cause was a
+browser running a stale bundle, which this session had already produced once.
+Check what the page is actually running before hunting in the source. There is
+no `prefers-color-scheme` anywhere in the stylesheet, so the OS setting cannot
+be involved; `data-theme` is the only thing that decides.
+
 ## The Look tab, and three bugs that were in it
 
 All three made the site actively worse to use, and all three were reachable

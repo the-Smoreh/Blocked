@@ -467,22 +467,89 @@ export const GRADIENTS = {
   },
 }
 
-function read() {
-  try {
-    const raw = JSON.parse(localStorage.getItem(KEY))
-    if (raw && typeof raw === 'object') return { ...DEFAULTS, ...raw }
+// Mode and background have to agree or the site is unreadable, so switching
+// mode moves a mismatched background to its counterpart.
+//
+// One copy of that rule, used by the settings sheet and by the header
+// toggle. It lived in the sheet, which meant the only way to change mode was
+// to open the sheet and find the Look tab, and a second copy would have
+// drifted from this one the way the categorizer's did.
+export function pairTheme(settings, theme) {
+  const patch = { theme }
 
-    // Theme used to live under its own key, before settings existed. Carry a
-    // saved light choice across rather than silently resetting it to dark.
-    const legacy = localStorage.getItem('blocked:theme')
-    return { ...DEFAULTS, ...(legacy === 'light' ? { theme: 'light' } : null) }
-  } catch {
-    return { ...DEFAULTS }
+  if (settings.bgKind === 'slate' && SLATES[settings.bgSlate]?.tone !== theme) {
+    patch.bgSlate = theme === 'light' ? 'bone' : 'ink'
   }
+  if (settings.bgKind === 'gradient' && GRADIENTS[settings.bgGradient]?.tone !== theme) {
+    patch.bgGradient = theme === 'light' ? 'sloshlight' : 'slosh'
+  }
+
+  return patch
+}
+
+// An escape hatch that does not depend on the interface working.
+//
+// `?theme=dark` or `?theme=light` in the address bar wins over whatever is
+// saved, and is then saved itself. A query string rather than a hash param,
+// because the hash is the router. Every option is stored, so a saved state
+// that somehow leaves the site unusable would otherwise only be reachable
+// through the very panel that is hard to read.
+function forcedTheme() {
+  try {
+    const t = new URLSearchParams(location.search).get('theme')
+    return t === 'dark' || t === 'light' ? t : null
+  } catch {
+    return null
+  }
+}
+
+function read() {
+  const forced = forcedTheme()
+
+  const saved = (() => {
+    try {
+      const raw = JSON.parse(localStorage.getItem(KEY))
+      if (raw && typeof raw === 'object') return { ...DEFAULTS, ...raw }
+
+      // Theme used to live under its own key, before settings existed. Carry
+      // a saved light choice across rather than resetting it to dark.
+      const legacy = localStorage.getItem('blocked:theme')
+      return { ...DEFAULTS, ...(legacy === 'light' ? { theme: 'light' } : null) }
+    } catch {
+      return { ...DEFAULTS }
+    }
+  })()
+
+  // Pair the background too, or forcing dark mode onto a saved light
+  // gradient would swap one unreadable combination for another.
+  return forced ? { ...saved, ...pairTheme(saved, forced) } : saved
 }
 
 export function useSettings() {
   const [settings, setSettings] = useState(read)
+
+  // A forced theme has to be written down. `read()` only seeds the state, so
+  // without this the override lasted until the next navigation and rescued
+  // nobody. The parameter is then dropped from the address bar, both so a
+  // copied link does not pin whoever opens it to that mode, and so this
+  // effect stops matching once it has done its work.
+  useEffect(() => {
+    if (!forcedTheme()) return
+
+    try {
+      localStorage.setItem(KEY, JSON.stringify(settings))
+    } catch {
+      // Same as everywhere else: the change still applies for this visit.
+    }
+
+    try {
+      const url = new URL(location.href)
+      url.searchParams.delete('theme')
+      history.replaceState(null, '', url)
+    } catch {
+      // A browser blocking history rewriting is not worth failing over.
+    }
+  }, [settings])
 
   const set = useCallback((patch) => {
     setSettings((prev) => {

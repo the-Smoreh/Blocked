@@ -7,7 +7,7 @@ import {
   usePrefersReducedMotion,
   useIdleShimmer,
 } from './lib.js'
-import { useSettings, LIBRARIES, libraryFile } from './settings.js'
+import { useSettings, LIBRARIES, libraryFile, pairTheme } from './settings.js'
 import { categoryTone } from './icons.js'
 import Header from './components/Header.jsx'
 import Sidebar from './components/Sidebar.jsx'
@@ -197,6 +197,8 @@ export default function App() {
         onMenu={() => setMenu((m) => !m)}
         count={games.length}
         showMenu
+        theme={settings.theme}
+        onTheme={() => set(pairTheme(settings, settings.theme === 'light' ? 'dark' : 'light'))}
       />
 
       <Sidebar

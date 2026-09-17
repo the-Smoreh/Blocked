@@ -4,6 +4,7 @@ import {
   GRADIENTS,
   LIBRARIES,
   SLATES,
+  pairTheme,
   prepareBackgroundImage,
 } from '../settings.js'
 import { artFor } from '../art.js'
@@ -210,18 +211,8 @@ export default function Settings({ open, onClose, settings, set, reset }) {
   const [over, setOver] = useState(false)
   const [tab, setTab] = useState('library')
 
-  // Mode and background have to agree or the site is unreadable, so both
-  // directions are driven off the same `tone` that each option carries.
-  const setTheme = (theme) => {
-    const patch = { theme }
-    if (settings.bgKind === 'slate' && SLATES[settings.bgSlate]?.tone !== theme) {
-      patch.bgSlate = theme === 'light' ? 'bone' : 'ink'
-    }
-    if (settings.bgKind === 'gradient' && GRADIENTS[settings.bgGradient]?.tone !== theme) {
-      patch.bgGradient = theme === 'light' ? 'sloshlight' : 'slosh'
-    }
-    set(patch)
-  }
+  // Shared with the header's toggle, so the two cannot disagree.
+  const setTheme = (theme) => set(pairTheme(settings, theme))
 
   const pickSlate = (bgSlate) => {
     const tone = SLATES[bgSlate]?.tone
