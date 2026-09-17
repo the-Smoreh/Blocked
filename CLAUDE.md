@@ -236,6 +236,23 @@ rose to stay apart.
 **Every category needs its own index.** Action and Shooter shared tone 11 until
 Selenite made Action a 130 game category and the collision became obvious.
 
+**Every category has its own glyph.** There were seven shapes for fifteen
+categories, so Clicker, Horror, IO, Platformer, Retro, Sandbox and Shooter all
+fell through to the arcade cabinet fallback and Adventure reused Action's bolt.
+The whole rail looked duplicated. `BY_CATEGORY` in `src/icons.js` now maps
+every category that actually occurs, plus aliases for the names other sources
+use, and an unmapped one takes a stable pick from `FALLBACK_ICONS` rather than
+everything landing on the same glyph.
+
+Two traps when adding a glyph:
+
+- **Check the opening shape, not just the whole path.** Adventure was a
+  compass and Sports is a ball, both a 9 radius circle, so they read alike at
+  the 19px the rail renders them at even though the paths differed. Adventure
+  is a peak and sun now.
+- The old Strategy glyph was a cup, which read as a trophy and so as Sports.
+  It is a flag now.
+
 The **icons themselves** are what gets coloured, gated on `data-tint="on"`:
 `.rail-item .icon`, `.secicon`, and `.tag .icon`. An earlier version put a
 coloured dot at the end of each rail row and left the icon grey, which was not
