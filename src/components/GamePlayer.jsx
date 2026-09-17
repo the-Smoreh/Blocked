@@ -1,11 +1,27 @@
 import { useEffect, useRef, useState } from 'react'
 import { artFor } from '../art.js'
+import { freshGameUrl } from '../lumin.js'
 import Icon from './Icon.jsx'
 import { categoryIcon } from '../icons.js'
 
 export default function GamePlayer({ game, isFavorite, onFavorite }) {
   const frameRef = useRef(null)
   const [slow, setSlow] = useState(false)
+  // A Lumin url carries a single use token, so it has to be fetched per
+  // launch. Caching one would play once and then fail silently.
+  const [luminUrl, setLuminUrl] = useState(null)
+  const [luminError, setLuminError] = useState(null)
+
+  useEffect(() => {
+    if (!game?.luminId) return
+    let cancelled = false
+    freshGameUrl(game.luminId)
+      .then((url) => !cancelled && setLuminUrl(url))
+      .catch((e) => !cancelled && setLuminError(e.message))
+    return () => {
+      cancelled = true
+    }
+  }, [game?.luminId])
 
   // Plenty of hosts refuse to be framed, and the iframe gives no error event
   // when they do. Show the escape hatch after a few seconds either way.
@@ -27,6 +43,7 @@ export default function GamePlayer({ game, isFavorite, onFavorite }) {
   }
 
   const art = artFor(game.title, game.category)
+  const src = game.luminId ? luminUrl : game.url
 
   return (
     <div className="player" style={art.style}>
@@ -73,15 +90,19 @@ export default function GamePlayer({ game, isFavorite, onFavorite }) {
         <span className="stage-load" aria-hidden="true">
           <span className="spinner" />
         </span>
-        <iframe
-          ref={frameRef}
-          src={game.url}
-          title={game.title}
-          allow="fullscreen; gamepad; autoplay"
-        />
+        {src && (
+          <iframe
+            ref={frameRef}
+            src={src}
+            title={game.title}
+            allow="autoplay; fullscreen; gamepad; pointer-lock"
+          />
+        )}
       </div>
 
-      {slow && (
+      {luminError && <p className="hint">Could not start that game. {luminError}.</p>}
+
+      {slow && !luminError && (
         <p className="hint">
           Not loading? Some sites refuse to run inside a frame. Use the new tab button.
         </p>

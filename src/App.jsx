@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
-  navigate,
   useGames,
   useHashRoute,
   useFavorites,
@@ -18,7 +17,7 @@ import GameGrid from './components/GameGrid.jsx'
 import GamePlayer from './components/GamePlayer.jsx'
 import Skeleton from './components/Skeleton.jsx'
 import Settings from './components/Settings.jsx'
-import LuminLibrary from './components/LuminLibrary.jsx'
+import { useLuminCatalogue } from './lumin.js'
 
 export default function App() {
   const route = useHashRoute()
@@ -36,10 +35,18 @@ export default function App() {
 
   // Only the selected library is fetched, so picking one of the small ones
   // does not pull a 4500 line json nobody will look at.
-  const { games, error } = useGames({
+  const fromFile = useGames({
     enabled: !usingLumin,
     file: libraryFile(settings.library),
   })
+
+  // Lumin is fetched over its SDK in headless mode rather than from a file,
+  // and then rendered through exactly the same cards, hero, rows, search and
+  // settings as every other library.
+  const fromLumin = useLuminCatalogue(usingLumin)
+
+  const games = usingLumin ? fromLumin.games : fromFile.games
+  const error = usingLumin ? fromLumin.error : fromFile.error
 
   const playing = route.startsWith('game/') ? route.slice('game/'.length) : null
 
@@ -52,14 +59,6 @@ export default function App() {
   useEffect(() => {
     if (playing) push(playing)
   }, [playing]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  // A #/game/ route only means something for our own libraries. The embedded
-  // library has no list to resolve a slug against, so without this the app
-  // sat on the loading skeleton forever: `games` stays null in embed mode,
-  // and the player branch runs before the embed branch.
-  useEffect(() => {
-    if (usingLumin && playing) navigate('')
-  }, [usingLumin, playing])
 
   // The player and the settings sheet are both full bleed, so the wall behind
   // them must not scroll.
@@ -106,43 +105,22 @@ export default function App() {
     />
   )
 
-  // --- The third party library replaces the whole browsing UI. ---
-  if (usingLumin && !playing) {
-    return (
-      <div className="shell no-rail">
-        <Header
-          query={query}
-          onQuery={setQuery}
-          onSettings={() => setPanel(true)}
-          onMenu={() => setMenu(false)}
-          count={0}
-          showMenu={false}
-        />
-        <main>
-          <LuminLibrary
-            key={settings.theme}
-            theme={settings.theme}
-            onSwitchLibrary={() => set({ library: 'selenite' })}
-          />
-          <footer>
-            <span className="brand-sm">Blocked</span>
-            <span className="credit">Lumin library</span>
-          </footer>
-        </main>
-        {sheet}
-      </div>
-    )
-  }
-
   if (error) {
     return (
       <>
         <div className="state">
-          <h2>Could not load the game list</h2>
-          <p>{error}</p>
-          <button className="cta" onClick={() => setPanel(true)}>
-            Open settings
-          </button>
+          <h2>{usingLumin ? 'Could not reach that library' : 'Could not load the game list'}</h2>
+          <p>Not loading? Try a different library and check here later.</p>
+          <div className="state-row">
+            {usingLumin && settings.library !== 'selenite' && (
+              <button className="cta" onClick={() => set({ library: 'selenite' })}>
+                Use Selenite instead
+              </button>
+            )}
+            <button className="btn" onClick={() => setPanel(true)}>
+              Open settings
+            </button>
+          </div>
         </div>
         {sheet}
       </>
@@ -152,7 +130,7 @@ export default function App() {
   if (!games) {
     return (
       <>
-        {!usingLumin && <Skeleton />}
+        <Skeleton />
         {sheet}
       </>
     )

@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { artFor } from '../art.js'
 import Icon from './Icon.jsx'
 import { categoryIcon } from '../icons.js'
+import { resolveImage } from '../lumin.js'
 
 // The spotlight. One game, big.
 //
@@ -23,8 +24,22 @@ const SMALL_COVER = 96
 export default function Hero({ game }) {
   const [broken, setBroken] = useState(false)
   const [small, setSmall] = useState(false)
+  // A Lumin game carries an image token rather than a url. The hero is one
+  // card and always on screen, so it resolves straight away rather than
+  // waiting on an observer the way the grid does.
+  const [tokenSrc, setTokenSrc] = useState(null)
   const art = artFor(game.title, game.category)
-  const cover = game.game_image_icon && !broken ? game.game_image_icon : null
+  const raw = game.game_image_icon || tokenSrc
+  const cover = raw && !broken ? raw : null
+
+  useEffect(() => {
+    if (!game.imageToken) return
+    let cancelled = false
+    resolveImage(game.imageToken).then((url) => !cancelled && url && setTokenSrc(url))
+    return () => {
+      cancelled = true
+    }
+  }, [game.imageToken])
 
   return (
     <section

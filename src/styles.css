@@ -1489,58 +1489,6 @@ body::before {
   grid-template-columns: minmax(0, 1fr);
 }
 
-/* ---------------------------- Lumin embed ---------------------------- */
-
-.lumin-mount {
-  min-height: 40vh;
-}
-
-/* The embed brings its own markup, so give it room rather than restyling
-   internals we do not control. */
-.lumin-mount :is(img, canvas, iframe, video) {
-  max-width: 100%;
-}
-
-.lumin-loading,
-.lumin-error {
-  display: grid;
-  place-items: center;
-  gap: 12px;
-  padding: 50px 24px;
-  border: 1px dashed var(--line);
-  border-radius: var(--radius);
-  color: var(--muted);
-  text-align: center;
-}
-
-.lumin-error {
-  border-style: solid;
-  border-color: color-mix(in srgb, var(--accent) 28%, var(--line));
-  gap: 22px;
-  padding: 44px 24px 50px;
-}
-
-.lumin-error strong {
-  color: var(--text);
-}
-
-.lumin-error p {
-  margin: 0;
-  max-width: 46ch;
-  font-size: 13px;
-}
-
-/* Sits about twice as far down as the old headline did, so the panel reads as
-   one calm line rather than an error stack. */
-.lumin-note {
-  margin: 0;
-  padding-top: 26px;
-  max-width: 46ch;
-  font-size: 14px;
-  font-weight: 550;
-  color: var(--text);
-}
-
 /* ---------------------------- Settings sheet ---------------------------- */
 
 .sheet-scrim {
@@ -3434,4 +3382,13 @@ body.gated {
   image-rendering: pixelated;
   padding: 18px;
   background: rgba(0, 0, 0, 0.3);
+}
+
+/* The error state can offer two actions, so they need a row. */
+.state-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }

@@ -28,6 +28,32 @@ export function navigate(path) {
   window.location.hash = '/' + path
 }
 
+// Slugs are URLs, so they have to be unique. Two games sharing a title would
+// otherwise collide as React keys and both resolve to the same page.
+//
+// The suffix has to dodge real titles as well as earlier suffixes. "Fancy
+// Pants Adventures 2" already slugs to fancy-pants-adventures-2, so a plain
+// "-2" on a duplicate of "Fancy Pants Adventures" would steal the sequel's
+// URL. Checking against every base slug up front is what prevents that.
+//
+// Shared, so a json library and the Lumin catalogue get identical treatment.
+export function withUniqueSlugs(data) {
+  const bases = data.map((g) => slugify(g.title) || 'game')
+  const allBases = new Set(bases)
+  const taken = new Set()
+
+  return data.map((g, i) => {
+    let slug = bases[i]
+    if (taken.has(slug)) {
+      let n = 2
+      while (taken.has(`${slug}-${n}`) || allBases.has(`${slug}-${n}`)) n++
+      slug = `${slug}-${n}`
+    }
+    taken.add(slug)
+    return { ...g, slug }
+  })
+}
+
 // `file` is a path under public/, so the same hook serves the built in list
 // and every per source library.
 export function useGames({ enabled = true, file = 'games.json' } = {}) {
@@ -54,29 +80,7 @@ export function useGames({ enabled = true, file = 'games.json' } = {}) {
       .then((data) => {
         if (cancelled) return
 
-        // Slugs are URLs, so they have to be unique. Two games sharing a
-        // title would otherwise collide as React keys and both resolve to
-        // the same page.
-        //
-        // The suffix has to dodge real titles as well as earlier suffixes.
-        // "Fancy Pants Adventures 2" already slugs to
-        // fancy-pants-adventures-2, so a plain "-2" on a duplicate of
-        // "Fancy Pants Adventures" would steal the sequel's URL. Checking
-        // against every base slug up front is what prevents that.
-        const bases = data.map((g) => slugify(g.title) || 'game')
-        const allBases = new Set(bases)
-        const taken = new Set()
-
-        const withSlugs = data.map((g, i) => {
-          let slug = bases[i]
-          if (taken.has(slug)) {
-            let n = 2
-            while (taken.has(`${slug}-${n}`) || allBases.has(`${slug}-${n}`)) n++
-            slug = `${slug}-${n}`
-          }
-          taken.add(slug)
-          return { ...g, slug }
-        })
+        const withSlugs = withUniqueSlugs(data)
         setLoaded({ file, games: withSlugs, error: null })
       })
       .catch((e) => !cancelled && setLoaded({ file, games: null, error: e.message }))

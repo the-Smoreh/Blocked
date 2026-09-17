@@ -560,58 +560,56 @@ Any of these become usable the moment their files sit on a host that serves
 
 ## The Lumin library
 
-`src/components/LuminLibrary.jsx` mounts a third party catalogue. It is still
-selectable but **no longer the default**, because it does not work.
+`src/lumin.js` drives it in **headless mode**, so the SDK renders nothing and
+only supplies data plus the game player. Its catalogue then goes through our
+own cards, hero, rows, search, categories, favourites and settings exactly like
+a json library. There is no embed component any more.
 
-What it actually does, verified 2026-09-16:
+`LIBRARIES.lumin` has no `file`; `App` swaps in `useLuminCatalogue` instead of
+`useGames` and everything downstream is identical.
 
-- The script loads and installs a global `Lumin` whose methods are a Proxy
-  that queues every call until its worker boots.
-- Its worker reports `[Lumin] Worker connection failed: domain fetch failed`
-  on localhost, which reads like a domain check.
-- `init()` **resolves** but renders nothing into the container.
-- Every other method **never settles**. `Lumin.getGames()` was left running
-  for 45 seconds and did not return. So the richer API it advertises, and it
-  does advertise `getGames getCategories getGameUrl getImageUrl loadGame
-  search destroy on off`, is unreachable until the worker boots.
+Three things about their data shape drive the design:
 
-Its picker row shows **2500**, which is the size the SDK advertises rather
-than a verified count. Nothing here can confirm it, because its API never
-settles from localhost, so it is deliberately left out of the "credited
-libraries" total in the settings header.
+- **Covers are tokens, not urls.** `getImageUrl(token)` returns a blob url, so
+  a cover has to be resolved per game. `GameCard` does that behind an
+  `IntersectionObserver` with a 400px margin, because resolving a thousand
+  covers for cards nobody has scrolled to would mint a thousand blob urls. The
+  hero resolves immediately instead, since it is one card and always on
+  screen. Resolutions are cached per token.
+- **Game urls carry a single use token.** `getGameUrl(id)` has to be called
+  fresh on every launch, so `GamePlayer` resolves on mount rather than storing
+  a url on the entry. A cached one plays once and then fails silently.
+- **Nothing settles when the service refuses you.** `init` rejects with
+  "domain fetch failed", but `getGames` and `getCategories` never settle at
+  all. Every call is wrapped in a 20s timeout for that reason, and without it
+  the UI hangs forever with no error.
 
-The failure panel shows **no SDK text**. "domain fetch failed" meant nothing to
-anyone reading it, so the real message goes to `console.warn` and the panel
-says "Not loading? Try a different library and check here later." with a button
-that switches to Selenite.
+**It does not work from localhost.** The service checks the domain it runs on
+and that check sits upstream of the entire API, headless included. Verified
+directly: `init({headless:true})` rejects with "domain fetch failed" and
+`getCategories()` and `getGames()` both time out at 20s. `127.0.0.1` could not
+be tested because the preview pane blocks that origin.
 
-**That button has to point at a library that exists.** It pointed at `local`,
-which was deleted when Selenite replaced the built in list, so clicking it set
-an unknown id. App falls back to `LIBRARIES.lumin` for an unknown id, which
-meant the one escape hatch out of the embed left you exactly where you were.
-If a library is ever removed again, grep for its id first.
+So the integration is **written against their documented contract and verified
+against a stub of it**, not against their live service. The stub run confirmed:
+`init` called once with `{headless:true}`, `getGames` called 3 times for 430
+games at 200 per page, 430 cards rendered in our grid, the rail deriving
+categories from their `category` field, `getImageUrl` called 26 times out of
+430 so the observer is doing its job, `getGameUrl` not called until a game
+opens, and a relaunch refetching the url rather than reusing the dead token.
 
-Three failure modes are guarded. `init` races a 20 second timeout. A container
-that never receives content is treated as a failure, so the page cannot sit on
-a spinner forever. And crucially the content check **waits** via a
-MutationObserver rather than reading the container the instant init resolves:
-the first version of that check reported "returned no games" on a library that
-was about to paint fine, which showed the error panel over a working embed.
-The error panel offers a one click switch.
+Expect this to start working the moment the site is on a real domain. If it
+does not, the fault is upstream of everything in `src/lumin.js`.
 
-If the worker ever does boot on a real domain, the better integration is to
-call `getGames()` and render the results in our own card UI rather than
-letting it draw its own, so its games get the site's art and settings.
+Note that `getGameUrl` fires twice per launch in development. That is
+StrictMode double invoking the effect, not a bug in the resolution; production
+calls it once, and since the tokens are single use the extra one is simply
+discarded.
 
-Other facts worth keeping: the repo `luminsdk/script` has no tags, so
-`@latest` is branch HEAD and changes on every push. Its two files
-`lumin.min.js` and `fonts.min.js` are byte identical, same sha256, so "fonts"
-is a decoy name for network filters and the loader tries both.
-
-Because embed mode has no game list, a `#/game/` route cannot resolve there.
-App redirects such a route home; without that it sat on the loading skeleton
-forever, since `games` stays null in embed mode and the player branch runs
-before the embed branch.
+Other facts worth keeping: the repo `luminsdk/script` has no tags, so `@latest`
+is branch HEAD and changes on every push. Its two files `lumin.min.js` and
+`fonts.min.js` are byte identical, same sha256, so "fonts" is a decoy name for
+network filters and the loader tries both.
 
 ## Settings sheet
 
