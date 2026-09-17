@@ -224,6 +224,36 @@ Soft-light on a near white page hazes everything pink and flattens the
 contrast of whatever is underneath, whereas multiply darkens where the blob is
 and reads as a tint.
 
+## The hero
+
+When the spotlight game has a cover, the panel uses it: a scaled up blurred
+copy fills the whole thing, and a crisp copy sits on the right at its own
+aspect ratio. Two copies rather than one stretched image, because these covers
+are small and mostly square, so a single copy across a wide panel is soft and
+badly cropped. The blurred fill carries the colour, the poster carries the
+detail.
+
+Without a cover it falls back to the generated art and the oversized initials,
+which is what every library except Selenite and Alexx743 gets. `data-art` on
+the section is `cover` or `generated`, and the scrim and the drifting mesh both
+respond to it: the scrim runs harder and further across over a real image,
+since a near white cover would otherwise swallow the title, and the mesh drops
+to 0.3 so it does not muddy the artwork.
+
+The poster is an `img`, not a second background, specifically so a dead cover
+raises `onError` and the panel can fall back. A background-image fails
+silently and would leave a blank panel, which is how the hero looked before
+any of this.
+
+**Covers under 96px are not upscaled.** They render without smoothing at up to
+55% height instead. Selenite has 18 `.ico` covers and some are 16 or 32px;
+stretching one to fill 76% of the hero turns it to mush, while pixelated at its
+own scale reads as deliberate pixel art. The threshold is checked on `onLoad`,
+since CSS cannot see a natural size.
+
+Below 760px the poster is dropped and only the blurred fill carries the image,
+because at that width it crowds the title.
+
 ## Category colours
 
 One colour per category, in `--tone-0` through `--tone-14`, assigned in
