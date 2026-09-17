@@ -82,6 +82,23 @@ for.
 3. **Apply.** The first build takes a few minutes, then you have a link
    ending in `.onrender.com`, with the chat working.
 
+If you use **New** → **Web Service** instead, `render.yaml` is ignored and
+these are the fields:
+
+| field           | value                                 |
+| --------------- | ------------------------------------- |
+| Language        | Node                                  |
+| Branch          | `main`                                |
+| Root Directory  | leave empty                           |
+| Build Command   | `npm ci --include=dev && npm run build` |
+| Start Command   | `node server/chat.mjs`                |
+| Compute         | Free                                  |
+
+`--include=dev` matters: `vite` is a devDependency, and a host that sets
+`NODE_ENV=production` makes npm skip those, so the build fails with
+"vite: not found". No environment variables are needed, and `engines.node`
+in package.json tells Render which Node to use.
+
 One service serves the site and the chat, out of `server/chat.mjs`.
 
 Two things about the free plan, so they are not a surprise: it sleeps after

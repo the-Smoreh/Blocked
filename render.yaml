@@ -13,7 +13,10 @@ services:
     name: blocked
     runtime: node
     plan: free
-    buildCommand: npm ci && npm run build
+    # --include=dev is not optional: vite is a devDependency, and a host
+    # that sets NODE_ENV=production makes npm skip those, so the build would
+    # fail with "vite: not found".
+    buildCommand: npm ci --include=dev && npm run build
     startCommand: node server/chat.mjs
     envVars:
       # Render sets PORT itself and server/chat.mjs reads it.
