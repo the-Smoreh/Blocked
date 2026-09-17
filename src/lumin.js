@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { withUniqueSlugs } from './lib.js'
+import { categoryFor } from './categorize.js'
 
 // Client for the Lumin SDK in headless mode.
 //
@@ -105,7 +106,10 @@ function toEntry(game) {
     title: String(game.name ?? '').trim() || 'Untitled',
     description: '',
     game_image_icon: '',
-    category: game.category || 'Arcade',
+    // Their objects carry only id, name and image_token, with no category,
+    // and getCategories() comes back empty. So the category is derived from
+    // the title using the same rules the json libraries are built with.
+    category: game.category || categoryFor({ title: game.name, tags: game.tags }),
     tags: Array.isArray(game.tags) ? game.tags : [],
     featured: false,
     url: '',

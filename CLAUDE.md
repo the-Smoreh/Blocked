@@ -422,6 +422,46 @@ not a licence. Four of these repos state no licence, which under default
 copyright means no permission is granted to redistribute, so linking matters.
 Delist anyone who asks.
 
+### Deriving categories
+
+`src/categorize.js` holds the rules and `categoryFor`, shared by
+`scripts/categorize.mjs` at build time and `src/lumin.js` at runtime. It used
+to be a copy in each place, which drifted.
+
+Matching is **substring by default**. That looks sloppy and it is deliberate:
+several of these libraries use titles that are really folder names with the
+spaces removed, like `1on1soccer`, `bloonstowerdefense2`, `awesometanks2`,
+`learntoflyidle` and `agariolite`. A word boundary rule cannot see the keyword
+in any of those.
+
+**Do not make boundary matching global.** That was tried. It reads as the
+careful fix and it was much worse: gams fell from ten categories to two with
+nearly everything landing on Arcade, and across all nine libraries it threw
+away 95 correct matches. It also broke ordinary spaced titles, because a
+boundary rejects a plural and a sequel number: "Awesome Tanks" stopped matching
+`tank`, and "Vex3", "Run3" and "Fnaf3" stopped matching anything.
+
+Instead a keyword can opt in with a `*` prefix, and only fourteen do. Each is
+listed in `STRICT` with the word that made it necessary: `car` in Icarus and
+Ocarina, `line` in online, `word` in sword, `run` in Sprunki, `evil` in devil,
+`action` in reaction, `nes` in bones, `dunk` in drunk, `venge` in revenge,
+`story` in history, `risk` in Frisk, `pool` in Liverpool, `sort` in resort,
+`64` in any longer number. A strict keyword still allows a plural and a
+trailing sequel number, including the `3d` form, so `run` matches "Run3d" while
+`car` still refuses "card".
+
+Measured on all 2190 games: 64% land off the Arcade fallback across 14
+categories, up from 61%, and every single library improved or held. The 36
+games the strict keywords changed were checked one by one rather than sampled;
+they are corrections like "Ocarina of Time" leaving Racing and "Swords And
+Sandals" leaving Puzzle.
+
+**Selenite is excluded.** Its categories come from its own 42 real tags, so
+running the script over it would overwrite facts with guesses.
+
+Adding a keyword is the normal way to fix a game. Reach for `STRICT` only when
+a real word contains the keyword, and write down which word.
+
 ### Rebuild order
 
 `build-libraries.mjs` regenerates entries from scratch, so it wipes borrowed
@@ -567,6 +607,17 @@ a json library. There is no embed component any more.
 
 `LIBRARIES.lumin` has no `file`; `App` swaps in `useLuminCatalogue` instead of
 `useGames` and everything downstream is identical.
+
+**Their games have no category, so ours is derived.** `getCategories()` comes
+back empty and each game object carries only `id`, `name` and `image_token`,
+so `toEntry` runs the title through `categoryFor` from `src/categorize.js`,
+the same rules the json libraries are built with. A `game.category` is used if
+one ever appears.
+
+With no description and no tags to match against, a title alone classifies
+about 43% of games across all 14 categories, measured on 1547 titles from the
+libraries Lumin namespaces its ids after. So expect a real spread in the rail
+rather than one Arcade row, and expect Arcade to be the largest by a distance.
 
 Three things about their data shape drive the design:
 

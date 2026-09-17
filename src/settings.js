@@ -19,9 +19,9 @@ export const LIBRARIES = {
     label: 'Lumin',
     note: 'Third party catalogue, loaded from a CDN',
     kind: 'embed',
-    // Its own advertised size. Not verified here, because its API never
-    // settles from localhost, so treat it as a claim rather than a count.
-    count: 2500,
+    // Read from its own getGames total rather than advertised: 1169 across
+    // 234 pages.
+    count: 1169,
   },
   selenite: {
     label: 'Selenite',
