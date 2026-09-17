@@ -262,7 +262,10 @@ export default function ChatRoom({ onClose }) {
               pinnedRef.current = el.scrollHeight - el.scrollTop - el.clientHeight < 40
             }}
           >
-            {messages.length === 0 && (
+            {/* Only when the room is genuinely empty. Showing "nothing yet"
+                next to a read error said two contradictory things at once:
+                the list is not empty, it could not be read. */}
+            {messages.length === 0 && !error && (
               <li className="chat-empty">Nothing yet. Say the first thing.</li>
             )}
             {/* `mine` comes off the message's own uid rather than from
