@@ -462,6 +462,40 @@ running the script over it would overwrite facts with guesses.
 Adding a keyword is the normal way to fix a game. Reach for `STRICT` only when
 a real word contains the keyword, and write down which word.
 
+### Borrowing covers at runtime
+
+`share-icons.mjs` runs at build time and cannot touch Lumin: Lumin has no
+data file, its catalogue only exists once its SDK answers, and its covers are
+tokens rather than urls. So `src/borrow.js` does the same job in the browser
+and Lumin can both lend and borrow.
+
+Every catalogue loaded in a session registers its covers as donors, so
+whichever library is on screen fills its gaps from the others.
+`src/cover.js` is the one hook both the grid and the hero use, and it tries
+four sources in order: the library's own url, a resolved Lumin token, a
+borrowed cover, then the generated art. `''` means tried and failed and
+`null` means not tried yet, which is what stops a card borrowing before its
+own cover has had a chance.
+
+Same matching rules as the build script, minus the fuzzy pass. Edit distance
+is fine at build time because a person reads the printed list afterwards;
+doing it in the browser would be guessing at a game's identity with nobody
+checking.
+
+**Lumin is only pulled in as a donor pool for Selenite.** Fetching it means
+loading a third party's obfuscated script on a page that was not otherwise
+going to, so it has to earn that, and measured against every library it only
+does for Selenite: **79 of its 105 missing covers, 75%, all exact matches.**
+Everywhere else it is 3 to 10 per cent, because `share-icons.mjs` has already
+lent them what Selenite has and Lumin's catalogue is largely Selenite again,
+its ids are namespaced `selenite/`. `LUMIN_WORTH_IT` in `App.jsx` holds that
+list. The other libraries borrow from our own static files only.
+
+The 26 Selenite blanks that stay blank are genuinely not in Lumin: Contra,
+Chrono Trigger, Comix Zone, the Donkey Kong Country games. Emulator titles.
+
+Turned off with "Borrow missing covers" in the Library tab.
+
 ### Rebuild order
 
 `build-libraries.mjs` regenerates entries from scratch, so it wipes borrowed
@@ -710,23 +744,87 @@ unterminated regex. Lint and build pass only after the fix, so a green build
 from before the patch proves nothing. Prefer the Edit tool for any line
 containing a backslash.
 
+## The Look tab, and three bugs that were in it
+
+All three made the site actively worse to use, and all three were reachable
+by clicking one control.
+
+**Gradients must not end in a bare colour.** Three of them did, as in
+`radial-gradient(...), radial-gradient(...), #08080a`. That is valid in the
+`background` shorthand but **not** in `background-image`, where one invalid
+layer throws out the whole declaration, so the computed value was `none`.
+Slosh, Coals and Slosh light therefore never drew their gradient at all, and
+Slosh is the default, so the site's own base layer had been invisible the
+whole time with only the drifting blobs showing over a flat body colour. Each
+gradient now carries `css` for the layers and `base` for the flat colour
+behind them, and the rule sets `background-color` separately. Verified in the
+browser: the same string is rejected with the trailing colour and accepted
+without it.
+
+**Mode and background have to agree.** Picking a light background while in
+dark mode left near white text on a near white page, measured at
+rgb(245,245,247) on rgb(255,255,255), and a dark one in light mode did the
+reverse at rgb(18,18,22) on rgb(8,8,10). Every slate and gradient now carries
+a `tone`, the sheet switches mode along with the pick, and an option
+belonging to the other mode is labelled DARK or LIGHT on its tile so the
+switch is not a surprise. `setTheme` uses the same `tone` for the reverse
+direction instead of its own hardcoded list.
+
+**"Image" with no image painted a flat 55% scrim over nothing**, so the whole
+site went dim and showed no picture. Selecting Image now opens the file
+picker and only commits once an image exists, and `useSettings` also
+downgrades that state to `gradient` in case it is reached from a saved
+setting.
+
+Backgrounds are picked from **tiles, not swatches**. Eight gradients in 28px
+squares all looked like the same dark square.
+
 ## Settings sheet
 
-Three tabs, Library / Look / Cards, so no tab is long enough to scroll hunt.
-Controls sit in `.sgroup` panels rather than a flat stack of hairline rows,
-which is most of what stops it reading as a raw form. The Cards and Look tabs
-carry a live `Preview` of three miniature cards built with the real `.card`
-markup and `artFor`, so shape, titles, accent and art update as you change
-them.
+Three tabs, Library / Look / Interface, so no panel is long enough to scroll
+hunt. Controls sit in `.sgroup` panels, each showing its current value in its
+own header, so glancing down the sheet says what is set without reading every
+control. Look and Interface carry a live `Preview` of three miniature cards
+built from the real `.card` markup and `artFor`, so shape, titles, accent and
+art update as they change.
 
-The picker deliberately has **no per row link to each source**. Those were
-removed; a dedicated links page is planned instead. Attribution still shows in
-the sheet footer and the site footer.
+**The stylesheet is one block, not two.** There used to be an original pass
+and a second pass appended on top that overrode most of it, which is how a
+stray `.lib { flex-direction: column }` survived long enough to wrap every
+library row onto two lines. 825 lines of superseded rules were deleted rather
+than layered over, and every sheet selector is now defined exactly once.
+Check that before adding more.
 
-Watch for duplicate CSS when reworking it. The second pass was appended while
-the first pass was still in the file, and the leftover `.lib { flex-direction:
-column }` made every library row wrap its credit link onto a second line. The
-superseded block was removed, not overridden.
+The picker deliberately has **no per row link to each source**. A dedicated
+links page is planned instead. Attribution still shows in the sheet footer
+and the site footer.
+
+Breakpoints are measured, not guessed. At 375px each of the three tabs gets
+107px and the labels fit with room to spare, so the icons-only rule sits at
+330px; an earlier 380px guess hid them on an ordinary phone for no reason.
+
+## The player bar
+
+Back, the game's own cover, title and category, then the frame counter,
+favourite and fullscreen.
+
+**The badge shows the real cover**, through the same `useCover` hook as the
+cards, falling back to the generated initials. It used to always be initials,
+so the bar said "FC" next to a game whose artwork was sitting in the library.
+
+**There is no new tab button.** It was removed on request, since a links page
+will cover the same ground.
+
+**The frame counter is our frame rate, not the game's.** A cross origin
+iframe cannot be measured from outside and nothing exposes another
+document's rate. The two usually track each other because the tab shares a
+compositor, but a game the browser has put in its own process can stutter
+while this still reads 60. The counter says so in settings rather than
+pretending to be a benchmark. It is sampled twice a second, not per frame,
+and "Frame counter" in the Interface tab turns it off along with its
+`requestAnimationFrame` loop.
+
+
 
 ## Moving background
 

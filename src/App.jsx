@@ -18,6 +18,11 @@ import GamePlayer from './components/GamePlayer.jsx'
 import Skeleton from './components/Skeleton.jsx'
 import Settings from './components/Settings.jsx'
 import { useLuminCatalogue } from './lumin.js'
+import { loadLuminDonors, loadSeleniteDonors, registerDonors } from './borrow.js'
+
+// Libraries where pulling Lumin's catalogue in as a donor pool pays for the
+// third party script it costs. See the effect below for the numbers.
+const LUMIN_WORTH_IT = new Set(['selenite', 'lumin'])
 
 export default function App() {
   const route = useHashRoute()
@@ -47,6 +52,28 @@ export default function App() {
 
   const games = usingLumin ? fromLumin.games : fromFile.games
   const error = usingLumin ? fromLumin.error : fromFile.error
+
+  // Whatever is on screen becomes a donor for the other libraries, and the
+  // pools that can fill this one's gaps get pulled in.
+  //
+  // Selenite is one of our own static files, so it is always worth having.
+  //
+  // Lumin is different: fetching it means loading a third party's obfuscated
+  // script on a page that was not otherwise going to, so it has to earn that.
+  // Measured against every library's missing covers, it only does for
+  // Selenite, where it fills 79 of 105 gaps. Everywhere else it is 3 to 10
+  // per cent, because `share-icons.mjs` has already lent them what Selenite
+  // has and Lumin's catalogue is largely Selenite again, its ids are
+  // namespaced `selenite/`. So the other libraries borrow from our own files
+  // only.
+  useEffect(() => {
+    if (!games) return
+    registerDonors(settings.library, games)
+    if (!settings.borrowCovers) return
+
+    loadSeleniteDonors()
+    if (LUMIN_WORTH_IT.has(settings.library)) loadLuminDonors()
+  }, [games, settings.library, settings.borrowCovers])
 
   const playing = route.startsWith('game/') ? route.slice('game/'.length) : null
 
@@ -144,6 +171,7 @@ export default function App() {
           game={games.find((g) => g.slug === playing)}
           isFavorite={favorites.has(playing)}
           onFavorite={toggle}
+          showFps={settings.showFps}
         />
         {sheet}
       </>

@@ -121,6 +121,17 @@ export const DEFAULTS = {
   bgImage: null, // data url, written by the uploader below
   bgDim: 55, // 0-90, converted to a 0..0.9 scrim alpha over a background image
 
+  // Lets a library fill its missing covers from the others. Selenite is 105
+  // short and Goblin Kingdom 591, while Lumin has art for all 1169 of its
+  // games, so this is what puts real covers on cards that would otherwise
+  // only ever show generated art. See src/borrow.js.
+  borrowCovers: true,
+
+  // The frame counter in the player bar. On by default, but it runs a
+  // requestAnimationFrame loop for as long as a game is open, so it is worth
+  // being able to stop.
+  showFps: true,
+
   showTitles: true,
   cardShape: 'square', // square | portrait | landscape
   colorIcons: true,
@@ -140,19 +151,37 @@ export const ACCENTS = {
   ice: { label: 'Ice', a: '#1b9fd8', b: '#5fd0ff', deep: '#0b5378', hue: 197 },
 }
 
+// `tone` is which mode the option belongs to, and it is not decoration.
+// Picking a light background while in dark mode used to leave near white
+// text on a near white page, and a dark one in light mode did the reverse:
+// measured at rgb(8,8,10) behind rgb(18,18,22). The sheet reads this and
+// switches mode with the pick, so every combination stays readable.
 export const SLATES = {
-  ink: { label: 'Ink', bg: '#08080a', bg2: '#0d0d10', panel: '#131317' },
-  graphite: { label: 'Graphite', bg: '#121215', bg2: '#17171c', panel: '#1d1d23' },
-  navy: { label: 'Navy', bg: '#070b14', bg2: '#0b111d', panel: '#101827' },
-  plum: { label: 'Plum', bg: '#0c0710', bg2: '#120b17', panel: '#1a1020' },
-  moss: { label: 'Moss', bg: '#070c09', bg2: '#0b120d', panel: '#101a13' },
-  bone: { label: 'Bone', bg: '#fbfbfc', bg2: '#ffffff', panel: '#ffffff' },
+  ink: { label: 'Ink', tone: 'dark', bg: '#08080a', bg2: '#0d0d10', panel: '#131317' },
+  graphite: { label: 'Graphite', tone: 'dark', bg: '#121215', bg2: '#17171c', panel: '#1d1d23' },
+  navy: { label: 'Navy', tone: 'dark', bg: '#070b14', bg2: '#0b111d', panel: '#101827' },
+  plum: { label: 'Plum', tone: 'dark', bg: '#0c0710', bg2: '#120b17', panel: '#1a1020' },
+  moss: { label: 'Moss', tone: 'dark', bg: '#070c09', bg2: '#0b120d', panel: '#101a13' },
+  bone: { label: 'Bone', tone: 'light', bg: '#fbfbfc', bg2: '#ffffff', panel: '#ffffff' },
 }
 
+// `css` holds gradient layers only, and `base` is the flat colour behind
+// them.
+//
+// They have to be separate. Three of these used to end in a bare colour, as
+// in "radial-gradient(...), radial-gradient(...), #08080a", which is valid in
+// the `background` shorthand but **not** in `background-image`: one invalid
+// layer throws the whole declaration out, so the computed value was `none`.
+// Slosh, Coals and Slosh light therefore never drew their gradient at all.
+// Slosh is the default, so the site's own base layer had been invisible the
+// entire time and only the drifting blobs were showing over a flat body
+// colour. Verified in the browser: the same string is rejected with the
+// trailing colour and accepted without it.
 export const GRADIENTS = {
-  // The default. Deliberately dark, because three moving blobs are drawn on
+  // The default. Deliberately dark, because five moving blobs are drawn on
   // top of it and a bright base would leave nowhere for them to show.
   slosh: {
+    tone: 'dark',
     label: 'Slosh',
     // A stop in all four corners. The first version only had top left and
     // bottom right, which put the still base on the same diagonal as the
@@ -161,32 +190,59 @@ export const GRADIENTS = {
       'radial-gradient(85% 65% at 12% 0%, #180608 0%, transparent 62%), ' +
       'radial-gradient(80% 60% at 88% 4%, #14060b 0%, transparent 62%), ' +
       'radial-gradient(85% 65% at 90% 100%, #13050a 0%, transparent 62%), ' +
-      'radial-gradient(80% 60% at 8% 96%, #160708 0%, transparent 62%), ' +
-      '#08080a',
+      'radial-gradient(80% 60% at 8% 96%, #160708 0%, transparent 62%)',
+    base: '#08080a',
   },
-  emberfade: { label: 'Ember fade', css: 'linear-gradient(160deg, #1a0708 0%, #08080a 55%)' },
-  duskrise: { label: 'Dusk rise', css: 'linear-gradient(200deg, #1b0d24 0%, #08080a 60%)' },
-  deepsea: { label: 'Deep sea', css: 'linear-gradient(180deg, #07141f 0%, #08080a 62%)' },
+  emberfade: {
+    tone: 'dark',
+    label: 'Ember fade',
+    css: 'linear-gradient(160deg, #1a0708 0%, #08080a 55%)',
+    base: '#08080a',
+  },
+  duskrise: {
+    tone: 'dark',
+    label: 'Dusk rise',
+    css: 'linear-gradient(200deg, #1b0d24 0%, #08080a 60%)',
+    base: '#08080a',
+  },
+  deepsea: {
+    tone: 'dark',
+    label: 'Deep sea',
+    css: 'linear-gradient(180deg, #07141f 0%, #08080a 62%)',
+    base: '#08080a',
+  },
   nightgrid: {
+    tone: 'dark',
     label: 'Night grid',
     css: 'radial-gradient(120% 80% at 50% -10%, #1a1020 0%, #08080a 60%)',
+    base: '#08080a',
   },
   coals: {
+    tone: 'dark',
     label: 'Coals',
-    css: 'radial-gradient(90% 60% at 15% 0%, #2a0b0d 0%, transparent 60%), radial-gradient(80% 60% at 85% 10%, #1a0a1e 0%, transparent 62%), #08080a',
+    css:
+      'radial-gradient(90% 60% at 15% 0%, #2a0b0d 0%, transparent 60%), ' +
+      'radial-gradient(80% 60% at 85% 10%, #1a0a1e 0%, transparent 62%)',
+    base: '#08080a',
   },
   // The light counterpart to slosh. Near white, with faint warm corners for
   // the blobs to move over. A dark base here would fight light mode's text.
   sloshlight: {
+    tone: 'light',
     label: 'Slosh light',
     css:
       'radial-gradient(95% 75% at 12% 0%, #ffeceb 0%, transparent 62%), ' +
       'radial-gradient(90% 70% at 88% 4%, #fdebf1 0%, transparent 62%), ' +
       'radial-gradient(95% 75% at 90% 100%, #ffe9e6 0%, transparent 62%), ' +
-      'radial-gradient(90% 70% at 8% 96%, #fdecea 0%, transparent 62%), ' +
-      '#fbfbfc',
+      'radial-gradient(90% 70% at 8% 96%, #fdecea 0%, transparent 62%)',
+    base: '#fbfbfc',
   },
-  paper: { label: 'Paper', css: 'linear-gradient(170deg, #ffffff 0%, #f1f1f4 100%)' },
+  paper: {
+    tone: 'light',
+    label: 'Paper',
+    css: 'linear-gradient(170deg, #ffffff 0%, #f1f1f4 100%)',
+    base: '#f1f1f4',
+  },
 }
 
 function read() {
@@ -241,7 +297,14 @@ export function useSettings() {
     root.dataset.shape = settings.cardShape
     root.dataset.titles = settings.showTitles ? 'on' : 'off'
     root.dataset.tint = settings.colorIcons ? 'on' : 'off'
-    root.dataset.bg = settings.bgKind
+    // "Image" with nothing uploaded painted a flat 55% scrim over `none`,
+    // so the whole site went dim and showed no picture. That state is
+    // reachable from a persisted setting as well as from the picker, so it
+    // is corrected here rather than only in the UI.
+    const bgKind =
+      settings.bgKind === 'image' && !settings.bgImage ? 'gradient' : settings.bgKind
+
+    root.dataset.bg = bgKind
     root.dataset.bganim = settings.bgAnimated ? 'on' : 'off'
 
     root.style.setProperty('--accent', accent.a)
@@ -258,7 +321,7 @@ export function useSettings() {
     // slate left over from a previous choice won the fallback and light mode
     // rendered dark panels, dark card title bars and unreadable intro text on
     // a white page. Clearing them lets each theme's own default win.
-    if (settings.bgKind === 'slate') {
+    if (bgKind === 'slate') {
       root.style.setProperty('--slate-bg', slate.bg)
       root.style.setProperty('--slate-bg-2', slate.bg2)
       root.style.setProperty('--slate-panel', slate.panel)
@@ -268,6 +331,7 @@ export function useSettings() {
       root.style.removeProperty('--slate-panel')
     }
     root.style.setProperty('--bg-gradient', grad.css)
+    root.style.setProperty('--bg-gradient-base', grad.base || 'transparent')
     root.style.setProperty('--bg-dim', String(settings.bgDim / 100))
     root.style.setProperty('--bg-image', settings.bgImage ? `url("${settings.bgImage}")` : 'none')
   }, [settings])
