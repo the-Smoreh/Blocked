@@ -2033,6 +2033,29 @@ body::before {
   color: #fff;
 }
 
+/* Divider between the presets for the current mode and the ones that switch
+   it. A rule with the label sitting in it, so it reads as a boundary rather
+   than another heading in the panel. */
+.bgsub {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 3px 0 0;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.bgsub::before,
+.bgsub::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
 /* ---------------------------- Image uploader ---------------------------- */
 
 .sdrop {
@@ -2352,6 +2375,20 @@ body::before {
   overflow: hidden;
 }
 
+/* The drifting blobs' own colours.
+
+   They default to the accent trio, so picking an accent still retints the
+   background the way it always has. A coloured gradient preset overrides
+   them, because otherwise the blobs win: choosing "Aurora" gave a crimson
+   page with a teal base barely visible underneath, which made the preset
+   pointless. Written from GRADIENTS[id].fx in src/settings.js, and removed
+   again for the neutral presets so they fall back to these. */
+:root {
+  --fx-a: var(--accent);
+  --fx-b: var(--accent-deep);
+  --fx-c: var(--accent-hot);
+}
+
 .fx i {
   position: absolute;
   display: block;
@@ -2368,7 +2405,7 @@ body::before {
   height: 70%;
   background: radial-gradient(
     circle at 50% 50%,
-    color-mix(in srgb, var(--accent) var(--fx-1), transparent),
+    color-mix(in srgb, var(--fx-a) var(--fx-1), transparent),
     transparent 68%
   );
   animation: slosh-a 8s ease-in-out infinite alternate;
@@ -2381,7 +2418,7 @@ body::before {
   height: 72%;
   background: radial-gradient(
     circle at 50% 50%,
-    color-mix(in srgb, var(--accent-deep) var(--fx-2), transparent),
+    color-mix(in srgb, var(--fx-b) var(--fx-2), transparent),
     transparent 70%
   );
   animation: slosh-b 11s ease-in-out infinite alternate;
@@ -2394,7 +2431,7 @@ body::before {
   height: 52%;
   background: radial-gradient(
     circle at 50% 50%,
-    color-mix(in srgb, var(--accent-hot) var(--fx-3), transparent),
+    color-mix(in srgb, var(--fx-c) var(--fx-3), transparent),
     transparent 66%
   );
   animation: slosh-c 6.5s ease-in-out infinite alternate;
@@ -2408,7 +2445,7 @@ body::before {
   height: 64%;
   background: radial-gradient(
     circle at 50% 50%,
-    color-mix(in srgb, var(--accent) var(--fx-4), transparent),
+    color-mix(in srgb, var(--fx-a) var(--fx-4), transparent),
     transparent 68%
   );
   animation: slosh-d 9.5s ease-in-out infinite alternate;
@@ -2422,7 +2459,7 @@ body::before {
   height: 66%;
   background: radial-gradient(
     circle at 50% 50%,
-    color-mix(in srgb, var(--accent-deep) var(--fx-5), transparent),
+    color-mix(in srgb, var(--fx-b) var(--fx-5), transparent),
     transparent 70%
   );
   animation: slosh-e 7.5s ease-in-out infinite alternate;

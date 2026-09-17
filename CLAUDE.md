@@ -776,8 +776,61 @@ picker and only commits once an image exists, and `useSettings` also
 downgrades that state to `gradient` in case it is reached from a saved
 setting.
 
-Backgrounds are picked from **tiles, not swatches**. Eight gradients in 28px
-squares all looked like the same dark square.
+Backgrounds are picked from **tiles, not swatches**. Thirty gradients in 28px
+squares all looked like the same dark or light square.
+
+### The gradient presets
+
+**30 gradients, 18 dark and 12 light.** The first six of each are the neutral
+ones the site started with; the rest are coloured, which is what the set was
+missing when every option was either near black or near white.
+
+Three things are true of every preset, and a new one has to keep all three.
+
+**`css` holds gradient layers only and `base` is the flat colour.** Never end
+`css` in a bare colour. See the trap above.
+
+**`tone` says which mode it belongs to, and it is enforced, not decorative.**
+The text colour comes from the mode, so a preset is only readable under the
+one it claims. Picking from the other group switches the mode with it.
+
+**`fx` is the colour of the drifting blobs**, a trio of drift, deep and
+bright. Without it the blobs stay on the accent and swamp the base, so
+choosing "Aurora" gave a crimson page with teal barely visible underneath and
+the preset was pointless. The eight neutral presets deliberately have no
+`fx`: clearing those properties puts the blobs back on the accent, which is
+what keeps "picking an accent retints the background" true for the defaults.
+So a coloured preset is a two colour scheme, its own background plus the
+accent still driving buttons, art and the category icons.
+
+**Readability is checked, not eyeballed:**
+
+```
+npm.cmd run check:presets
+```
+
+`scripts/check-gradients.mjs` pulls every hex out of every preset, gradients
+and solids both, and measures WCAG contrast against the text colour of the
+mode it claims: #f5f5f7 for dark, #121216 for light. Nothing may fall below
+4.5:1, and it also reports when a preset's colours suit the opposite tone to
+the one declared. Currently all 36 pass, the worst being Peacock at 12.29:1.
+Run it after touching any palette; it exits non zero so it can gate a build.
+
+Every stop is checked rather than an average, because the layers fade to
+transparent over the base and the real background sits somewhere between. If
+the brightest stop in a dark preset clears the bar, everything mixed from it
+does too.
+
+Verified in the browser as well as on paper: all 30 clicked through, every
+one renders its layers rather than computing to `none`, every one lands in
+the right mode, the 22 coloured ones produce 22 distinct blob tints and the 8
+neutral ones fall back to the accent.
+
+**Testing note.** Clicking a preset from the other tone group re-sorts the
+picker, because the current mode's group is rendered first. A test that
+snapshots the tile elements once and then clicks through the array will find
+its later nodes detached and silently click nothing, which looks exactly like
+the presets not applying. Re-query each tile by name before clicking it.
 
 ## Settings sheet
 

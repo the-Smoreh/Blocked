@@ -110,36 +110,63 @@ function Swatches({ value, entries, onChange }) {
   )
 }
 
-// Backgrounds get real tiles rather than swatches. Eight gradients in 28px
-// squares all looked like the same dark square, which is most of why picking
-// one felt like guessing.
-//
-// `theme` is the mode currently on, so an option belonging to the other mode
-// can say that it will switch. Picking one silently is what used to leave
-// near white text on a near white page.
-function BgTiles({ value, entries, onChange, theme, swatch }) {
+// Backgrounds get real tiles rather than swatches. Thirty gradients in 28px
+// squares all looked like the same dark or light square, which is most of why
+// picking one felt like guessing.
+function Tiles({ ids, entries, value, onChange, swatch, theme }) {
   return (
     <div className="bgpick">
-      {Object.entries(entries).map(([id, def]) => (
-        <button
-          key={id}
-          className={id === value ? 'bgtile on' : 'bgtile'}
-          onClick={() => onChange(id)}
-          title={def.label}
-        >
-          <i style={{ background: swatch(def) }} />
-          <b>
-            {def.label}
-            {def.tone !== theme && <small>{def.tone === 'light' ? 'LIGHT' : 'DARK'}</small>}
-          </b>
-          {id === value && (
-            <span className="tick">
-              <Tick />
-            </span>
-          )}
-        </button>
-      ))}
+      {ids.map((id) => {
+        const def = entries[id]
+        return (
+          <button
+            key={id}
+            className={id === value ? 'bgtile on' : 'bgtile'}
+            onClick={() => onChange(id)}
+            title={def.label}
+          >
+            <i style={{ background: swatch(def) }} />
+            <b>
+              {def.label}
+              {def.tone !== theme && <small>{def.tone === 'light' ? 'LIGHT' : 'DARK'}</small>}
+            </b>
+            {id === value && (
+              <span className="tick">
+                <Tick />
+              </span>
+            )}
+          </button>
+        )
+      })}
     </div>
+  )
+}
+
+// Split by which mode each preset belongs to, the current one first.
+//
+// A preset is only readable under the text colour of its own mode, so picking
+// one from the other group switches mode with it. That used to happen
+// silently and left near white text on a near white page. Grouping says it
+// once for the whole set, and each mismatched tile still carries a DARK or
+// LIGHT marker for when the heading has been scrolled past.
+function BgTiles({ value, entries, onChange, theme, swatch }) {
+  const ids = Object.keys(entries)
+  const mine = ids.filter((id) => entries[id].tone === theme)
+  const other = ids.filter((id) => entries[id].tone !== theme)
+  const pass = { entries, value, onChange, swatch, theme }
+
+  if (!mine.length || !other.length) return <Tiles ids={ids} {...pass} />
+
+  const otherTone = entries[other[0]].tone
+
+  return (
+    <>
+      <Tiles ids={mine} {...pass} />
+      <p className="bgsub">
+        <span>These switch to {otherTone} mode</span>
+      </p>
+      <Tiles ids={other} {...pass} />
+    </>
   )
 }
 

@@ -166,7 +166,7 @@ export const SLATES = {
 }
 
 // `css` holds gradient layers only, and `base` is the flat colour behind
-// them.
+// them. `tone` is which mode the option belongs to.
 //
 // They have to be separate. Three of these used to end in a bare colour, as
 // in "radial-gradient(...), radial-gradient(...), #08080a", which is valid in
@@ -177,7 +177,16 @@ export const SLATES = {
 // entire time and only the drifting blobs were showing over a flat body
 // colour. Verified in the browser: the same string is rejected with the
 // trailing colour and accepted without it.
+//
+// Every colour here is checked by `node scripts/check-gradients.mjs`, which
+// measures each one against the text colour of its own mode. Nothing in a
+// dark preset may fall below 4.5:1 against #f5f5f7, and nothing in a light
+// preset below 4.5:1 against #121216. That is what stops a preset looking
+// good in the picker and unreadable on the page, and it is why the dark ones
+// stay deep even when they are strongly coloured.
 export const GRADIENTS = {
+  // --------------------------------------------------- dark, neutral
+
   // The default. Deliberately dark, because five moving blobs are drawn on
   // top of it and a bright base would leave nowhere for them to show.
   slosh: {
@@ -225,6 +234,124 @@ export const GRADIENTS = {
       'radial-gradient(80% 60% at 85% 10%, #1a0a1e 0%, transparent 62%)',
     base: '#08080a',
   },
+
+  // --------------------------------------------------- dark, coloured
+
+  aurora: {
+    fx: ['#0f7a6a', '#0a4a55', '#18b39a'],
+    tone: 'dark',
+    label: 'Aurora',
+    css:
+      'radial-gradient(85% 65% at 10% 0%, #03302a 0%, transparent 60%), ' +
+      'radial-gradient(80% 60% at 92% 8%, #06283b 0%, transparent 62%), ' +
+      'radial-gradient(85% 65% at 88% 100%, #0b1c3a 0%, transparent 62%), ' +
+      'radial-gradient(80% 60% at 6% 94%, #042b25 0%, transparent 60%)',
+    base: '#05100f',
+  },
+  nebula: {
+    fx: ['#7a2ecc', '#4a1080', '#c04ad8'],
+    tone: 'dark',
+    label: 'Nebula',
+    css:
+      'radial-gradient(90% 70% at 14% 4%, #24063f 0%, transparent 62%), ' +
+      'radial-gradient(85% 65% at 90% 10%, #3a0a44 0%, transparent 60%), ' +
+      'radial-gradient(85% 65% at 80% 98%, #120a3c 0%, transparent 62%)',
+    base: '#0a0614',
+  },
+  sunsetcity: {
+    fx: ['#c93a55', '#7a2a12', '#e0703a'],
+    tone: 'dark',
+    label: 'Sunset city',
+    css:
+      'radial-gradient(90% 60% at 8% 0%, #3b0f1c 0%, transparent 60%), ' +
+      'radial-gradient(85% 60% at 96% 6%, #3d1a06 0%, transparent 60%), ' +
+      'radial-gradient(90% 70% at 70% 100%, #1e0730 0%, transparent 62%)',
+    base: '#0c0609',
+  },
+  magma: {
+    fx: ['#d83a12', '#8a1f06', '#ff7a33'],
+    tone: 'dark',
+    label: 'Magma',
+    css:
+      'radial-gradient(95% 65% at 50% 106%, #4a1206 0%, transparent 58%), ' +
+      'radial-gradient(80% 60% at 12% 4%, #2c0a04 0%, transparent 60%)',
+    base: '#0c0504',
+  },
+  cyber: {
+    fx: ['#12b0c9', '#0a5566', '#d040c0'],
+    tone: 'dark',
+    label: 'Cyber',
+    css:
+      'radial-gradient(85% 65% at 6% 4%, #032c3a 0%, transparent 60%), ' +
+      'radial-gradient(85% 65% at 96% 96%, #33063a 0%, transparent 60%)',
+    base: '#05080f',
+  },
+  wine: {
+    fx: ['#a01048', '#5a0a2a', '#d0407a'],
+    tone: 'dark',
+    label: 'Wine',
+    css:
+      'radial-gradient(90% 70% at 20% 0%, #3a0820 0%, transparent 62%), ' +
+      'radial-gradient(85% 65% at 86% 92%, #24062a 0%, transparent 62%)',
+    base: '#0b040b',
+  },
+  pine: {
+    fx: ['#12805a', '#0a4a30', '#2ab07a'],
+    tone: 'dark',
+    label: 'Pine',
+    css:
+      'radial-gradient(90% 70% at 16% 6%, #042b1c 0%, transparent 62%), ' +
+      'radial-gradient(85% 60% at 90% 96%, #062218 0%, transparent 60%)',
+    base: '#050d09',
+  },
+  royal: {
+    fx: ['#2a44c0', '#141f70', '#5a72e0'],
+    tone: 'dark',
+    label: 'Royal',
+    css:
+      'radial-gradient(95% 70% at 50% -8%, #101a52 0%, transparent 60%), ' +
+      'radial-gradient(80% 60% at 10% 98%, #1b1046 0%, transparent 62%)',
+    base: '#07091c',
+  },
+  peacock: {
+    fx: ['#0d8a9c', '#0a4a70', '#20b0c0'],
+    tone: 'dark',
+    label: 'Peacock',
+    css:
+      'radial-gradient(90% 70% at 88% 4%, #033440 0%, transparent 62%), ' +
+      'radial-gradient(85% 65% at 8% 92%, #062246 0%, transparent 62%)',
+    base: '#041016',
+  },
+  copper: {
+    fx: ['#b06a1a', '#6a3a0a', '#e0962a'],
+    tone: 'dark',
+    label: 'Copper',
+    css:
+      'radial-gradient(90% 65% at 14% 0%, #3a1e07 0%, transparent 60%), ' +
+      'radial-gradient(85% 60% at 92% 96%, #2a1206 0%, transparent 60%)',
+    base: '#0c0805',
+  },
+  ultraviolet: {
+    fx: ['#6a2ae0', '#2a1080', '#9a5aff'],
+    tone: 'dark',
+    label: 'Ultraviolet',
+    css:
+      'radial-gradient(100% 75% at 50% 104%, #2a0f66 0%, transparent 58%), ' +
+      'radial-gradient(80% 60% at 14% 2%, #18083e 0%, transparent 62%)',
+    base: '#08051a',
+  },
+  fern: {
+    fx: ['#6a8a1a', '#3a4a0a', '#9ab02a'],
+    tone: 'dark',
+    label: 'Fern',
+    css:
+      'radial-gradient(90% 70% at 50% 0%, #1d2a08 0%, transparent 62%), ' +
+      'radial-gradient(85% 60% at 90% 100%, #10200d 0%, transparent 60%)',
+    base: '#080c06',
+  },
+
+  // --------------------------------------------------- light, neutral
+
   // The light counterpart to slosh. Near white, with faint warm corners for
   // the blobs to move over. A dark base here would fight light mode's text.
   sloshlight: {
@@ -242,6 +369,101 @@ export const GRADIENTS = {
     label: 'Paper',
     css: 'linear-gradient(170deg, #ffffff 0%, #f1f1f4 100%)',
     base: '#f1f1f4',
+  },
+
+  // --------------------------------------------------- light, coloured
+
+  peach: {
+    fx: ['#f08a4a', '#d0603a', '#ffb07a'],
+    tone: 'light',
+    label: 'Peach',
+    css:
+      'radial-gradient(95% 75% at 10% 0%, #ffe3cf 0%, transparent 62%), ' +
+      'radial-gradient(90% 70% at 92% 96%, #ffd8e2 0%, transparent 62%)',
+    base: '#fff6f0',
+  },
+  sorbet: {
+    fx: ['#f06aa0', '#e0a03a', '#8a86f0'],
+    tone: 'light',
+    label: 'Sorbet',
+    css:
+      'radial-gradient(95% 70% at 6% 4%, #ffdfee 0%, transparent 60%), ' +
+      'radial-gradient(90% 70% at 96% 10%, #fff0cf 0%, transparent 62%), ' +
+      'radial-gradient(90% 70% at 70% 100%, #e6e4ff 0%, transparent 62%)',
+    base: '#fff8f4',
+  },
+  sky: {
+    fx: ['#3a8ad0', '#2a6ab0', '#6ab0f0'],
+    tone: 'light',
+    label: 'Sky',
+    css:
+      'radial-gradient(100% 75% at 50% -8%, #d6ebff 0%, transparent 60%), ' +
+      'radial-gradient(85% 65% at 10% 98%, #e4f2ff 0%, transparent 62%)',
+    base: '#f4faff',
+  },
+  mint: {
+    fx: ['#3aa070', '#2a8055', '#6ac090'],
+    tone: 'light',
+    label: 'Mint',
+    css:
+      'radial-gradient(95% 75% at 14% 0%, #d4f2e2 0%, transparent 62%), ' +
+      'radial-gradient(90% 70% at 90% 96%, #e2f7ec 0%, transparent 62%)',
+    base: '#f3fbf7',
+  },
+  lilac: {
+    fx: ['#8a6ad0', '#6a4ab0', '#b096f0'],
+    tone: 'light',
+    label: 'Lilac',
+    css:
+      'radial-gradient(95% 75% at 12% 2%, #e7dcff 0%, transparent 62%), ' +
+      'radial-gradient(90% 70% at 92% 98%, #f3e6ff 0%, transparent 62%)',
+    base: '#f8f5ff',
+  },
+  sand: {
+    fx: ['#c09a4a', '#a07a3a', '#e0c070'],
+    tone: 'light',
+    label: 'Sand',
+    css:
+      'radial-gradient(95% 75% at 50% 0%, #f5e8cf 0%, transparent 62%), ' +
+      'radial-gradient(90% 70% at 90% 100%, #fbf1dd 0%, transparent 62%)',
+    base: '#fbf7ef',
+  },
+  seafoam: {
+    fx: ['#3aa0a0', '#2a8080', '#6ac0c0'],
+    tone: 'light',
+    label: 'Seafoam',
+    css:
+      'radial-gradient(95% 75% at 8% 4%, #d3f0ef 0%, transparent 62%), ' +
+      'radial-gradient(90% 70% at 94% 94%, #dff2ff 0%, transparent 62%)',
+    base: '#f2fbfa',
+  },
+  blossom: {
+    fx: ['#f06a90', '#d04a70', '#ffa0b8'],
+    tone: 'light',
+    label: 'Blossom',
+    css:
+      'radial-gradient(95% 75% at 16% 0%, #ffdde9 0%, transparent 62%), ' +
+      'radial-gradient(90% 70% at 88% 96%, #ffe9f1 0%, transparent 62%)',
+    base: '#fff7fa',
+  },
+  butter: {
+    fx: ['#d0a83a', '#b0882a', '#f0d06a'],
+    tone: 'light',
+    label: 'Butter',
+    css:
+      'radial-gradient(95% 75% at 50% -6%, #fbefc4 0%, transparent 60%), ' +
+      'radial-gradient(85% 65% at 12% 98%, #fdf6dd 0%, transparent 62%)',
+    base: '#fffcf0',
+  },
+  dawn: {
+    fx: ['#e06a90', '#6a8ad0', '#f0a0c0'],
+    tone: 'light',
+    label: 'Dawn',
+    css:
+      'radial-gradient(95% 70% at 6% 0%, #ffdfe8 0%, transparent 60%), ' +
+      'radial-gradient(90% 70% at 96% 8%, #e0e8ff 0%, transparent 62%), ' +
+      'radial-gradient(90% 70% at 60% 100%, #e6f4ff 0%, transparent 62%)',
+    base: '#f8f6fb',
   },
 }
 
@@ -332,6 +554,17 @@ export function useSettings() {
     }
     root.style.setProperty('--bg-gradient', grad.css)
     root.style.setProperty('--bg-gradient-base', grad.base || 'transparent')
+
+    // A coloured preset tints the drifting blobs too. Without this the blobs
+    // stay on the accent and swamp the base, so every preset looked crimson
+    // whatever it was called. The neutral presets carry no `fx`, and clearing
+    // the properties puts them back on the accent, which is what makes
+    // picking an accent still retint the default background.
+    const fx = bgKind === 'gradient' ? grad.fx : null
+    for (const [i, name] of ['--fx-a', '--fx-b', '--fx-c'].entries()) {
+      if (fx) root.style.setProperty(name, fx[i])
+      else root.style.removeProperty(name)
+    }
     root.style.setProperty('--bg-dim', String(settings.bgDim / 100))
     root.style.setProperty('--bg-image', settings.bgImage ? `url("${settings.bgImage}")` : 'none')
   }, [settings])
