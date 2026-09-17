@@ -36,16 +36,14 @@
   --art-l2: 24%;
   --art-s: 70%;
 
-  /* Strength of each background blob, and how the layer over the wall is
-     composited. Light mode overrides all of these: on a near white page
-     soft-light hazes the whole thing pink instead of tinting it. */
-  --fx-1: 62%;
-  --fx-2: 85%;
-  --fx-3: 40%;
-  --fx-4: 52%;
-  --fx-5: 78%;
-  --fx-blend: soft-light;
-  --fx-opacity: 0.85;
+  /* Strength of each background blob. Light mode dials these right down,
+     because the same values that read as ambience on black turn a near white
+     page pink. */
+  --fx-1: 34%;
+  --fx-2: 46%;
+  --fx-3: 20%;
+  --fx-4: 28%;
+  --fx-5: 42%;
   --sheet-shadow: -26px 0 60px -30px rgba(0, 0, 0, 0.75);
   --gate-glow: 0 6px 40px rgba(0, 0, 0, 0.5);
 
@@ -85,16 +83,13 @@
   --art-l2: 32%;
   --art-s: 74%;
 
-  /* Far weaker, and multiply rather than soft-light. Multiply darkens where
-     the blob is, which reads as a tint on white; soft-light just washes it
-     out and drops the contrast of everything underneath. */
-  --fx-1: 20%;
-  --fx-2: 24%;
-  --fx-3: 14%;
-  --fx-4: 18%;
-  --fx-5: 22%;
-  --fx-blend: multiply;
-  --fx-opacity: 0.3;
+  /* Far weaker. On a near white page these same values wash the whole thing
+     pink rather than tinting it. */
+  --fx-1: 14%;
+  --fx-2: 17%;
+  --fx-3: 9%;
+  --fx-4: 12%;
+  --fx-5: 16%;
   --sheet-shadow: -22px 0 50px -34px rgba(30, 20, 24, 0.35);
   --gate-glow: 0 6px 34px rgba(190, 40, 50, 0.16);
   color-scheme: light;
@@ -1386,23 +1381,33 @@ body::before {
   border-radius: calc(var(--radius) - 1px);
 }
 
-/* ---------------------------- Section tones ---------------------------- */
+/* ---------------------------- Category tones ---------------------------- */
 
+/* One colour per category, picked to suit the category rather than spread
+   evenly round the wheel: sand for Sandbox, pitch green for Sports, neon pink
+   for Retro, purple for Horror so it does not fight the site's own red.
+   Racing, Action and Shooter are the three that want to be red, so they take
+   red, orange and rose to stay apart from each other.
+
+   Assigned in src/icons.js. Every category needs its own index: Action and
+   Shooter shared one until Selenite made Action a 130 game category and the
+   collision became obvious. */
 :root {
   --tone-0: #8b93a7;
-  --tone-1: #35c76a;
-  --tone-2: #ff8a3d;
-  --tone-3: #ffd23d;
-  --tone-4: #c23bb0;
-  --tone-5: #00bcd4;
-  --tone-6: #4d8dff;
-  --tone-7: #a06bff;
-  --tone-8: #ff4d4d;
-  --tone-9: #ff6ec7;
-  --tone-10: #b5834f;
-  --tone-11: #ff5722;
-  --tone-12: #26d07c;
-  --tone-13: #00a3ff;
+  --tone-1: #10b981;
+  --tone-2: #f59e0b;
+  --tone-3: #eab308;
+  --tone-4: #a855f7;
+  --tone-5: #06b6d4;
+  --tone-6: #3b82f6;
+  --tone-7: #8b5cf6;
+  --tone-8: #ef4444;
+  --tone-9: #ec4899;
+  --tone-10: #b07a3f;
+  --tone-11: #e11d48;
+  --tone-12: #22c55e;
+  --tone-13: #0ea5e9;
+  --tone-14: #f97316;
 }
 
 .secicon[data-tone="0"], .tag[data-tone="0"], .rail-item[data-tone="0"] { --tone: var(--tone-0); }
@@ -1419,6 +1424,7 @@ body::before {
 .secicon[data-tone="11"], .tag[data-tone="11"], .rail-item[data-tone="11"] { --tone: var(--tone-11); }
 .secicon[data-tone="12"], .tag[data-tone="12"], .rail-item[data-tone="12"] { --tone: var(--tone-12); }
 .secicon[data-tone="13"], .tag[data-tone="13"], .rail-item[data-tone="13"] { --tone: var(--tone-13); }
+.secicon[data-tone="14"], .tag[data-tone="14"], .rail-item[data-tone="14"] { --tone: var(--tone-14); }
 
 .secicon {
   display: grid;
@@ -1435,20 +1441,25 @@ body::before {
   background: color-mix(in srgb, var(--tone, transparent) 16%, transparent);
 }
 
-:root[data-tint="on"] .card:hover .tag {
+/* The icons themselves are what gets coloured.
+   An earlier version put a coloured dot at the end of each rail row instead
+   and left the icon grey, which was not the point. */
+:root[data-tint="on"] .rail-item .icon {
+  color: var(--tone, var(--muted));
+}
+
+/* The active row keeps the accent for its label and bar, but its icon stays
+   on its own category colour so the coding is never interrupted. */
+:root[data-tint="on"] .rail-item.on .icon {
   color: var(--tone, var(--accent));
 }
 
-/* The rail is where colour coding helps most, since every row is a category.
-   A dot rather than a tinted icon, so the active red bar stays readable. */
-:root[data-tint="on"] .rail-item::after {
-  content: "";
-  flex: 0 0 auto;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--tone, transparent);
-  opacity: 0.85;
+:root[data-tint="on"] .tag .icon {
+  color: var(--tone, var(--muted));
+}
+
+:root[data-tint="on"] .card:hover .tag {
+  color: var(--tone, var(--accent));
 }
 
 /* ---------------------------- Idle shimmer ---------------------------- */
@@ -2570,29 +2581,6 @@ body::before {
 
 :root[data-bg="gradient"] .bgfx {
   display: block;
-}
-
-/* Over the wall rather than behind it. z-index 12 puts it above the cards,
-   which sit at 3, and below the header at 30, so the chrome stays crisp
-   while the grid gets the movement. */
-.bgfx-over {
-  position: fixed;
-  inset: 0;
-  z-index: 12;
-  pointer-events: none;
-  overflow: hidden;
-  display: none;
-  mix-blend-mode: var(--fx-blend);
-  opacity: var(--fx-opacity);
-}
-
-:root[data-bg="gradient"] .bgfx-over {
-  display: block;
-}
-
-/* Over an uploaded photo this would fight the photo, so it stays off. */
-:root[data-bg="image"] .bgfx-over {
-  display: none;
 }
 
 /* Turned off by the animation setting, and by the OS reduced motion setting

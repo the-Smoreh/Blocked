@@ -61,13 +61,15 @@ const CATEGORY_TONE = {
   Shooter: 11,
   Sports: 12,
   Strategy: 13,
-  Action: 11,
+  Action: 14,
+  // Aliases for category names other sources use.
   Driving: 8,
   Car: 8,
   Shooting: 11,
+  Fighting: 14,
 }
 
-const TONE_COUNT = 14
+const TONE_COUNT = 15
 
 export function categoryTone(category) {
   if (CATEGORY_TONE[category] !== undefined) return CATEGORY_TONE[category]

@@ -224,6 +224,24 @@ Soft-light on a near white page hazes everything pink and flattens the
 contrast of whatever is underneath, whereas multiply darkens where the blob is
 and reads as a tint.
 
+## Category colours
+
+One colour per category, in `--tone-0` through `--tone-14`, assigned in
+`CATEGORY_TONE` in `src/icons.js`. They are picked to suit the category rather
+than spread evenly round the wheel: sand for Sandbox, pitch green for Sports,
+neon pink for Retro, purple for Horror so it does not fight the site's own red.
+Racing, Action and Shooter all want to be red, so they take red, orange and
+rose to stay apart.
+
+**Every category needs its own index.** Action and Shooter shared tone 11 until
+Selenite made Action a 130 game category and the collision became obvious.
+
+The **icons themselves** are what gets coloured, gated on `data-tint="on"`:
+`.rail-item .icon`, `.secicon`, and `.tag .icon`. An earlier version put a
+coloured dot at the end of each rail row and left the icon grey, which was not
+what was asked for. The active rail row keeps the accent for its label and bar
+but its icon stays on its category colour, so the coding is never interrupted.
+
 **Light mode separates surfaces with elevation, dark mode with borders.** A
 1px border works on black because it is lighter than the ground; on near white
 the same border is nearly invisible and the wall reads as flat. So light mode
@@ -551,17 +569,20 @@ Measured displacement is 7 to 71 px per second depending on where each blob is
 in its eased curve. The durations were 23s, 31s and 19s before, which read as
 static.
 
-The blobs are rendered **twice**, in `Gate.jsx` so they exist on every route:
+The blobs render once, in `Gate.jsx` so they exist on every route, as
+`.bgfx` at `z-index: -1` behind everything.
 
-- `.bgfx`, `z-index: -1`, behind everything.
-- `.bgfx-over`, `z-index: 12`, above the cards (which sit at 3) and below the
-  header (30), on `mix-blend-mode: soft-light`.
+**There used to be a second copy over the wall** at `z-index: 12` on
+soft-light, added because a dense grid covers the layer behind. It was removed:
+it tinted the real cover art, and because the header sits at 30 and the
+settings sheet at 41, those two stayed neutral while the rail, cards, card
+title bars and hero were all red washed. The page visibly split into tinted and
+untinted zones. Selenite arriving with a cover for nearly every game settled
+it, since recolouring real artwork to show off a background is the wrong trade.
+Do not reintroduce it.
 
-The second layer is the point. On a 633 card wall the layer behind is almost
-entirely covered, so the movement was invisible exactly where the user looks.
-Soft-light over the grid tints it without washing out the game art, and the
-chrome stays crisp because the header and rail are above it. It is disabled
-when the background is an uploaded image, where it would fight the photo.
+With that layer gone the blobs no longer have to fight a wall of cards to be
+seen, so their strengths went back down to ambience.
 
 The rail is translucent with a backdrop blur for the same reason: it is a tall
 opaque column sitting where the first blob drifts. It goes solid over an

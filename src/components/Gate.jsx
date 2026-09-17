@@ -131,15 +131,6 @@ export default function Gate({ children }) {
         <Fx />
       </div>
 
-      {/* The same blobs again, over the wall instead of behind it. On a dense
-          grid the layer behind is almost entirely covered by cards, so the
-          movement was invisible where it mattered. This sits above the cards
-          and below the header on soft-light, which tints the wall without
-          washing out the game art. */}
-      <div className="bgfx-over" aria-hidden="true">
-        <Fx />
-      </div>
-
       {/* While the gate is up this scales and dims, so the site arrives
           rather than simply being uncovered. The inline style and the class
           are both dropped on entry, because a transform or a filter here

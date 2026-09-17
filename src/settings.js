@@ -158,10 +158,10 @@ export const GRADIENTS = {
     // bottom right, which put the still base on the same diagonal as the
     // moving blobs and left the other two corners permanently black.
     css:
-      'radial-gradient(95% 75% at 12% 0%, #23090b 0%, transparent 60%), ' +
-      'radial-gradient(90% 70% at 88% 4%, #1e0810 0%, transparent 60%), ' +
-      'radial-gradient(95% 75% at 90% 100%, #1c070f 0%, transparent 60%), ' +
-      'radial-gradient(90% 70% at 8% 96%, #210a0c 0%, transparent 60%), ' +
+      'radial-gradient(85% 65% at 12% 0%, #180608 0%, transparent 62%), ' +
+      'radial-gradient(80% 60% at 88% 4%, #14060b 0%, transparent 62%), ' +
+      'radial-gradient(85% 65% at 90% 100%, #13050a 0%, transparent 62%), ' +
+      'radial-gradient(80% 60% at 8% 96%, #160708 0%, transparent 62%), ' +
       '#08080a',
   },
   emberfade: { label: 'Ember fade', css: 'linear-gradient(160deg, #1a0708 0%, #08080a 55%)' },
