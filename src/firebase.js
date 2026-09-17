@@ -14,12 +14,12 @@
 // firebaseConfig block.
 
 export const CONFIG = {
-  apiKey: 'PASTE_YOUR_API_KEY',
-  authDomain: 'PASTE.firebaseapp.com',
-  projectId: 'PASTE_PROJECT_ID',
-  storageBucket: 'PASTE.firebasestorage.app',
-  messagingSenderId: 'PASTE_SENDER_ID',
-  appId: 'PASTE_APP_ID',
+  apiKey: 'AIzaSyAgFRq9Ksgbp1w258lkcrK4QNiMPLQMm4E',
+  authDomain: 'blocked-ec701.firebaseapp.com',
+  projectId: 'blocked-ec701',
+  storageBucket: 'blocked-ec701.firebasestorage.app',
+  messagingSenderId: '108281396683',
+  appId: '1:108281396683:web:287f6a271678fa32278a4e',
 }
 
 // Whether the block above has actually been filled in. Until it is, the chat
