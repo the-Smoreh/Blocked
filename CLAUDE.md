@@ -253,6 +253,21 @@ Two traps when adding a glyph:
 - The old Strategy glyph was a cup, which read as a trophy and so as Sports.
   It is a flag now.
 
+**The selected category's icon animates.** Two animations run in sequence on
+the same element: `icon-pop` the moment the row becomes active, then an idle
+loop chosen to suit that glyph, keyed off the `data-tone` the row already
+carries. The car pulls away and back, the joystick rocks, the ghost drifts, the
+ball spins, the flag waves, the bolt flickers, the crosshair locks on.
+
+No JS is involved. React swaps the className on the existing node rather than
+replacing it, so the pop plays simply because the rule newly matches.
+
+`.rail-item .icon` sets `transform-origin: 50% 60%`, without which the
+joystick tilts and the flag waves around the top left corner of the viewBox.
+Only the one selected row animates, and only transforms, so it stays a single
+compositor animation however long the category list gets. The global reduced
+motion block already neutralises all of it.
+
 The **icons themselves** are what gets coloured, gated on `data-tint="on"`:
 `.rail-item .icon`, `.secicon`, and `.tag .icon`. An earlier version put a
 coloured dot at the end of each rail row and left the icon grey, which was not
