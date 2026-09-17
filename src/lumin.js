@@ -134,7 +134,12 @@ export async function fetchCatalogue() {
       CALL_TIMEOUT,
       'Loading books',
     )
-    const rows = Array.isArray(res?.books) ? res.books : []
+    // `games`, not `books`. This is Lumin's response, so the property is
+    // theirs to name. The books rename reached in here once and turned it
+    // into `res.books`, which is always undefined, so every page came back
+    // empty and the room reported the library as unreachable rather than as
+    // returning nothing. Their api names stay their api names.
+    const rows = Array.isArray(res?.games) ? res.games : []
     if (!rows.length) break
 
     all.push(...rows.filter((g) => g && g.id && g.name).map(toEntry))

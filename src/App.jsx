@@ -87,7 +87,15 @@ export default function App() {
     if (LUMIN_WORTH_IT.has(settings.library)) loadLuminDonors()
   }, [books, settings.library, settings.borrowCovers])
 
-  const playing = route.startsWith('book/') ? route.slice('book/'.length) : null
+  // `game/` is still accepted. The route was renamed, and a url is a promise
+  // to whoever saved it: every link shared or bookmarked before the rename
+  // points at `#/game/<slug>` and would otherwise land on the wall with no
+  // explanation. New links are written as `book/`; this only reads.
+  const playing = route.startsWith('book/')
+    ? route.slice('book/'.length)
+    : route.startsWith('game/')
+      ? route.slice('game/'.length)
+      : null
 
   useIdleShimmer(settings.idleShimmer && !playing)
 

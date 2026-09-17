@@ -21,8 +21,14 @@ deliberately still here:
   repo. Renaming any of them 404s real content.
 - **Third party titles.** 51 of them, including "There Is No Game" and
   "Conway's Game Of Life". They are other people's work and keep their names.
-- **External api names.** Lumin's `getGames` and `getGameUrl`, and the
-  browser's `gamepad`. Renaming these stops the library and the controllers.
+- **External api names and the fields they return.** Lumin's `getGames` and
+  `getGameUrl`, the `res.games` array those return, and the browser's
+  `gamepad`. This is the one that actually got through: the rename turned
+  `res.games` into `res.books`, which is always undefined, so every page of
+  the catalogue came back empty and the app reported the library as
+  unreachable. It looked exactly like their service being down, and was
+  misdiagnosed as that for a while. **A property on someone else's response
+  is their name, not ours.**
 - **Match keywords.** `FILLER` in `share-icons.mjs` and `src/borrow.js` strips
   `game|games|gaming` out of a **third party** title before comparing it, and
   `categorize.js` matches `'gameboy'` and `'gamecube'` against real titles.
@@ -34,6 +40,11 @@ passes. Four of those were caught only because every url and title was
 compared against the previous commit afterwards. If you rename anything else
 here, do the same check: `git show HEAD:<file>` and diff the values, not the
 file.
+
+**`#/game/<slug>` still resolves.** The route is written as `book/` now, but
+a url is a promise to whoever saved it, so `App` reads either prefix. Links
+shared before the rename keep working instead of landing on the wall with no
+explanation.
 
 Git history before that commit still says games throughout. Vite + React 19, no backend, no router library. The whole thing
 builds to static files.
