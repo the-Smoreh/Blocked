@@ -4,7 +4,7 @@ import { categoryFor } from './categorize.js'
 
 // Client for the Lumin SDK in headless mode.
 //
-// Headless means the SDK renders nothing and only provides data plus the game
+// Headless means the SDK renders nothing and only provides data plus the book
 // player, so its catalogue can go through our own cards, hero, search,
 // categories, favourites and settings like any other library. That is the
 // whole point of using it this way rather than letting it draw its own grid.
@@ -33,7 +33,7 @@ const CALL_TIMEOUT = 20000
 const PAGE_SIZE = 200
 // A guard, not a target. Stops a service that keeps reporting more pages from
 // looping until the tab dies.
-const MAX_GAMES = 4000
+const MAX_BOOKS = 4000
 
 function withTimeout(promise, ms, label) {
   return Promise.race([
@@ -97,24 +97,24 @@ export function loadSdk() {
   return loader
 }
 
-// Maps one of their game objects onto the shape the rest of the app uses.
-// `url` and `game_image_icon` stay empty on purpose: both have to be resolved
-// per use, the image because it is a token rather than a url, and the game
+// Maps one of their book objects onto the shape the rest of the app uses.
+// `url` and `book_image_icon` stay empty on purpose: both have to be resolved
+// per use, the image because it is a token rather than a url, and the book
 // because its url carries a single use token.
-function toEntry(game) {
+function toEntry(book) {
   return {
-    title: String(game.name ?? '').trim() || 'Untitled',
+    title: String(book.name ?? '').trim() || 'Untitled',
     description: '',
-    game_image_icon: '',
+    book_image_icon: '',
     // Their objects carry only id, name and image_token, with no category,
     // and getCategories() comes back empty. So the category is derived from
     // the title using the same rules the json libraries are built with.
-    category: game.category || categoryFor({ title: game.name, tags: game.tags }),
-    tags: Array.isArray(game.tags) ? game.tags : [],
+    category: book.category || categoryFor({ title: book.name, tags: book.tags }),
+    tags: Array.isArray(book.tags) ? book.tags : [],
     featured: false,
     url: '',
-    luminId: game.id,
-    imageToken: game.image_token,
+    luminId: book.id,
+    imageToken: book.image_token,
     source: 'lumin',
   }
 }
@@ -132,17 +132,17 @@ export async function fetchCatalogue() {
     const res = await withTimeout(
       sdk.getGames({ page, limit: PAGE_SIZE }),
       CALL_TIMEOUT,
-      'Loading games',
+      'Loading books',
     )
-    const rows = Array.isArray(res?.games) ? res.games : []
+    const rows = Array.isArray(res?.books) ? res.books : []
     if (!rows.length) break
 
     all.push(...rows.filter((g) => g && g.id && g.name).map(toEntry))
     pages = Number(res.pages) || 1
     page += 1
-  } while (page <= pages && all.length < MAX_GAMES)
+  } while (page <= pages && all.length < MAX_BOOKS)
 
-  if (!all.length) throw new Error('The library returned no games')
+  if (!all.length) throw new Error('The library returned no books')
   return withUniqueSlugs(all)
 }
 
@@ -170,9 +170,9 @@ export async function resolveImage(token) {
 
 // Must be called fresh every launch: their url carries a single use token, so
 // a cached one will not play a second time.
-export async function freshGameUrl(id) {
+export async function freshBookUrl(id) {
   const sdk = await loadSdk()
-  const res = await withTimeout(sdk.getGameUrl(id), CALL_TIMEOUT, 'Starting game')
+  const res = await withTimeout(sdk.getGameUrl(id), CALL_TIMEOUT, 'Starting book')
   if (!res?.url) throw new Error('No playable url came back')
   return res.url
 }
@@ -183,7 +183,7 @@ export async function fetchCategories() {
     const res = await withTimeout(sdk.getCategories(), CALL_TIMEOUT, 'Loading categories')
     return Array.isArray(res?.categories) ? res.categories : []
   } catch {
-    // The categories in the rail are derived from the games themselves
+    // The categories in the rail are derived from the books themselves
     // anyway, so this is a nicety rather than a requirement.
     return []
   }
@@ -197,7 +197,7 @@ export async function fetchCategories() {
 // starts the fetch, the cleanup flips its `cancelled` flag, and the second run
 // has nothing left to attach to. An earlier version guarded the second run
 // with a ref, which meant the only request in flight was one whose result was
-// already being discarded, so neither the games nor the error ever arrived and
+// already being discarded, so neither the books nor the error ever arrived and
 // the grid sat on its skeletons forever. Sharing the promise lets the second
 // run attach fresh handlers to the same request.
 let catalogue = null
@@ -217,15 +217,15 @@ export function getCatalogue() {
 
 // Loads the catalogue once per selection of the Lumin library.
 export function useLuminCatalogue(enabled) {
-  const [state, setState] = useState({ games: null, error: null })
+  const [state, setState] = useState({ books: null, error: null })
 
   useEffect(() => {
     if (!enabled) return
 
     let cancelled = false
     getCatalogue()
-      .then((games) => !cancelled && setState({ games, error: null }))
-      .catch((e) => !cancelled && setState({ games: null, error: e.message }))
+      .then((books) => !cancelled && setState({ books, error: null }))
+      .catch((e) => !cancelled && setState({ books: null, error: e.message }))
 
     return () => {
       cancelled = true

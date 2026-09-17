@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-// Turns "Bendy and the Ink Machine" into "bendy-and-the-ink-machine" so a game
+// Turns "Bendy and the Ink Machine" into "bendy-and-the-ink-machine" so a book
 // gets a stable, shareable URL that does not change if the list is reordered.
 export function slugify(title) {
   return String(title)
@@ -28,7 +28,7 @@ export function navigate(path) {
   window.location.hash = '/' + path
 }
 
-// Slugs are URLs, so they have to be unique. Two games sharing a title would
+// Slugs are URLs, so they have to be unique. Two books sharing a title would
 // otherwise collide as React keys and both resolve to the same page.
 //
 // The suffix has to dodge real titles as well as earlier suffixes. "Fancy
@@ -38,7 +38,7 @@ export function navigate(path) {
 //
 // Shared, so a json library and the Lumin catalogue get identical treatment.
 export function withUniqueSlugs(data) {
-  const bases = data.map((g) => slugify(g.title) || 'game')
+  const bases = data.map((g) => slugify(g.title) || 'book')
   const allBases = new Set(bases)
   const taken = new Set()
 
@@ -56,17 +56,17 @@ export function withUniqueSlugs(data) {
 
 // `file` is a path under public/, so the same hook serves the built in list
 // and every per source library.
-export function useGames({ enabled = true, file = 'games.json' } = {}) {
-  // The loaded file is stored alongside its games, so "this result belongs to
+export function useBooks({ enabled = true, file = 'books.json' } = {}) {
+  // The loaded file is stored alongside its books, so "this result belongs to
   // a library we are no longer showing" is derived during render instead of
   // being cleared by a setState inside the effect.
-  const [loaded, setLoaded] = useState({ file: null, games: null, error: null })
+  const [loaded, setLoaded] = useState({ file: null, books: null, error: null })
 
   useEffect(() => {
     if (!enabled || !file) return
     let cancelled = false
     // no-cache revalidates instead of serving a stale copy. Without it the
-    // browser keeps an old games.json and newly added games never appear
+    // browser keeps an old books.json and newly added books never appear
     // after a deploy, which is silent and very confusing.
     // Prefix the base so the data files are found wherever the site is
     // served from. A bare relative fetch happens to work with hash routing,
@@ -81,18 +81,18 @@ export function useGames({ enabled = true, file = 'games.json' } = {}) {
         if (cancelled) return
 
         const withSlugs = withUniqueSlugs(data)
-        setLoaded({ file, games: withSlugs, error: null })
+        setLoaded({ file, books: withSlugs, error: null })
       })
-      .catch((e) => !cancelled && setLoaded({ file, games: null, error: e.message }))
+      .catch((e) => !cancelled && setLoaded({ file, books: null, error: e.message }))
     return () => {
       cancelled = true
     }
   }, [enabled, file])
 
   // A result for a different file is stale, so report "still loading" rather
-  // than showing the previous library's games under the new library's name.
+  // than showing the previous library's books under the new library's name.
   const fresh = loaded.file === file
-  return { games: fresh ? loaded.games : null, error: fresh ? loaded.error : null }
+  return { books: fresh ? loaded.books : null, error: fresh ? loaded.error : null }
 }
 
 const FAVORITES_KEY = 'blocked:favorites'
@@ -130,7 +130,7 @@ export function useFavorites() {
 const RECENT_KEY = 'blocked:recent'
 const RECENT_MAX = 12
 
-// Recently played is the row every game site opens with, and it is the one
+// Recently played is the row every book site opens with, and it is the one
 // piece of personalisation a static site can honestly offer.
 export function useRecent() {
   const [recent, setRecent] = useState(() => {
@@ -157,26 +157,26 @@ export function useRecent() {
   return { recent, push }
 }
 
-// Badges come from real data only. `featured` in games.json drives HOT, and an
+// Badges come from real data only. `featured` in books.json drives HOT, and an
 // optional ISO `added` date inside the last two weeks drives NEW. Nothing here
 // is invented from a hash, because a fake "HOT" on every card is noise.
 const NEW_DAYS = 14
 
 // One badge, and it says NEW.
 //
-// There used to be a second one reading HOT on featured games. That word is
+// There used to be a second one reading HOT on featured books. That word is
 // gone at the user's request and is not coming back.
 //
-// A featured game is not literally new, so this is a highlight marker more
+// A featured book is not literally new, so this is a highlight marker more
 // than a date: no library ships an `added` field, and Selenite's `featured`
 // comes from its own `top` tag, so without folding the two together nothing
 // on the wall would carry a badge at all.
-export function badgeFor(game) {
-  if (game.added) {
-    const age = (Date.now() - new Date(game.added).getTime()) / 86400000
+export function badgeFor(book) {
+  if (book.added) {
+    const age = (Date.now() - new Date(book.added).getTime()) / 86400000
     if (age >= 0 && age <= NEW_DAYS) return 'new'
   }
-  return game.featured ? 'new' : null
+  return book.featured ? 'new' : null
 }
 
 // Respects the OS setting. Used to skip the staggered entry animation, which

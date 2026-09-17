@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import GameCard from './GameCard.jsx'
+import BookCard from './BookCard.jsx'
 import Icon from './Icon.jsx'
 
-// A horizontal shelf with paging arrows, the shape every big game site uses
+// A horizontal shelf with paging arrows, the shape every big book site uses
 // for "recently played" and "featured". Arrows hide when there is nothing
 // further to scroll to, so they never sit there dead.
-export default function Row({ title, icon, tone, games, favorites, onFavorite }) {
+export default function Row({ title, icon, tone, books, favorites, onFavorite }) {
   const trackRef = useRef(null)
   const [edge, setEdge] = useState({ start: true, end: false })
 
@@ -23,7 +23,7 @@ export default function Row({ title, icon, tone, games, favorites, onFavorite })
     const ro = new ResizeObserver(measure)
     ro.observe(el)
     return () => ro.disconnect()
-  }, [games])
+  }, [books])
 
   const page = (dir) => {
     const el = trackRef.current
@@ -31,7 +31,7 @@ export default function Row({ title, icon, tone, games, favorites, onFavorite })
     el.scrollBy({ left: dir * Math.round(el.clientWidth * 0.8), behavior: 'smooth' })
   }
 
-  if (!games.length) return null
+  if (!books.length) return null
 
   return (
     <section className="shelf">
@@ -54,10 +54,10 @@ export default function Row({ title, icon, tone, games, favorites, onFavorite })
       </h2>
 
       <div className="track" ref={trackRef} onScroll={measure}>
-        {games.map((g, i) => (
-          <GameCard
+        {books.map((g, i) => (
+          <BookCard
             key={g.slug}
-            game={g}
+            book={g}
             index={i}
             isFavorite={favorites.has(g.slug)}
             onFavorite={onFavorite}

@@ -15,50 +15,50 @@
     {
       "name": "Seraph",
       "credit": "https://github.com/a456pur/seraph",
-      "games": 494,
+      "books": 494,
       "reason": "No working public host. a456pur.github.io/seraph/ fails DNS repeatedly and the custom domain seraph.reveriestudios.online has no DNS record."
     },
     {
       "name": "UGS-Assets",
       "credit": "https://github.com/bubbls/UGS-Assets",
-      "games": 384,
+      "books": 384,
       "reason": "No GitHub Pages (404) and its intended delivery is jsDelivr, which serves HTML as text/plain so a browser will not render it in a frame."
     },
     {
       "name": "Ruby",
       "credit": "https://github.com/ruby-network/ruby",
-      "games": 68,
+      "books": 68,
       "reason": "Site returns HTTP 523 and sends X-Frame-Options SAMEORIGIN, so it refuses framing even when up. Its asset repo ruby-network/ruby-assets is 404."
     },
     {
       "name": "Dropbox folder",
       "credit": "dropbox.com shared folder",
-      "games": null,
-      "reason": "Dropbox does not serve shared HTML as a rendered page, so a game cannot run in a frame from it. Re-host the contents to use them."
+      "books": null,
+      "reason": "Dropbox does not serve shared HTML as a rendered page, so a book cannot run in a frame from it. Re-host the contents to use them."
     },
     {
       "name": "PeteZah",
       "credit": "https://github.com/PeteZah-Games/PeteZahStatic",
-      "games": 156,
-      "reason": "Every path on petezahgames.com redirects to /verify?reason=activity, a bot check, and their Pages domain redirects there too. A framed game would show the check, not the game. Working around it is not on the table."
+      "books": 156,
+      "reason": "Every path on petezahgames.com redirects to /verify?reason=activity, a bot check, and their Pages domain redirects there too. A framed book would show the check, not the book. Working around it is not on the table."
     },
     {
       "name": "PLEXILEARCADE",
       "credit": "https://github.com/knwzero/PLEXILEARCADE",
-      "games": 248,
-      "reason": "No GitHub Pages (404) and plexilearcade.net no longer resolves, so its 248 games have nowhere to be served from."
+      "books": 248,
+      "reason": "No GitHub Pages (404) and plexilearcade.net no longer resolves, so its 248 books have nowhere to be served from."
     },
     {
       "name": "julianlockibarra-cat/games",
       "credit": "https://github.com/julianlockibarra-cat/games",
-      "games": null,
-      "reason": "GitHub Pages is not enabled and there is no other host, so UNITY GAMES, FLASH GAMES and the third folder cannot be served."
+      "books": null,
+      "reason": "GitHub Pages is not enabled and there is no other host, so UNITY BOOKS, FLASH BOOKS and the third folder cannot be served."
     },
     {
       "name": "schplay",
       "credit": "https://github.com/paralzyed/schplay.github.io",
-      "games": 0,
-      "reason": "The repo is empty apart from site pages (allgames, blog, flash, fps). It holds no game files, so there is nothing to index."
+      "books": 0,
+      "reason": "The repo is empty apart from site pages (allgames, blog, flash, fps). It holds no book files, so there is nothing to index."
     }
   ]
 }

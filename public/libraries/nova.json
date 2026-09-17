@@ -2,7 +2,7 @@
   {
     "title": "15 Puzzle",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -13,7 +13,7 @@
   {
     "title": "2048",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/2048/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/2048/icon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -25,7 +25,7 @@
   {
     "title": "8 Ball Pool",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Sports",
     "tags": [],
     "featured": false,
@@ -36,7 +36,7 @@
   {
     "title": "A Dark Room",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/adarkroom/favicon.ico",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/adarkroom/favicon.ico",
     "category": "Horror",
     "tags": [],
     "featured": false,
@@ -48,7 +48,7 @@
   {
     "title": "Abandoned 2",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -59,7 +59,7 @@
   {
     "title": "Ages of Conflict",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Sports",
     "tags": [],
     "featured": false,
@@ -70,7 +70,7 @@
   {
     "title": "Aground",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -81,7 +81,7 @@
   {
     "title": "Amidst the Sky",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -92,7 +92,7 @@
   {
     "title": "Another Gentlemans Adventure",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Adventure",
     "tags": [],
     "featured": false,
@@ -103,7 +103,7 @@
   {
     "title": "Asteroids",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -114,7 +114,7 @@
   {
     "title": "Awesome Tanks",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/awesometanks/cover.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/awesometanks/cover.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
@@ -126,7 +126,7 @@
   {
     "title": "Awesome Tanks 2",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Shooter",
     "tags": [],
     "featured": false,
@@ -137,7 +137,7 @@
   {
     "title": "Babel Tower",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -148,7 +148,7 @@
   {
     "title": "Basket Random",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/basketrandom/test.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/basketrandom/test.png",
     "category": "Sports",
     "tags": [],
     "featured": false,
@@ -160,7 +160,7 @@
   {
     "title": "Basketball Stars",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/basketball-stars/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/basketball-stars/icon.png",
     "category": "Sports",
     "tags": [],
     "featured": false,
@@ -172,7 +172,7 @@
   {
     "title": "Bingo Caller",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -183,7 +183,7 @@
   {
     "title": "Bit Life",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/bitlife/bitlife.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/bitlife/bitlife.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -195,7 +195,7 @@
   {
     "title": "Blackjack",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -206,7 +206,7 @@
   {
     "title": "Bottle Flip Challenge",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -217,7 +217,7 @@
   {
     "title": "Boxing Random",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/boxingrandom/512x512.jpg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/boxingrandom/512x512.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
@@ -229,7 +229,7 @@
   {
     "title": "Brawl Stars Project Laser",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Action",
     "tags": [],
     "featured": false,
@@ -240,7 +240,7 @@
   {
     "title": "Breaklock",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -251,7 +251,7 @@
   {
     "title": "Breakout",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Clicker",
     "tags": [],
     "featured": false,
@@ -262,7 +262,7 @@
   {
     "title": "Brick Breaker",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -273,7 +273,7 @@
   {
     "title": "Bubble Pop Adventure",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Adventure",
     "tags": [],
     "featured": false,
@@ -284,7 +284,7 @@
   {
     "title": "Bubble Shooter",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/bub/cover.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/bub/cover.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
@@ -296,7 +296,7 @@
   {
     "title": "Chrome Dino",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/chrome%20dino.png",
+    "book_image_icon": "https://alexx743-games-unblocked.vercel.app/chrome%20dino.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -308,7 +308,7 @@
   {
     "title": "City Builder",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -319,7 +319,7 @@
   {
     "title": "Clicker Heroes",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/clickerheroes/clicker-heroes.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/clickerheroes/clicker-heroes.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
@@ -331,7 +331,7 @@
   {
     "title": "Connect Four Game",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/c4/cover.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/c4/cover.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -343,7 +343,7 @@
   {
     "title": "Conways Game of Life",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/life/logo.jpg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/life/logo.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -355,7 +355,7 @@
   {
     "title": "Cookie Clicker",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/cookieclicker/img%2FperfectCookie.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/cookieclicker/img%2FperfectCookie.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
@@ -367,7 +367,7 @@
   {
     "title": "Core Ball",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -378,7 +378,7 @@
   {
     "title": "Cosmic Defender",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -389,7 +389,7 @@
   {
     "title": "Crossy Road",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/crossyroad/chicken.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/crossyroad/chicken.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -401,7 +401,7 @@
   {
     "title": "Cut the Rope",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/cuttherope/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/cuttherope/icon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -413,7 +413,7 @@
   {
     "title": "Doge Miner",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/dogeminer/img%2Fdogeminer_300x300.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/dogeminer/img%2Fdogeminer_300x300.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
@@ -425,7 +425,7 @@
   {
     "title": "Doodle Jump",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/doodlejump/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/doodlejump/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -437,7 +437,7 @@
   {
     "title": "Drift Boss",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/drift-boss/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/drift-boss/icon.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
@@ -449,7 +449,7 @@
   {
     "title": "Drive Mad",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/drivemad/icons%2Ficon-128.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/drivemad/icons%2Ficon-128.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
@@ -461,7 +461,7 @@
   {
     "title": "Drive Mad S",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/drivemad/icons%2Ficon-128.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/drivemad/icons%2Ficon-128.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
@@ -473,7 +473,7 @@
   {
     "title": "Dune",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -484,7 +484,7 @@
   {
     "title": "Eggy Car",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/eggy%20car.jpg",
+    "book_image_icon": "https://alexx743-games-unblocked.vercel.app/eggy%20car.jpg",
     "category": "Racing",
     "tags": [],
     "featured": false,
@@ -496,7 +496,7 @@
   {
     "title": "Endless Runner",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -507,7 +507,7 @@
   {
     "title": "Evowars",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -518,7 +518,7 @@
   {
     "title": "Family Feud",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -529,7 +529,7 @@
   {
     "title": "Fireboy and Watergirl",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -540,7 +540,7 @@
   {
     "title": "Fireboy and Watergirl 2",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/fireboywatergirl2/Untitled.jpeg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/fireboywatergirl2/Untitled.jpeg",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -552,7 +552,7 @@
   {
     "title": "Fireboy and Watergirl 3",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/fireboywatergirl3/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/fireboywatergirl3/icon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -564,7 +564,7 @@
   {
     "title": "Fireboy and Watergirl 4",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/fireboywatergirl4/300.jpg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/fireboywatergirl4/300.jpg",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -576,7 +576,7 @@
   {
     "title": "Flappy Bird",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/flappybird/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/flappybird/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -588,7 +588,7 @@
   {
     "title": "Frogger",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/frogger/cover.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/frogger/cover.png",
     "category": "Retro",
     "tags": [],
     "featured": false,
@@ -600,7 +600,7 @@
   {
     "title": "Fruit Slicer",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -611,7 +611,7 @@
   {
     "title": "Geometry Vibes",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -622,7 +622,7 @@
   {
     "title": "Geometry Vibes Monster",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -633,7 +633,7 @@
   {
     "title": "Geometry Vibes X Ball",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -644,7 +644,7 @@
   {
     "title": "Getaway Shootout",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/getawayshooter/Untitled.jpeg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/getawayshooter/Untitled.jpeg",
     "category": "Shooter",
     "tags": [],
     "featured": false,
@@ -656,7 +656,7 @@
   {
     "title": "Gons Io",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -667,7 +667,7 @@
   {
     "title": "Gravity Golf",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Sports",
     "tags": [],
     "featured": false,
@@ -678,7 +678,7 @@
   {
     "title": "Gunspin",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Shooter",
     "tags": [],
     "featured": false,
@@ -689,7 +689,7 @@
   {
     "title": "Hand Cricket",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -700,7 +700,7 @@
   {
     "title": "Hangman",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -711,7 +711,7 @@
   {
     "title": "Helix Fall",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -722,7 +722,7 @@
   {
     "title": "Hextris",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/hextris/images%2Ficons%2Fapple-touch-152.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/hextris/images%2Ficons%2Fapple-touch-152.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -734,7 +734,7 @@
   {
     "title": "Idle Breakout",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/idlebreakout/image.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/idlebreakout/image.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
@@ -746,7 +746,7 @@
   {
     "title": "Incremancer",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -757,7 +757,7 @@
   {
     "title": "Jigsaw Game",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -768,7 +768,7 @@
   {
     "title": "Lava Jumper",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -779,7 +779,7 @@
   {
     "title": "Lights Out",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -790,7 +790,7 @@
   {
     "title": "Maptroid",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -801,7 +801,7 @@
   {
     "title": "Mario Game",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -812,7 +812,7 @@
   {
     "title": "Maze Runner",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -823,7 +823,7 @@
   {
     "title": "Memory",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -834,7 +834,7 @@
   {
     "title": "Minesweeper",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/minesweeper/cover.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/minesweeper/cover.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -846,7 +846,7 @@
   {
     "title": "Monkey Mart",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/monkeymart/unnamed.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/monkeymart/unnamed.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -858,7 +858,7 @@
   {
     "title": "Motox3m",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/motox3m/splash.jpg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/motox3m/splash.jpg",
     "category": "Racing",
     "tags": [],
     "featured": false,
@@ -870,7 +870,7 @@
   {
     "title": "N Gon",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/ngon/favicon.ico",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/ngon/favicon.ico",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -882,7 +882,7 @@
   {
     "title": "N Step Steve Part 2",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -893,7 +893,7 @@
   {
     "title": "Neon Arcade",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -904,7 +904,7 @@
   {
     "title": "Neon Orbit",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -915,7 +915,7 @@
   {
     "title": "Ocean Cleaner",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -926,7 +926,7 @@
   {
     "title": "Particle Clicker",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Clicker",
     "tags": [],
     "featured": false,
@@ -937,7 +937,7 @@
   {
     "title": "Pcraft",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Sandbox",
     "tags": [],
     "featured": false,
@@ -948,7 +948,7 @@
   {
     "title": "Pinball Wizard",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Sports",
     "tags": [],
     "featured": false,
@@ -959,7 +959,7 @@
   {
     "title": "Pixel Pirate",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -970,7 +970,7 @@
   {
     "title": "Planet Life",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -981,7 +981,7 @@
   {
     "title": "Plinko Drop",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -992,7 +992,7 @@
   {
     "title": "Pong",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/pong/cover.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/pong/cover.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1004,7 +1004,7 @@
   {
     "title": "Progress Knight Quest",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Adventure",
     "tags": [],
     "featured": false,
@@ -1015,7 +1015,7 @@
   {
     "title": "Progress Knight Reborn",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1026,7 +1026,7 @@
   {
     "title": "Pull of War",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1037,7 +1037,7 @@
   {
     "title": "Reach the Core",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1048,7 +1048,7 @@
   {
     "title": "Reaction Timer",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1059,7 +1059,7 @@
   {
     "title": "Restless Wing Syndrome",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1070,7 +1070,7 @@
   {
     "title": "Retro Bowl",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/retrobowl/img%2Ficon.jpg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/retrobowl/img%2Ficon.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
@@ -1082,7 +1082,7 @@
   {
     "title": "Retro Bowl Old",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/retrobowl/img%2Ficon.jpg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/retrobowl/img%2Ficon.jpg",
     "category": "Sports",
     "tags": [],
     "featured": false,
@@ -1094,7 +1094,7 @@
   {
     "title": "Rift Shift",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1105,7 +1105,7 @@
   {
     "title": "Rock Paper Scissors",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1116,7 +1116,7 @@
   {
     "title": "Rocket League 2d",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Sports",
     "tags": [],
     "featured": false,
@@ -1127,7 +1127,7 @@
   {
     "title": "Rooftop Snipers",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/rooftopsnipers/logo.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/rooftopsnipers/logo.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
@@ -1139,7 +1139,7 @@
   {
     "title": "Rookie Bowman",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1150,7 +1150,7 @@
   {
     "title": "Roulette Wheel",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1161,7 +1161,7 @@
   {
     "title": "Run 3",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/run3/icon.jpeg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/run3/icon.jpeg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -1173,7 +1173,7 @@
   {
     "title": "Run 3 Beta",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -1184,7 +1184,7 @@
   {
     "title": "Sandspiel",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1195,7 +1195,7 @@
   {
     "title": "Scuba Bear",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1206,7 +1206,7 @@
   {
     "title": "Shadow Fight",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Action",
     "tags": [],
     "featured": false,
@@ -1217,7 +1217,7 @@
   {
     "title": "Simon Game",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1228,7 +1228,7 @@
   {
     "title": "Slice Master",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1239,7 +1239,7 @@
   {
     "title": "Sliding Puzzle",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -1250,7 +1250,7 @@
   {
     "title": "Slope",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/slope/slope4.jpeg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/slope/slope4.jpeg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -1262,7 +1262,7 @@
   {
     "title": "Slot Spinner",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1273,7 +1273,7 @@
   {
     "title": "Smart Ball",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1284,7 +1284,7 @@
   {
     "title": "Smash Karts",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/smash%20karts.jpg",
+    "book_image_icon": "https://alexx743-games-unblocked.vercel.app/smash%20karts.jpg",
     "category": "Racing",
     "tags": [],
     "featured": false,
@@ -1296,7 +1296,7 @@
   {
     "title": "Snake",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/snake/snake.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/snake/snake.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1308,7 +1308,7 @@
   {
     "title": "Soccer Random",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/soccerrandom/test.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/soccerrandom/test.png",
     "category": "Sports",
     "tags": [],
     "featured": false,
@@ -1320,7 +1320,7 @@
   {
     "title": "Space Invader",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/spaceinvaders/spaceinvaders.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/spaceinvaders/spaceinvaders.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1332,7 +1332,7 @@
   {
     "title": "Speed Match",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Racing",
     "tags": [],
     "featured": false,
@@ -1343,7 +1343,7 @@
   {
     "title": "Stack Tower",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1354,7 +1354,7 @@
   {
     "title": "Stickman Hook",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/stickman-hook/icon.jpg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/stickman-hook/icon.jpg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -1366,7 +1366,7 @@
   {
     "title": "Subway Surfers Ny",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/subway-surfers-ny/NewYorkIcon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/subway-surfers-ny/NewYorkIcon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1378,7 +1378,7 @@
   {
     "title": "Sudoku",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/sudo/cover.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/sudo/cover.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -1390,7 +1390,7 @@
   {
     "title": "Temple Run 2",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/templerun2/img%2Ficons%2Ficon-128x128.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/templerun2/img%2Ficons%2Ficon-128x128.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -1402,7 +1402,7 @@
   {
     "title": "Tetris",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/tetris/favico.ico",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/tetris/favico.ico",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -1414,7 +1414,7 @@
   {
     "title": "The Final Earth",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1425,7 +1425,7 @@
   {
     "title": "There Is No Game",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/thereisnogame/icon-256.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/thereisnogame/icon-256.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1437,7 +1437,7 @@
   {
     "title": "Tictactoe",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1448,7 +1448,7 @@
   {
     "title": "Time Shooter",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/timeshooter1/logo.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/timeshooter1/logo.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
@@ -1460,7 +1460,7 @@
   {
     "title": "Time Shooter 3",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/timeshooter3/logo.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/timeshooter3/logo.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
@@ -1472,7 +1472,7 @@
   {
     "title": "Tiny Fishing",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/tinyfishing/tiny-fishing.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/tinyfishing/tiny-fishing.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1484,7 +1484,7 @@
   {
     "title": "Tower Defense",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Strategy",
     "tags": [],
     "featured": false,
@@ -1495,7 +1495,7 @@
   {
     "title": "Tower of Hanoi",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Strategy",
     "tags": [],
     "featured": false,
@@ -1506,7 +1506,7 @@
   {
     "title": "Trivia Master",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1517,7 +1517,7 @@
   {
     "title": "Tunnel Rush",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/tunnelrush/tunnel.jpg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/tunnelrush/tunnel.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1529,7 +1529,7 @@
   {
     "title": "Two Ball 3d",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/two/cover.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/two/cover.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1541,7 +1541,7 @@
   {
     "title": "Typing Test",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1552,7 +1552,7 @@
   {
     "title": "Ufo Escape",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1563,7 +1563,7 @@
   {
     "title": "Un Tangle",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1574,7 +1574,7 @@
   {
     "title": "Vex 3",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex3/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/vex3/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -1586,7 +1586,7 @@
   {
     "title": "Vex 4",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex4/vex4.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/vex4/vex4.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -1598,7 +1598,7 @@
   {
     "title": "Vex 5",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex5/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/vex5/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -1610,7 +1610,7 @@
   {
     "title": "Vex 6",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex6/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/vex6/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -1622,7 +1622,7 @@
   {
     "title": "Vex 7",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/vex7/icon.jpeg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/vex7/icon.jpeg",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -1634,7 +1634,7 @@
   {
     "title": "Volley Random",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/volleyrandom/cover.webp",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/volleyrandom/cover.webp",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1646,7 +1646,7 @@
   {
     "title": "Web Osu",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1657,7 +1657,7 @@
   {
     "title": "Whack a Mole",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1668,7 +1668,7 @@
   {
     "title": "Where Is the Water",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1679,7 +1679,7 @@
   {
     "title": "Word Scramble",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -1690,7 +1690,7 @@
   {
     "title": "X Trench Run",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -1701,7 +1701,7 @@
   {
     "title": "Yohoho",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -1712,7 +1712,7 @@
   {
     "title": "Zombie Tapper",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Horror",
     "tags": [],
     "featured": false,

@@ -212,7 +212,7 @@ The chat room used to be on this list. On Firestore it is not: it works from
 any static host, and locally too, as soon as `src/firebase.js` is filled in
 and the rules are published.
 
-Everything else, all 2190 games across the nine other libraries, works
+Everything else, all 2190 books across the nine other libraries, works
 locally and deployed alike.
 
 ## Running it locally

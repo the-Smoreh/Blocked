@@ -1,6 +1,41 @@
 # Blocked
 
-A game site. Vite + React 19, no backend, no router library. The whole thing
+A book site.
+
+## The vocabulary is books, the content is games
+
+Read this before any find and replace.
+
+Everything the site calls a book is, underneath, a browser game hosted by
+somebody else. The renaming on 2026-09-17 changed **our** words only: our ui
+text, our identifiers, our filenames, our route and our one data key. It did
+not touch anything belonging to anyone else, and it must not.
+
+So a `book` has a `url` pointing at `worldshardestgame`, the Retro category
+matches on the keyword `gameboy`, and `BookPlayer` asks for the `gamepad`
+permission. None of that is a leftover. Four categories of "game" are
+deliberately still here:
+
+- **Upstream urls, repos and directories.** 1150 urls contain the word, and
+  `path: 'Games'` in `build-libraries.mjs` is a folder inside someone else's
+  repo. Renaming any of them 404s real content.
+- **Third party titles.** 51 of them, including "There Is No Game" and
+  "Conway's Game Of Life". They are other people's work and keep their names.
+- **External api names.** Lumin's `getGames` and `getGameUrl`, and the
+  browser's `gamepad`. Renaming these stops the library and the controllers.
+- **Match keywords.** `FILLER` in `share-icons.mjs` and `src/borrow.js` strips
+  `game|games|gaming` out of a **third party** title before comparing it, and
+  `categorize.js` matches `'gameboy'` and `'gamecube'` against real titles.
+  Rename these and the matching quietly stops finding anything.
+
+A blind replace across this repo breaks 1252 urls, renames 51 works that are
+not ours, kills the Lumin integration and silently disables two matching
+passes. Four of those were caught only because every url and title was
+compared against the previous commit afterwards. If you rename anything else
+here, do the same check: `git show HEAD:<file>` and diff the values, not the
+file.
+
+Git history before that commit still says games throughout. Vite + React 19, no backend, no router library. The whole thing
 builds to static files.
 
 Scaffolded 2026-09-10. Local git repo, no remote yet.
@@ -29,30 +64,30 @@ is missing from a shell, that shell started before the PATH change.
 ## How it is put together
 
 ```
-public/games.json        all game data, the only file you edit to add games
+public/books.json        all book data, the only file you edit to add books
 src/lib.js               routing, data loading, favorites, recent, badges,
                          idle shimmer
 src/settings.js          every user option, its presets, and the uploader
 src/art.js               generated cover art, hash to hue/pattern/initials
 src/icons.js             svg path data, category icon and tone maps
 src/App.jsx              state, filtering, route switch, layout
-src/components/          Header Sidebar Hero Row GameGrid GameCard
-                         GamePlayer Skeleton Icon Settings LuminLibrary
+src/components/          Header Sidebar Hero Row BookGrid BookCard
+                         BookPlayer Skeleton Icon Settings LuminLibrary
 src/styles.css           one stylesheet, CSS variables at the top
 scripts/categorize.mjs   derive categories from titles
-scripts/checklinks.mjs   check which game urls are alive and embeddable
-scripts/rehost.mjs       bulk repoint game urls from one host to another
+scripts/checklinks.mjs   check which book urls are alive and embeddable
+scripts/rehost.mjs       bulk repoint book urls from one host to another
 ```
 
 `icons.js` holds the path data rather than `Icon.jsx` because a file that
 exports both a component and a constant breaks Vite fast refresh.
 
-**Hash routing** (`#/game/<slug>`), hand-rolled in `src/lib.js`, no
+**Hash routing** (`#/book/<slug>`), hand-rolled in `src/lib.js`, no
 react-router. This keeps every URL a single static file request so the site
 deploys to any host with no rewrite rules. Do not swap in a real router without
 a reason, it would add a hosting requirement.
 
-**Slugs** come from the title, so a game keeps its URL if the list is reordered.
+**Slugs** come from the title, so a book keeps its URL if the list is reordered.
 
 **Categories** in the filter bar are derived from whatever `category` values
 exist in the data. Adding a category needs no code change.
@@ -61,8 +96,8 @@ exist in the data. Adding a category needs no code change.
 blocked site data throw on access.
 
 **One badge, and it reads NEW.** There used to be a second one saying HOT on
-featured games. That word is gone at the user's request and is not coming
-back. A featured game is not literally new, so the badge is a highlight more
+featured books. That word is gone at the user's request and is not coming
+back. A featured book is not literally new, so the badge is a highlight more
 than a date: no library ships an `added` field and Selenite's `featured` comes
 from its own `top` tag, so without folding the two together nothing on the
 wall would carry a badge at all.
@@ -73,25 +108,25 @@ page is planned to collect them instead, and the credit still names the
 source, which is the part that matters. Checked: zero `a[href^="http"]` in
 the rendered page.
 
-**The player bar shows time on the current game**, next to the frame counter.
+**The player bar shows time on the current book**, next to the frame counter.
 Counted from a timestamp rather than by adding a second per tick, because a
 backgrounded tab throttles the interval and a counter trusting its own tick
-count would drift minutes behind. It resets per game, since `App` keys the
+count would drift minutes behind. It resets per book, since `App` keys the
 player by slug.
 
-## Adding games
+## Adding books
 
-One object per game in `public/games.json`:
+One object per book in `public/books.json`:
 
 ```json
 {
   "title": "2048",
   "description": "Slide the tiles, match them.",
-  "game_image_icon": "https://example.com/thumb.png",
+  "book_image_icon": "https://example.com/thumb.png",
   "category": "Puzzle",
   "tags": ["numbers"],
   "featured": false,
-  "url": "https://example.com/game/"
+  "url": "https://example.com/book/"
 }
 ```
 
@@ -99,44 +134,44 @@ This schema matches the user's DeblockedX library exactly, on purpose. That
 library has about 450 curated entries at
 `C:\Users\cciec\DeblockedX\games.json` and can be dropped in unchanged.
 
-`game_image_icon` may be empty. The card falls back to the first letter of the
+`book_image_icon` may be empty. The card falls back to the first letter of the
 title.
 
 ## The real problem: link rot
 
-Games load in an iframe, and hotlinked third-party games break constantly. Two
+Books load in an iframe, and hotlinked third-party books break constantly. Two
 distinct failure modes, both seen already:
 
 1. **Dead host.** `jakesgordon.github.io/javascript-racer` was a GitHub Pages
    site that no longer exists. Removed from the seed list.
 2. **Refuses to be framed.** `gabrielecirulli.github.io/2048` redirects to
    `play2048.co`, which sets a `frame-ancestors` CSP. The iframe gives **no
-   error event** when this happens, which is why `GamePlayer` shows a "New tab"
+   error event** when this happens, which is why `BookPlayer` shows a "New tab"
    hint after five seconds rather than trying to detect it.
 
-The durable fix is **self-hosting** game files under `public/games/`. DeblockedX
+The durable fix is **self-hosting** book files under `public/books/`. DeblockedX
 already does this in its own `games/` folder. Prefer that over adding more
 hotlinks.
 
-### Verifying a game URL
+### Verifying a book URL
 
-The preview browser pane **does** render cross-origin iframes, so loading a game
+The preview browser pane **does** render cross-origin iframes, so loading a book
 in the player and screenshotting it is a valid check. Give it 4 to 6 seconds
 first, since a blank frame early on often just means still loading.
 
-A screenshot may time out with "page did not finish rendering" on a game that
-animates constantly. That is not a failure, it usually means the game is
+A screenshot may time out with "page did not finish rendering" on a book that
+animates constantly. That is not a failure, it usually means the book is
 running. Retry the screenshot on its own.
 
 Do **not** rely on `fetch()` from the app origin. "Failed to fetch" there
 usually means CORS, not a 404, so it proves nothing either way. If a frame stays
-blank, navigate a tab directly to the game URL and read the page text to see
+blank, navigate a tab directly to the book URL and read the page text to see
 whether the host is actually dead.
 
 ## Current state
 
-451 games. **439 of them do not work**, see the section below. Four are
-confirmed playable and carry `"verified": true` in games.json: Clumsy Bird,
+451 books. **439 of them do not work**, see the section below. Four are
+confirmed playable and carry `"verified": true` in books.json: Clumsy Bird,
 Astray, Untrusted and 2048.
 
 ## Hosting
@@ -202,19 +237,19 @@ an underscore.
 
 Verified with one `dist` folder on 2026-09-16: served at `/Blocked/` and at
 `/`, both rendered 633 cards with no console errors, and the deep link
-`/Blocked/#/game/2048-balls` opened the player. Local configs `blocked-pages`
+`/Blocked/#/book/2048-balls` opened the player. Local configs `blocked-pages`
 (port 5175, subpath) and `blocked-root` (5176) reproduce both.
 
-No mixed content: every game url and icon url in every library is `https`,
+No mixed content: every book url and icon url in every library is `https`,
 checked. Pages is HTTPS only, so an `http` url would be blocked outright.
 
 ## The dead host, now resolved
 
-The old built in library's 439 games all pointed at
+The old built in library's 439 books all pointed at
 `mathematics-lessons.eclipsecastellon.com`, which went NXDOMAIN. That library
 has been **replaced by Selenite**, the same site software on `music.lyrica24.top`,
-which serves 914 games with their own covers and verified 914 of 915 live. The
-old `public/games.json` was deleted; it is in git history if ever needed.
+which serves 914 books with their own covers and verified 914 of 915 live. The
+old `public/books.json` was deleted; it is in git history if ever needed.
 
 `scripts/rehost.mjs` still exists for the next time a host moves:
 
@@ -224,7 +259,7 @@ node scripts/rehost.mjs --from <dead> --to <new>      dry run
 node scripts/rehost.mjs --from <dead> --to <new> --write
 ```
 
-A host answering 200 does not prove it serves the same game paths, so spot
+A host answering 200 does not prove it serves the same book paths, so spot
 check in the player afterwards.
 
 `scripts/checklinks.mjs` separates the two distinct failure modes, a dead host
@@ -283,7 +318,7 @@ and reads as a tint.
 
 ## The hero
 
-When the spotlight game has a cover, the panel uses it: a scaled up blurred
+When the spotlight book has a cover, the panel uses it: a scaled up blurred
 copy fills the whole thing, and a crisp copy sits on the right at its own
 aspect ratio. Two copies rather than one stretched image, because these covers
 are small and mostly square, so a single copy across a wide panel is soft and
@@ -321,7 +356,7 @@ Racing, Action and Shooter all want to be red, so they take red, orange and
 rose to stay apart.
 
 **Every category needs its own index.** Action and Shooter shared tone 11 until
-Selenite made Action a 130 game category and the collision became obvious.
+Selenite made Action a 130 book category and the collision became obvious.
 
 **Every category has its own glyph.** There were seven shapes for fifteen
 categories, so Clicker, Horror, IO, Platformer, Retro, Sandbox and Shooter all
@@ -402,7 +437,7 @@ scrim. Those are correct in both themes because the surface underneath is
 always a strong colour.
 
 **The player sits at `z-index: 20`.** The moving overlay is at 12, and without
-this it composited drifting red over the game itself, tinting whatever was
+this it composited drifting red over the book itself, tinting whatever was
 being played. Still below the settings sheet at 41.
 
 **Uploaded backgrounds are resized first.** `prepareBackgroundImage` downscales
@@ -413,10 +448,10 @@ for base64, blows its quota on the first phone photo.
 ## Libraries
 
 Every selectable library is registered in `LIBRARIES` in `src/settings.js`.
-`useGames({ file })` loads whichever one is selected, so adding a library is a
+`useBooks({ file })` loads whichever one is selected, so adding a library is a
 data file plus one entry there.
 
-| id | name | games | source |
+| id | name | books | source |
 |----|------|-------|--------|
 | `selenite` | Selenite | 914 | music.lyrica24.top |
 | `goblin` | Goblin Kingdom | 633 | github.com/goblinkingdev/unblocked-games |
@@ -427,17 +462,17 @@ data file plus one entry there.
 | `gams` | Gams Offline | 59 | github.com/Gams-Offline/Gams |
 | `p0xx` | p0xx | 51 | github.com/p0xx/p0xx.github.io |
 | `astro` | Astro v2 | 24 | github.com/MNblocker/Astro-v2 |
-| `lumin` | Lumin | embed | third party CDN, returns no games, see below |
+| `lumin` | Lumin | embed | third party CDN, returns no books, see below |
 
-**2190 games.** `selenite` is the default: 914 of 915 urls verified live and
+**2190 books.** `selenite` is the default: 914 of 915 urls verified live and
 frameable, and it is the only library that ships its own cover for nearly
-every game.
+every book.
 
 ### Selenite
 
 The replacement for the old built in list, which pointed at
 `mathematics-lessons.eclipsecastellon.com` and went NXDOMAIN. Same site
-software on a live domain, with twice the games, so the old library was deleted
+software on a live domain, with twice the books, so the old library was deleted
 rather than rehosted.
 
 It is the only **catalogue** source: it publishes
@@ -451,23 +486,23 @@ Its rows give `name`, `directory`, `image` and `tags`:
 - cover is `<host>/resources/semag/<directory>/<image>`
 
 **The cover filename has to come from the data.** It is `cover.png` for some
-games but `icon.png`, `logo.jpg`, `splash.png`, `gd.webp` and
+books but `icon.png`, `logo.jpg`, `splash.png`, `gd.webp` and
 `buckshot-roulette.apple-touch-icon.png` for others: png, jpg, jpeg, webp,
 avif, ico, svg and gif all appear. Assuming `cover.png` would miss most of
 them.
 
-**Its categories come from its tags, not from `categorize.mjs`.** Every game is
+**Its categories come from its tags, not from `categorize.mjs`.** Every book is
 tagged, across 42 tags, so `TAG_CATEGORY` in the builder maps them in priority
-order: a game tagged both `horror` and `platformer` is horror first. Do not run
+order: a book tagged both `horror` and `platformer` is horror first. Do not run
 `categorize.mjs` on this library, it would overwrite real tags with keyword
 guesses. The site's own `top` tag becomes `featured`.
 
-Those tags also include content markers, `13+` on 20 games, `gore` on 15 and
+Those tags also include content markers, `13+` on 20 books, `gore` on 15 and
 `18+` on 5. They are preserved in each entry's `tags`, so filtering on them
 later is a data question rather than a re-extraction.
 
 **We link, we never copy.** Every url points at the source's own host, so they
-serve the game and get the traffic, and nothing is mirrored here. That is also
+serve the book and get the traffic, and nothing is mirrored here. That is also
 why a 14GB asset repo was never a problem, and it is the narrow path that
 avoids redistributing anything.
 
@@ -507,16 +542,16 @@ Ocarina, `line` in online, `word` in sword, `run` in Sprunki, `evil` in devil,
 trailing sequel number, including the `3d` form, so `run` matches "Run3d" while
 `car` still refuses "card".
 
-Measured on all 2190 games: 64% land off the Arcade fallback across 14
+Measured on all 2190 books: 64% land off the Arcade fallback across 14
 categories, up from 61%, and every single library improved or held. The 36
-games the strict keywords changed were checked one by one rather than sampled;
+books the strict keywords changed were checked one by one rather than sampled;
 they are corrections like "Ocarina of Time" leaving Racing and "Swords And
 Sandals" leaving Puzzle.
 
 **Selenite is excluded.** Its categories come from its own 42 real tags, so
 running the script over it would overwrite facts with guesses.
 
-Adding a keyword is the normal way to fix a game. Reach for `STRICT` only when
+Adding a keyword is the normal way to fix a book. Reach for `STRICT` only when
 a real word contains the keyword, and write down which word.
 
 ### Borrowing covers at runtime
@@ -536,7 +571,7 @@ own cover has had a chance.
 
 Same matching rules as the build script, minus the fuzzy pass. Edit distance
 is fine at build time because a person reads the printed list afterwards;
-doing it in the browser would be guessing at a game's identity with nobody
+doing it in the browser would be guessing at a book's identity with nobody
 checking.
 
 **Lumin is only pulled in as a donor pool for Selenite.** Fetching it means
@@ -549,7 +584,7 @@ its ids are namespaced `selenite/`. `LUMIN_WORTH_IT` in `App.jsx` holds that
 list. The other libraries borrow from our own static files only.
 
 The 26 Selenite blanks that stay blank are genuinely not in Lumin: Contra,
-Chrono Trigger, Comix Zone, the Donkey Kong Country games. Emulator titles.
+Chrono Trigger, Comix Zone, the Donkey Kong Country books. Emulator titles.
 
 Turned off with "Borrow missing covers" in the Library tab.
 
@@ -575,9 +610,9 @@ Only Alexx743 ships thumbnails, 58 of them. Every other repo was checked for an
 image folder and has none: nova's `imgs` holds three site icons, goblin's
 `cache/upload/thumb` holds one placeholder, hell has no images directory.
 
-`share-icons.mjs` closes part of that gap. The same games recur across
-collections, so a game with no icon borrows from a same-named game that has
-one. 89 games picked up real art this way. Two rules keep it honest:
+`share-icons.mjs` closes part of that gap. The same books recur across
+collections, so a book with no icon borrows from a same-named book that has
+one. 89 books picked up real art this way. Two rules keep it honest:
 
 - **A donor must be an original icon, never a borrowed one.** Borrowed entries
   are stamped `icon_from`, and those are excluded as donors. Without that, a
@@ -591,19 +626,19 @@ Matching runs in four passes, loosest last, on the title reduced to
 `[a-z0-9]`:
 
 1. **exact.** "1v1 Lol" lends to "1v1lol", "Paper Io" to "Paperio".
-2. **loose.** Filler words are dropped first (`game`, `unblocked`, `online`,
-   `play`, `free`, `io`, `version`), so "Slope Game" can match "Slope".
+2. **loose.** Filler words are dropped first (`book`, `unblocked`, `online`,
+   `play`, `free`, `io`, `version`), so "Slope Book" can match "Slope".
 3. **prefix.** A donor whose whole title is a prefix of this one, minimum
    seven characters, longest donor winning. This is the pass that actually
    pays: "Geometry Dash Unblocked", "Retro Bowl Old",
    "Snow Rider 3D Unblocked - Play Online" and "Basket Random Unblocked" are
-   all many edits from their donor but obviously the same game. Seven
+   all many edits from their donor but obviously the same book. Seven
    characters is the floor because "drift" would otherwise lend to every
-   drift game.
+   drift book.
 4. **fuzzy.** Levenshtein, with the allowance scaled to length,
    `floor(longest / 5)` capped at `--max-distance` (3 by default) and
    nothing under `--min-length` (8). Three characters out of nine is a
-   different game, three out of twenty is a spelling variant. This is what
+   different book, three out of twenty is a spelling variant. This is what
    catches "Volley Random" borrowing from "Volly Random".
 
 **Sequel numbers must agree exactly.** The digits in both titles are compared
@@ -616,12 +651,12 @@ Tuning flags: `--max-distance`, `--min-length`, `--prefix-min`, and
 Every inexact match is printed in full rather than sampled, because those are
 the ones worth eyeballing.
 
-**310 games borrow art** with these rules, up from 108 before Selenite
+**310 books borrow art** with these rules, up from 108 before Selenite
 arrived. Selenite is the donor pool that made the difference: it ships 804
 working covers against Alexx743's 58, so hell went from 32 borrowed to 106,
 gams from 6 to 33, and goblin from 20 to 42.
 
-**`--verify-own` blanks dead covers.** Selenite lists a cover filename per game
+**`--verify-own` blanks dead covers.** Selenite lists a cover filename per book
 and roughly one in seven is stale, so 110 were cleared. Without that those
 cards fire a request that 404s before falling back to the generated art, and a
 dead url could be lent onward as a donor. The donor index is deliberately
@@ -636,12 +671,12 @@ anything: a single request to those same urls returns 200.
 **Pruning is durable.** `checklinks.mjs --all --prune` records every removed
 url in `public/libraries/pruned.json`, and `build-libraries.mjs` skips those
 on both its rebuild path and its keep-from-disk path. Before that, every
-rebuild reinstated games already proved dead and the verification had to be
+rebuild reinstated books already proved dead and the verification had to be
 redone from scratch.
 
 **The checker only prunes on 404 and 410.** A 429, a 5xx or a timeout is
 recorded as `unknown` and kept. This matters: an early version treated any
-non-ok response as dead and deleted 31 working p0xx games after GitHub Pages
+non-ok response as dead and deleted 31 working p0xx books after GitHub Pages
 rate limited a burst of concurrent requests. Concurrency is 4 with 3 retries
 for that reason.
 
@@ -668,10 +703,10 @@ Recorded in `REJECTED` in `build-libraries.mjs` so nobody re-derives it:
   longer resolves.
 - **UGS-Assets** (384) `bubbls/UGS-Assets`. No Pages, and its intended
   delivery is jsDelivr, which serves HTML as `text/plain` so a browser will
-  not render it in a frame. That rules out jsDelivr as a game host generally.
+  not render it in a frame. That rules out jsDelivr as a book host generally.
 - **PeteZah** (156) `PeteZah-Games/PeteZahStatic`. Every path on
   petezahgames.com redirects to `/verify?reason=activity`, a bot check, and
-  their Pages domain redirects there too. A framed game would show the check.
+  their Pages domain redirects there too. A framed book would show the check.
   Working around a bot check is not on the table.
 - **Ruby** (68) `ruby-network/ruby`. Has a genuinely good catalogue at
   `src/public/games.json` with tags and thumbnails, and its url pattern is
@@ -681,9 +716,9 @@ Recorded in `REJECTED` in `build-libraries.mjs` so nobody re-derives it:
 - **julianlockibarra-cat/games**. Pages is off and there is no other host, so
   UNITY GAMES, FLASH GAMES and the third folder cannot be served.
 - **schplay** `paralzyed/schplay.github.io`. Empty apart from site pages, no
-  game files to index.
+  book files to index.
 - **The Dropbox folder.** Dropbox does not serve shared HTML as a rendered
-  page, so a game cannot run in a frame from it. Its listing is JS rendered,
+  page, so a book cannot run in a frame from it. Its listing is JS rendered,
   so a plain fetch cannot enumerate it either.
 
 Any of these become usable the moment their files sit on a host that serves
@@ -692,34 +727,34 @@ Any of these become usable the moment their files sit on a host that serves
 ## The Lumin library
 
 `src/lumin.js` drives it in **headless mode**, so the SDK renders nothing and
-only supplies data plus the game player. Its catalogue then goes through our
+only supplies data plus the book player. Its catalogue then goes through our
 own cards, hero, rows, search, categories, favourites and settings exactly like
 a json library. There is no embed component any more.
 
 `LIBRARIES.lumin` has no `file`; `App` swaps in `useLuminCatalogue` instead of
-`useGames` and everything downstream is identical.
+`useBooks` and everything downstream is identical.
 
-**Their games have no category, so ours is derived.** `getCategories()` comes
-back empty and each game object carries only `id`, `name` and `image_token`,
+**Their books have no category, so ours is derived.** `getCategories()` comes
+back empty and each book object carries only `id`, `name` and `image_token`,
 so `toEntry` runs the title through `categoryFor` from `src/categorize.js`,
-the same rules the json libraries are built with. A `game.category` is used if
+the same rules the json libraries are built with. A `book.category` is used if
 one ever appears.
 
 With no description and no tags to match against, a title alone classifies
-about 43% of games across all 14 categories, measured on 1547 titles from the
+about 43% of books across all 14 categories, measured on 1547 titles from the
 libraries Lumin namespaces its ids after. So expect a real spread in the rail
 rather than one Arcade row, and expect Arcade to be the largest by a distance.
 
 Three things about their data shape drive the design:
 
 - **Covers are tokens, not urls.** `getImageUrl(token)` returns a blob url, so
-  a cover has to be resolved per game. `GameCard` does that behind an
+  a cover has to be resolved per book. `BookCard` does that behind an
   `IntersectionObserver` with a 400px margin, because resolving a thousand
   covers for cards nobody has scrolled to would mint a thousand blob urls. The
   hero resolves immediately instead, since it is one card and always on
   screen. Resolutions are cached per token.
-- **Game urls carry a single use token.** `getGameUrl(id)` has to be called
-  fresh on every launch, so `GamePlayer` resolves on mount rather than storing
+- **Book urls carry a single use token.** `getGameUrl(id)` has to be called
+  fresh on every launch, so `BookPlayer` resolves on mount rather than storing
   a url on the entry. A cached one plays once and then fails silently.
 - **Nothing settles when the service refuses you.** `init` rejects with
   "domain fetch failed", but `getGames` and `getCategories` never settle at
@@ -729,8 +764,8 @@ Three things about their data shape drive the design:
 **It works from localhost, and it is verified live.** An earlier note here
 said the opposite, that the service checks the domain it runs on and always
 failed from localhost. That was wrong, or has stopped being true. Measured on
-`localhost:5174` from a clean load: 1169 games, 1172 cards, all 14 categories
-in the rail, every visible cover resolving to its own image, and a game
+`localhost:5174` from a clean load: 1169 books, 1172 cards, all 14 categories
+in the rail, every visible cover resolving to its own image, and a book
 launching into an iframe on a fresh single use url, with no console errors.
 
 What actually kept it broken was ours, not theirs. `useLuminCatalogue` owned
@@ -738,7 +773,7 @@ the request and guarded a second start with a ref, so under StrictMode the
 first run started the fetch, the cleanup flipped that run's `cancelled` flag,
 and the second run returned early without starting anything. The only request
 in flight was one whose result was already being discarded, so neither the
-games nor the error ever reached state and the grid sat on its skeletons
+books nor the error ever reached state and the grid sat on its skeletons
 forever, looking exactly like a dead service.
 
 **So the catalogue promise lives at module scope**, in `getCatalogue()`,
@@ -753,7 +788,7 @@ or move the request out of the effect.
 
 `[Lumin] Worker connection failed: domain fetch failed` in the console is
 **their** logging and is not fatal on its own. Do not read it as proof the
-library is refusing you. Check whether games arrive before concluding
+library is refusing you. Check whether books arrive before concluding
 anything.
 
 The picker no longer warns about localhost and `isLocalSite()` is gone, since
@@ -761,7 +796,7 @@ the claim behind both was false.
 
 **If you stub the SDK to test this, clear up after yourself.** A stubbed
 `window.Lumin` plus a persisted `library: 'lumin'` looks exactly like a working
-Lumin that returns nonsense games and flat colour covers, which is confusing
+Lumin that returns nonsense books and flat colour covers, which is confusing
 for anyone who opens the tab afterwards. Reset the stored library and drop the
 global when done.
 
@@ -788,7 +823,7 @@ Two separate causes, both seen, and they look identical on screen.
    the tell. **Restart the dev server**, do not go hunting in a file that
    already parses. Confirm it parses with `node --check <file>` first.
 2. **The selected library never settles.** See the StrictMode note under the
-   Lumin section. `error` and `games` both staying null renders `<Skeleton/>`
+   Lumin section. `error` and `books` both staying null renders `<Skeleton/>`
    forever, because `App` only leaves that branch when one of them is set.
 
 Check which it is before editing anything: a 500 or a failed module reload in
@@ -1076,20 +1111,20 @@ Breakpoints are measured, not guessed. At 375px each of the three tabs gets
 
 ## The player bar
 
-Back, the game's own cover, title and category, then the frame counter,
+Back, the book's own cover, title and category, then the frame counter,
 favourite and fullscreen.
 
 **The badge shows the real cover**, through the same `useCover` hook as the
 cards, falling back to the generated initials. It used to always be initials,
-so the bar said "FC" next to a game whose artwork was sitting in the library.
+so the bar said "FC" next to a book whose artwork was sitting in the library.
 
 **There is no new tab button.** It was removed on request, since a links page
 will cover the same ground.
 
-**The frame counter is our frame rate, not the game's.** A cross origin
+**The frame counter is our frame rate, not the book's.** A cross origin
 iframe cannot be measured from outside and nothing exposes another
 document's rate. The two usually track each other because the tab shares a
-compositor, but a game the browser has put in its own process can stutter
+compositor, but a book the browser has put in its own process can stutter
 while this still reads 60. The counter says so in settings rather than
 pretending to be a benchmark. It is sampled twice a second, not per frame,
 and "Frame counter" in the Interface tab turns it off along with its
@@ -1126,7 +1161,7 @@ soft-light, added because a dense grid covers the layer behind. It was removed:
 it tinted the real cover art, and because the header sits at 30 and the
 settings sheet at 41, those two stayed neutral while the rail, cards, card
 title bars and hero were all red washed. The page visibly split into tinted and
-untinted zones. Selenite arriving with a cover for nearly every game settled
+untinted zones. Selenite arriving with a cover for nearly every book settled
 it, since recolouring real artwork to show off a background is the wrong trade.
 Do not reintroduce it.
 

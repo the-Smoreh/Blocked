@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { resolveImage } from './lumin.js'
 import { borrowCover } from './borrow.js'
 
-// Works out which image a game should actually show, in one place.
+// Works out which image a book should actually show, in one place.
 //
 // There are four ways a cover can arrive and they have to be tried in order,
 // which is why this is a hook rather than a line in each component:
@@ -25,7 +25,7 @@ import { borrowCover } from './borrow.js'
 
 const FAILED = ''
 
-export function useCover(game, { eager = false, borrow = true } = {}) {
+export function useCover(book, { eager = false, borrow = true } = {}) {
   const ref = useRef(null)
   // No observer support means resolve everything immediately rather than
   // never, so that decision belongs in the initial value, not an effect.
@@ -36,13 +36,13 @@ export function useCover(game, { eager = false, borrow = true } = {}) {
   const [tokenSrc, setTokenSrc] = useState(null)
   const [borrowed, setBorrowed] = useState(null)
 
-  const token = game?.imageToken
-  const title = game?.title
-  const shipped = game?.game_image_icon || null
+  const token = book?.imageToken
+  const title = book?.title
+  const shipped = book?.book_image_icon || null
 
-  // The grid reuses a card for a different game as filters change, so the
+  // The grid reuses a card for a different book as filters change, so the
   // resolution has to start over when that happens. Adjusted during render
-  // rather than in an effect: an effect would paint the previous game's cover
+  // rather than in an effect: an effect would paint the previous book's cover
   // for a frame first, and React re-runs this pass before committing anything
   // to the DOM.
   const identity = `${title}|${token}|${shipped}`
@@ -82,7 +82,7 @@ export function useCover(game, { eager = false, borrow = true } = {}) {
 
   const own = shipped && !ownBroken ? shipped : null
   const fromToken = tokenSrc || null
-  // Borrow only once this game's own sources are exhausted: no url of its
+  // Borrow only once this book's own sources are exhausted: no url of its
   // own, or one that failed, and either no token or a token that failed.
   const exhausted = !own && (!token || tokenSrc === FAILED)
 

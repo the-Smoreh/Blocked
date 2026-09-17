@@ -2,7 +2,7 @@
   {
     "title": "Amazing Rope Police",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/amazing-rope-police/splash.jpeg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/amazing-rope-police/splash.jpeg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -14,7 +14,7 @@
   {
     "title": "Baldis Basics",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/baldis-basics/splash.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/baldis-basics/splash.png",
     "category": "Horror",
     "tags": [],
     "featured": false,
@@ -26,7 +26,7 @@
   {
     "title": "Bloonstd2",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Strategy",
     "tags": [],
     "featured": false,
@@ -37,7 +37,7 @@
   {
     "title": "Bloxors",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -48,7 +48,7 @@
   {
     "title": "Breakingthebank",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -59,7 +59,7 @@
   {
     "title": "Cell Machine",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/cell-machine/img%2Ficon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/cell-machine/img%2Ficon.png",
     "category": "Puzzle",
     "tags": [],
     "featured": false,
@@ -71,7 +71,7 @@
   {
     "title": "Championarcher",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -82,7 +82,7 @@
   {
     "title": "Chrome Dino",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/chrome%20dino.png",
+    "book_image_icon": "https://alexx743-games-unblocked.vercel.app/chrome%20dino.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -94,7 +94,7 @@
   {
     "title": "Craftmine",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Sandbox",
     "tags": [],
     "featured": false,
@@ -105,7 +105,7 @@
   {
     "title": "Csgo Clicker",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/csgo%20clicker.png",
+    "book_image_icon": "https://alexx743-games-unblocked.vercel.app/csgo%20clicker.png",
     "category": "Shooter",
     "tags": [],
     "featured": false,
@@ -117,7 +117,7 @@
   {
     "title": "DogeMiner",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/dogeminer/img%2Fdogeminer_300x300.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/dogeminer/img%2Fdogeminer_300x300.png",
     "category": "Clicker",
     "tags": [],
     "featured": false,
@@ -129,7 +129,7 @@
   {
     "title": "Dogeminer2",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/dogeminer2/dogeloader.svg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/dogeminer2/dogeloader.svg",
     "category": "Clicker",
     "tags": [],
     "featured": false,
@@ -141,7 +141,7 @@
   {
     "title": "Doodle Jump",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/doodlejump/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/doodlejump/icon.png",
     "category": "Platformer",
     "tags": [],
     "featured": false,
@@ -153,7 +153,7 @@
   {
     "title": "Draw the Hill",
     "description": "",
-    "game_image_icon": "https://alexx743-games-unblocked.vercel.app/draw%20the%20hill.jpg",
+    "book_image_icon": "https://alexx743-games-unblocked.vercel.app/draw%20the%20hill.jpg",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -165,7 +165,7 @@
   {
     "title": "Drift Boss",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/drift-boss/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/drift-boss/icon.png",
     "category": "Racing",
     "tags": [],
     "featured": false,
@@ -177,7 +177,7 @@
   {
     "title": "Ducklife2",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/ducklife2/ducklife2.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/ducklife2/ducklife2.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -189,7 +189,7 @@
   {
     "title": "Eel Slap",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -200,7 +200,7 @@
   {
     "title": "Flappy Bird",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/flappybird/icon.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/flappybird/icon.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -212,7 +212,7 @@
   {
     "title": "Getaway Shootout",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/getawayshooter/Untitled.jpeg",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/getawayshooter/Untitled.jpeg",
     "category": "Shooter",
     "tags": [],
     "featured": false,
@@ -224,7 +224,7 @@
   {
     "title": "Glass City",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -235,7 +235,7 @@
   {
     "title": "Google Snake",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -246,7 +246,7 @@
   {
     "title": "Hackertype",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -257,7 +257,7 @@
   {
     "title": "HexGL",
     "description": "",
-    "game_image_icon": "https://music.lyrica24.top/resources/semag/hexgl/icon_128.png",
+    "book_image_icon": "https://music.lyrica24.top/resources/semag/hexgl/icon_128.png",
     "category": "Arcade",
     "tags": [],
     "featured": false,
@@ -269,7 +269,7 @@
   {
     "title": "Highrisehop",
     "description": "",
-    "game_image_icon": "",
+    "book_image_icon": "",
     "category": "Arcade",
     "tags": [],
     "featured": false,

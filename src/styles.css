@@ -1049,7 +1049,7 @@ footer {
   flex-direction: column;
   height: 100vh;
   /* Above the moving overlay, which sits at 12. Without this the drifting
-     red was composited over the game itself, tinting whatever was being
+     red was composited over the book itself, tinting whatever was being
      played. Still below the settings sheet at 41. */
   position: relative;
   z-index: 20;
@@ -1132,7 +1132,7 @@ footer {
   border: 0;
 }
 
-/* Sits behind the iframe, so it shows through until the game paints. */
+/* Sits behind the iframe, so it shows through until the book paints. */
 .stage-load {
   position: absolute;
   inset: 0;
@@ -1380,7 +1380,7 @@ body::before {
 }
 
 /* With no text bar the tile needs its own rounding. The card keeps a title
-   attribute and an aria-label, so the game is still identifiable. */
+   attribute and an aria-label, so the book is still identifiable. */
 :root[data-titles="off"] .thumb {
   border-radius: calc(var(--radius) - 1px);
 }
@@ -1394,7 +1394,7 @@ body::before {
    red, orange and rose to stay apart from each other.
 
    Assigned in src/icons.js. Every category needs its own index: Action and
-   Shooter shared one until Selenite made Action a 130 game category and the
+   Shooter shared one until Selenite made Action a 130 book category and the
    collision became obvious. */
 :root {
   --tone-0: #8b93a7;
@@ -1540,7 +1540,7 @@ body::before {
 
 
 /* Attribution. The whole point of splitting libraries by source is that the
-   source is named wherever its games are shown. */
+   source is named wherever its books are shown. */
 .credit a {
   color: var(--accent);
   text-decoration: none;
@@ -3297,7 +3297,7 @@ body.gated {
 }
 
 /* ======================================================================
-   Hero with the game's own cover.
+   Hero with the book's own cover.
 
    Two copies of the same image. A blurred, scaled up one fills the panel,
    and a crisp one sits on the right at its own aspect ratio. These covers
@@ -3401,7 +3401,7 @@ body.gated {
 
 /* ---------------------- Player bar: cover and fps ---------------------- */
 
-/* The badge shows the game's own cover when there is one, so the bar matches
+/* The badge shows the book's own cover when there is one, so the bar matches
    the card you came from instead of showing initials next to art that
    exists. */
 .np-art.has-cover {
@@ -3416,7 +3416,7 @@ body.gated {
   display: block;
 }
 
-/* Our frame rate, not the game's, which is why the label is lower case and
+/* Our frame rate, not the book's, which is why the label is lower case and
    quiet rather than presented as a benchmark. */
 .fps {
   display: inline-flex;
@@ -3467,7 +3467,7 @@ body.gated {
   }
 }
 
-/* Time on the current game, beside the frame counter. Tabular figures and a
+/* Time on the current book, beside the frame counter. Tabular figures and a
    fixed minimum width so the bar does not twitch every second as the digits
    change. */
 .playtime {

@@ -260,7 +260,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
   // Only the credited community libraries count towards the total, because
   // Lumin has no count of its own that can be verified against a file.
   const credited = Object.values(LIBRARIES).filter((l) => l.credit)
-  const totalGames = credited.reduce((n, l) => n + (l.count || 0), 0)
+  const totalBooks = credited.reduce((n, l) => n + (l.count || 0), 0)
 
   const bgValue =
     settings.bgKind === 'slate'
@@ -283,7 +283,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
             <span className="sheet-titletext">
               <strong>Settings</strong>
               <em>
-                {totalGames.toLocaleString()} games across {credited.length} libraries
+                {totalBooks.toLocaleString()} books across {credited.length} libraries
               </em>
             </span>
           </div>
@@ -359,7 +359,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                   />
                 </Field>
                 <p className="snote">
-                  The same game turns up in several libraries, so one that ships no cover
+                  The same book turns up in several libraries, so one that ships no cover
                   can use another one&apos;s. Selenite fills 79 of its 105 blanks this way.
                 </p>
               </Group>
@@ -558,7 +558,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
               </Group>
 
               <Group title="Player">
-                <Field label="Frame counter" hint="Shown in the bar while a game is open">
+                <Field label="Frame counter" hint="Shown in the bar while a book is open">
                   <Toggle
                     label="Frame counter"
                     value={settings.showFps}
@@ -566,7 +566,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                   />
                 </Field>
                 <p className="snote">
-                  This is the frame rate of the page, not of the game. A game the browser
+                  This is the frame rate of the page, not of the book. A book the browser
                   has put in its own process can stutter while this still reads 60.
                 </p>
               </Group>

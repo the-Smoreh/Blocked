@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import {
-  useGames,
+  useBooks,
   useHashRoute,
   useFavorites,
   useRecent,
@@ -13,8 +13,8 @@ import Header from './components/Header.jsx'
 import Sidebar from './components/Sidebar.jsx'
 import Hero from './components/Hero.jsx'
 import Row from './components/Row.jsx'
-import GameGrid from './components/GameGrid.jsx'
-import GamePlayer from './components/GamePlayer.jsx'
+import BookGrid from './components/BookGrid.jsx'
+import BookPlayer from './components/BookPlayer.jsx'
 import Skeleton from './components/Skeleton.jsx'
 import Settings from './components/Settings.jsx'
 // Loaded only when the room is opened, not on every visit.
@@ -52,7 +52,7 @@ export default function App() {
 
   // Only the selected library is fetched, so picking one of the small ones
   // does not pull a 4500 line json nobody will look at.
-  const fromFile = useGames({
+  const fromFile = useBooks({
     enabled: !usingLumin,
     file: libraryFile(settings.library),
   })
@@ -62,7 +62,7 @@ export default function App() {
   // settings as every other library.
   const fromLumin = useLuminCatalogue(usingLumin)
 
-  const games = usingLumin ? fromLumin.games : fromFile.games
+  const books = usingLumin ? fromLumin.books : fromFile.books
   const error = usingLumin ? fromLumin.error : fromFile.error
 
   // Whatever is on screen becomes a donor for the other libraries, and the
@@ -79,15 +79,15 @@ export default function App() {
   // namespaced `selenite/`. So the other libraries borrow from our own files
   // only.
   useEffect(() => {
-    if (!games) return
-    registerDonors(settings.library, games)
+    if (!books) return
+    registerDonors(settings.library, books)
     if (!settings.borrowCovers) return
 
     loadSeleniteDonors()
     if (LUMIN_WORTH_IT.has(settings.library)) loadLuminDonors()
-  }, [games, settings.library, settings.borrowCovers])
+  }, [books, settings.library, settings.borrowCovers])
 
-  const playing = route.startsWith('game/') ? route.slice('game/'.length) : null
+  const playing = route.startsWith('book/') ? route.slice('book/'.length) : null
 
   useIdleShimmer(settings.idleShimmer && !playing)
 
@@ -106,24 +106,24 @@ export default function App() {
   }, [playing, panel])
 
   const categories = useMemo(() => {
-    if (!games) return ['All']
-    const rest = [...new Set(games.map((g) => g.category).filter(Boolean))].sort((a, b) =>
+    if (!books) return ['All']
+    const rest = [...new Set(books.map((g) => g.category).filter(Boolean))].sort((a, b) =>
       a.localeCompare(b),
     )
     return ['All', ...rest]
-  }, [games])
+  }, [books])
 
   const counts = useMemo(() => {
-    if (!games) return {}
-    const out = { All: games.length }
-    for (const g of games) out[g.category] = (out[g.category] || 0) + 1
+    if (!books) return {}
+    const out = { All: books.length }
+    for (const g of books) out[g.category] = (out[g.category] || 0) + 1
     return out
-  }, [games])
+  }, [books])
 
   const visible = useMemo(() => {
-    if (!games) return []
+    if (!books) return []
     const q = query.trim().toLowerCase()
-    return games.filter((g) => {
+    return books.filter((g) => {
       if (category !== 'All' && g.category !== category) return false
       if (!q) return true
       return (
@@ -132,7 +132,7 @@ export default function App() {
         (g.tags || []).some((t) => t.toLowerCase().includes(q))
       )
     })
-  }, [games, query, category])
+  }, [books, query, category])
 
   const sheet = (
     <Settings
@@ -148,7 +148,7 @@ export default function App() {
     return (
       <>
         <div className="state">
-          <h2>{usingLumin ? 'Could not reach that library' : 'Could not load the game list'}</h2>
+          <h2>{usingLumin ? 'Could not reach that library' : 'Could not load the book list'}</h2>
           <p>Not loading? Try a different library and check here later.</p>
           <div className="state-row">
             {usingLumin && settings.library !== 'selenite' && (
@@ -166,7 +166,7 @@ export default function App() {
     )
   }
 
-  if (!games) {
+  if (!books) {
     return (
       <>
         <Skeleton />
@@ -178,9 +178,9 @@ export default function App() {
   if (playing) {
     return (
       <>
-        <GamePlayer
+        <BookPlayer
           key={playing}
-          game={games.find((g) => g.slug === playing)}
+          book={books.find((g) => g.slug === playing)}
           isFavorite={favorites.has(playing)}
           onFavorite={toggle}
           showFps={settings.showFps}
@@ -191,14 +191,14 @@ export default function App() {
   }
 
   const browsing = Boolean(query.trim()) || category !== 'All'
-  const byIndex = new Map(games.map((g, i) => [g.slug, i]))
-  const recentGames = recent.map((s) => games.find((g) => g.slug === s)).filter(Boolean)
-  const favoriteGames = [...favorites]
-    .map((s) => games.find((g) => g.slug === s))
+  const byIndex = new Map(books.map((g, i) => [g.slug, i]))
+  const recentBooks = recent.map((s) => books.find((g) => g.slug === s)).filter(Boolean)
+  const favoriteBooks = [...favorites]
+    .map((s) => books.find((g) => g.slug === s))
     .filter(Boolean)
     .sort((a, b) => byIndex.get(a.slug) - byIndex.get(b.slug))
-  const featured = games.filter((g) => g.featured)
-  const hero = featured[0] || games[0]
+  const featured = books.filter((g) => g.featured)
+  const hero = featured[0] || books[0]
 
   return (
     <div className="shell">
@@ -210,7 +210,7 @@ export default function App() {
         }}
         onSettings={() => setPanel(true)}
         onMenu={() => setMenu((m) => !m)}
-        count={games.length}
+        count={books.length}
         showMenu
         theme={settings.theme}
         onTheme={() => set(pairTheme(settings, settings.theme === 'light' ? 'dark' : 'light'))}
@@ -243,14 +243,14 @@ export default function App() {
           </Suspense>
         )}
 
-        {!chat && !browsing && hero && <Hero game={hero} />}
+        {!chat && !browsing && hero && <Hero book={hero} />}
 
         {!chat && !browsing && (
           <Row
             title="Jump back in"
             icon="clock"
             tone={9}
-            games={recentGames}
+            books={recentBooks}
             favorites={favorites}
             onFavorite={toggle}
           />
@@ -261,7 +261,7 @@ export default function App() {
             title="Your favorites"
             icon="star"
             tone={3}
-            games={favoriteGames}
+            books={favoriteBooks}
             favorites={favorites}
             onFavorite={toggle}
           />
@@ -272,18 +272,18 @@ export default function App() {
             title="Featured"
             icon="action"
             tone={11}
-            games={featured}
+            books={featured}
             favorites={favorites}
             onFavorite={toggle}
           />
         )}
 
         {!chat && (
-        <GameGrid
-          title={browsing ? 'Results' : 'All games'}
+        <BookGrid
+          title={browsing ? 'Results' : 'All books'}
           icon={browsing ? 'search' : 'all'}
           tone={browsing ? categoryTone(category) : 0}
-          games={visible}
+          books={visible}
           favorites={favorites}
           onFavorite={toggle}
           bento={!browsing}
@@ -300,12 +300,12 @@ export default function App() {
                     collected onto one links page instead, so there are no
                     stray redirects dotted around the interface. The credit
                     itself stays, because naming the source is the point. */}
-                {games.length} games from <strong>{activeLib.label}</strong> by{' '}
+                {books.length} books from <strong>{activeLib.label}</strong> by{' '}
                 <strong>{activeLib.author}</strong>
               </>
             ) : (
               <>
-                {games.length} games, {categories.length - 1} categories
+                {books.length} books, {categories.length - 1} categories
               </>
             )}
           </span>

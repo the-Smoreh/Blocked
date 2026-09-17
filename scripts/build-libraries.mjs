@@ -5,7 +5,7 @@
 //   node scripts/build-libraries.mjs --write --only goblin
 //
 // Design rule: we LINK, we do not copy. Every entry points at the source's own
-// hosting, so they serve the game and get the traffic. Nothing is mirrored
+// hosting, so they serve the book and get the traffic. Nothing is mirrored
 // here, which is also why a 14GB asset repo is not a problem.
 //
 // Each source keeps its own name and its repo URL as credit, written into
@@ -26,8 +26,8 @@ const write = process.argv.includes('--write')
 const onlyAt = process.argv.indexOf('--only')
 const only = onlyAt === -1 ? null : process.argv[onlyAt + 1]
 
-// Pages that live alongside the games but are not games.
-const NOT_GAMES =
+// Pages that live alongside the books but are not books.
+const NOT_BOOKS =
   /^(index|about|about-us|contact|privacy|privacy-policy|terms|dmca|sitemap|404|home|search|games?|apps?|credits|donate|discord|settings|login|signup)$/i
 
 const IMAGE = /\.(png|jpe?g|gif|webp|avif|svg)$/i
@@ -53,7 +53,7 @@ const SOURCES = [
     host: 'https://d3ch.github.io/hell/Games/',
     repo: ['D3ch', 'hell'],
     path: 'Games',
-    // Most entries are folders holding a whole game, a few are loose pages.
+    // Most entries are folders holding a whole book, a few are loose pages.
     mode: 'dirs+files',
     dirEntry: '',
   },
@@ -64,7 +64,7 @@ const SOURCES = [
     author: 'Alexx743',
     licence: 'none stated',
     // Not GitHub Pages. This repo is deployed to Vercel, which is what serves
-    // the games and the thumbnails sitting next to them.
+    // the books and the thumbnails sitting next to them.
     host: 'https://alexx743-games-unblocked.vercel.app/',
     repo: ['Alexx743', 'Alexx743-games'],
     path: '',
@@ -92,7 +92,7 @@ const SOURCES = [
     host: 'https://music.lyrica24.top/resources/semag/',
     // Not a GitHub repo. This site publishes its own catalogue, so the whole
     // library comes from one request instead of a directory listing, and it
-    // brings real titles, real per game covers and real tags with it.
+    // brings real titles, real per book covers and real tags with it.
     catalogue: 'https://music.lyrica24.top/resources/games.json',
   },
   {
@@ -155,64 +155,64 @@ export const REJECTED = [
   {
     name: 'Seraph',
     credit: 'https://github.com/a456pur/seraph',
-    games: 494,
+    books: 494,
     reason:
       'No working public host. a456pur.github.io/seraph/ fails DNS repeatedly and the custom domain seraph.reveriestudios.online has no DNS record.',
   },
   {
     name: 'UGS-Assets',
     credit: 'https://github.com/bubbls/UGS-Assets',
-    games: 384,
+    books: 384,
     reason:
       'No GitHub Pages (404) and its intended delivery is jsDelivr, which serves HTML as text/plain so a browser will not render it in a frame.',
   },
   {
     name: 'Ruby',
     credit: 'https://github.com/ruby-network/ruby',
-    games: 68,
+    books: 68,
     reason:
       'Site returns HTTP 523 and sends X-Frame-Options SAMEORIGIN, so it refuses framing even when up. Its asset repo ruby-network/ruby-assets is 404.',
   },
   {
     name: 'Dropbox folder',
     credit: 'dropbox.com shared folder',
-    games: null,
+    books: null,
     reason:
-      'Dropbox does not serve shared HTML as a rendered page, so a game cannot run in a frame from it. Re-host the contents to use them.',
+      'Dropbox does not serve shared HTML as a rendered page, so a book cannot run in a frame from it. Re-host the contents to use them.',
   },
   {
     name: 'PeteZah',
     credit: 'https://github.com/PeteZah-Games/PeteZahStatic',
-    games: 156,
+    books: 156,
     reason:
-      'Every path on petezahgames.com redirects to /verify?reason=activity, a bot check, and their Pages domain redirects there too. A framed game would show the check, not the game. Working around it is not on the table.',
+      'Every path on petezahgames.com redirects to /verify?reason=activity, a bot check, and their Pages domain redirects there too. A framed book would show the check, not the book. Working around it is not on the table.',
   },
   {
     name: 'PLEXILEARCADE',
     credit: 'https://github.com/knwzero/PLEXILEARCADE',
-    games: 248,
+    books: 248,
     reason:
-      'No GitHub Pages (404) and plexilearcade.net no longer resolves, so its 248 games have nowhere to be served from.',
+      'No GitHub Pages (404) and plexilearcade.net no longer resolves, so its 248 books have nowhere to be served from.',
   },
   {
     name: 'julianlockibarra-cat/games',
     credit: 'https://github.com/julianlockibarra-cat/games',
-    games: null,
+    books: null,
     reason:
-      'GitHub Pages is not enabled and there is no other host, so UNITY GAMES, FLASH GAMES and the third folder cannot be served.',
+      'GitHub Pages is not enabled and there is no other host, so UNITY BOOKS, FLASH BOOKS and the third folder cannot be served.',
   },
   {
     name: 'schplay',
     credit: 'https://github.com/paralzyed/schplay.github.io',
-    games: 0,
+    books: 0,
     reason:
-      'The repo is empty apart from site pages (allgames, blog, flash, fps). It holds no game files, so there is nothing to index.',
+      'The repo is empty apart from site pages (allgames, blog, flash, fps). It holds no book files, so there is nothing to index.',
   },
 ]
 
-// Selenite tags every game, so its categories come from those rather than
-// from keyword matching on the title. Order matters: a game tagged both
-// "horror" and "platformer" is a horror game first.
+// Selenite tags every book, so its categories come from those rather than
+// from keyword matching on the title. Order matters: a book tagged both
+// "horror" and "platformer" is a horror book first.
 const TAG_CATEGORY = [
   ['Horror', ['horror', 'gore']],
   ['IO', ['io']],
@@ -247,10 +247,10 @@ async function fromCatalogue(src) {
     .map((r) => ({
       title: String(r.name).trim(),
       description: '',
-      // The cover filename differs per game, webp, png, jpg, ico, avif and
+      // The cover filename differs per book, webp, png, jpg, ico, avif and
       // svg all appear, so it has to come from the data. Assuming cover.png
       // would miss most of them.
-      game_image_icon: r.image
+      book_image_icon: r.image
         ? src.host + encodeURIComponent(r.directory) + '/' + encodeURIComponent(r.image)
         : '',
       category: categoryFromTags(r.tags),
@@ -362,12 +362,12 @@ function buildEntries(src, items, urlPrefix = '') {
     for (const f of files) {
       if (!/\.html?$/i.test(f.name)) continue
       const base = f.name.replace(/\.[a-z0-9]+$/i, '')
-      if (NOT_GAMES.test(base)) continue
+      if (NOT_BOOKS.test(base)) continue
       const thumb = thumbs.get(base.toLowerCase())
       out.push({
         title: titleFor(stripped(src, f.name)),
         description: '',
-        game_image_icon: thumb ? src.host + encodeURIComponent(thumb) : '',
+        book_image_icon: thumb ? src.host + encodeURIComponent(thumb) : '',
         category: 'Arcade',
         tags: [],
         featured: false,
@@ -379,11 +379,11 @@ function buildEntries(src, items, urlPrefix = '') {
 
   if (src.mode === 'dirs' || src.mode === 'dirs+files') {
     for (const d of dirs) {
-      if (NOT_GAMES.test(d.name) || d.name.startsWith('.')) continue
+      if (NOT_BOOKS.test(d.name) || d.name.startsWith('.')) continue
       out.push({
         title: titleFor(stripped(src, d.name)),
         description: '',
-        game_image_icon: '',
+        book_image_icon: '',
         category: 'Arcade',
         tags: [],
         featured: false,
@@ -401,7 +401,7 @@ function buildEntries(src, items, urlPrefix = '') {
 }
 
 // URLs proved dead by checklinks.mjs --prune. Without honouring this, every
-// rebuild reinstates games already shown to be 404 and the verification has
+// rebuild reinstates books already shown to be 404 and the verification has
 // to be repeated from scratch.
 let PRUNED = {}
 try {
@@ -424,7 +424,7 @@ for (const src of SOURCES) {
       const items = await listing(src.repo, src.path)
       entries = buildEntries(src, items)
 
-      // A source can spread its games over more than one folder.
+      // A source can spread its books over more than one folder.
       for (const extra of src.extraPaths || []) {
         const more = await listing(src.repo, extra.path)
         entries.push(...buildEntries(src, more, extra.prefix || ''))
@@ -447,7 +447,7 @@ for (const src of SOURCES) {
     total += entries.length
 
     console.log(`${String(entries.length).padStart(4)}  ${src.name.padEnd(16)} ${src.credit}`)
-    console.log(`      thumbs: ${entries.filter((e) => e.game_image_icon).length}, host ${src.host}`)
+    console.log(`      thumbs: ${entries.filter((e) => e.book_image_icon).length}, host ${src.host}`)
 
     index.push({
       id: src.id,
@@ -498,7 +498,7 @@ for (const src of SOURCES) {
   }
 }
 
-console.log(`\n${total} games across ${index.length} libraries`)
+console.log(`\n${total} books across ${index.length} libraries`)
 if (skipped) console.log(`${skipped} skipped from public/libraries/pruned.json`)
 console.log('\nleft out:')
 for (const r of REJECTED) console.log(`  ${r.name}: ${r.reason}`)

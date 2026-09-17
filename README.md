@@ -1,6 +1,6 @@
 # Blocked
 
-A game site. Vite + React, no backend.
+A book site. Vite + React, no backend.
 
 ## Run it
 
@@ -51,28 +51,28 @@ npm.cmd run preview -- --base /Blocked/
 
 then open `http://localhost:4173/Blocked/`.
 
-## Adding games
+## Adding books
 
-Everything lives in `public/games.json`. One object per game:
+Everything lives in `public/books.json`. One object per book:
 
 ```json
 {
   "title": "2048",
   "description": "Slide the tiles, match the numbers.",
-  "game_image_icon": "https://example.com/thumb.png",
+  "book_image_icon": "https://example.com/thumb.png",
   "category": "Puzzle",
   "tags": ["numbers"],
   "featured": false,
-  "url": "https://example.com/game/"
+  "url": "https://example.com/book/"
 }
 ```
 
-`game_image_icon` can be left empty. The card falls back to the first letter of
+`book_image_icon` can be left empty. The card falls back to the first letter of
 the title.
 
 Categories in the filter bar are built from whatever `category` values exist, so
 adding a new one needs no code change.
 
-Games open in an iframe. Some hosts refuse to be framed, and there is no way to
+Books open in an iframe. Some hosts refuse to be framed, and there is no way to
 detect that from the page, so the player shows a "New tab" button after five
 seconds.

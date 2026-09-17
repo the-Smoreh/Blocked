@@ -1,8 +1,8 @@
 // Lends cover art between libraries.
 //
-// Most sources ship no thumbnails at all, but a handful do, and the same games
-// appear again and again across collections. So when a game has no icon and a
-// game with the same name somewhere else has one that actually loads, borrow
+// Most sources ship no thumbnails at all, but a handful do, and the same books
+// appear again and again across collections. So when a book has no icon and a
+// book with the same name somewhere else has one that actually loads, borrow
 // it. Everything else keeps the generated art.
 //
 //   node scripts/share-icons.mjs             report only
@@ -14,14 +14,14 @@
 //   node scripts/share-icons.mjs --verify-own --write   blank dead own icons
 //
 // --verify-own requests every entry's own icon and clears the ones that do
-// not return an image. Selenite's catalogue lists a cover filename per game
+// not return an image. Selenite's catalogue lists a cover filename per book
 // and roughly one in seven is stale, so without this those cards fire a
 // request that 404s before falling back to the generated art, and a dead url
 // could be lent to another library as a donor.
 //
 // Matching runs in three passes, loosest last:
 //   1. exact, on the title reduced to [a-z0-9]
-//   2. loose, with filler words like "game" and "unblocked" dropped first
+//   2. loose, with filler words like "book" and "unblocked" dropped first
 //   3. fuzzy, an edit distance scaled to the length of the title
 //
 // Two rules that matter:
@@ -38,7 +38,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 
 const DIR = new URL('../public/', import.meta.url)
 const FILES = [
-  // Selenite first: it has a cover for nearly every one of its 914 games, so
+  // Selenite first: it has a cover for nearly every one of its 914 books, so
   // it is by far the biggest donor pool.
   'libraries/selenite.json',
   'libraries/goblin.json',
@@ -76,8 +76,8 @@ const key = (title) =>
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '')
 
-// Words that say nothing about which game this is. Dropping them lets
-// "Slope Game" match "Slope" and "1v1 LOL unblocked" match "1v1lol".
+// Words that say nothing about which book this is. Dropping them lets
+// "Slope Book" match "Slope" and "1v1 LOL unblocked" match "1v1lol".
 const FILLER = /(game|games|gaming|online|unblocked|unblock|play|playable|free|the|a|an|official|html5|io|version|new|full)/g
 
 const looseKey = (title) =>
@@ -115,7 +115,7 @@ function distance(a, b, cap = MAX_DISTANCE) {
 const digitsOf = (s) => (s.match(/\d+/g) || []).join('.')
 
 // The allowance scales with length, because three characters out of nine is a
-// different game while three out of twenty is a spelling variant. Short
+// different book while three out of twenty is a spelling variant. Short
 // titles get no fuzzy matching at all: at eight characters almost anything is
 // within two edits of something else.
 function allowanceFor(a, b) {
@@ -132,9 +132,9 @@ function nearMatch(a, b) {
 
 // A variant that only adds words catches what edit distance cannot:
 // "Subway Surfers Winter" is six edits from "Subway Surfers" but obviously
-// the same game. Requiring the shorter title to be a long prefix of the
+// the same book. Requiring the shorter title to be a long prefix of the
 // longer one is what keeps this from turning into a free for all. Seven
-// characters means "drift" is too short to lend to every drift game, while
+// characters means "drift" is too short to lend to every drift book, while
 // "subwaysurfers" and "geometrydash" are long enough to be specific.
 const PREFIX_MIN = num('--prefix-min', 7)
 
@@ -153,7 +153,7 @@ const loaded = []
 for (const rel of FILES) {
   const url = new URL(rel, DIR)
   if (!existsSync(url)) continue
-  loaded.push({ rel, url, games: JSON.parse(readFileSync(url, 'utf8')) })
+  loaded.push({ rel, url, books: JSON.parse(readFileSync(url, 'utf8')) })
 }
 
 // ---------------------------------------------------------------- donors
@@ -164,18 +164,18 @@ for (const rel of FILES) {
 const donors = new Map() // strict key -> { url, from, title }
 const loose = new Map() // loose key -> same
 for (const lib of loaded) {
-  for (const g of lib.games) {
-    if (!g.game_image_icon || g.icon_from) continue
+  for (const g of lib.books) {
+    if (!g.book_image_icon || g.icon_from) continue
     let host
     try {
-      host = new URL(g.game_image_icon).hostname
+      host = new URL(g.book_image_icon).hostname
     } catch {
       continue
     }
     if (DEAD_HOSTS.has(host)) continue
     const k = key(g.title)
     if (!k) continue
-    const donor = { url: g.game_image_icon, from: lib.rel, title: g.title }
+    const donor = { url: g.book_image_icon, from: lib.rel, title: g.title }
     if (!donors.has(k)) donors.set(k, donor)
     const lk = looseKey(g.title)
     if (lk && !loose.has(lk)) loose.set(lk, donor)
@@ -185,10 +185,10 @@ for (const lib of loaded) {
 if (reset) {
   let cleared = 0
   for (const lib of loaded) {
-    for (const g of lib.games) {
+    for (const g of lib.books) {
       if (!g.icon_from) continue
       delete g.icon_from
-      g.game_image_icon = ''
+      g.book_image_icon = ''
       cleared++
     }
   }
@@ -198,11 +198,11 @@ if (reset) {
 if (verifyOwn) {
   const own = []
   for (const lib of loaded) {
-    for (const g of lib.games) {
-      if (!g.game_image_icon || g.icon_from) continue
+    for (const g of lib.books) {
+      if (!g.book_image_icon || g.icon_from) continue
       let host
       try {
-        host = new URL(g.game_image_icon).hostname
+        host = new URL(g.book_image_icon).hostname
       } catch {
         continue
       }
@@ -218,8 +218,8 @@ if (verifyOwn) {
     Array.from({ length: POOL }, async () => {
       while (cursor < own.length) {
         const g = own[cursor++]
-        if (await alive(g.game_image_icon)) continue
-        g.game_image_icon = ''
+        if (await alive(g.book_image_icon)) continue
+        g.book_image_icon = ''
         blanked++
       }
     }),
@@ -281,8 +281,8 @@ const looseLog = []
 const prefixLog = []
 
 for (const lib of loaded) {
-  for (const g of lib.games) {
-    if (g.game_image_icon) continue
+  for (const g of lib.books) {
+    if (g.book_image_icon) continue
     const k = key(g.title)
     if (!k) continue
 
@@ -332,7 +332,7 @@ for (const lib of loaded) {
 
     if (!hit) continue
 
-    g.game_image_icon = hit.url
+    g.book_image_icon = hit.url
     g.icon_from = hit.from
     counts[how]++
     const line = `${g.title}  <-  ${hit.title}   (${hit.from})`
@@ -365,7 +365,7 @@ if (fuzzyLog.length) {
 console.log('\nper library:')
 const onDeadHost = (g) => {
   try {
-    return DEAD_HOSTS.has(new URL(g.game_image_icon).hostname)
+    return DEAD_HOSTS.has(new URL(g.book_image_icon).hostname)
   } catch {
     return false
   }
@@ -374,10 +374,10 @@ const onDeadHost = (g) => {
 for (const lib of loaded) {
   // Count only icons that can actually load. Counting the built in list's
   // 392 dead host icons as "own" made it look the best supplied of the lot.
-  const own = lib.games.filter((g) => g.game_image_icon && !g.icon_from && !onDeadHost(g)).length
-  const dead = lib.games.filter((g) => g.game_image_icon && onDeadHost(g)).length
-  const borrowed = lib.games.filter((g) => g.icon_from).length
-  const none = lib.games.filter((g) => !g.game_image_icon).length
+  const own = lib.books.filter((g) => g.book_image_icon && !g.icon_from && !onDeadHost(g)).length
+  const dead = lib.books.filter((g) => g.book_image_icon && onDeadHost(g)).length
+  const borrowed = lib.books.filter((g) => g.icon_from).length
+  const none = lib.books.filter((g) => !g.book_image_icon).length
   console.log(
     `  ${lib.rel.padEnd(24)} own ${String(own).padStart(3)}  borrowed ${String(borrowed).padStart(3)}` +
       `  dead ${String(dead).padStart(3)}  art only ${String(none).padStart(4)}`,
@@ -386,7 +386,7 @@ for (const lib of loaded) {
 
 if (write) {
   for (const lib of loaded) {
-    writeFileSync(lib.url, JSON.stringify(lib.games, null, 2) + '\n')
+    writeFileSync(lib.url, JSON.stringify(lib.books, null, 2) + '\n')
   }
   console.log('\nwrote the libraries')
 } else {

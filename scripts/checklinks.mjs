@@ -1,7 +1,7 @@
-// Checks whether the game URLs in public/games.json are still alive, and
+// Checks whether the book URLs in public/books.json are still alive, and
 // whether they allow being embedded in an iframe.
 //
-// This exists because hotlinked games rot constantly and a dead link looks
+// This exists because hotlinked books rot constantly and a dead link looks
 // identical to a slow one in the player: a blank frame, no error event.
 //
 //   node scripts/checklinks.mjs                        sample 40 urls
@@ -12,16 +12,16 @@
 // --file takes a path under public/, so any of the per source libraries can
 // be checked the same way as the built in list.
 //
-// Two things make a game unplayable in the frame, and they are separate:
+// Two things make a book unplayable in the frame, and they are separate:
 //   dead      the host is gone, or returns 4xx/5xx
 //   noframe   it loads, but sets X-Frame-Options or a frame-ancestors CSP
 
 import { readFileSync, writeFileSync } from 'node:fs'
 
 const fileAt = process.argv.indexOf('--file')
-const REL = fileAt === -1 ? 'games.json' : process.argv[fileAt + 1]
+const REL = fileAt === -1 ? 'books.json' : process.argv[fileAt + 1]
 const FILE = new URL(`../public/${REL}`, import.meta.url)
-const games = JSON.parse(readFileSync(FILE, 'utf8'))
+const books = JSON.parse(readFileSync(FILE, 'utf8'))
 
 const all = process.argv.includes('--all')
 const jsonAt = process.argv.indexOf('--json')
@@ -32,8 +32,8 @@ const RETRIES = 3
 const TIMEOUT = 12000
 
 const targets = all
-  ? games
-  : games.filter((_, i) => i % Math.ceil(games.length / SAMPLE) === 0).slice(0, SAMPLE)
+  ? books
+  : books.filter((_, i) => i % Math.ceil(books.length / SAMPLE) === 0).slice(0, SAMPLE)
 
 function blockedBy(headers) {
   const xfo = headers.get('x-frame-options')
@@ -48,9 +48,9 @@ function blockedBy(headers) {
   return null
 }
 
-// Only these mean the game is really gone. A 429 or a 5xx or a timeout means
+// Only these mean the book is really gone. A 429 or a 5xx or a timeout means
 // we hammered the host or the network wobbled, and treating those as dead
-// once deleted 31 working games from p0xx: GitHub Pages rate limited a burst
+// once deleted 31 working books from p0xx: GitHub Pages rate limited a burst
 // of concurrent requests and every one of them looked like a 404.
 function isGone(status) {
   return status === 404 || status === 410
@@ -74,31 +74,31 @@ async function attempt(url) {
   }
 }
 
-async function check(game) {
+async function check(book) {
   let r
   // Retry anything that is not a definite answer, with a growing pause.
   for (let i = 0; i < RETRIES; i++) {
-    r = await attempt(game.url)
+    r = await attempt(book.url)
     const settled = isGone(r.status) || (r.status >= 200 && r.status < 400)
     if (settled) break
     if (i < RETRIES - 1) await new Promise((res) => setTimeout(res, 700 * (i + 1)))
   }
 
-  const base = { title: game.title, url: game.url, status: r.status }
+  const base = { title: book.title, url: book.url, status: r.status }
 
   if (r.status === 0) {
     return { ...base, verdict: r.error?.startsWith('ENOTFOUND') ? 'dead' : 'unknown', reason: r.error }
   }
   if (isGone(r.status)) return { ...base, verdict: 'dead', reason: `HTTP ${r.status}` }
   if (r.status >= 400) {
-    // Throttled or broken upstream. Not proof the game is gone.
+    // Throttled or broken upstream. Not proof the book is gone.
     return { ...base, verdict: 'unknown', reason: `HTTP ${r.status}, retried ${RETRIES}x` }
   }
 
   const noframe = blockedBy(r.headers)
   return {
     ...base,
-    finalUrl: r.finalUrl !== game.url ? r.finalUrl : undefined,
+    finalUrl: r.finalUrl !== book.url ? r.finalUrl : undefined,
     verdict: noframe ? 'noframe' : 'ok',
     reason: noframe || undefined,
   }
@@ -110,8 +110,8 @@ let cursor = 0
 await Promise.all(
   Array.from({ length: CONCURRENCY }, async () => {
     while (cursor < targets.length) {
-      const game = targets[cursor++]
-      results.push(await check(game))
+      const book = targets[cursor++]
+      results.push(await check(book))
     }
   }),
 )
@@ -123,7 +123,7 @@ const dead = by('dead')
 const unknown = by('unknown')
 const pct = (n) => `${Math.round((n / results.length) * 100)}%`
 
-console.log(`checked ${results.length} of ${games.length} game urls\n`)
+console.log(`checked ${results.length} of ${books.length} book urls\n`)
 console.log(`  ok       ${String(ok.length).padStart(4)}  ${pct(ok.length)}`)
 console.log(`  noframe  ${String(noframe.length).padStart(4)}  ${pct(noframe.length)}`)
 console.log(`  dead     ${String(dead.length).padStart(4)}  ${pct(dead.length)}`)
@@ -157,11 +157,11 @@ if (process.argv.includes('--prune')) {
     console.log('\nnothing to prune')
   } else {
     const drop = new Set(dead.map((d) => d.url))
-    const kept = games.filter((g) => !drop.has(g.url))
+    const kept = books.filter((g) => !drop.has(g.url))
     writeFileSync(FILE, JSON.stringify(kept, null, 2) + '\n')
 
     // Record the removal so it survives a rebuild. build-libraries.mjs reads
-    // this and skips these urls, otherwise every rebuild reinstates games we
+    // this and skips these urls, otherwise every rebuild reinstates books we
     // already proved were 404 and the verification has to be redone.
     const LIST = new URL('../public/libraries/pruned.json', import.meta.url)
     let prunedList = {}
@@ -174,7 +174,7 @@ if (process.argv.includes('--prune')) {
     for (const d of dead) prunedList[d.url] = { reason: d.reason, checked: today }
     writeFileSync(LIST, JSON.stringify(prunedList, null, 2) + '\n')
 
-    console.log(`\npruned ${games.length - kept.length}, ${kept.length} left in ${REL}`)
+    console.log(`\npruned ${books.length - kept.length}, ${kept.length} left in ${REL}`)
     console.log(
       `recorded in public/libraries/pruned.json, now ${Object.keys(prunedList).length} urls`,
     )

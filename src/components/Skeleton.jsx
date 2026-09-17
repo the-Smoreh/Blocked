@@ -1,4 +1,4 @@
-// Shown while games.json is in flight. A shimmering wall in the real card
+// Shown while books.json is in flight. A shimmering wall in the real card
 // shape tells you what is coming, which a centred "Loading" does not.
 export default function Skeleton() {
   return (

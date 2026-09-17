@@ -1,13 +1,13 @@
-// Derives a category from a game's title.
+// Derives a category from a book's title.
 //
 // Shared by scripts/categorize.mjs, which runs over the json libraries at
 // build time, and src/lumin.js, which needs it at runtime: the Lumin API
-// returns only id, name and image_token per game, with no category at all,
+// returns only id, name and image_token per book, with no category at all,
 // and its getCategories() comes back empty. So a title is the only signal
 // there is.
 //
 // These rules are a heuristic, not truth. Order matters, most specific first:
-// a game matching both "horror" and "platformer" is a horror game.
+// a book matching both "horror" and "platformer" is a horror book.
 //
 // A keyword starting with "*" has to land on a word boundary. See STRICT at
 // the bottom for why only those few do.

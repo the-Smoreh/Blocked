@@ -5,7 +5,7 @@
 // file, its catalogue only exists once its SDK has answered, and its covers
 // are tokens rather than urls. So Lumin could neither lend nor borrow, even
 // though it is the single biggest pool of real cover art we have access to,
-// 1169 games with a cover each.
+// 1169 books with a cover each.
 //
 // This closes that gap in both directions. Every catalogue loaded in a
 // session registers its covers as donors, so whichever library is on screen
@@ -13,7 +13,7 @@
 //
 // The matching rules are deliberately the same as the build script's, minus
 // its fuzzy pass. Edit distance at build time is fine because a person reads
-// the printed list afterwards; doing it here would be guessing at a game's
+// the printed list afterwards; doing it here would be guessing at a book's
 // identity with nobody checking, so runtime sticks to the three passes that
 // are either exact or close to it.
 
@@ -26,8 +26,8 @@ const exactKey = (title) =>
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '')
 
-// Words that say nothing about which game this is. Dropping them lets
-// "Slope Game" match "Slope" and "1v1 LOL unblocked" match "1v1lol".
+// Words that say nothing about which book this is. Dropping them lets
+// "Slope Book" match "Slope" and "1v1 LOL unblocked" match "1v1lol".
 const FILLER =
   /(game|games|gaming|online|unblocked|unblock|play|playable|free|the|a|an|official|html5|io|version|new|full)/g
 
@@ -44,7 +44,7 @@ const looseKey = (title) =>
 const digitsOf = (s) => (s.match(/\d+/g) || []).join('.')
 
 // Seven characters, the same floor the build script uses: "drift" is short
-// enough to be a prefix of every drift game, "geometrydash" is not.
+// enough to be a prefix of every drift book, "geometrydash" is not.
 const PREFIX_MIN = 7
 
 function prefixOk(short, long) {
@@ -73,28 +73,28 @@ const registered = new Set()
 // Only original art may be lent. An entry that borrowed its own cover is
 // excluded, exactly as in the build script: without that, one image chains
 // across the whole wall and a dead url can be passed on.
-function donorFor(game) {
-  if (game.icon_from) return null
-  if (game.game_image_icon) return { url: game.game_image_icon }
-  if (game.imageToken) return { token: game.imageToken }
+function donorFor(book) {
+  if (book.icon_from) return null
+  if (book.book_image_icon) return { url: book.book_image_icon }
+  if (book.imageToken) return { token: book.imageToken }
   return null
 }
 
-export function registerDonors(id, games) {
-  if (!id || registered.has(id) || !Array.isArray(games)) return
+export function registerDonors(id, books) {
+  if (!id || registered.has(id) || !Array.isArray(books)) return
   registered.add(id)
 
-  for (const game of games) {
-    const donor = donorFor(game)
+  for (const book of books) {
+    const donor = donorFor(book)
     if (!donor) continue
 
-    const k = exactKey(game.title)
+    const k = exactKey(book.title)
     if (k && !exact.has(k)) {
       exact.set(k, donor)
       sortedStale = true
     }
 
-    const l = looseKey(game.title)
+    const l = looseKey(book.title)
     if (l && !loose.has(l)) loose.set(l, donor)
   }
 }
@@ -174,7 +174,7 @@ export function loadSeleniteDonors() {
 
   seleniteLoad = fetch(import.meta.env.BASE_URL + SELENITE, { cache: 'no-cache' })
     .then((r) => (r.ok ? r.json() : null))
-    .then((games) => games && registerDonors('selenite', games))
+    .then((books) => books && registerDonors('selenite', books))
     .catch(() => {
       // A missing donor pool is not worth surfacing. The cards fall back to
       // their generated art, which is what they were showing anyway.
@@ -197,7 +197,7 @@ export function loadLuminDonors() {
   if (luminLoad) return luminLoad
 
   luminLoad = getCatalogue()
-    .then((games) => registerDonors('lumin', games))
+    .then((books) => registerDonors('lumin', books))
     .catch(() => {
       luminLoad = null
     })

@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
 import { artFor } from '../art.js'
-import { freshGameUrl } from '../lumin.js'
+import { freshBookUrl } from '../lumin.js'
 import { useCover } from '../cover.js'
 import Icon from './Icon.jsx'
 import { categoryIcon } from '../icons.js'
 
 // Frames per second, sampled twice a second.
 //
-// This is **our** frame rate, not the game's. A cross origin iframe cannot be
+// This is **our** frame rate, not the book's. A cross origin iframe cannot be
 // measured from out here, and nothing in the browser exposes another
 // document's rate. In practice the two track each other, because the tab
-// shares a compositor, so a game that is struggling drags this number down
-// with it. But if the browser has put the game in its own process, this can
-// sit at a healthy 60 while the game itself stutters. Read it as "is the page
-// keeping up", not as a benchmark of the game.
+// shares a compositor, so a book that is struggling drags this number down
+// with it. But if the browser has put the book in its own process, this can
+// sit at a healthy 60 while the book itself stutters. Read it as "is the page
+// keeping up", not as a benchmark of the book.
 //
 // Sampled rather than reported per frame: setting state sixty times a second
 // to draw a number that changes twice a second is pure waste.
@@ -47,15 +47,15 @@ function useFps(enabled) {
   return fps
 }
 
-// How long this game has been open, this visit.
+// How long this book has been open, this visit.
 //
 // Counted from a timestamp rather than by adding a second per tick, because
 // setInterval is not punctual and the error would accumulate: a tab left in
 // the background throttles the callback and a counter that trusted its own
 // tick count would drift minutes behind the clock.
 //
-// It resets on navigating to another game, since `App` gives the player a
-// `key` of the game slug and so remounts it.
+// It resets on navigating to another book, since `App` gives the player a
+// `key` of the book slug and so remounts it.
 function useElapsed(active) {
   const [seconds, setSeconds] = useState(0)
 
@@ -81,48 +81,48 @@ function clock(total) {
   return h ? `${h}:${pad(m)}:${pad(s)}` : `${m}:${pad(s)}`
 }
 
-export default function GamePlayer({ game, isFavorite, onFavorite, showFps = true }) {
+export default function BookPlayer({ book, isFavorite, onFavorite, showFps = true }) {
   const frameRef = useRef(null)
   const [slow, setSlow] = useState(false)
   // A Lumin url carries a single use token, so it has to be fetched per
   // launch. Caching one would play once and then fail silently.
   const [luminUrl, setLuminUrl] = useState(null)
   const [luminError, setLuminError] = useState(null)
-  const fps = useFps(showFps && Boolean(game))
-  const elapsed = useElapsed(Boolean(game))
+  const fps = useFps(showFps && Boolean(book))
+  const elapsed = useElapsed(Boolean(book))
 
   useEffect(() => {
-    if (!game?.luminId) return
+    if (!book?.luminId) return
     let cancelled = false
-    freshGameUrl(game.luminId)
+    freshBookUrl(book.luminId)
       .then((url) => !cancelled && setLuminUrl(url))
       .catch((e) => !cancelled && setLuminError(e.message))
     return () => {
       cancelled = true
     }
-  }, [game?.luminId])
+  }, [book?.luminId])
 
   // Plenty of hosts refuse to be framed, and the iframe gives no error event
   // when they do. Say something after a few seconds either way.
   useEffect(() => {
-    if (!game) return
+    if (!book) return
     const t = setTimeout(() => setSlow(true), 5000)
     return () => clearTimeout(t)
-  }, [game])
+  }, [book])
 
-  if (!game) {
+  if (!book) {
     return (
       <div className="state">
-        <h2>Game not found</h2>
+        <h2>Book not found</h2>
         <a className="cta" href="#/">
-          Back to all games
+          Back to all books
         </a>
       </div>
     )
   }
 
-  const art = artFor(game.title, game.category)
-  const src = game.luminId ? luminUrl : game.url
+  const art = artFor(book.title, book.category)
+  const src = book.luminId ? luminUrl : book.url
 
   return (
     <div className="player" style={art.style}>
@@ -132,19 +132,19 @@ export default function GamePlayer({ game, isFavorite, onFavorite, showFps = tru
         </a>
 
         <span className="nowplaying">
-          <NowArt game={game} art={art} />
+          <NowArt book={book} art={art} />
           <span className="np-text">
-            <strong>{game.title}</strong>
+            <strong>{book.title}</strong>
             <em>
-              <Icon name={categoryIcon(game.category)} size={12} />
-              {game.category}
+              <Icon name={categoryIcon(book.category)} size={12} />
+              {book.category}
             </em>
           </span>
         </span>
 
         <span className="spacer" />
 
-        <span className="playtime" title="Time on this game, this visit">
+        <span className="playtime" title="Time on this book, this visit">
           <Icon name="clock" size={12} />
           <b>{clock(elapsed)}</b>
         </span>
@@ -153,7 +153,7 @@ export default function GamePlayer({ game, isFavorite, onFavorite, showFps = tru
 
         <button
           className={isFavorite ? 'iconbtn fav-on' : 'iconbtn'}
-          onClick={() => onFavorite(game.slug)}
+          onClick={() => onFavorite(book.slug)}
           title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         >
           <Icon name="star" filled={isFavorite} />
@@ -175,17 +175,17 @@ export default function GamePlayer({ game, isFavorite, onFavorite, showFps = tru
           <iframe
             ref={frameRef}
             src={src}
-            title={game.title}
+            title={book.title}
             allow="autoplay; fullscreen; gamepad; pointer-lock"
           />
         )}
       </div>
 
-      {luminError && <p className="hint">Could not start that game. {luminError}.</p>}
+      {luminError && <p className="hint">Could not start that book. {luminError}.</p>}
 
       {slow && !luminError && (
         <p className="hint">
-          Not loading? Some sites refuse to run inside a frame. Try another game, or come
+          Not loading? Some sites refuse to run inside a frame. Try another book, or come
           back to this one later.
         </p>
       )}
@@ -193,11 +193,11 @@ export default function GamePlayer({ game, isFavorite, onFavorite, showFps = tru
   )
 }
 
-// The game's own cover, at badge size, falling back to the generated initials.
+// The book's own cover, at badge size, falling back to the generated initials.
 // This used to always be the initials, which meant the bar showed "FC" next
-// to a game whose real artwork was sitting right there in the library.
-function NowArt({ game, art }) {
-  const { src, onError } = useCover(game, { eager: true })
+// to a book whose real artwork was sitting right there in the library.
+function NowArt({ book, art }) {
+  const { src, onError } = useCover(book, { eager: true })
 
   return (
     <span

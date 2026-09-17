@@ -29,7 +29,7 @@ export const LIBRARIES = {
     // reads "from Selenite by music.lyrica24.top" rather than repeating the
     // same word twice.
     author: 'music.lyrica24.top',
-    note: '914 games with their own cover art',
+    note: '914 books with their own cover art',
     credit: 'https://music.lyrica24.top/',
     file: 'libraries/selenite.json',
     count: 914,
@@ -98,7 +98,7 @@ export function libraryFile(id) {
 
 export const DEFAULTS = {
   // Selenite is the default: 914 of 915 urls verified live and frameable, and
-  // it is the only library that ships a cover for nearly every game, 804 of
+  // it is the only library that ships a cover for nearly every book, 804 of
   // them. Goblin Kingdom is bigger on titles alone but has no art of its own.
   //
   // Lumin was the default until its behaviour was pinned down: init resolves
@@ -123,12 +123,12 @@ export const DEFAULTS = {
 
   // Lets a library fill its missing covers from the others. Selenite is 105
   // short and Goblin Kingdom 591, while Lumin has art for all 1169 of its
-  // games, so this is what puts real covers on cards that would otherwise
+  // books, so this is what puts real covers on cards that would otherwise
   // only ever show generated art. See src/borrow.js.
   borrowCovers: true,
 
   // The frame counter in the player bar. On by default, but it runs a
-  // requestAnimationFrame loop for as long as a game is open, so it is worth
+  // requestAnimationFrame loop for as long as a book is open, so it is worth
   // being able to stop.
   showFps: true,
 

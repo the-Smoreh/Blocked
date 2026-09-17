@@ -54,7 +54,7 @@ export default function Header({
             className="search"
             type="search"
             value={query}
-            placeholder={`Search ${count} games`}
+            placeholder={`Search ${count} books`}
             onChange={(e) => onQuery(e.target.value)}
           />
           {query ? (

@@ -4,9 +4,9 @@ import Icon from './Icon.jsx'
 import { categoryIcon } from '../icons.js'
 import { useCover } from '../cover.js'
 
-// The spotlight. One game, big.
+// The spotlight. One book, big.
 //
-// When the game has a cover it fills the panel: a scaled up blurred copy
+// When the book has a cover it fills the panel: a scaled up blurred copy
 // behind everything, plus a crisp copy on the right at its own aspect ratio.
 // The blurred copy is what makes it work at this size, because these covers
 // are small and mostly square, so stretching one across a wide panel on its
@@ -21,13 +21,13 @@ import { useCover } from '../cover.js'
 // deliberate instead of broken.
 const SMALL_COVER = 96
 
-export default function Hero({ game }) {
+export default function Hero({ book }) {
   const [small, setSmall] = useState(false)
-  const art = artFor(game.title, game.category)
+  const art = artFor(book.title, book.category)
   // Eager, because the hero is one element and always on screen, so there is
   // nothing to wait for. Same resolution order as the cards otherwise: own
   // url, Lumin token, then a cover borrowed from another library.
-  const { src: cover, onError } = useCover(game, { eager: true })
+  const { src: cover, onError } = useCover(book, { eager: true })
 
   return (
     <section
@@ -65,16 +65,16 @@ export default function Hero({ game }) {
           <span className="dot" />
           Spotlight
         </span>
-        <h1>{game.title}</h1>
-        {game.description && <p>{game.description}</p>}
+        <h1>{book.title}</h1>
+        {book.description && <p>{book.description}</p>}
         <div className="hero-row">
-          <a className="cta" href={`#/game/${game.slug}`}>
+          <a className="cta" href={`#/book/${book.slug}`}>
             <Icon name="play" size={18} filled />
             Play now
           </a>
           <span className="hero-tag">
-            <Icon name={categoryIcon(game.category)} size={14} />
-            {game.category}
+            <Icon name={categoryIcon(book.category)} size={14} />
+            {book.category}
           </span>
         </div>
       </div>

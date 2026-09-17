@@ -4,21 +4,21 @@ import { useCover } from '../cover.js'
 import Icon from './Icon.jsx'
 import { categoryIcon, categoryTone } from '../icons.js'
 
-export default function GameCard({ game, isFavorite, onFavorite, size = 'sm', index = 0 }) {
-  const art = artFor(game.title, game.category)
-  const badge = badgeFor(game)
+export default function BookCard({ book, isFavorite, onFavorite, size = 'sm', index = 0 }) {
+  const art = artFor(book.title, book.category)
+  const badge = badgeFor(book)
   // Own url, then a resolved Lumin token, then a cover borrowed from another
   // library, all behind an observer so only cards near the viewport do any of
   // it. See src/cover.js.
-  const { ref, src, onError } = useCover(game)
+  const { ref, src, onError } = useCover(book)
 
   return (
     <a
       ref={ref}
       className={`card card-${size}`}
-      href={`#/game/${game.slug}`}
-      title={game.title}
-      aria-label={game.title}
+      href={`#/book/${book.slug}`}
+      title={book.title}
+      aria-label={book.title}
       style={{ ...art.style, '--i': index }}
       data-pattern={art.pattern}
     >
@@ -46,7 +46,7 @@ export default function GameCard({ game, isFavorite, onFavorite, size = 'sm', in
           title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
           onClick={(e) => {
             e.preventDefault()
-            onFavorite(game.slug)
+            onFavorite(book.slug)
           }}
         >
           <Icon name="star" size={15} filled={isFavorite} />
@@ -54,10 +54,10 @@ export default function GameCard({ game, isFavorite, onFavorite, size = 'sm', in
       </div>
 
       <div className="meta">
-        <h3>{game.title}</h3>
-        <span className="tag" data-tone={categoryTone(game.category)}>
-          <Icon name={categoryIcon(game.category)} size={13} />
-          {game.category}
+        <h3>{book.title}</h3>
+        <span className="tag" data-tone={categoryTone(book.category)}>
+          <Icon name={categoryIcon(book.category)} size={13} />
+          {book.category}
         </span>
       </div>
     </a>

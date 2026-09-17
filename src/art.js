@@ -1,14 +1,14 @@
 // Generated cover art.
 //
-// Almost no game in the library has a usable image. The ones that do are
+// Almost no book in the library has a usable image. The ones that do are
 // hotlinked to image proxies and Google's thumbnail cache, which rot and are
 // often blocked on school networks. So the art here is not a fallback, it is
 // the default layer every card sits on. A real image, when it loads, just
 // covers it up. When that image 404s there is nothing to swap in and no gap,
 // because the art was already behind it.
 //
-// Everything is derived from the title, so a game's art is identical on every
-// machine and every reload, and adding games never reshuffles the wall.
+// Everything is derived from the title, so a book's art is identical on every
+// machine and every reload, and adding books never reshuffles the wall.
 
 // FNV-1a, 32 bit. Small, fast, and spreads short strings like titles well.
 export function hash32(str) {
@@ -59,7 +59,7 @@ function initials(title) {
 export function artFor(title, category) {
   const h = hash32(String(title) + '|' + String(category || ''))
 
-  // Separate bit ranges per decision, so two games that share a hue do not
+  // Separate bit ranges per decision, so two books that share a hue do not
   // also share a pattern and an angle.
   const anchor = HUE_OFFSETS[h % HUE_OFFSETS.length]
   const jitter = ((h >>> 3) % 21) - 10
