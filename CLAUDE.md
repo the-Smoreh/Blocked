@@ -601,6 +601,18 @@ opens, and a relaunch refetching the url rather than reusing the dead token.
 Expect this to start working the moment the site is on a real domain. If it
 does not, the fault is upstream of everything in `src/lumin.js`.
 
+**The picker says so up front.** `isLocalSite()` in `src/settings.js` checks
+for localhost, 127.0.0.1, ::1 and .local, and the Lumin row then reads "Needs
+a deployed site" instead of its usual subtitle. It stays selectable, since the
+problem is this origin rather than the library, but nobody has to discover it
+by picking it and watching a blank screen for twenty seconds.
+
+**If you stub the SDK to test this, clear up after yourself.** A stubbed
+`window.Lumin` plus a persisted `library: 'lumin'` looks exactly like a working
+Lumin that returns nonsense games and flat colour covers, which is confusing
+for anyone who opens the tab afterwards. Reset the stored library and drop the
+global when done.
+
 Note that `getGameUrl` fires twice per launch in development. That is
 StrictMode double invoking the effect, not a bug in the resolution; production
 calls it once, and since the tokens are single use the extra one is simply

@@ -1,5 +1,12 @@
 import { useRef, useState } from 'react'
-import { ACCENTS, GRADIENTS, LIBRARIES, SLATES, prepareBackgroundImage } from '../settings.js'
+import {
+  ACCENTS,
+  GRADIENTS,
+  LIBRARIES,
+  SLATES,
+  isLocalSite,
+  prepareBackgroundImage,
+} from '../settings.js'
 import { artFor } from '../art.js'
 import Icon from './Icon.jsx'
 
@@ -227,13 +234,20 @@ export default function Settings({ open, onClose, settings, set, reset }) {
               <div className="libs">
                 {Object.entries(LIBRARIES).map(([id, lib]) => {
                   const on = id === settings.library
+                  // Only Lumin has a requirement we can check up front.
+                  const blocked = lib.kind === 'embed' && isLocalSite()
                   return (
-                    <div className={on ? 'lib on' : 'lib'} key={id}>
+                    <div
+                      className={`lib${on ? ' on' : ''}${blocked ? ' blocked' : ''}`}
+                      key={id}
+                    >
                       <button className="lib-pick" onClick={() => set({ library: id })}>
                         <span className="lib-badge">{lib.label.charAt(0)}</span>
                         <span className="lib-text">
                           <strong>{lib.label}</strong>
-                          <em>{lib.author ? `by ${lib.author}` : lib.note}</em>
+                          <em>
+                            {blocked ? 'Needs a deployed site' : lib.author ? `by ${lib.author}` : lib.note}
+                          </em>
                           {lib.author && lib.note && <small>{lib.note}</small>}
                         </span>
                         {lib.count != null && <span className="lib-count">{lib.count}</span>}
@@ -249,9 +263,10 @@ export default function Settings({ open, onClose, settings, set, reset }) {
               </div>
 
               {settings.library === 'lumin' && (
-                <p className="snote">
-                  Loaded from a third party CDN, and it checks the domain it runs on, so it does not
-                  work from localhost.
+                <p className={isLocalSite() ? 'snote bad' : 'snote'}>
+                  {isLocalSite()
+                    ? 'This one checks the domain it runs on and always fails from localhost. It should work once the site is deployed.'
+                    : 'Loaded from a third party CDN. A school network can block it outright.'}
                 </p>
               )}
             </Group>

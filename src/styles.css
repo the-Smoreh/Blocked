@@ -3392,3 +3392,13 @@ body.gated {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+/* A library we already know cannot work here. Still selectable, since the
+   check is about this origin rather than about the library being broken. */
+.lib.blocked .lib-badge {
+  opacity: 0.45;
+}
+
+.lib.blocked .lib-text em {
+  color: var(--accent-hot);
+}
