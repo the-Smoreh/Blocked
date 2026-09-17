@@ -3562,12 +3562,6 @@ body.gated {
   letter-spacing: -0.01em;
 }
 
-.chat-title em {
-  font-size: 11.5px;
-  font-style: normal;
-  color: var(--dim);
-}
-
 /* Each person's own colour.
 
    Only the hue is carried on the element, in --u. The lightness comes from
@@ -3617,11 +3611,6 @@ body.gated {
   max-width: 44ch;
   font-size: 13px;
   line-height: 1.55;
-  color: var(--dim);
-}
-
-.chat-note {
-  font-size: 11.5px;
   color: var(--dim);
 }
 

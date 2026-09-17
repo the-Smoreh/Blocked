@@ -70,10 +70,9 @@ function Join({ onJoin }) {
       }}
     >
       <span className="chat-join-glyph" aria-hidden="true">
-        <Icon name="all" size={20} />
+        <Icon name="chat" size={20} />
       </span>
       <h2>Pick a name</h2>
-      <p>That is all there is to it. No account, nothing saved but the name.</p>
       <input
         className="chat-name"
         value={name}
@@ -87,9 +86,6 @@ function Join({ onJoin }) {
       <button className="cta" type="submit" disabled={!ok}>
         Enter the room
       </button>
-      <span className="chat-note">
-        Everyone can see what you type here. Do not put anything private in it.
-      </span>
     </form>
   )
 }
@@ -230,12 +226,6 @@ export default function ChatRoom({ onClose }) {
       <header className="chat-head">
         <span className="chat-title">
           <h2>Chat room</h2>
-          {live && user && (
-            <em>
-              {messages.length} message{messages.length === 1 ? '' : 's'}, newest 200 kept
-            </em>
-          )}
-          {live === null && <em>Checking whether this site has a room</em>}
         </span>
         {live && user && (
           <span className="chat-me" style={{ '--u': hueFor(user) }}>
@@ -256,20 +246,13 @@ export default function ChatRoom({ onClose }) {
         </div>
       )}
 
+      {/* No explanation. Why it is down is our problem, not the reader's. */}
       {live === false && (
         <div className="chat-state chat-off">
           <span className="chat-join-glyph" aria-hidden="true">
-            <Icon name="close" size={20} />
+            <Icon name="chat" size={20} />
           </span>
-          <h3>The chat room does not work on this link</h3>
-          <p>
-            A chat needs somewhere shared to keep the messages, and this copy of the site
-            is only files. Nothing is running behind it to hold them.
-          </p>
-          <p className="chat-note">
-            On a host that can run code it works with no changes. Everything else on the
-            site works here as normal.
-          </p>
+          <h3>Chat room is down</h3>
         </div>
       )}
 
