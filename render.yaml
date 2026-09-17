@@ -1,0 +1,21 @@
+# Render blueprint. Point Render at this repo and it reads this file, so
+# nothing has to be typed into the dashboard.
+#
+# One web service serves both the built site and the chat api out of
+# server/chat.mjs, so the chat works with no extra pieces.
+#
+# The free plan sleeps a service after about 15 minutes with no traffic. Two
+# consequences worth knowing before choosing it: the next visit waits for a
+# cold start, and the chat's messages are in memory so a sleep clears the
+# room. Neither is a bug to be fixed, it is what the free plan is.
+services:
+  - type: web
+    name: blocked
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: node server/chat.mjs
+    envVars:
+      # Render sets PORT itself and server/chat.mjs reads it.
+      - key: NODE_VERSION
+        value: '22'

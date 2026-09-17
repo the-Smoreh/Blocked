@@ -141,6 +141,44 @@ Astray, Untrusted and 2048.
 
 ## Hosting
 
+**`DEPLOY.md` has the step by step for a person.** This section is the why.
+
+Two hosts are set up, because the chat needs a backend and the two kinds of
+backend are genuinely different:
+
+- **Cloudflare Pages.** Static files plus `functions/api/chat/messages.js`, a
+  Pages Function on D1. Pages maps the `functions` folder to url paths, and
+  that file's path is the one `src/chat.js` already asks for, so there is no
+  configuration and no CORS. Needs a D1 binding named `CHAT_DB` and the two
+  tables in `schema.sql`. Missing binding answers 503, which the client's
+  probe reads as "no backend" and the room says it is down. Correct, not a
+  crash.
+- **Render.** One Node process from `render.yaml` running `server/chat.mjs`,
+  which serves `dist` and the api together. The free plan sleeps after about
+  15 minutes idle, and its messages are in memory, so a sleep empties the
+  room.
+
+**There are two chat backends on purpose, and they are not copies.**
+`server/chat.mjs` keeps messages in an array, which is right for a process
+that stays running and useless on serverless, where every request is a fresh
+instance and the array would be empty each time. Anyone tempted to delete one
+and point both hosts at the other should read that sentence again.
+
+Both were tested rather than assumed. The Render shape was run for real:
+`node server/chat.mjs` over a built `dist` served the html, the hashed
+bundle, the stylesheet and the data files with correct content types, the api
+on the same origin, and `..` and `%2e%2e` both failed to escape `dist`. The
+Cloudflare handler was driven through a D1 stand in: 503 with no binding, 429
+per address, 400 on bad input, name clamped to 18 and text to 240, control
+characters stripped, and 260 messages in leaving 200 rows in oldest first
+order. D1 itself is not covered by that, so a real deploy is still the real
+test.
+
+**Route 53 is a registrar and DNS, not a host.** A domain there points
+wherever you tell it, so it works with either of the above. This came up
+because it looked like the domain had been bought for nothing.
+
+
 Set up for GitHub Pages. `.github/workflows/deploy.yml` builds and publishes on
 push to `main`; the repo owner has to set Settings -> Pages -> Source to
 "GitHub Actions" once.
