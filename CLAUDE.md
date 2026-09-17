@@ -635,28 +635,38 @@ Three things about their data shape drive the design:
   all. Every call is wrapped in a 20s timeout for that reason, and without it
   the UI hangs forever with no error.
 
-**It does not work from localhost.** The service checks the domain it runs on
-and that check sits upstream of the entire API, headless included. Verified
-directly: `init({headless:true})` rejects with "domain fetch failed" and
-`getCategories()` and `getGames()` both time out at 20s. `127.0.0.1` could not
-be tested because the preview pane blocks that origin.
+**It works from localhost, and it is verified live.** An earlier note here
+said the opposite, that the service checks the domain it runs on and always
+failed from localhost. That was wrong, or has stopped being true. Measured on
+`localhost:5174` from a clean load: 1169 games, 1172 cards, all 14 categories
+in the rail, every visible cover resolving to its own image, and a game
+launching into an iframe on a fresh single use url, with no console errors.
 
-So the integration is **written against their documented contract and verified
-against a stub of it**, not against their live service. The stub run confirmed:
-`init` called once with `{headless:true}`, `getGames` called 3 times for 430
-games at 200 per page, 430 cards rendered in our grid, the rail deriving
-categories from their `category` field, `getImageUrl` called 26 times out of
-430 so the observer is doing its job, `getGameUrl` not called until a game
-opens, and a relaunch refetching the url rather than reusing the dead token.
+What actually kept it broken was ours, not theirs. `useLuminCatalogue` owned
+the request and guarded a second start with a ref, so under StrictMode the
+first run started the fetch, the cleanup flipped that run's `cancelled` flag,
+and the second run returned early without starting anything. The only request
+in flight was one whose result was already being discarded, so neither the
+games nor the error ever reached state and the grid sat on its skeletons
+forever, looking exactly like a dead service.
 
-Expect this to start working the moment the site is on a real domain. If it
-does not, the fault is upstream of everything in `src/lumin.js`.
+**So the catalogue promise lives at module scope**, in `getCatalogue()`,
+alongside `loader`. The effect only attaches handlers to it. A second effect
+run then attaches fresh handlers to the same request instead of being
+orphaned, and switching library away and back reuses it rather than
+refetching. A rejection clears it so a later attempt retries.
 
-**The picker says so up front.** `isLocalSite()` in `src/settings.js` checks
-for localhost, 127.0.0.1, ::1 and .local, and the Lumin row then reads "Needs
-a deployed site" instead of its usual subtitle. It stays selectable, since the
-problem is this origin rather than the library, but nobody has to discover it
-by picking it and watching a blank screen for twenty seconds.
+The lesson generalises past this file: an effect that both starts a request
+and guards itself with a ref cannot survive StrictMode. Either let it restart,
+or move the request out of the effect.
+
+`[Lumin] Worker connection failed: domain fetch failed` in the console is
+**their** logging and is not fatal on its own. Do not read it as proof the
+library is refusing you. Check whether games arrive before concluding
+anything.
+
+The picker no longer warns about localhost and `isLocalSite()` is gone, since
+the claim behind both was false.
 
 **If you stub the SDK to test this, clear up after yourself.** A stubbed
 `window.Lumin` plus a persisted `library: 'lumin'` looks exactly like a working
@@ -673,6 +683,32 @@ Other facts worth keeping: the repo `luminsdk/script` has no tags, so `@latest`
 is branch HEAD and changes on every push. Its two files `lumin.min.js` and
 `fonts.min.js` are byte identical, same sha256, so "fonts" is a decoy name for
 network filters and the loader tries both.
+
+## When the whole site shows nothing but skeletons
+
+Two separate causes, both seen, and they look identical on screen.
+
+1. **The dev server is wedged on a stale transform.** A syntax error that was
+   on disk for even a minute can leave the running Vite process serving a 500
+   for that module and every module importing it, and it does not always
+   recover once the file is fixed. The page then renders the skeletons and
+   nothing else. `preview_logs` at error level shows the real parse error with
+   a line number, and that line number may no longer match the file, which is
+   the tell. **Restart the dev server**, do not go hunting in a file that
+   already parses. Confirm it parses with `node --check <file>` first.
+2. **The selected library never settles.** See the StrictMode note under the
+   Lumin section. `error` and `games` both staying null renders `<Skeleton/>`
+   forever, because `App` only leaves that branch when one of them is set.
+
+Check which it is before editing anything: a 500 or a failed module reload in
+the browser console points at the first, silence points at the second.
+
+**Backslashes in a heredoc are the usual source of the first one.** This shell
+collapses a doubled backslash to a single one, so a python or sed patch that
+writes a character class like [.*+?^${}()|[\]\] into a js file lands as an
+unterminated regex. Lint and build pass only after the fix, so a green build
+from before the patch proves nothing. Prefer the Edit tool for any line
+containing a backslash.
 
 ## Settings sheet
 

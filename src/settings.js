@@ -92,15 +92,6 @@ export const LIBRARIES = {
   },
 }
 
-// Lumin's service checks the domain it runs on, and that check sits upstream
-// of its whole API. From localhost it always fails, so the picker says so
-// rather than letting someone pick it and sit on a blank screen for 20
-// seconds before an error.
-export function isLocalSite() {
-  const h = typeof location === 'undefined' ? '' : location.hostname
-  return h === 'localhost' || h === '127.0.0.1' || h === '::1' || h.endsWith('.local')
-}
-
 export function libraryFile(id) {
   return LIBRARIES[id]?.file || null
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { withUniqueSlugs } from './lib.js'
 import { categoryFor } from './categorize.js'
 
@@ -189,21 +189,41 @@ export async function fetchCategories() {
   }
 }
 
+// One shared catalogue promise for the page, the same shape as `loader`
+// above.
+//
+// This is not just a cache. The effect below cannot own the request, because
+// StrictMode invokes it, cleans it up, then invokes it again: the first run
+// starts the fetch, the cleanup flips its `cancelled` flag, and the second run
+// has nothing left to attach to. An earlier version guarded the second run
+// with a ref, which meant the only request in flight was one whose result was
+// already being discarded, so neither the games nor the error ever arrived and
+// the grid sat on its skeletons forever. Sharing the promise lets the second
+// run attach fresh handlers to the same request.
+let catalogue = null
+
+export function getCatalogue() {
+  if (catalogue) return catalogue
+
+  catalogue = fetchCatalogue().catch((err) => {
+    // Drop it so switching away and back retries rather than replaying a
+    // failure that may have been a one off.
+    catalogue = null
+    throw err
+  })
+
+  return catalogue
+}
+
 // Loads the catalogue once per selection of the Lumin library.
 export function useLuminCatalogue(enabled) {
   const [state, setState] = useState({ games: null, error: null })
-  const started = useRef(false)
 
   useEffect(() => {
-    if (!enabled) {
-      started.current = false
-      return
-    }
-    if (started.current) return
-    started.current = true
+    if (!enabled) return
 
     let cancelled = false
-    fetchCatalogue()
+    getCatalogue()
       .then((games) => !cancelled && setState({ games, error: null }))
       .catch((e) => !cancelled && setState({ games: null, error: e.message }))
 
