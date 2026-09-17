@@ -533,6 +533,34 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                 <Preview />
               </Group>
 
+              <Group
+                title="Performance"
+                value={settings.effects === 'full' ? 'Full effects' : 'Fast'}
+              >
+                <Segments
+                  wide
+                  value={settings.effects === 'full' ? 'full' : 'lean'}
+                  onChange={(effects) =>
+                    set({
+                      effects,
+                      // One control, because these three are the expensive
+                      // ones and nobody wants to find all of them.
+                      bgAnimated: effects === 'full',
+                      idleShimmer: effects === 'full',
+                    })
+                  }
+                  options={[
+                    { value: 'lean', label: 'Fast' },
+                    { value: 'full', label: 'Full effects' },
+                  ]}
+                />
+                <p className="snote">
+                  Fast drops the background blur, the moving background and the
+                  animations. On a slow laptop it is the difference between
+                  scrolling and waiting.
+                </p>
+              </Group>
+
               <Group title="Details">
                 <Field label="Titles" hint="The bar under each cover">
                   <Toggle

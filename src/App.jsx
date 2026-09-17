@@ -27,6 +27,9 @@ const ChatRoom = lazy(() => import('./components/ChatRoom.jsx'))
 import { useLuminCatalogue } from './lumin.js'
 import { loadLuminDonors, loadSeleniteDonors, registerDonors } from './borrow.js'
 
+// Where Lumin falls through to when its service does not answer.
+const FALLBACK_LIBRARY = 'selenite'
+
 // Libraries where pulling Lumin's catalogue in as a donor pool pays for the
 // third party script it costs. See the effect below for the numbers.
 const LUMIN_WORTH_IT = new Set(['selenite', 'lumin'])
@@ -47,23 +50,39 @@ export default function App() {
   // not ask for is not what was wanted.
   const [chat, setChat] = useState(false)
 
-  const activeLib = LIBRARIES[settings.library] || LIBRARIES.lumin
-  const usingLumin = activeLib.kind === 'embed'
-
-  // Only the selected library is fetched, so picking one of the small ones
-  // does not pull a 4500 line json nobody will look at.
-  const fromFile = useBooks({
-    enabled: !usingLumin,
-    file: libraryFile(settings.library),
-  })
+  const selected = LIBRARIES[settings.library] || LIBRARIES.lumin
+  const usingLumin = selected.kind === 'embed'
 
   // Lumin is fetched over its SDK in headless mode rather than from a file,
   // and then rendered through exactly the same cards, hero, rows, search and
   // settings as every other library.
   const fromLumin = useLuminCatalogue(usingLumin)
 
-  const books = usingLumin ? fromLumin.books : fromFile.books
-  const error = usingLumin ? fromLumin.error : fromFile.error
+  // Lumin is the default, and it is somebody else's service reached over
+  // somebody else's cdn. A default that shows an error as the front page is a
+  // defect, so a failure falls through to Selenite for this visit instead.
+  //
+  // The setting is deliberately not rewritten: the choice stays Lumin, and a
+  // later visit tries it again. Silently changing what someone picked is
+  // worse than a quiet fallback.
+  const luminFailed = usingLumin && Boolean(fromLumin.error)
+  const fileId = luminFailed ? FALLBACK_LIBRARY : settings.library
+
+  // Only the library actually on screen is fetched, so picking one of the
+  // small ones does not pull a 4500 line json nobody will look at.
+  const fromFile = useBooks({
+    enabled: !usingLumin || luminFailed,
+    file: libraryFile(fileId),
+  })
+
+  const onLumin = usingLumin && !luminFailed
+  const books = onLumin ? fromLumin.books : fromFile.books
+  const error = onLumin ? fromLumin.error : fromFile.error
+
+  // What is on screen, which is what the footer must credit. Crediting the
+  // library someone picked while showing a different one's books would be a
+  // lie about whose work it is.
+  const activeLib = LIBRARIES[onLumin ? settings.library : fileId] || selected
 
   // Whatever is on screen becomes a donor for the other libraries, and the
   // pools that can fill this one's gaps get pulled in.
@@ -80,12 +99,12 @@ export default function App() {
   // only.
   useEffect(() => {
     if (!books) return
-    registerDonors(settings.library, books)
+    registerDonors(onLumin ? settings.library : fileId, books)
     if (!settings.borrowCovers) return
 
     loadSeleniteDonors()
     if (LUMIN_WORTH_IT.has(settings.library)) loadLuminDonors()
-  }, [books, settings.library, settings.borrowCovers])
+  }, [books, settings.library, settings.borrowCovers, onLumin, fileId])
 
   // `game/` is still accepted. The route was renamed, and a url is a promise
   // to whoever saved it: every link shared or bookmarked before the rename
@@ -156,11 +175,14 @@ export default function App() {
     return (
       <>
         <div className="state">
-          <h2>{usingLumin ? 'Could not reach that library' : 'Could not load the book list'}</h2>
+          <h2>{onLumin ? 'Could not reach that library' : 'Could not load the book list'}</h2>
           <p>Not loading? Try a different library and check here later.</p>
           <div className="state-row">
-            {usingLumin && settings.library !== 'selenite' && (
-              <button className="cta" onClick={() => set({ library: 'selenite' })}>
+            {/* Only worth offering when it has not already been tried. A
+                Lumin failure falls through to Selenite on its own, so
+                reaching here means that failed as well. */}
+            {settings.library !== FALLBACK_LIBRARY && !luminFailed && (
+              <button className="cta" onClick={() => set({ library: FALLBACK_LIBRARY })}>
                 Use Selenite instead
               </button>
             )}

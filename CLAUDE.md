@@ -1143,6 +1143,69 @@ and "Frame counter" in the Interface tab turns it off along with its
 
 
 
+## Performance, and why the defaults are lean
+
+The site was reported as unusable on a low end laptop. It was, and it was
+measurable on a fast one: scrolling the wall ran at a **median 33ms per frame
+with 13 of 59 frames over 50ms**. Three things were paying for that, in order
+of cost.
+
+**The whole library was mounted at once.** 929 cards at 18 elements each is
+about 17,000 dom nodes and 824 img tags in one document. `BookGrid` now builds
+the wall in batches of 120 behind an IntersectionObserver with a 600px margin,
+so nobody sees a seam. The batch count resets when the list changes, or a
+search would be bounded by the previous list's grown count.
+
+**`backdrop-filter` on the header, the rail and the sheet.** A blurred copy of
+whatever sits behind a sticky element is recomposited every scroll frame. It
+is one of the most expensive things a page can ask for and there were six of
+them. Removing the blur means removing the translucency with it, or those
+surfaces read as smeared rather than deliberate.
+
+**Continuous animation.** Five drifting blobs, the hero mesh, the brandmark,
+the card shine, and a staggered entry animation per card, which at 120 a batch
+is 120 simultaneous transform and opacity animations per scroll.
+
+Measured after, same script, same machine:
+
+| | before | after |
+| --- | --- | --- |
+| median frame | 33.4ms | 5.6ms |
+| p95 frame | 66.8ms | 11.2ms |
+| frames over 50ms | 13 of 59 | 0 of 245 |
+| dom nodes | 16,942 | 2,346 |
+| img tags | 824 | 28 |
+| backdrop-filter layers | 6 | 0 |
+
+`effects: 'lean'` is the default and drives `data-fx`, which switches off the
+blur, the entry animation and the always-running animations. `bgAnimated` and
+`idleShimmer` default off too. One segmented control in the Interface tab,
+**Fast** or **Full effects**, sets all three together, because these are the
+three expensive ones and nobody wants to hunt for them separately. The
+individual toggles still exist for anyone who wants to mix.
+
+Do not put `backdrop-filter` back without gating it on `data-fx="full"`.
+
+## Lumin is the default, with a fallback
+
+Lumin is the default library on request. It is also the lighter first load:
+its covers are tokens resolved per card as they scroll into view, where
+Selenite puts 824 img urls in the document.
+
+But it is somebody else's service over somebody else's cdn, and a default that
+shows an error as the front page is a defect. So a Lumin failure falls through
+to Selenite **for that visit**, and `App` keeps `activeLib` pointing at what
+is actually on screen so the footer credits the right people rather than
+claiming Lumin's name over Selenite's books.
+
+**The setting is deliberately not rewritten.** The choice stays Lumin and the
+next visit tries again, because silently changing what someone picked is worse
+than a quiet fallback.
+
+Tested by pointing `SOURCES` at urls that do not exist and rebuilding: no
+error screen, 914 Selenite books, footer crediting Selenite, and the stored
+choice still Lumin.
+
 ## Moving background
 
 Red on black, animated, and the default (`bgKind: 'gradient'`,

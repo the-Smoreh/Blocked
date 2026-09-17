@@ -106,7 +106,11 @@ export const DEFAULTS = {
   // because its worker reports "domain fetch failed", and getGames() never
   // settles. A default that shows an error to every visitor is a defect, so
   // it is still selectable, just not first.
-  library: 'selenite',
+  // Lumin by default, on request. It is also the lighter first load of the
+  // two: its covers are tokens resolved per card as they scroll into view,
+  // where Selenite puts 824 img urls in the document. If it fails, App falls
+  // back to Selenite rather than showing an error as the front page.
+  library: 'lumin',
 
   theme: 'dark',
   accent: 'crimson',
@@ -117,7 +121,10 @@ export const DEFAULTS = {
   bgKind: 'gradient', // slate | gradient | image
   bgSlate: 'ink',
   bgGradient: 'slosh',
-  bgAnimated: true,
+  // Off by default. Five blobs drifting behind a wall of cards is a
+  // continuous compositing cost for decoration nobody asked to pay for on a
+  // slow machine. "Full effects" in settings turns it back on.
+  bgAnimated: false,
   bgImage: null, // data url, written by the uploader below
   bgDim: 55, // 0-90, converted to a 0..0.9 scrim alpha over a background image
 
@@ -135,7 +142,12 @@ export const DEFAULTS = {
   showTitles: true,
   cardShape: 'square', // square | portrait | landscape
   colorIcons: true,
-  idleShimmer: true,
+  idleShimmer: false,
+
+  // 'lean' or 'full'. Drives `data-fx`, which switches off backdrop blur, the
+  // card entry animation and the always-running animations. See the fast mode
+  // block at the end of styles.css for what each one costs.
+  effects: 'lean',
 }
 
 // Accent families. Each is a pair, so anything that wants a gradient can use
@@ -595,6 +607,7 @@ export function useSettings() {
 
     root.dataset.bg = bgKind
     root.dataset.bganim = settings.bgAnimated ? 'on' : 'off'
+    root.dataset.fx = settings.effects === 'full' ? 'full' : 'lean'
 
     root.style.setProperty('--accent', accent.a)
     root.style.setProperty('--accent-hot', accent.b)
