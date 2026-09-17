@@ -253,6 +253,27 @@ Two traps when adding a glyph:
 - The old Strategy glyph was a cup, which read as a trophy and so as Sports.
   It is a flag now.
 
+**Hovering a rail row redraws its stroke.** Every glyph carries
+`pathLength="1"` in `Icon.jsx`, which normalises its total length to 1 however
+long the real path is, so one `stroke-dasharray: 1` rule draws all fifteen
+without measuring any of them. `draw-on` then animates `stroke-dashoffset`
+from 1 to 0. Most of these glyphs are several subpaths, so the sweep runs
+through them one after another, which is what makes it read as drawn rather
+than faded in.
+
+**The draw lives on the `path`, the pop and idle loops live on the `svg`.**
+That separation is deliberate: both would otherwise be fighting over the same
+element, and hovering the selected row would cancel its idle loop. Split
+across two elements they layer.
+
+Hovering also sweeps a light gradient across the row, grows an edge bar in the
+category's own colour, scales the glyph, and nudges the label right while the
+count slides left. Measured through one hover: dashoffset 1 to 0.45 to 0, edge
+bar 0 to 24px, scale 1 to 1.16, label 0 to 3px, sweep -239 to 239.
+
+The hover scale is on `.rail-item:not(.on) .icon` only, because the selected
+row is already running `icon-pop` and an idle loop on that same transform.
+
 **The selected category's icon animates.** Two animations run in sequence on
 the same element: `icon-pop` the moment the row becomes active, then an idle
 loop chosen to suit that glyph, keyed off the `data-tone` the row already

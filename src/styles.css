@@ -3222,3 +3222,132 @@ body.gated {
     opacity: 0.35;
   }
 }
+
+/* ======================================================================
+   Rail hover.
+
+   The stroke redraws itself. Every glyph carries pathLength="1", so its
+   total length is 1 no matter how long the real path is, and a single
+   dasharray rule draws all fifteen. Most of these icons are several
+   subpaths, so the sweep runs through them one after another, which is what
+   gives it the sense of being drawn rather than faded in.
+
+   The draw lives on the path and the pop and idle loops live on the svg, so
+   hovering the selected row layers the two instead of one cancelling the
+   other.
+   ====================================================================== */
+
+.rail-item {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fully drawn at rest. dasharray 1 against pathLength 1 is one dash covering
+   the whole glyph, so offset 0 shows all of it. */
+.rail-item .icon path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.rail-item:hover .icon path {
+  animation: draw-on 0.72s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Selecting redraws too, so the click has the same gesture as the hover. */
+.rail-item.on .icon path {
+  animation: draw-on 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@keyframes draw-on {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* A light sweep across the row, the same idea as the card shine. */
+.rail-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 32%,
+    color-mix(in srgb, var(--text) 8%, transparent) 50%,
+    transparent 68%
+  );
+  transform: translateX(-125%);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rail-item:hover::before {
+  transform: translateX(125%);
+}
+
+/* An edge marker in the category's own colour, growing from the middle out.
+   The active row already carries its inset accent bar, so it skips this. */
+.rail-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 0;
+  border-radius: 0 3px 3px 0;
+  background: var(--tone, var(--accent));
+  transform: translateY(-50%);
+  transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.rail-item:hover::after {
+  height: 62%;
+}
+
+.rail-item.on::after {
+  height: 0;
+}
+
+/* The row's contents settle a touch to the right, staggered, so the whole row
+   reacts rather than just the glyph. */
+.rail-item .rail-label,
+.rail-item .rail-count {
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rail-item:hover .rail-label {
+  transform: translateX(3px);
+}
+
+.rail-item:hover .rail-count {
+  transform: translateX(-2px);
+}
+
+/* Only rows that are not already running the selected animation can use a
+   transition on the svg, otherwise the two fight over transform. */
+.rail-item:not(.on) .icon {
+  transition: transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.rail-item:not(.on):hover .icon {
+  transform: scale(1.16);
+}
+
+/* The count reads brighter on hover, so the eye has somewhere to land. */
+.rail-item:hover .rail-count {
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail-item::before,
+  .rail-item::after {
+    display: none;
+  }
+
+  .rail-item .icon path {
+    stroke-dashoffset: 0;
+  }
+}

@@ -15,7 +15,11 @@ export default function Icon({ name, size = 20, filled = false }) {
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <path d={PATHS[name] || PATHS.arcade} />
+      {/* pathLength normalises every glyph to a total length of 1, so one
+          stroke-dasharray rule can draw any of them regardless of how long
+          its real path happens to be. Without it each icon would need its own
+          measured length. */}
+      <path d={PATHS[name] || PATHS.arcade} pathLength="1" />
     </svg>
   )
 }
