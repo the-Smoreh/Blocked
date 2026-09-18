@@ -64,7 +64,13 @@ commands.
 npm.cmd run dev      # port 5174
 npm.cmd run build    # outputs to dist/
 npm.cmd run lint     # oxlint
+npm.cmd run worker   # the Cloudflare Worker locally, port 8787
 ```
+
+`npm.cmd run worker` runs `wrangler dev`, which builds the site and serves it
+exactly as Cloudflare does, static files and the Worker together, with its
+own local copy of the picture storage in `.wrangler`. Use it on its own at
+8787, or next to `dev`, which forwards `/api` and `/avatars` to it.
 
 Port 5174 is deliberate. The user's other site, DeblockedX, uses 5173 and they
 sometimes run both.
@@ -88,6 +94,8 @@ src/styles.css           one stylesheet, CSS variables at the top
 scripts/categorize.mjs   derive categories from titles
 scripts/checklinks.mjs   check which book urls are alive and embeddable
 scripts/rehost.mjs       bulk repoint book urls from one host to another
+worker/                  the only server code, profile pictures on Cloudflare
+wrangler.jsonc           Cloudflare's config: the Worker, assets, storage
 ```
 
 `icons.js` holds the path data rather than `Icon.jsx` because a file that
@@ -186,6 +194,16 @@ confirmed playable and carry `"verified": true` in books.json: Clumsy Bird,
 Astray, Untrusted and 2048.
 
 ## Hosting
+
+**What is live today:** a Cloudflare Worker named `blocked`, serving `dist`
+as static assets, at https://blockede.com and
+https://blocked.cciecollabc-b5c.workers.dev. Cloudflare builds and deploys it
+on every push to `main` by running `wrangler deploy`, which reads
+`wrangler.jsonc`. The chat and leaderboard are Firestore, not Cloudflare. The
+only code running on Cloudflare is `worker/index.js`, for profile pictures.
+
+Everything below about Pages, D1 and Render is history from before that, kept
+for the reasoning. `server/chat.mjs` and `functions/` are dead code.
 
 **`DEPLOY.md` has the step by step for a person.** This section is the why.
 
@@ -927,18 +945,10 @@ same origin.
 hundred lines. It exists so the working path is verified rather than assumed,
 and as the smallest honest answer to what a host has to provide.
 
-```
-npm.cmd run chat        listens on 8787
-```
-
-The dev server proxies `/api/chat` to it, see `vite.config.js`. With it not
-running, the proxy fails, the probe returns false and the room shows its
-"does not work on this link" state, which is the same thing a static host
-produces. So both paths are testable locally.
-
-Messages are in memory there, so a restart loses them and two instances would
-each have their own room. For a real one, swap the array for shared storage
-and keep the rest.
+**All of this http chat is history.** The chat moved to Firestore, the
+`npm run chat` script is gone, and port 8787 and the `/api` proxy now belong
+to the Cloudflare Worker for profile pictures. `server/chat.mjs` is kept only
+as a record; nothing runs it.
 
 ### What the room does
 
@@ -1451,6 +1461,115 @@ Two traps from testing it:
   carries no default action, so a plain html form with one input ignores it
   too. Click the button instead. `Return` is worse: it arrives with an empty
   key.
+
+## Profile pictures
+
+Upload one on the Account page; it shows on your badge everywhere, in the
+chat, the leaderboard and the rail, to everyone.
+
+**Stored on Cloudflare, not Firebase.** Firebase Storage needs the paid plan
+now, and a picture in Firestore would cost a read for every badge on every
+screen, against the 50,000 a day the chat already leans on. On Cloudflare a
+picture is cached at the edge and in the browser, so looking at one costs
+Firebase nothing.
+
+- `worker/index.js` takes `PUT` and `DELETE` on `/api/avatar` and serves
+  `GET /avatars/<uid>`. Pictures are in Workers KV under `avatar:<uid>`.
+  KV rather than R2 because R2 needs a card on file to switch on and KV does
+  not.
+- **The KV namespace has no id in `wrangler.jsonc` on purpose.** Wrangler
+  creates it on the first deploy and reuses it after. Do not paste an id in
+  unless that namespace is deleted.
+- **`run_worker_first` sends only `/api/*` and `/avatars/*` to the Worker.**
+  Every page load and asset is a static file, free and uncounted. The free
+  plan allows 100,000 Worker requests a day, and only picture traffic spends
+  them.
+
+**Who you are is checked, not trusted.** The browser sends its Firebase ID
+token, and `worker/firebase-token.js` verifies it against Google's published
+keys by hand, since the admin sdk does not run on Workers: RS256 only, then
+signature, audience and issuer against `FIREBASE_PROJECT`, expiry and issue
+time. The uid comes out of the verified token, never the request, so nobody
+can write to someone else's picture. Tested: no token, a garbage token, an
+unsigned `alg: none` token and an unknown key id are all 401.
+
+**The picture is made small in the browser.** `avatar-upload.js` crops the
+middle square, scales it to 160px and encodes WebP, or JPEG where a browser
+cannot write WebP. A 119KB test PNG went up as 1.9KB. The Worker takes at
+most 64KB and checks the bytes really are WebP or JPEG, whatever the request
+claims, then serves them with a fixed image type, `nosniff` and a sandbox
+policy, so a crafted file cannot run as a page on our origin. No SVG, since
+SVG can carry script. Tested: html sent as a picture is 415, 70KB is 413.
+
+**One change per account per 20 seconds**, uploads and removals both. KV's
+free plan allows 1,000 writes a day for the whole site; the gap stops one
+person spending them. It does not stop someone minting many anonymous
+accounts, and nothing cheap would. The worst case is that uploads fail until
+the next day. Viewing is unaffected.
+
+**Nobody's picture is known in advance.** A badge just asks for
+`/avatars/<uid>` and most answer 404. That answer is cached like a picture,
+ten minutes in the browser and at the edge, and `avatar.js` remembers misses
+for the visit, so a chat full of people without pictures asks once per
+person. Measured: a leaderboard and a chat showing the same three people made
+three requests between them. The cost is that a new picture takes up to ten
+minutes to reach people who already looked. Your own is instant, because
+your browser asks with `?v=<when it changed>`.
+
+**The initial is always underneath.** `Avatar.jsx` lays the picture over the
+old initial badge, so a missing or slow picture looks exactly like the badge
+always did, never a broken image.
+
+**The account knows its uid** (`linkUid` in `account.js`, called on every
+sign in), because the rail shows your picture on every page and must not load
+Firebase to find out whose it is. A different uid than before means the
+browser's sign in was reset, and the old picture is dropped from the account.
+
+### Removing someone's picture
+
+There is no moderation, and it is a public image upload. If a picture has to
+go: right click it, copy the image address, and the part after `/avatars/`
+is their uid. Then Cloudflare dashboard, Storage and databases, Workers KV,
+the namespace named after the Worker, find the key `avatar:<uid>` and delete
+it. Other people may keep seeing a cached copy for up to ten minutes.
+
+### Testing pictures
+
+`npm.cmd run worker` and open http://localhost:8787. Real Firebase sign in
+works from localhost, so the whole upload runs for real against a local copy
+of KV. To see someone else's picture, put one straight into local storage and
+open the emulated site next to it, which forwards `/avatars`:
+
+```
+npx.cmd wrangler kv key put avatar:seed0 --path <file.webp> --binding AVATARS --local --metadata '{"type":"image/webp","at":1}'
+```
+
+Uploading does not work in `dev:emulated`: emulator tokens are unsigned, and
+the Worker has no switch to accept them, on purpose.
+
+The browser pane cannot drive a file picker, so tests set the input's files
+through a `DataTransfer` and dispatch `change`, which React handles like a
+real pick.
+
+## If Firebase or the site gets slow or runs out
+
+What each piece can take on the free plans, and what would move to
+Cloudflare if one runs short. Nothing here is close yet: about 114 visits a
+day at the time of writing.
+
+- **Firestore reads, 50,000 a day, are the first thing to run out.** Opening
+  the chat reads up to 200 messages, so roughly 250 chat opens a day empties
+  it, and the leaderboard is 50 more per open. When it runs out the chat and
+  leaderboard stop until midnight Pacific. Check Firebase console, Firestore,
+  Usage. The Cloudflare answer is a Durable Object for the chat, which is
+  what Cloudflare built for chat rooms, one object holding the room over
+  websockets, on the free plan; and D1 for the leaderboard, 5 million reads a
+  day free.
+- **Worker requests, 100,000 a day,** are only spent on pictures, see above.
+- **The static site** is already on Cloudflare's network and costs nothing
+  per visit.
+- **A slow book is not ours.** Books run from other people's servers inside a
+  frame, and nothing on our side can speed those up.
 
 ## Control characters in source files
 

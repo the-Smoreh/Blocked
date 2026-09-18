@@ -1,6 +1,8 @@
 import Icon from './Icon.jsx'
 import { categoryIcon, categoryTone } from '../icons.js'
 import { useAccount } from '../account.js'
+import { hueFor } from '../names.js'
+import Avatar from './Avatar.jsx'
 
 // The places that replace the wall rather than filter it, pinned under the
 // categories because they are not categories.
@@ -56,7 +58,18 @@ export default function Sidebar({
                 onClose()
               }}
             >
-              <Icon name={v.icon} size={19} />
+              {/* Your picture in place of the generic icon, once you have one. */}
+              {v.id === 'account' && account?.avatar ? (
+                <Avatar
+                  className="rail-avatar"
+                  uid={account.uid}
+                  name={account.name}
+                  mine
+                  style={{ '--u': hueFor(account.name) }}
+                />
+              ) : (
+                <Icon name={v.icon} size={19} />
+              )}
               <span className="rail-label">
                 {v.id === 'account' && account ? account.name : v.label}
               </span>

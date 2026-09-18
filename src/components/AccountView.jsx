@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { saveAccount, useAccount } from '../account.js'
-import { MAX_NAME, cleanName, hueFor, initialFor } from '../names.js'
+import { MAX_NAME, cleanName, hueFor } from '../names.js'
 import AccountPrompt from './AccountPrompt.jsx'
+import Avatar from './Avatar.jsx'
 import Icon from './Icon.jsx'
 
 // Your account: the name, how long you have played, and where that puts you.
@@ -16,6 +17,31 @@ export default function AccountView({ onClose }) {
   const [stats, setStats] = useState(undefined)
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState('')
+
+  // Picture changes. `busy` covers the upload and the removal both.
+  const fileRef = useRef(null)
+  const [busy, setBusy] = useState(false)
+  const [pictureError, setPictureError] = useState(null)
+
+  const changePicture = async (task) => {
+    setBusy(true)
+    setPictureError(null)
+    try {
+      const m = await import('../avatar-upload.js')
+      await task(m)
+    } catch (e) {
+      setPictureError(e.message)
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const onFile = (e) => {
+    const file = e.target.files?.[0]
+    // Cleared so picking the same file again still fires a change.
+    e.target.value = ''
+    if (file) changePicture((m) => m.uploadAvatar(file))
+  }
 
   useEffect(() => {
     if (!name) return
@@ -60,9 +86,7 @@ export default function AccountView({ onClose }) {
 
       {account && (
         <div className="account-card" style={{ '--u': hueFor(name) }}>
-          <span className="account-avatar" aria-hidden="true">
-            {initialFor(name)}
-          </span>
+          <Avatar className="account-avatar" uid={account.uid} name={name} mine />
 
           {editing ? (
             <form className="account-rename" onSubmit={rename}>
@@ -87,15 +111,37 @@ export default function AccountView({ onClose }) {
           ) : (
             <>
               <strong className="account-name">{name}</strong>
-              <button
-                className="btn"
-                onClick={() => {
-                  setDraft(name)
-                  setEditing(true)
-                }}
-              >
-                Change name
-              </button>
+              <div className="account-actions">
+                <button
+                  className="btn"
+                  onClick={() => {
+                    setDraft(name)
+                    setEditing(true)
+                  }}
+                >
+                  Change name
+                </button>
+                <button className="btn" disabled={busy} onClick={() => fileRef.current?.click()}>
+                  {busy ? 'Saving...' : account.avatar ? 'Change picture' : 'Add picture'}
+                </button>
+                {account.avatar && (
+                  <button
+                    className="btn"
+                    disabled={busy}
+                    onClick={() => changePicture((m) => m.removeAvatar())}
+                  >
+                    Remove picture
+                  </button>
+                )}
+              </div>
+              <input
+                ref={fileRef}
+                type="file"
+                accept="image/*"
+                hidden
+                onChange={onFile}
+              />
+              {pictureError && <p className="account-error">{pictureError}</p>}
             </>
           )}
 

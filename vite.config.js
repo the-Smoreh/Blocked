@@ -24,19 +24,13 @@ export default defineConfig({
     port: 5174,
     strictPort: true,
 
-    // The chat room talks to /api/chat on its own origin. In development that
-    // is this dev server, which serves files and knows nothing about chat, so
-    // it is forwarded to `node server/chat.mjs` on 8787.
-    //
-    // No path rewrite: the reference server matches any path ending in
-    // /messages, so it accepts the prefixed one as it arrives.
-    //
-    // With the chat server not running, the proxy fails, the probe returns
-    // false and the room shows its "does not work on this link" state. That
-    // is the same thing a static host produces, which makes both paths
-    // testable locally.
+    // Profile pictures are served by the Worker in worker/index.js, which the
+    // plain dev server knows nothing about. Run `npm.cmd run worker` alongside
+    // it and these are forwarded there. Without it, pictures just do not load
+    // and the badges show initials, same as for someone with no picture.
     proxy: {
-      '/api/chat': { target: 'http://localhost:8787', changeOrigin: true },
+      '/api': { target: 'http://localhost:8787', changeOrigin: true },
+      '/avatars': { target: 'http://localhost:8787', changeOrigin: true },
     },
   },
 })

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { fetchBoard, formatPlaytime } from '../playtime.js'
-import { hueFor, initialFor } from '../names.js'
+import { hueFor } from '../names.js'
+import Avatar from './Avatar.jsx'
 import Icon from './Icon.jsx'
 
 // Time played, most first.
@@ -14,9 +15,7 @@ function Row({ row }) {
   return (
     <li className={row.mine ? 'board-row mine' : 'board-row'} style={{ '--u': hueFor(row.name) }}>
       <span className="board-rank">{row.rank}</span>
-      <span className="msg-badge" aria-hidden="true">
-        {initialFor(row.name)}
-      </span>
+      <Avatar uid={row.uid} name={row.name} mine={row.mine} />
       <span className="board-name">{row.name}</span>
       <span className="board-time">{formatPlaytime(row.seconds)}</span>
     </li>

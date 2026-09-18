@@ -26,3 +26,7 @@ dist-ssr
 # Firebase emulator logs
 firestore-debug.log
 firebase-debug.log
+
+# Local Worker state, including uploaded test pictures
+.wrangler
+.dev.vars

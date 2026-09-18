@@ -4003,3 +4003,55 @@ body.gated {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* ---- Profile pictures ----
+
+   Every badge keeps its initial underneath and lays the picture over it, so a
+   missing or slow picture looks exactly like the badge always did. */
+
+.msg-badge,
+.account-avatar,
+.rail-avatar {
+  position: relative;
+  overflow: hidden;
+}
+
+.msg-badge img,
+.account-avatar img,
+.rail-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Your picture in the rail, where the account icon was. A touch larger than
+   the 19px glyphs, since a face at 19px is a smudge. */
+.rail-avatar {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin: -1.5px;
+  flex: none;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 800;
+  color: hsl(var(--u) 62% var(--chat-l));
+  background: hsl(var(--u) 62% var(--chat-l) / 0.14);
+}
+
+.account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.account-error {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}

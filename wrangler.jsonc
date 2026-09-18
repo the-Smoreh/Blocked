@@ -1,0 +1,37 @@
+// Cloudflare's config for the site. Read by `wrangler deploy`, which is what
+// Cloudflare runs on every push to main, and by `wrangler dev` locally.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+
+  // Must match the Worker's name in the Cloudflare dashboard, or the deploy
+  // is refused.
+  "name": "blocked",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-09-15",
+
+  // Builds the site before every deploy and every `wrangler dev`, so dist is
+  // never stale whichever way it is started.
+  "build": { "command": "npm run build" },
+
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Any unknown path gets the site, as it always has. Hash routing means
+    // no real page lives at a path, so this only matters for typos.
+    "not_found_handling": "single-page-application",
+    // Only these reach the Worker. Every other request is a static file,
+    // served free without running any code.
+    "run_worker_first": ["/api/*", "/avatars/*"]
+  },
+
+  // Profile pictures. No id on purpose: Cloudflare creates the namespace on
+  // the first deploy and reuses it after, so there is nothing to set up by
+  // hand. Locally, `wrangler dev` keeps its own copy in .wrangler.
+  "kv_namespaces": [{ "binding": "AVATARS" }],
+
+  // Which Firebase project a sign in token must come from. Not a secret, it
+  // is in every browser already.
+  "vars": { "FIREBASE_PROJECT": "blocked-ec701" },
+
+  "observability": { "enabled": true }
+}

@@ -62,6 +62,8 @@ export function watchMessages(onMessages, onError) {
           const data = d.data()
           return {
             id: d.id,
+            // Whose picture to show. Also what `mine` is decided by.
+            uid: data.uid,
             user: data.user,
             text: data.text,
             // A message written on this device shows up once immediately with

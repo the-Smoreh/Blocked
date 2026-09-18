@@ -29,7 +29,16 @@ function load() {
   try {
     const saved = JSON.parse(localStorage.getItem(KEY) || 'null')
     const name = cleanName(saved?.name)
-    if (name) return { name, since: saved.since || Date.now() }
+    if (name) {
+      return {
+        name,
+        since: saved.since || Date.now(),
+        // Learned the first time the account signs in. See linkUid.
+        uid: typeof saved.uid === 'string' ? saved.uid : undefined,
+        // When the profile picture last changed, or nothing if there is none.
+        avatar: typeof saved.avatar === 'number' ? saved.avatar : undefined,
+      }
+    }
 
     const legacy = cleanName(localStorage.getItem(LEGACY_CHAT_NAME))
     if (legacy) {
@@ -53,6 +62,18 @@ function emit() {
   for (const fn of listeners) fn()
 }
 
+function persist() {
+  try {
+    localStorage.setItem(KEY, JSON.stringify(current))
+  } catch {
+    // Kept for this visit even if it cannot be remembered.
+  }
+}
+
+// The uid from the last sign in, held even before there is an account, so an
+// account made after the chat already signed in still gets it.
+let lastUid
+
 // Another tab making or renaming the account updates this one as well.
 if (typeof window !== 'undefined') {
   window.addEventListener('storage', (e) => {
@@ -70,14 +91,33 @@ export function saveAccount(name) {
   const clean = cleanName(name)
   if (!clean) return null
 
-  current = { name: clean, since: current?.since || Date.now() }
-  try {
-    localStorage.setItem(KEY, JSON.stringify(current))
-  } catch {
-    // Kept for this visit even if it cannot be remembered.
-  }
+  // Spread first, so a rename keeps the uid and the picture.
+  current = { ...current, name: clean, since: current?.since || Date.now() }
+  if (!current.uid && lastUid) current.uid = lastUid
+  persist()
   emit()
   return current
+}
+
+// Merges into the account and saves it. For the things learned after it is
+// made: its uid, and when its picture changed.
+export function updateAccount(patch) {
+  if (!current) return null
+  current = { ...current, ...patch }
+  persist()
+  emit()
+  return current
+}
+
+// Called by fbclient.js on every sign in. The uid is what pictures are stored
+// under, so the account needs it without loading Firebase to ask.
+//
+// A different uid than before means this browser's sign in was reset, and a
+// picture saved under the old one is not this account's any more.
+export function linkUid(uid) {
+  lastUid = uid
+  if (!current || current.uid === uid) return
+  updateAccount({ uid, avatar: current.uid ? undefined : current.avatar })
 }
 
 function subscribe(fn) {

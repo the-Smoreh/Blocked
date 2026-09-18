@@ -4,12 +4,12 @@ import {
   SEND_INTERVAL_MS,
   connect,
   hueFor,
-  initialFor,
   sendMessage,
   watchMessages,
 } from '../chat.js'
 import { useAccount } from '../account.js'
 import AccountPrompt from './AccountPrompt.jsx'
+import Avatar from './Avatar.jsx'
 import Icon from './Icon.jsx'
 
 // The chat room, shown in place of the wall.
@@ -37,9 +37,7 @@ function Stamp({ at }) {
 function Message({ message, mine }) {
   return (
     <li className={mine ? 'msg mine' : 'msg'} style={{ '--u': hueFor(message.user) }}>
-      <span className="msg-badge" aria-hidden="true">
-        {initialFor(message.user)}
-      </span>
+      <Avatar uid={message.uid} name={message.user} mine={mine} />
       <span className="msg-body">
         <span className="msg-head">
           <b>{message.user}</b>
@@ -112,7 +110,8 @@ export default function ChatRoom({ onClose }) {
   const [live, setLive] = useState(null)
   // The account's name. If there is one the room opens straight away, with no
   // prompt, because the name was already given somewhere else on the site.
-  const user = useAccount()?.name ?? null
+  const account = useAccount()
+  const user = account?.name ?? null
   const [messages, setMessages] = useState([])
   const [error, setError] = useState(null)
   const [sending, setSending] = useState(false)
@@ -177,9 +176,7 @@ export default function ChatRoom({ onClose }) {
         </span>
         {live && user && (
           <span className="chat-me" style={{ '--u': hueFor(user) }}>
-            <span className="msg-badge" aria-hidden="true">
-              {initialFor(user)}
-            </span>
+            <Avatar uid={account.uid} name={user} mine />
             {user}
           </span>
         )}

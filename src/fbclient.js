@@ -13,6 +13,7 @@ import { initializeApp } from 'firebase/app'
 import { connectAuthEmulator, getAuth, signInAnonymously } from 'firebase/auth'
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore'
 import { CONFIG, configured } from './firebase.js'
+import { linkUid } from './account.js'
 
 let app = null
 let db = null
@@ -55,11 +56,22 @@ export function signIn() {
   if (!firestore()) return Promise.resolve(null)
 
   pending = signInAnonymously(auth)
-    .then((credential) => credential.user.uid)
+    .then((credential) => {
+      linkUid(credential.user.uid)
+      return credential.user.uid
+    })
     .catch(() => {
       pending = null
       return null
     })
 
   return pending
+}
+
+// A fresh proof of who this browser is, for the Worker that stores profile
+// pictures. Firebase refreshes it on its own when it is near expiry.
+export async function idToken() {
+  const uid = await signIn()
+  if (!uid) return null
+  return auth.currentUser?.getIdToken() ?? null
 }
