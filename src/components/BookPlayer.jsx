@@ -3,6 +3,7 @@ import { artFor } from '../art.js'
 import { freshBookUrl } from '../lumin.js'
 import { useCover } from '../cover.js'
 import { useAccount } from '../account.js'
+import { addTime, totalFor } from '../booktime.js'
 import Icon from './Icon.jsx'
 import { categoryIcon } from '../icons.js'
 
@@ -72,6 +73,56 @@ function useElapsed(active) {
   }, [active])
 
   return seconds
+}
+
+// All the time ever spent on this book in this browser, this visit included.
+//
+// Built on `elapsed` rather than its own timer, so it ticks in step with the
+// visit counter beside it and can never read less than it. What is already
+// saved is remembered in `mark`, and the display is that plus whatever of this
+// visit has not been saved yet.
+//
+// Saved every ten seconds and on leaving, so closing the tab loses at most a
+// few seconds.
+const SAVE_MS = 10_000
+
+function useBookTotal(slug, elapsed) {
+  const [mark, setMark] = useState(null)
+  const elapsedRef = useRef(elapsed)
+
+  useEffect(() => {
+    elapsedRef.current = elapsed
+  }, [elapsed])
+
+  useEffect(() => {
+    if (!slug) return
+
+    // How much of this visit is already in storage.
+    let saved = 0
+    const save = () => {
+      const now = elapsedRef.current
+      if (now <= saved) return
+      const stored = addTime(slug, now - saved)
+      saved = now
+      if (stored !== null) setMark({ slug, stored, saved: now })
+    }
+
+    const id = setInterval(save, SAVE_MS)
+    window.addEventListener('pagehide', save)
+    return () => {
+      clearInterval(id)
+      window.removeEventListener('pagehide', save)
+      save()
+    }
+  }, [slug])
+
+  // Until the first save, the base is read straight from storage. Keyed on
+  // the slug, because a book still loading has none and then gets one.
+  // `mark &&` rather than `mark?.`: with no book yet both slugs are undefined,
+  // and `undefined === undefined` would pick a mark that is still null.
+  const current =
+    mark && mark.slug === slug ? mark : { stored: slug ? totalFor(slug) : 0, saved: 0 }
+  return current.stored + Math.max(0, elapsed - current.saved)
 }
 
 function clock(total) {
@@ -163,6 +214,7 @@ export default function BookPlayer({ book, isFavorite, onFavorite, showFps = tru
   const [luminError, setLuminError] = useState(null)
   const fps = useFps(showFps && Boolean(book))
   const elapsed = useElapsed(Boolean(book))
+  const total = useBookTotal(book?.slug, elapsed)
   usePlaytime(book?.slug)
 
   useEffect(() => {
@@ -218,9 +270,16 @@ export default function BookPlayer({ book, isFavorite, onFavorite, showFps = tru
 
         <span className="spacer" />
 
-        <span className="playtime" title="Time on this book, this visit">
-          <Icon name="clock" size={12} />
-          <b>{clock(elapsed)}</b>
+        {/* This visit, then all time. Side by side, or stacked on a phone. */}
+        <span className="times">
+          <span className="playtime" title="Time on this book, this visit">
+            <Icon name="clock" size={12} />
+            <b>{clock(elapsed)}</b>
+          </span>
+          <span className="playtime" title="Total time on this book">
+            <em>Total</em>
+            <b>{clock(total)}</b>
+          </span>
         </span>
 
         {showFps && <Fps value={fps} />}

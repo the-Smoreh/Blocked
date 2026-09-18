@@ -1184,6 +1184,26 @@ so the bar said "FC" next to a book whose artwork was sitting in the library.
 **There is no new tab button.** It was removed on request, since a links page
 will cover the same ground.
 
+**Two timers: this visit, and all time.** The clock chip is this visit and
+resets per book. TOTAL is every visit to that book in this browser, kept in
+`blocked:booktime` by `src/booktime.js`, one object of slug to seconds. It is
+built on the visit timer's own `elapsed` rather than a second clock, so the
+two tick together and the total can never read less. Saved every ten seconds,
+on leaving the book and on `pagehide`; each save reads storage fresh and adds
+only the unsaved part, so two tabs of one book add up instead of overwriting.
+Local rather than on the server because the account is per browser anyway,
+and this needs no account and no request. Verified: 20 saved on leaving, the
+next visit read 0:03 and TOTAL 0:23, and a reload carried on from 23.
+
+**A direct link renders the player before the book exists**, while the
+catalogue is still loading, with `book` undefined. The first total hook
+crashed the whole page there: `mark?.slug === slug` is `undefined ===
+undefined`, true, so it used a mark that was still null. Anything keyed on the
+slug has to survive the slug being undefined.
+
+Below 520px the two stack into one column, clock line over TOTAL line, which
+gives the book title back about 65px on a 360px phone.
+
 **The frame counter is our frame rate, not the book's.** A cross origin
 iframe cannot be measured from outside and nothing exposes another
 document's rate. The two usually track each other because the tab shares a
