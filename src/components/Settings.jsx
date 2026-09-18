@@ -8,6 +8,8 @@ import {
   prepareBackgroundImage,
 } from '../settings.js'
 import { artFor } from '../art.js'
+import { useAccount } from '../account.js'
+import AccountPrompt from './AccountPrompt.jsx'
 import Icon from './Icon.jsx'
 
 const TABS = [
@@ -204,6 +206,10 @@ export default function Settings({ open, onClose, settings, set, reset }) {
   const [busy, setBusy] = useState(false)
   const [over, setOver] = useState(false)
   const [tab, setTab] = useState('library')
+  // Settings are behind an account, on request. With none yet, the sheet asks
+  // for a name in place of its tabs, and the moment one is given the settings
+  // appear where the prompt was, with nothing to close or reopen.
+  const account = useAccount()
 
   // Shared with the header's toggle, so the two cannot disagree.
   const setTheme = (theme) => set(pairTheme(settings, theme))
@@ -279,6 +285,14 @@ export default function Settings({ open, onClose, settings, set, reset }) {
           </button>
         </header>
 
+        {!account && (
+          <div className="sheet-body">
+            <AccountPrompt focus={open} />
+          </div>
+        )}
+
+        {account && (
+        <>
         <nav className="stabs">
           {TABS.map((t) => (
             <button
@@ -542,6 +556,8 @@ export default function Settings({ open, onClose, settings, set, reset }) {
             )}
           </div>
         </div>
+        </>
+        )}
       </aside>
     </>
   )

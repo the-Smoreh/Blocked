@@ -46,6 +46,12 @@ export const PATHS = {
     'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-2.9 1.2V21a2 2 0 1 1-4 0v-.11a1.7 1.7 0 0 0-2.9-1.2l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 2.6 15H2.5a2 2 0 1 1 0-4h.11a1.7 1.7 0 0 0 1.2-2.9l-.06-.06A2 2 0 1 1 6.58 5.2l.06.06a1.7 1.7 0 0 0 1.87.34H8.6A1.7 1.7 0 0 0 9.7 4.1V4a2 2 0 1 1 4 0v.11a1.7 1.7 0 0 0 2.9 1.2l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V10a1.7 1.7 0 0 0 1.6 1.1h.11a2 2 0 1 1 0 4H21a1.7 1.7 0 0 0-1.6 1z',
   close: 'M6 6l12 12M18 6L6 18',
   image: 'M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6',
+  // Head and shoulders, for the account.
+  user: 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4.5 20c0-3.9 3.4-6 7.5-6s7.5 2.1 7.5 6',
+  // Cup on a stand, for the leaderboard. Its outline differs from the old
+  // Strategy cup, which was dropped for reading as sport, by the handles and
+  // the stepped base.
+  trophy: 'M8 4h8v5a4 4 0 0 1-8 0zM8 5.5H5.5a2.5 2.5 0 0 0 2.6 3.4M16 5.5h2.5a2.5 2.5 0 0 1-2.6 3.4M12 13v3.5M9 20h6M10 16.5h4v3.5h-4z',
   // Speech bubble with a tail, for the chat room.
   chat: 'M4 5h16v11H9l-4 4v-4H4zM8 9h8M8 12h5',
 }

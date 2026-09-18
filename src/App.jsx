@@ -24,6 +24,9 @@ import Settings from './components/Settings.jsx'
 // feature most visitors never touch. Split out, the wall loads at its old
 // weight and the chat fetches its own chunk on the click that needs it.
 const ChatRoom = lazy(() => import('./components/ChatRoom.jsx'))
+// The same reasoning for these two, which reach Firebase for time played.
+const Leaderboard = lazy(() => import('./components/Leaderboard.jsx'))
+const AccountView = lazy(() => import('./components/AccountView.jsx'))
 import { useLuminCatalogue } from './lumin.js'
 import { loadLuminDonors, loadSeleniteDonors, registerDonors } from './borrow.js'
 
@@ -44,11 +47,11 @@ export default function App() {
   const [category, setCategory] = useState('All')
   const [menu, setMenu] = useState(false)
   const [panel, setPanel] = useState(false)
-  // The chat room deliberately lives in state rather than in the url, which
-  // is what makes a category, a search or a reload leave it. Putting it on a
-  // route would survive a refresh, and being returned to a chat room you did
-  // not ask for is not what was wanted.
-  const [chat, setChat] = useState(false)
+  // Which page is standing in for the wall: 'account', 'chat', 'leaderboard'
+  // or none. Deliberately state rather than the url, which is what makes a
+  // category, a search or a reload leave it. A route would survive a refresh,
+  // and being returned to a page you did not ask for is not what was wanted.
+  const [view, setView] = useState(null)
 
   const selected = LIBRARIES[settings.library] || LIBRARIES.lumin
   const usingLumin = selected.kind === 'embed'
@@ -234,7 +237,7 @@ export default function App() {
         query={query}
         onQuery={(q) => {
           setQuery(q)
-          if (q) setChat(false)
+          if (q) setView(null)
         }}
         onSettings={() => setPanel(true)}
         onMenu={() => setMenu((m) => !m)}
@@ -249,17 +252,18 @@ export default function App() {
         category={category}
         onCategory={(c) => {
           setCategory(c)
-          setChat(false)
+          setView(null)
         }}
         counts={counts}
         open={menu}
         onClose={() => setMenu(false)}
-        chatOpen={chat}
-        onChat={() => setChat((c) => !c)}
+        view={view}
+        // A second click on the open one closes it, back to the wall.
+        onView={(v) => setView((current) => (current === v ? null : v))}
       />
 
       <main>
-        {chat && (
+        {view && (
           <Suspense
             fallback={
               <div className="chat chat-state">
@@ -267,13 +271,15 @@ export default function App() {
               </div>
             }
           >
-            <ChatRoom onClose={() => setChat(false)} />
+            {view === 'chat' && <ChatRoom onClose={() => setView(null)} />}
+            {view === 'leaderboard' && <Leaderboard onClose={() => setView(null)} />}
+            {view === 'account' && <AccountView onClose={() => setView(null)} />}
           </Suspense>
         )}
 
-        {!chat && !browsing && hero && <Hero book={hero} />}
+        {!view && !browsing && hero && <Hero book={hero} />}
 
-        {!chat && !browsing && (
+        {!view && !browsing && (
           <Row
             title="Jump back in"
             icon="clock"
@@ -284,7 +290,7 @@ export default function App() {
           />
         )}
 
-        {!chat && !browsing && (
+        {!view && !browsing && (
           <Row
             title="Your favorites"
             icon="star"
@@ -295,7 +301,7 @@ export default function App() {
           />
         )}
 
-        {!chat && !browsing && featured.length > 1 && (
+        {!view && !browsing && featured.length > 1 && (
           <Row
             title="Featured"
             icon="action"
@@ -306,7 +312,7 @@ export default function App() {
           />
         )}
 
-        {!chat && (
+        {!view && (
         <BookGrid
           title={browsing ? 'Results' : 'All books'}
           icon={browsing ? 'search' : 'all'}

@@ -12,6 +12,7 @@
     "lint": "oxlint",
     "check:presets": "node scripts/check-gradients.mjs",
     "chat": "node server/chat.mjs",
+    "dev:emulated": "npx --yes firebase-tools@latest emulators:exec --only firestore,auth --project demo-blocked \"vite --port 5177 --strictPort --mode emulated\"",
     "rules:test": "npx --yes firebase-tools@latest emulators:exec --only firestore --project demo-blocked \"node scripts/rules-test.mjs\"",
     "preview": "vite preview"
   },

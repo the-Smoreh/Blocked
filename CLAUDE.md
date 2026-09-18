@@ -942,8 +942,8 @@ and keep the rest.
 
 ### What the room does
 
-- **A name, and that is the whole entry.** No account. It is remembered in
-  localStorage and prefilled, but re-entering the room asks again.
+- **The name is the Blocked account.** The room asks only when there is no
+  account yet, and never again after. See Accounts below.
 - **Newest 200 kept**, oldest dropped, and the cap is enforced on both sides.
   The client asking for 200 is a display choice, not a limit anyone is held
   to, so the server slices as well. Verified: 250 in, 200 out, newest kept.
@@ -1352,6 +1352,117 @@ Testing note: the preview pane emits its own wheel events, five at -100 then
 two at +100 in one sample, which sometimes dismisses the gate between tool
 calls. That is the harness scrolling, not a bug. Drive `--p` directly rather
 than relying on the gate surviving between calls.
+
+## Accounts
+
+An account is a name, tied to this browser. `src/account.js` holds it in
+`blocked:account` and `useAccount()` reads it anywhere. No password and no
+sign in screen, on purpose: the user asked for no extra steps.
+
+**One prompt, three doors.** `AccountPrompt.jsx` is the only place an
+account is made, and it is shown by the chat room, the settings sheet and the
+Account page. Whichever someone reaches first makes the account; the other
+two then never ask. It reuses the chat's own classes so it looks exactly like
+the old chat prompt, which was the request.
+
+**Settings are locked until there is an account.** The sheet renders the
+prompt instead of its tabs. The header mode toggle stays outside that lock.
+
+**Old chat names become accounts.** `load()` migrates `blocked:chatname`
+into `blocked:account` on first read, so anyone who joined the chat before
+accounts existed is signed in already. Verified in the browser.
+
+**What pairs it across the chat and the leaderboard is the anonymous uid**,
+not the name. `src/fbclient.js` is the one Firebase app the whole site
+shares, and `signInAnonymously` hands back the browser's saved user rather
+than minting a new one, so the uid is the same across reloads. Verified: the
+same leaderboard row id before and after a reload. Names are not unique,
+same as the chat always was.
+
+The honest limit, worth repeating to the user if they ask: clearing site
+data, a private window or another device is a new account, because there is
+nothing to log back in with. Fixing that needs a real sign in, which is the
+extra step they did not want.
+
+**`account.js` and `names.js` must stay free of Firebase.** Both load on
+every page. The sdk is about 160kB gzipped and is only fetched by the lazily
+loaded chat, leaderboard, account page and play time code.
+
+**The settings sheet is always mounted**, it only slides in. So the prompt
+takes a `focus` prop instead of `autoFocus`; autoFocus grabbed the cursor on
+page load for a box that was off screen.
+
+## Leaderboard
+
+Time played, one Firestore document per account in `leaderboard/{uid}`
+holding `name`, `seconds` and `updated`. `src/playtime.js` writes and reads
+it; `Leaderboard.jsx` shows the top 50 and, when you are not in it, your own
+row after a gap with your real rank from a count query.
+
+**The player counts only visible time**, and writes it once a minute plus on
+leaving the book (`usePlaytime` in `BookPlayer.jsx`). A book in a background
+tab is not being played. Under 5 seconds is not worth a write and stays
+banked for the next one. Nothing is counted without an account.
+
+**The rules are what make the totals mean anything.** Anyone with the config
+can write from a console, so `firestore.rules` refuses an update that adds
+more than 90 seconds, or more than has actually passed since the row's last
+`updated` plus 5 seconds of slack. `updated` must equal `request.time`, so it
+cannot be backdated to make room. `increment` rather than read then write,
+so two tabs cannot overwrite each other, and a second tab refused for writing
+too soon drops that time since the first tab already counted it. 15 cases in
+`scripts/rules-test.mjs`.
+
+**It is read once when opened, not listened to.** Every player writes once a
+minute, so a live listener would re-read the board in every open window on
+every one of those writes.
+
+**The live site needs the new rules published** before the board and play
+time work there. Until then the board says it is down and time is quietly not
+recorded; the chat is unaffected. The CLI login does not work on this
+machine, so it is done through the console, Firestore, Rules tab, paste the
+whole file, Publish.
+
+### Testing against the emulator
+
+```
+npm.cmd run dev:emulated
+```
+
+Runs the Firestore and Auth emulators and a dev server on 5177 with
+`--mode emulated`, which loads `.env.emulated` and sets `VITE_EMULATOR=1`.
+`fbclient.js` then connects to the emulators under project `demo-blocked`.
+Nothing touches real data, and the rules under test are the local file, so
+this works before they are published. Needs Java 21+, see the chat section.
+The preview config `blocked-emulated` runs the dev server half; start the
+emulators first.
+
+Rows can be seeded past the rules with the REST api and
+`Authorization: Bearer owner`, which is how the off-board row was tested with
+55 fake players.
+
+Two traps from testing it:
+
+- **A Lumin slug from one load may not exist in the next.** A Lumin failure
+  falls back to Selenite for that visit, so a book opened then can be "Book
+  not found" after a reload that got Lumin. No book means no time counted,
+  correctly, and it looked exactly like the timer being broken.
+- **The browser pane's Enter does not submit forms.** Its synthetic keydown
+  carries no default action, so a plain html form with one input ignores it
+  too. Click the button instead. `Return` is worse: it arrives with an empty
+  key.
+
+## Control characters in source files
+
+**Never write `\u0000` style escapes through any tool, Bash heredocs included.** The
+tool's JSON layer turns them into the raw bytes, and it happened again while
+writing this very note, so a regex meant to strip
+control characters lands in the file containing real NUL and ESC bytes. It
+usually still works, which is why it goes unnoticed, but it breaks diffs,
+greps and some editors. `src/names.js` builds that character class from
+`String.fromCharCode` for this reason. `server/chat.mjs` and
+`functions/api/chat/messages.js` still carry raw bytes from before; both are
+dead code now that the chat is on Firestore.
 
 ## Writing style
 

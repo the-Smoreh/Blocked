@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   MAX_LENGTH,
-  MAX_NAME,
   SEND_INTERVAL_MS,
-  cleanName,
   connect,
   hueFor,
   initialFor,
   sendMessage,
   watchMessages,
 } from '../chat.js'
+import { useAccount } from '../account.js'
+import AccountPrompt from './AccountPrompt.jsx'
 import Icon from './Icon.jsx'
 
 // The chat room, shown in place of the wall.
@@ -50,45 +50,6 @@ function Message({ message, mine }) {
         <span className="msg-text">{message.text}</span>
       </span>
     </li>
-  )
-}
-
-function Join({ onJoin }) {
-  const [name, setName] = useState(() => {
-    try {
-      return localStorage.getItem('blocked:chatname') || ''
-    } catch {
-      return ''
-    }
-  })
-  const ok = cleanName(name).length > 0
-
-  return (
-    <form
-      className="chat-join"
-      onSubmit={(e) => {
-        e.preventDefault()
-        if (ok) onJoin(cleanName(name))
-      }}
-    >
-      <span className="chat-join-glyph" aria-hidden="true">
-        <Icon name="chat" size={20} />
-      </span>
-      <h2>Pick a name</h2>
-      <input
-        className="chat-name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Your name"
-        maxLength={MAX_NAME}
-        autoComplete="off"
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus
-      />
-      <button className="cta" type="submit" disabled={!ok}>
-        Enter the room
-      </button>
-    </form>
   )
 }
 
@@ -149,7 +110,9 @@ function Composer({ onSend, sending }) {
 export default function ChatRoom({ onClose }) {
   // null while the probe is still running, then true or false.
   const [live, setLive] = useState(null)
-  const [user, setUser] = useState(null)
+  // The account's name. If there is one the room opens straight away, with no
+  // prompt, because the name was already given somewhere else on the site.
+  const user = useAccount()?.name ?? null
   const [messages, setMessages] = useState([])
   const [error, setError] = useState(null)
   const [sending, setSending] = useState(false)
@@ -206,15 +169,6 @@ export default function ChatRoom({ onClose }) {
     }
   }
 
-  const join = (name) => {
-    try {
-      localStorage.setItem('blocked:chatname', name)
-    } catch {
-      // Not being able to remember the name is not worth surfacing.
-    }
-    setUser(name)
-  }
-
   return (
     <section className="chat">
       <header className="chat-head">
@@ -250,7 +204,8 @@ export default function ChatRoom({ onClose }) {
         </div>
       )}
 
-      {live === true && !user && <Join onJoin={join} />}
+      {/* Making the account here makes it for the whole site. */}
+      {live === true && !user && <AccountPrompt action="Enter the room" />}
 
       {live === true && user && (
         <>

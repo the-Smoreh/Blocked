@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { artFor } from '../art.js'
 import { freshBookUrl } from '../lumin.js'
 import { useCover } from '../cover.js'
+import { useAccount } from '../account.js'
 import Icon from './Icon.jsx'
 import { categoryIcon } from '../icons.js'
 
@@ -81,6 +82,78 @@ function clock(total) {
   return h ? `${h}:${pad(m)}:${pad(s)}` : `${m}:${pad(s)}`
 }
 
+// Adds the time a book is open to the account's total on the leaderboard.
+//
+// Only time the tab is actually visible counts. A book left open in a
+// background tab is not being played, and counting it would let anyone
+// top the board by leaving one open overnight in a tab they never look at.
+//
+// Written once a minute rather than continuously. That is about 60 writes an
+// hour per player against a free allowance of 20,000 a day, and it is what
+// the rules expect: each write may add no more than 90 seconds, and no more
+// than has really passed since the last one. See the leaderboard block in
+// firestore.rules.
+//
+// Nothing happens without an account, and the Firebase sdk is not fetched
+// until the first minute is up, so a short visit never downloads it.
+const FLUSH_MS = 60_000
+
+function usePlaytime(slug) {
+  const name = useAccount()?.name
+
+  useEffect(() => {
+    if (!name || !slug) return
+
+    let pending = 0
+    let last = performance.now()
+    let visible = document.visibilityState === 'visible'
+
+    // Banks the time since the last look, if the tab was visible for it.
+    const tick = () => {
+      const now = performance.now()
+      if (visible) pending += (now - last) / 1000
+      last = now
+    }
+
+    const flush = async () => {
+      tick()
+      const send = Math.floor(pending)
+      // Not worth a write. It stays banked and goes with the next one.
+      if (send < 5) return
+      pending -= send
+
+      try {
+        const { addPlaytime } = await import('../playtime.js')
+        await addPlaytime(send, name)
+      } catch (e) {
+        // Refused means the rules judged it too fast, which in practice is a
+        // second tab of the same account that already wrote this minute. That
+        // time was counted there, so drop it. Anything else is the network,
+        // and the time goes back in the bank for the next attempt.
+        if (e?.code !== 'permission-denied') pending += send
+      }
+    }
+
+    const onVisibility = () => {
+      tick()
+      visible = document.visibilityState === 'visible'
+    }
+
+    document.addEventListener('visibilitychange', onVisibility)
+    window.addEventListener('pagehide', flush)
+    const id = setInterval(flush, FLUSH_MS)
+
+    // Leaving the book writes whatever is banked, so the last partial minute
+    // is not lost.
+    return () => {
+      clearInterval(id)
+      document.removeEventListener('visibilitychange', onVisibility)
+      window.removeEventListener('pagehide', flush)
+      flush()
+    }
+  }, [name, slug])
+}
+
 export default function BookPlayer({ book, isFavorite, onFavorite, showFps = true }) {
   const frameRef = useRef(null)
   const [slow, setSlow] = useState(false)
@@ -90,6 +163,7 @@ export default function BookPlayer({ book, isFavorite, onFavorite, showFps = tru
   const [luminError, setLuminError] = useState(null)
   const fps = useFps(showFps && Boolean(book))
   const elapsed = useElapsed(Boolean(book))
+  usePlaytime(book?.slug)
 
   useEffect(() => {
     if (!book?.luminId) return
