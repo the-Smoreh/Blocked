@@ -16,12 +16,9 @@ import {
   initializeTestEnvironment,
 } from '@firebase/rules-unit-testing'
 import {
-  collection,
   deleteDoc,
   doc,
   getDoc,
-  getDocs,
-  increment,
   serverTimestamp,
   setDoc,
   writeBatch,
@@ -165,105 +162,6 @@ console.log('\n--- anywhere else in the project ---')
   )
   await check('reading another collection is closed', () =>
     assertFails(getDoc(doc(db, 'secrets', 'x'))),
-  )
-}
-
-console.log('\n--- leaderboard: reading ---')
-{
-  const db = env.unauthenticatedContext().firestore()
-  await check('a stranger can read the board', () =>
-    assertSucceeds(getDocs(collection(db, 'leaderboard'))),
-  )
-}
-
-// What the site itself sends: an increment and a server stamp, merged.
-const play = (db, uid, seconds, extra = {}) =>
-  setDoc(
-    doc(db, 'leaderboard', uid),
-    { name: 'Ada', seconds: increment(seconds), updated: serverTimestamp(), ...extra },
-    { merge: true },
-  )
-
-// Puts a row in place with the rules off, so a test can start from "last
-// written N seconds ago" without sleeping for N seconds.
-async function seed(uid, seconds, agoSeconds) {
-  await env.withSecurityRulesDisabled(async (ctx) => {
-    await setDoc(doc(ctx.firestore(), 'leaderboard', uid), {
-      name: 'Ada',
-      seconds,
-      updated: new Date(Date.now() - agoSeconds * 1000),
-    })
-  })
-}
-
-console.log('\n--- leaderboard: the first write ---')
-{
-  const db = env.authenticatedContext('lb-a').firestore()
-  await check('a first write of one minute is allowed', () => assertSucceeds(play(db, 'lb-a', 60)))
-
-  const db2 = env.authenticatedContext('lb-b').firestore()
-  await check('a first write of an hour is refused', () => assertFails(play(db2, 'lb-b', 3600)))
-
-  const db3 = env.authenticatedContext('lb-c').firestore()
-  await check("writing someone else's row is refused", () => assertFails(play(db3, 'lb-a', 10)))
-
-  const anon = env.unauthenticatedContext().firestore()
-  await check('writing while not signed in is refused', () => assertFails(play(anon, 'lb-z', 10)))
-}
-
-console.log('\n--- leaderboard: faster than the clock ---')
-{
-  const uid = 'lb-d'
-  const db = env.authenticatedContext(uid).firestore()
-  await seed(uid, 600, 2)
-  await check('adding a minute two seconds after the last write is refused', () =>
-    assertFails(play(db, uid, 60)),
-  )
-
-  await seed(uid, 600, 70)
-  await check('adding a minute seventy seconds after the last write is allowed', () =>
-    assertSucceeds(play(db, uid, 60)),
-  )
-}
-
-console.log('\n--- leaderboard: the one write cap ---')
-{
-  const uid = 'lb-e'
-  const db = env.authenticatedContext(uid).firestore()
-  // A whole day really has passed, so without the cap this would be allowed.
-  await seed(uid, 600, 86400)
-  await check('claiming a day in one write after a day away is refused', () =>
-    assertFails(play(db, uid, 86400)),
-  )
-  await check('but a normal minute after a day away is fine', () =>
-    assertSucceeds(play(db, uid, 60)),
-  )
-}
-
-console.log('\n--- leaderboard: shape ---')
-{
-  const uid = 'lb-f'
-  const db = env.authenticatedContext(uid).firestore()
-  await seed(uid, 600, 120)
-  await check('going backwards is refused', () => assertFails(play(db, uid, -30)))
-  await check('an extra field is refused', () => assertFails(play(db, uid, 10, { admin: true })))
-  await check('a name over 18 is refused', () =>
-    assertFails(play(db, uid, 10, { name: 'N'.repeat(19) })),
-  )
-  await check('a made up timestamp is refused', () =>
-    assertFails(
-      setDoc(
-        doc(db, 'leaderboard', uid),
-        { name: 'Ada', seconds: increment(10), updated: new Date('2099-01-01') },
-        { merge: true },
-      ),
-    ),
-  )
-  await check('renaming with no time added is allowed at any moment', () =>
-    assertSucceeds(play(db, uid, 0, { name: 'Grace' })),
-  )
-  await check('a row cannot be deleted, even by its owner', () =>
-    assertFails(deleteDoc(doc(db, 'leaderboard', uid))),
   )
 }
 

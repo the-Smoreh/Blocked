@@ -1,18 +1,21 @@
-// The one piece of server code on Cloudflare: profile pictures.
+// The server code on Cloudflare: profile pictures and the leaderboard.
 //
 // Everything else on the site is static files, which Cloudflare serves without
 // running this at all. `run_worker_first` in wrangler.jsonc sends only /api/*
 // and /avatars/* here, so a page load never costs a Worker request.
 //
-//   PUT    /api/avatar       upload yours, body is the image
-//   DELETE /api/avatar       remove yours
-//   GET    /avatars/<uid>    anyone's, 404 if they have none
+//   PUT    /api/avatar         upload yours, body is the image
+//   DELETE /api/avatar         remove yours
+//   GET    /avatars/<uid>      anyone's, 404 if they have none
+//   POST   /api/playtime       add time played, see leaderboard.js
+//   GET    /api/leaderboard    the top 50
 //
 // Pictures live in Workers KV under `avatar:<uid>`. KV rather than R2 because
 // R2 has to be switched on with a card on file, KV does not, and a picture
 // here is about 10KB, far inside what KV is good at.
 
 import { UID, verifyIdToken } from './firebase-token.js'
+import { addPlaytime, readBoard } from './leaderboard.js'
 
 // The browser shrinks a picture to 160px square before sending it, which
 // lands around 5 to 15KB. This is the ceiling for anything sent by hand.
@@ -106,11 +109,9 @@ function forget(url, uid) {
     .catch(() => {})
 }
 
-async function avatarApi(request, env, ctx, url) {
-  if (request.method !== 'PUT' && request.method !== 'DELETE') {
-    return json({ error: 'Method not allowed' }, 405)
-  }
-
+// The uid of whoever sent this, from their Firebase sign in token, or a
+// Response saying why not.
+async function signedIn(request, env) {
   const token = (request.headers.get('Authorization') || '').replace(/^Bearer /, '')
   let uid
   try {
@@ -118,7 +119,16 @@ async function avatarApi(request, env, ctx, url) {
   } catch {
     return json({ error: 'Could not check the sign in' }, 503)
   }
-  if (!uid) return json({ error: 'Not signed in' }, 401)
+  return uid || json({ error: 'Not signed in' }, 401)
+}
+
+async function avatarApi(request, env, ctx, url) {
+  if (request.method !== 'PUT' && request.method !== 'DELETE') {
+    return json({ error: 'Method not allowed' }, 405)
+  }
+
+  const uid = await signedIn(request, env)
+  if (uid instanceof Response) return uid
 
   // The time of the last change rides along as KV metadata. A streamed read
   // fetches only that, not the picture.
@@ -151,11 +161,36 @@ async function avatarApi(request, env, ctx, url) {
   return json({ ok: true, uid, v: at })
 }
 
+async function playtimeApi(request, env) {
+  if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405)
+
+  const uid = await signedIn(request, env)
+  if (uid instanceof Response) return uid
+
+  const body = await request.json().catch(() => null)
+  const { status } = await addPlaytime(env.DB, uid, body)
+  return status === 200 ? json({ ok: true }) : json({ error: 'Bad request' }, status)
+}
+
+// Public, like the board has always been. `uid` only says which row to find,
+// it proves nothing and needs nothing, since everyone's rank is on show.
+async function leaderboardApi(request, env, url) {
+  if (request.method !== 'GET') return json({ error: 'Method not allowed' }, 405)
+  const board = await readBoard(
+    env.DB,
+    url.searchParams.get('uid'),
+    url.searchParams.get('only') === 'me',
+  )
+  return json(board)
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url)
 
     if (url.pathname === '/api/avatar') return avatarApi(request, env, ctx, url)
+    if (url.pathname === '/api/playtime') return playtimeApi(request, env)
+    if (url.pathname === '/api/leaderboard') return leaderboardApi(request, env, url)
     if (url.pathname.startsWith('/avatars/')) return serveAvatar(request, env, ctx, url)
     if (url.pathname.startsWith('/api/')) return json({ error: 'Not found' }, 404)
 

@@ -377,18 +377,25 @@ because at that width it crowds the title.
 
 ## Category colours
 
+**The shooting category is called FPS**, renamed from Shooter on request as a
+safer word. The data files were rewritten, the build scripts now produce FPS,
+and `canonicalCategory` in `src/categorize.js` renames any old name as every
+library loads, so a source that still says Shooter cannot bring it back. Book
+titles were not touched: "Bubble Shooter" is somebody else's title. 113 rows
+changed, the 22 titles containing the word are as they were.
+
 One colour per category, in `--tone-0` through `--tone-14`, assigned in
 `CATEGORY_TONE` in `src/icons.js`. They are picked to suit the category rather
 than spread evenly round the wheel: sand for Sandbox, pitch green for Sports,
 neon pink for Retro, purple for Horror so it does not fight the site's own red.
-Racing, Action and Shooter all want to be red, so they take red, orange and
+Racing, Action and FPS all want to be red, so they take red, orange and
 rose to stay apart.
 
-**Every category needs its own index.** Action and Shooter shared tone 11 until
+**Every category needs its own index.** Action and FPS shared tone 11 until
 Selenite made Action a 130 book category and the collision became obvious.
 
 **Every category has its own glyph.** There were seven shapes for fifteen
-categories, so Clicker, Horror, IO, Platformer, Retro, Sandbox and Shooter all
+categories, so Clicker, Horror, IO, Platformer, Retro, Sandbox and FPS all
 fell through to the arcade cabinet fallback and Adventure reused Action's bolt.
 The whole rail looked duplicated. `BY_CATEGORY` in `src/icons.js` now maps
 every category that actually occurs, plus aliases for the names other sources
@@ -1404,36 +1411,62 @@ page load for a box that was off screen.
 
 ## Leaderboard
 
-Time played, one Firestore document per account in `leaderboard/{uid}`
-holding `name`, `seconds` and `updated`. `src/playtime.js` writes and reads
-it; `Leaderboard.jsx` shows the top 50 and, when you are not in it, your own
-row after a gap with your real rank from a count query.
+Time played, in Cloudflare D1, one row per account in a `players` table
+holding `uid`, `name`, `seconds` and `updated`. `worker/leaderboard.js` owns
+it; `src/playtime.js` talks to it; `Leaderboard.jsx` shows the top 50 and,
+when you are not in it, your own row after a gap with your real rank from a
+count.
+
+**It was on Firestore first and never worked live.** The Firestore version
+depended on security rules that have to be published by hand from the
+Firebase console, and that step never happened, so the live board said it was
+down from day one while the chat, whose rules were published earlier, worked.
+Checked directly: a signed in read of `leaderboard` was 403 while
+`rooms/main/messages` was 200. Moving it to the Worker means the checks ship
+with every push and there is nothing left to publish. The Firestore rules
+block and its tests were deleted; the catch all keeps that collection closed.
 
 **The player counts only visible time**, and writes it once a minute plus on
 leaving the book (`usePlaytime` in `BookPlayer.jsx`). A book in a background
 tab is not being played. Under 5 seconds is not worth a write and stays
 banked for the next one. Nothing is counted without an account.
 
-**The rules are what make the totals mean anything.** Anyone with the config
-can write from a console, so `firestore.rules` refuses an update that adds
-more than 90 seconds, or more than has actually passed since the row's last
-`updated` plus 5 seconds of slack. `updated` must equal `request.time`, so it
-cannot be backdated to make room. `increment` rather than read then write,
-so two tabs cannot overwrite each other, and a second tab refused for writing
-too soon drops that time since the first tab already counted it. 15 cases in
-`scripts/rules-test.mjs`.
+**The Worker decides what counts, not the browser.** `POST /api/playtime`
+needs a verified Firebase token, like picture uploads. Whatever it is asked
+to add is capped at 90 a write and at the time actually passed since that
+account's last write plus 5 seconds, and both caps are inside one SQL
+statement so D1 applies them atomically. Tested against local D1 with real
+sign ins: 100,000 asked on a first write stored 90; a second 60 sent at once
+stored 5; four writes of 60 fired together 20 seconds after the last stored
+exactly 30 between them; negative, non numeric and nameless writes are 400.
+It clamps rather than refuses, so a client that banked too much after a
+network blip loses the excess instead of the whole write.
 
-**It is read once when opened, not listened to.** Every player writes once a
-minute, so a live listener would re-read the board in every open window on
-every one of those writes.
+**A rename only updates a row that exists** and leaves `updated` alone, so
+an account that has not played yet never shows at zero and renaming does not
+eat into the next write's allowance.
 
-**The live site needs the new rules published** before the board and play
-time work there. Until then the board says it is down and time is quietly not
-recorded; the chat is unaffected. The CLI login does not work on this
-machine, so it is done through the console, Firestore, Rules tab, paste the
-whole file, Publish.
+**The table is created by the Worker on first use**, `CREATE TABLE IF NOT
+EXISTS` once per instance, because `wrangler deploy` does not run D1
+migrations. The database itself is provisioned on deploy like the picture
+store: `d1_databases` has a binding and no id, on purpose.
+
+**Reading is a plain fetch with no Firebase.** `GET /api/leaderboard` is
+public, `?uid=` only says which row to find, `&only=me` skips the top 50 for
+the account page. The own uid comes off the account, so opening the board no
+longer downloads the Firebase sdk at all. D1 allows 5 million rows read a day
+free against Firestore's 50,000.
+
+**It is read once when opened, not listened to**, same as before.
+
+To see the local database: `npx.cmd wrangler d1 execute DB --local --command
+"SELECT * FROM players ORDER BY seconds DESC LIMIT 5"`. Drop `--local` for the
+live one, which needs a `wrangler login` first.
 
 ### Testing against the emulator
+
+The leaderboard itself is tested with `npm.cmd run worker` now, since it no
+longer touches Firestore. The emulator is still the way to test the chat.
 
 ```
 npm.cmd run dev:emulated

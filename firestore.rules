@@ -90,66 +90,10 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    // ------------------------------------------------------ leaderboard
-    //
-    // One document per account, keyed by its uid, holding a running total of
-    // seconds played. The config is public, so the question these rules
-    // answer is: what stops someone typing a huge number into the console?
-    //
-    // Every write must be stamped with the server's clock, and may only add
-    // as much time as has actually passed since the previous stamp, plus five
-    // seconds of slack for the network. So the total can only ever grow at
-    // the speed of a real clock. Two tabs cannot double it either: the second
-    // one to write finds almost no time has passed since the first.
-    //
-    // And no single write may add more than 90 seconds. Without that cap,
-    // someone could leave a gap of a day and then claim the whole day in one
-    // write, since a day really had passed. The client flushes every minute,
-    // so a normal write adds about 60 and sits comfortably under it.
-    //
-    // What this cannot stop is somebody leaving a book open and walking off.
-    // That is time a book was really open, which is what is being counted.
-
-    function validEntry(d) {
-      return d.keys().hasOnly(['name', 'seconds', 'updated'])
-        && d.keys().hasAll(['name', 'seconds', 'updated'])
-        && d.name is string && d.name.size() >= 1 && d.name.size() <= 18
-        && d.seconds is int && d.seconds >= 0
-        // The server's clock. A client supplied time would let someone widen
-        // their own allowance by backdating the previous write.
-        && d.updated == request.time;
-    }
-
-    function added() {
-      return request.resource.data.seconds - resource.data.seconds;
-    }
-
-    match /leaderboard/{uid} {
-      // Public. It is names and durations, the whole point is to show them,
-      // and requiring a sign in just to look would be a network round trip
-      // for nothing.
-      allow read: if true;
-
-      // Only your own row, and a first write can be at most one flush.
-      allow create: if request.auth != null
-        && request.auth.uid == uid
-        && validEntry(request.resource.data)
-        && request.resource.data.seconds <= 90;
-
-      allow update: if request.auth != null
-        && request.auth.uid == uid
-        && validEntry(request.resource.data)
-        // Never backwards.
-        && added() >= 0
-        // Never more than one flush's worth.
-        && added() <= 90
-        // Never faster than the clock.
-        && added() <= (request.time - resource.data.updated).seconds() + 5;
-
-      // A row cannot be removed, by its owner or anyone else, or a bad week
-      // could simply be deleted and started over.
-      allow delete: if false;
-    }
+    // The leaderboard used to be here. It moved to the Cloudflare Worker and
+    // D1, see worker/leaderboard.js, because these rules have to be published
+    // by hand and that step kept not happening. The catch all below now keeps
+    // any leftover leaderboard collection closed.
 
     // Everything else in the project is closed. Without this catch all, a
     // collection added later would default to whatever the last matching

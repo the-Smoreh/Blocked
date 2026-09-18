@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { withUniqueSlugs } from './lib.js'
-import { categoryFor } from './categorize.js'
+import { canonicalCategory, categoryFor } from './categorize.js'
 
 // Client for the Lumin SDK in headless mode.
 //
@@ -109,7 +109,9 @@ function toEntry(book) {
     // Their objects carry only id, name and image_token, with no category,
     // and getCategories() comes back empty. So the category is derived from
     // the title using the same rules the json libraries are built with.
-    category: book.category || categoryFor({ title: book.name, tags: book.tags }),
+    category: canonicalCategory(
+      book.category || categoryFor({ title: book.name, tags: book.tags }),
+    ),
     tags: Array.isArray(book.tags) ? book.tags : [],
     featured: false,
     url: '',

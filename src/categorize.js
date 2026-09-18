@@ -28,7 +28,7 @@ export const RULES = [
     ['.io', 'agar', 'slither', 'diep', 'shell shock', 'krunker'],
   ],
   [
-    'Shooter',
+    'FPS',
     [
       'gun', 'shoot', 'mayhem', 'doom', 'goldeneye', 'sniper', 'tank', 'war of',
       'counter', 'csgo', 'strike', 'combat', 'soldier', 'bullet', '1v1',
@@ -128,6 +128,15 @@ export const RULES = [
 ]
 
 export const FALLBACK = 'Arcade'
+
+// Category names that were renamed, and what they are called now. Applied to
+// every library as it loads, so a source that still says the old name cannot
+// bring it back into the rail. Shooter became FPS on request, as a safer word.
+const RENAMED = { Shooter: 'FPS', Shooting: 'FPS' }
+
+export function canonicalCategory(name) {
+  return RENAMED[name] || name
+}
 
 // Matching is substring by default, because several libraries use titles that
 // are really folder names with the spaces taken out: "1on1soccer",

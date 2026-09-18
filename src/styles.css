@@ -1390,11 +1390,11 @@ body::before {
 /* One colour per category, picked to suit the category rather than spread
    evenly round the wheel: sand for Sandbox, pitch green for Sports, neon pink
    for Retro, purple for Horror so it does not fight the site's own red.
-   Racing, Action and Shooter are the three that want to be red, so they take
+   Racing, Action and FPS are the three that want to be red, so they take
    red, orange and rose to stay apart from each other.
 
    Assigned in src/icons.js. Every category needs its own index: Action and
-   Shooter shared one until Selenite made Action a 130 book category and the
+   FPS shared one until Selenite made Action a 130 book category and the
    collision became obvious. */
 :root {
   --tone-0: #8b93a7;
@@ -2922,7 +2922,7 @@ body.gated {
     turn 3.6s 0.36s ease-in-out infinite;
 }
 
-/* Shooter: the crosshair locks on. */
+/* FPS: the crosshair locks on. */
 .rail-item.on[data-tone="11"] .icon {
   animation:
     icon-pop 0.36s cubic-bezier(0.34, 1.56, 0.64, 1),

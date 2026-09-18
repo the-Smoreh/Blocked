@@ -29,6 +29,10 @@
   // hand. Locally, `wrangler dev` keeps its own copy in .wrangler.
   "kv_namespaces": [{ "binding": "AVATARS" }],
 
+  // The leaderboard. Same deal, created on the first deploy with no id here.
+  // The table itself is made by the Worker on first use, see leaderboard.js.
+  "d1_databases": [{ "binding": "DB" }],
+
   // Which Firebase project a sign in token must come from. Not a secret, it
   // is in every browser already.
   "vars": { "FIREBASE_PROJECT": "blocked-ec701" },

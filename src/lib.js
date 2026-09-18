@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { canonicalCategory } from './categorize.js'
 
 // Turns "Bendy and the Ink Machine" into "bendy-and-the-ink-machine" so a book
 // gets a stable, shareable URL that does not change if the list is reordered.
@@ -80,7 +81,10 @@ export function useBooks({ enabled = true, file = 'books.json' } = {}) {
       .then((data) => {
         if (cancelled) return
 
-        const withSlugs = withUniqueSlugs(data)
+        const named = data.map((b) =>
+          b.category ? { ...b, category: canonicalCategory(b.category) } : b,
+        )
+        const withSlugs = withUniqueSlugs(named)
         setLoaded({ file, books: withSlugs, error: null })
       })
       .catch((e) => !cancelled && setLoaded({ file, books: null, error: e.message }))

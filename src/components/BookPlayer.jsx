@@ -89,10 +89,9 @@ function clock(total) {
 // top the board by leaving one open overnight in a tab they never look at.
 //
 // Written once a minute rather than continuously. That is about 60 writes an
-// hour per player against a free allowance of 20,000 a day, and it is what
-// the rules expect: each write may add no more than 90 seconds, and no more
-// than has really passed since the last one. See the leaderboard block in
-// firestore.rules.
+// hour per player, and it is what the Worker expects: each write adds no more
+// than 90 seconds, and no more than has really passed since the last one.
+// See worker/leaderboard.js.
 //
 // Nothing happens without an account, and the Firebase sdk is not fetched
 // until the first minute is up, so a short visit never downloads it.
@@ -126,11 +125,12 @@ function usePlaytime(slug) {
         const { addPlaytime } = await import('../playtime.js')
         await addPlaytime(send, name)
       } catch (e) {
-        // Refused means the rules judged it too fast, which in practice is a
-        // second tab of the same account that already wrote this minute. That
-        // time was counted there, so drop it. Anything else is the network,
-        // and the time goes back in the bank for the next attempt.
-        if (e?.code !== 'permission-denied') pending += send
+        // Refused means the data itself was rejected, and sending it again
+        // would change nothing. Anything else is the network or the sign in,
+        // and the time goes back in the bank for the next attempt. The Worker
+        // caps every write at the time actually passed, so banking too much
+        // can never over count.
+        if (!e?.refused) pending += send
       }
     }
 

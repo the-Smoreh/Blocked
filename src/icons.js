@@ -3,7 +3,7 @@
 // A sprite sheet or an icon package would both mean another request or another
 // dependency. Every category has its own glyph: there used to be seven shapes
 // for fifteen categories, so Clicker, Horror, IO, Platformer, Retro, Sandbox
-// and Shooter all fell through to the arcade cabinet and Adventure reused
+// and FPS all fell through to the arcade cabinet and Adventure reused
 // Action's bolt, which made the whole rail look duplicated.
 export const PATHS = {
   all: 'M4 5h7v7H4zM13 5h7v7h-7zM4 14h7v5H4zM13 14h7v5h-7z',
@@ -72,7 +72,7 @@ const BY_CATEGORY = {
   Racing: 'racing',
   Retro: 'retro',
   Sandbox: 'sandbox',
-  Shooter: 'shooter',
+  FPS: 'shooter',
   Sports: 'sports',
   Strategy: 'strategy',
 
@@ -115,7 +115,7 @@ const CATEGORY_TONE = {
   Racing: 8,
   Retro: 9,
   Sandbox: 10,
-  Shooter: 11,
+  FPS: 11,
   Sports: 12,
   Strategy: 13,
   Action: 14,

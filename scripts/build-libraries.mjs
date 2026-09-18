@@ -219,7 +219,7 @@ const TAG_CATEGORY = [
   ['Strategy', ['tower-defense', 'strategy', 'tycoon']],
   ['Racing', ['racing']],
   ['Sports', ['sports']],
-  ['Shooter', ['fps', 'shooter']],
+  ['FPS', ['fps', 'shooter']],
   ['Platformer', ['metroidvania', 'platformer']],
   ['Puzzle', ['puzzle', 'point-and-click', 'word', 'card']],
   ['Clicker', ['idle']],
