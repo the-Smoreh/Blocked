@@ -128,12 +128,6 @@ export const DEFAULTS = {
   bgImage: null, // data url, written by the uploader below
   bgDim: 55, // 0-90, converted to a 0..0.9 scrim alpha over a background image
 
-  // Lets a library fill its missing covers from the others. Selenite is 105
-  // short and Goblin Kingdom 591, while Lumin has art for all 1169 of its
-  // books, so this is what puts real covers on cards that would otherwise
-  // only ever show generated art. See src/borrow.js.
-  borrowCovers: true,
-
   // The frame counter in the player bar. On by default, but it runs a
   // requestAnimationFrame loop for as long as a book is open, so it is worth
   // being able to stop.
@@ -155,12 +149,12 @@ export const DEFAULTS = {
 // `hue` is the centre of the generated card art family for that accent, so
 // picking an accent retints the whole wall. See src/art.js.
 export const ACCENTS = {
-  crimson: { label: 'Crimson', a: '#e5232b', b: '#ff3b43', deep: '#8f0f15', hue: 358 },
-  ember: { label: 'Ember', a: '#f2610c', b: '#ffa02b', deep: '#8a3105', hue: 26 },
-  magenta: { label: 'Magenta', a: '#d81b7a', b: '#ff4fa3', deep: '#7d0c45', hue: 330 },
-  violet: { label: 'Violet', a: '#7b4dff', b: '#a98cff', deep: '#3d1f99', hue: 254 },
-  toxic: { label: 'Toxic', a: '#48c11a', b: '#8ef05a', deep: '#215c0c', hue: 100 },
-  ice: { label: 'Ice', a: '#1b9fd8', b: '#5fd0ff', deep: '#0b5378', hue: 197 },
+  crimson: { label: 'Red', a: '#e5232b', b: '#ff3b43', deep: '#8f0f15', hue: 358 },
+  ember: { label: 'Orange', a: '#f2610c', b: '#ffa02b', deep: '#8a3105', hue: 26 },
+  magenta: { label: 'Pink', a: '#d81b7a', b: '#ff4fa3', deep: '#7d0c45', hue: 330 },
+  violet: { label: 'Purple', a: '#7b4dff', b: '#a98cff', deep: '#3d1f99', hue: 254 },
+  toxic: { label: 'Green', a: '#48c11a', b: '#8ef05a', deep: '#215c0c', hue: 100 },
+  ice: { label: 'Blue', a: '#1b9fd8', b: '#5fd0ff', deep: '#0b5378', hue: 197 },
 }
 
 // `tone` is which mode the option belongs to, and it is not decoration.
@@ -169,12 +163,12 @@ export const ACCENTS = {
 // measured at rgb(8,8,10) behind rgb(18,18,22). The sheet reads this and
 // switches mode with the pick, so every combination stays readable.
 export const SLATES = {
-  ink: { label: 'Ink', tone: 'dark', bg: '#08080a', bg2: '#0d0d10', panel: '#131317' },
-  graphite: { label: 'Graphite', tone: 'dark', bg: '#121215', bg2: '#17171c', panel: '#1d1d23' },
+  ink: { label: 'Black', tone: 'dark', bg: '#08080a', bg2: '#0d0d10', panel: '#131317' },
+  graphite: { label: 'Grey', tone: 'dark', bg: '#121215', bg2: '#17171c', panel: '#1d1d23' },
   navy: { label: 'Navy', tone: 'dark', bg: '#070b14', bg2: '#0b111d', panel: '#101827' },
   plum: { label: 'Plum', tone: 'dark', bg: '#0c0710', bg2: '#120b17', panel: '#1a1020' },
-  moss: { label: 'Moss', tone: 'dark', bg: '#070c09', bg2: '#0b120d', panel: '#101a13' },
-  bone: { label: 'Bone', tone: 'light', bg: '#fbfbfc', bg2: '#ffffff', panel: '#ffffff' },
+  moss: { label: 'Dark green', tone: 'dark', bg: '#070c09', bg2: '#0b120d', panel: '#101a13' },
+  bone: { label: 'White', tone: 'light', bg: '#fbfbfc', bg2: '#ffffff', panel: '#ffffff' },
 }
 
 // `css` holds gradient layers only, and `base` is the flat colour behind
@@ -203,7 +197,7 @@ export const GRADIENTS = {
   // top of it and a bright base would leave nowhere for them to show.
   slosh: {
     tone: 'dark',
-    label: 'Slosh',
+    label: 'Red',
     // A stop in all four corners. The first version only had top left and
     // bottom right, which put the still base on the same diagonal as the
     // moving blobs and left the other two corners permanently black.
@@ -216,31 +210,31 @@ export const GRADIENTS = {
   },
   emberfade: {
     tone: 'dark',
-    label: 'Ember fade',
+    label: 'Dark red',
     css: 'linear-gradient(160deg, #1a0708 0%, #08080a 55%)',
     base: '#08080a',
   },
   duskrise: {
     tone: 'dark',
-    label: 'Dusk rise',
+    label: 'Dark purple',
     css: 'linear-gradient(200deg, #1b0d24 0%, #08080a 60%)',
     base: '#08080a',
   },
   deepsea: {
     tone: 'dark',
-    label: 'Deep sea',
+    label: 'Dark blue',
     css: 'linear-gradient(180deg, #07141f 0%, #08080a 62%)',
     base: '#08080a',
   },
   nightgrid: {
     tone: 'dark',
-    label: 'Night grid',
+    label: 'Plum',
     css: 'radial-gradient(120% 80% at 50% -10%, #1a1020 0%, #08080a 60%)',
     base: '#08080a',
   },
   coals: {
     tone: 'dark',
-    label: 'Coals',
+    label: 'Charcoal',
     css:
       'radial-gradient(90% 60% at 15% 0%, #2a0b0d 0%, transparent 60%), ' +
       'radial-gradient(80% 60% at 85% 10%, #1a0a1e 0%, transparent 62%)',
@@ -252,7 +246,7 @@ export const GRADIENTS = {
   aurora: {
     fx: ['#0f7a6a', '#0a4a55', '#18b39a'],
     tone: 'dark',
-    label: 'Aurora',
+    label: 'Teal',
     css:
       'radial-gradient(85% 65% at 10% 0%, #03302a 0%, transparent 60%), ' +
       'radial-gradient(80% 60% at 92% 8%, #06283b 0%, transparent 62%), ' +
@@ -263,7 +257,7 @@ export const GRADIENTS = {
   nebula: {
     fx: ['#7a2ecc', '#4a1080', '#c04ad8'],
     tone: 'dark',
-    label: 'Nebula',
+    label: 'Magenta',
     css:
       'radial-gradient(90% 70% at 14% 4%, #24063f 0%, transparent 62%), ' +
       'radial-gradient(85% 65% at 90% 10%, #3a0a44 0%, transparent 60%), ' +
@@ -273,7 +267,7 @@ export const GRADIENTS = {
   sunsetcity: {
     fx: ['#c93a55', '#7a2a12', '#e0703a'],
     tone: 'dark',
-    label: 'Sunset city',
+    label: 'Rose',
     css:
       'radial-gradient(90% 60% at 8% 0%, #3b0f1c 0%, transparent 60%), ' +
       'radial-gradient(85% 60% at 96% 6%, #3d1a06 0%, transparent 60%), ' +
@@ -283,7 +277,7 @@ export const GRADIENTS = {
   magma: {
     fx: ['#d83a12', '#8a1f06', '#ff7a33'],
     tone: 'dark',
-    label: 'Magma',
+    label: 'Orange',
     css:
       'radial-gradient(95% 65% at 50% 106%, #4a1206 0%, transparent 58%), ' +
       'radial-gradient(80% 60% at 12% 4%, #2c0a04 0%, transparent 60%)',
@@ -292,7 +286,7 @@ export const GRADIENTS = {
   cyber: {
     fx: ['#12b0c9', '#0a5566', '#d040c0'],
     tone: 'dark',
-    label: 'Cyber',
+    label: 'Cyan',
     css:
       'radial-gradient(85% 65% at 6% 4%, #032c3a 0%, transparent 60%), ' +
       'radial-gradient(85% 65% at 96% 96%, #33063a 0%, transparent 60%)',
@@ -301,7 +295,7 @@ export const GRADIENTS = {
   wine: {
     fx: ['#a01048', '#5a0a2a', '#d0407a'],
     tone: 'dark',
-    label: 'Wine',
+    label: 'Maroon',
     css:
       'radial-gradient(90% 70% at 20% 0%, #3a0820 0%, transparent 62%), ' +
       'radial-gradient(85% 65% at 86% 92%, #24062a 0%, transparent 62%)',
@@ -310,7 +304,7 @@ export const GRADIENTS = {
   pine: {
     fx: ['#12805a', '#0a4a30', '#2ab07a'],
     tone: 'dark',
-    label: 'Pine',
+    label: 'Green',
     css:
       'radial-gradient(90% 70% at 16% 6%, #042b1c 0%, transparent 62%), ' +
       'radial-gradient(85% 60% at 90% 96%, #062218 0%, transparent 60%)',
@@ -319,7 +313,7 @@ export const GRADIENTS = {
   royal: {
     fx: ['#2a44c0', '#141f70', '#5a72e0'],
     tone: 'dark',
-    label: 'Royal',
+    label: 'Blue',
     css:
       'radial-gradient(95% 70% at 50% -8%, #101a52 0%, transparent 60%), ' +
       'radial-gradient(80% 60% at 10% 98%, #1b1046 0%, transparent 62%)',
@@ -328,7 +322,7 @@ export const GRADIENTS = {
   peacock: {
     fx: ['#0d8a9c', '#0a4a70', '#20b0c0'],
     tone: 'dark',
-    label: 'Peacock',
+    label: 'Ocean',
     css:
       'radial-gradient(90% 70% at 88% 4%, #033440 0%, transparent 62%), ' +
       'radial-gradient(85% 65% at 8% 92%, #062246 0%, transparent 62%)',
@@ -337,7 +331,7 @@ export const GRADIENTS = {
   copper: {
     fx: ['#b06a1a', '#6a3a0a', '#e0962a'],
     tone: 'dark',
-    label: 'Copper',
+    label: 'Brown',
     css:
       'radial-gradient(90% 65% at 14% 0%, #3a1e07 0%, transparent 60%), ' +
       'radial-gradient(85% 60% at 92% 96%, #2a1206 0%, transparent 60%)',
@@ -346,7 +340,7 @@ export const GRADIENTS = {
   ultraviolet: {
     fx: ['#6a2ae0', '#2a1080', '#9a5aff'],
     tone: 'dark',
-    label: 'Ultraviolet',
+    label: 'Purple',
     css:
       'radial-gradient(100% 75% at 50% 104%, #2a0f66 0%, transparent 58%), ' +
       'radial-gradient(80% 60% at 14% 2%, #18083e 0%, transparent 62%)',
@@ -355,7 +349,7 @@ export const GRADIENTS = {
   fern: {
     fx: ['#6a8a1a', '#3a4a0a', '#9ab02a'],
     tone: 'dark',
-    label: 'Fern',
+    label: 'Olive',
     css:
       'radial-gradient(90% 70% at 50% 0%, #1d2a08 0%, transparent 62%), ' +
       'radial-gradient(85% 60% at 90% 100%, #10200d 0%, transparent 60%)',
@@ -368,7 +362,7 @@ export const GRADIENTS = {
   // the blobs to move over. A dark base here would fight light mode's text.
   sloshlight: {
     tone: 'light',
-    label: 'Slosh light',
+    label: 'Warm white',
     css:
       'radial-gradient(95% 75% at 12% 0%, #ffeceb 0%, transparent 62%), ' +
       'radial-gradient(90% 70% at 88% 4%, #fdebf1 0%, transparent 62%), ' +
@@ -378,7 +372,7 @@ export const GRADIENTS = {
   },
   paper: {
     tone: 'light',
-    label: 'Paper',
+    label: 'White',
     css: 'linear-gradient(170deg, #ffffff 0%, #f1f1f4 100%)',
     base: '#f1f1f4',
   },
@@ -397,7 +391,7 @@ export const GRADIENTS = {
   sorbet: {
     fx: ['#f06aa0', '#e0a03a', '#8a86f0'],
     tone: 'light',
-    label: 'Sorbet',
+    label: 'Pastel',
     css:
       'radial-gradient(95% 70% at 6% 4%, #ffdfee 0%, transparent 60%), ' +
       'radial-gradient(90% 70% at 96% 10%, #fff0cf 0%, transparent 62%), ' +
@@ -407,7 +401,7 @@ export const GRADIENTS = {
   sky: {
     fx: ['#3a8ad0', '#2a6ab0', '#6ab0f0'],
     tone: 'light',
-    label: 'Sky',
+    label: 'Light blue',
     css:
       'radial-gradient(100% 75% at 50% -8%, #d6ebff 0%, transparent 60%), ' +
       'radial-gradient(85% 65% at 10% 98%, #e4f2ff 0%, transparent 62%)',
@@ -425,7 +419,7 @@ export const GRADIENTS = {
   lilac: {
     fx: ['#8a6ad0', '#6a4ab0', '#b096f0'],
     tone: 'light',
-    label: 'Lilac',
+    label: 'Light purple',
     css:
       'radial-gradient(95% 75% at 12% 2%, #e7dcff 0%, transparent 62%), ' +
       'radial-gradient(90% 70% at 92% 98%, #f3e6ff 0%, transparent 62%)',
@@ -434,7 +428,7 @@ export const GRADIENTS = {
   sand: {
     fx: ['#c09a4a', '#a07a3a', '#e0c070'],
     tone: 'light',
-    label: 'Sand',
+    label: 'Beige',
     css:
       'radial-gradient(95% 75% at 50% 0%, #f5e8cf 0%, transparent 62%), ' +
       'radial-gradient(90% 70% at 90% 100%, #fbf1dd 0%, transparent 62%)',
@@ -443,7 +437,7 @@ export const GRADIENTS = {
   seafoam: {
     fx: ['#3aa0a0', '#2a8080', '#6ac0c0'],
     tone: 'light',
-    label: 'Seafoam',
+    label: 'Light teal',
     css:
       'radial-gradient(95% 75% at 8% 4%, #d3f0ef 0%, transparent 62%), ' +
       'radial-gradient(90% 70% at 94% 94%, #dff2ff 0%, transparent 62%)',
@@ -452,7 +446,7 @@ export const GRADIENTS = {
   blossom: {
     fx: ['#f06a90', '#d04a70', '#ffa0b8'],
     tone: 'light',
-    label: 'Blossom',
+    label: 'Pink',
     css:
       'radial-gradient(95% 75% at 16% 0%, #ffdde9 0%, transparent 62%), ' +
       'radial-gradient(90% 70% at 88% 96%, #ffe9f1 0%, transparent 62%)',
@@ -461,7 +455,7 @@ export const GRADIENTS = {
   butter: {
     fx: ['#d0a83a', '#b0882a', '#f0d06a'],
     tone: 'light',
-    label: 'Butter',
+    label: 'Yellow',
     css:
       'radial-gradient(95% 75% at 50% -6%, #fbefc4 0%, transparent 60%), ' +
       'radial-gradient(85% 65% at 12% 98%, #fdf6dd 0%, transparent 62%)',
@@ -470,7 +464,7 @@ export const GRADIENTS = {
   dawn: {
     fx: ['#e06a90', '#6a8ad0', '#f0a0c0'],
     tone: 'light',
-    label: 'Dawn',
+    label: 'Pale blue',
     css:
       'radial-gradient(95% 70% at 6% 0%, #ffdfe8 0%, transparent 60%), ' +
       'radial-gradient(90% 70% at 96% 8%, #e0e8ff 0%, transparent 62%), ' +

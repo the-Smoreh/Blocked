@@ -597,7 +597,11 @@ list. The other libraries borrow from our own static files only.
 The 26 Selenite blanks that stay blank are genuinely not in Lumin: Contra,
 Chrono Trigger, Comix Zone, the Donkey Kong Country books. Emulator titles.
 
-Turned off with "Borrow missing covers" in the Library tab.
+**Always on.** There was a "Borrow missing covers" toggle and it did nothing:
+cards never read it, it only decided whether extra donor libraries loaded,
+so they kept borrowing from whatever was already registered. Measured at 134
+covers with it on and 134 with it off. It was a nerdy switch nobody would
+turn off even if it worked, so it was removed rather than fixed.
 
 ### Rebuild order
 
@@ -1120,6 +1124,37 @@ Breakpoints are measured, not guessed. At 375px each of the three tabs gets
 107px and the labels fit with room to spare, so the icons-only rule sits at
 330px; an earlier 380px guess hid them on an ordinary phone for no reason.
 
+**`.sgroup` and `.sheet-foot` are `flex: none`, and the sheet depends on it.**
+Without it the sheet was unusable on any short screen: the body is a flex
+column, and when content is taller than the window flexbox shrinks the
+children to fit instead of letting the body scroll. Each group's `overflow:
+hidden` then clipped everything under its title, so on a 1280x600 window every
+group showed as a bare header with its controls squashed to zero height. It
+never showed on a tall monitor, which is how it shipped. Measured after, at
+1280x600 and 360x640: every group at its full height on every tab, the body
+scrolling, and nothing past the right edge.
+
+**No descriptions.** Every hint line and explanatory note was removed on
+request: under group titles, under toggles, under the performance control,
+the library notes and the header subtitle. The controls say what they do.
+Keep it that way; anything worth explaining belongs here, not in the sheet.
+
+**Plain names.** Accents, solids and gradients are named by colour, Red,
+Teal, Light blue, rather than Crimson, Aurora, Sorbet. Only the labels
+changed, never the ids, so every saved choice still resolves. The names show
+as tooltips and in each group header's value.
+
+**Background tiles are swatches with no label.** A name under every tile
+doubled the picker's height for words nobody needed, since the swatch is the
+preview. A one word heading, Light or Dark, separates the presets that switch
+mode from the ones that do not.
+
+**A gradient swatch is `css` plus `base`.** The page paints the two as
+separate properties because a bare colour is invalid in `background-image`,
+but a tile uses the `background` shorthand, where a trailing colour is valid,
+so there they go back together. Without the base every light gradient's tile
+showed the dark panel through it.
+
 ## The player bar
 
 Back, the book's own cover, title and category, then the frame counter,
@@ -1177,14 +1212,41 @@ Measured after, same script, same machine:
 | img tags | 824 | 28 |
 | backdrop-filter layers | 6 | 0 |
 
-`effects: 'lean'` is the default and drives `data-fx`, which switches off the
-blur, the entry animation and the always-running animations. `bgAnimated` and
-`idleShimmer` default off too. One segmented control in the Interface tab,
-**Fast** or **Full effects**, sets all three together, because these are the
-three expensive ones and nobody wants to hunt for them separately. The
-individual toggles still exist for anyone who wants to mix.
+`effects: 'lean'` is the default and drives `data-fx`. **Fast mode is
+authoritative, and the first version of it was not.** It set `bgAnimated` at
+the moment its button was clicked and enforced nothing, so anyone whose saved
+settings predated it kept all five blobs sloshing under a control that read
+Fast. It also named about five animations out of the stylesheet's 26 infinite
+ones, so the rest carried on. Both were reproduced before being fixed.
 
-Do not put `backdrop-filter` back without gating it on `data-fx="full"`.
+So `data-fx="lean"` now does three things regardless of any other setting:
+
+- **`animation: none !important` on every element and pseudo element.** Not a
+  list of names, because a list is how the first version missed 21 of them.
+  The spinner is the one exemption, since a frozen spinner reads as a crash.
+- **`.fx { display: none }`.** The blobs are not drawn at all rather than drawn
+  and held still. Five large radial layers held still are still five layers
+  to paint and composite.
+- The blur and translucency on the header, rail and sheet.
+
+Transitions are untouched. They only run on a hover or a click, cost nothing
+at rest, and are what keep the page feeling responsive. Checked before the
+blanket rule went in: nothing can vanish when its animation stops, because
+the icon draw-on rests at `stroke-dashoffset: 0`, fully drawn, and every
+`opacity: 0` base style in the sheet is a hover reveal done by transition.
+
+Verified with the exact state that was sloshing, a saved `bgAnimated: true`
+under Fast: 0 running animations and no blobs drawn, where it had been 7.
+Switching to Full effects draws and animates all five, and back to Fast
+returns to 0.
+
+**There are no separate Moving background or Idle shimmer toggles.** They
+were removed because in Fast mode they could not do anything, and a switch
+that does nothing is a broken setting. **Performance** owns both: Fast is
+none, Full is all of it.
+
+Do not put `backdrop-filter` back without gating it on `data-fx="full"`, and
+do not add an animation that Fast has to be told about by name.
 
 ## Lumin is the default, with a fallback
 
@@ -1208,9 +1270,9 @@ choice still Lumin.
 
 ## Moving background
 
-Red on black, animated, and the default (`bgKind: 'gradient'`,
-`bgGradient: 'slosh'`). Switchable off with the "Moving background" toggle in
-settings, and it holds still under OS reduced motion.
+Red on black. Only drawn in **Full effects**; Fast mode, the default, does
+not draw the blobs at all. The base gradient under them is static either way.
+It holds still under OS reduced motion.
 
 It is **five blobs on separate timings** (8s, 11s, 6.5s, 9.5s, 7.5s), not one
 animated gradient. A single gradient can only slide; separate blobs drift past

@@ -100,11 +100,9 @@ export default function App() {
   useEffect(() => {
     if (!books) return
     registerDonors(onLumin ? settings.library : fileId, books)
-    if (!settings.borrowCovers) return
-
     loadSeleniteDonors()
     if (LUMIN_WORTH_IT.has(settings.library)) loadLuminDonors()
-  }, [books, settings.library, settings.borrowCovers, onLumin, fileId])
+  }, [books, settings.library, onLumin, fileId])
 
   // `game/` is still accepted. The route was renamed, and a url is a promise
   // to whoever saved it: every link shared or bookmarked before the rename
@@ -116,7 +114,7 @@ export default function App() {
       ? route.slice('game/'.length)
       : null
 
-  useIdleShimmer(settings.idleShimmer && !playing)
+  useIdleShimmer(settings.effects === 'full' && settings.idleShimmer && !playing)
 
   useEffect(() => {
     document.documentElement.dataset.motion = reduced ? 'reduced' : 'full'

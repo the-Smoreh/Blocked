@@ -1727,6 +1727,11 @@ body::before {
 /* ------------------------------- Groups ------------------------------- */
 
 .sgroup {
+  /* flex: none is the whole fix for small screens. The body is a flex column,
+     and without this a window shorter than the content shrank every group
+     down to its title bar, and overflow: hidden then hid every control in
+     it. Now the groups keep their height and the body scrolls. */
+  flex: none;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--panel);
@@ -1948,34 +1953,30 @@ body::before {
 
 /* --------------------------- Background tiles --------------------------- */
 
-/* Big enough to actually show what is being picked. The old 28px swatches
-   made eight gradients look like eight dark squares. */
+/* Colour swatches, no labels. The name was a line of text under every tile,
+   which doubled the height of the picker for words nobody needed: the swatch
+   is the preview. The name is still the tooltip and the accessible label. */
 .bgpick {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 9px;
+  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+  gap: 8px;
 }
 
 .bgtile {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  aspect-ratio: 1;
   padding: 0;
   border: 1px solid var(--line);
   border-radius: 11px;
   background: none;
   overflow: hidden;
   cursor: pointer;
-  text-align: left;
-  transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease,
-    transform 0.15s ease;
 }
 
-.bgtile:hover {
-  transform: translateY(-2px);
-  border-color: var(--dim);
+.bgtile i {
+  position: absolute;
+  inset: 0;
+  display: block;
 }
 
 .bgtile.on {
@@ -1983,46 +1984,14 @@ body::before {
   box-shadow: 0 0 0 2px var(--accent-soft);
 }
 
-/* The swatch itself. A real element rather than a background on the button,
-   so the label sits on the panel and stays readable over a pale gradient. */
-.bgtile i {
-  display: block;
-  height: 54px;
-  border-bottom: 1px solid var(--line);
-  background-size: cover;
-  background-position: center;
-}
-
-.bgtile b {
-  padding: 7px 9px;
-  background: var(--panel-2);
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-/* Marks an option that will also switch the mode, so picking "Paper" while
-   in dark mode is not a surprise. Without this the pick used to leave near
-   white text on a near white page. */
-.bgtile b small {
-  margin-left: auto;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--dim);
-}
-
 .bgtile .tick {
   position: absolute;
-  top: 6px;
-  right: 6px;
+  inset: 0;
+  margin: auto;
   display: grid;
   place-items: center;
-  width: 19px;
-  height: 19px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--accent);
 }
@@ -2033,27 +2002,14 @@ body::before {
   color: #fff;
 }
 
-/* Divider between the presets for the current mode and the ones that switch
-   it. A rule with the label sitting in it, so it reads as a boundary rather
-   than another heading in the panel. */
+/* Between the swatches for this mode and the ones that switch it. */
 .bgsub {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin: 3px 0 0;
-  font-size: 10.5px;
+  margin: 4px 0 0;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--dim);
-}
-
-.bgsub::before,
-.bgsub::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--line);
 }
 
 /* ---------------------------- Image uploader ---------------------------- */
@@ -2300,6 +2256,7 @@ body::before {
 /* -------------------------------- Footer -------------------------------- */
 
 .sheet-foot {
+  flex: none;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -3819,34 +3776,47 @@ body.gated {
 }
 
 /* ======================================================================
-   Fast mode, `data-fx="lean"`, and it is the default.
+   Fast mode, `data-fx="lean"`, the default.
 
-   Measured on the live site before any of this: scrolling the wall ran at a
-   median 33ms per frame with 13 of 59 frames over 50ms, on a fast machine.
-   Three things were paying for that, in order of cost.
+   It has to be authoritative. The first version set bgAnimated when its
+   button was clicked and enforced nothing, so a saved true from before kept
+   all five blobs sloshing under a control that read Fast. It also picked off
+   about five animations out of the stylesheet's 26 infinite ones. So instead
+   of naming animations, Fast switches every one of them off, and the
+   drifting blobs are not drawn at all rather than drawn and held still.
 
-   1. The whole library mounted at once, about 17,000 nodes and 824 img tags.
-      Fixed in BookGrid.jsx, which now builds the wall in batches.
-   2. `backdrop-filter` on the header, the rail and the settings sheet. A
-      blurred copy of whatever sits behind a sticky element has to be
-      recomposited every scroll frame, and it is one of the most expensive
-      things a page can ask for. On integrated graphics it is the difference
-      between scrolling and a slideshow.
-   3. Continuous animation: five drifting blobs, the hero mesh, the brandmark,
-      and a staggered entry animation per card.
+   Transitions are untouched: they only run on a hover or a click, cost
+   nothing at rest, and are what make the page still feel responsive.
 
-   Fast mode turns off 2 and 3. The full look is still one click away in
-   settings, for anyone whose machine can spend the frames on it.
+   Nothing here can make an element vanish. The icon draw-on rests at
+   stroke-dashoffset 0, fully drawn, and every opacity: 0 base style in this
+   sheet is a hover reveal done with a transition, not an animation.
    ====================================================================== */
 
-/* The blur goes, so the translucency has to go with it, or these read as
-   smeared instead of deliberate. */
-:root[data-fx="lean"] header,
-:root[data-fx="lean"] .sheet-head {
-  backdrop-filter: none;
-  background: var(--bg-2);
+:root[data-fx="lean"] *,
+:root[data-fx="lean"] *::before,
+:root[data-fx="lean"] *::after {
+  animation: none !important;
 }
 
+/* The one exception, because a frozen spinner reads as a crash. It is only
+   on screen while something is loading, so it costs nothing the rest of the
+   time. */
+:root[data-fx="lean"] .spinner {
+  animation: spin 0.8s linear infinite !important;
+}
+
+/* Not drawn at all. Five large radial blobs held still are still five large
+   layers to paint and composite. */
+:root[data-fx="lean"] .fx {
+  display: none;
+}
+
+/* The blur goes, and the translucency with it, or these surfaces read as
+   smeared rather than deliberate. backdrop-filter recomposites a blurred copy
+   of everything behind a sticky element on every scroll frame. */
+:root[data-fx="lean"] header,
+:root[data-fx="lean"] .sheet-head,
 :root[data-fx="lean"] .rail {
   backdrop-filter: none;
   background: var(--bg-2);
@@ -3856,20 +3826,9 @@ body.gated {
   backdrop-filter: none;
 }
 
-/* Cards appear immediately rather than each animating in. At 120 a batch this
-   was 120 simultaneous transform and opacity animations per scroll. */
-:root[data-fx="lean"] .card,
-:root[data-fx="lean"] .spreview .card {
-  animation: none;
+:root[data-fx="lean"] .card {
   opacity: 1;
   transform: none;
-}
-
-/* Continuous animations on large or always-present elements. */
-:root[data-fx="lean"] .hero-mesh,
-:root[data-fx="lean"] .brandmark i,
-:root[data-fx="lean"] .shine {
-  animation: none;
 }
 
 /* The sentinel the grid watches to load the next batch. It needs height so it

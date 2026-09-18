@@ -114,7 +114,7 @@ function Swatches({ value, entries, onChange }) {
 // Backgrounds get real tiles rather than swatches. Thirty gradients in 28px
 // squares all looked like the same dark or light square, which is most of why
 // picking one felt like guessing.
-function Tiles({ ids, entries, value, onChange, swatch, theme }) {
+function Tiles({ ids, entries, value, onChange, swatch }) {
   return (
     <div className="bgpick">
       {ids.map((id) => {
@@ -125,12 +125,9 @@ function Tiles({ ids, entries, value, onChange, swatch, theme }) {
             className={id === value ? 'bgtile on' : 'bgtile'}
             onClick={() => onChange(id)}
             title={def.label}
+            aria-label={def.label}
           >
             <i style={{ background: swatch(def) }} />
-            <b>
-              {def.label}
-              {def.tone !== theme && <small>{def.tone === 'light' ? 'LIGHT' : 'DARK'}</small>}
-            </b>
             {id === value && (
               <span className="tick">
                 <Tick />
@@ -147,14 +144,13 @@ function Tiles({ ids, entries, value, onChange, swatch, theme }) {
 //
 // A preset is only readable under the text colour of its own mode, so picking
 // one from the other group switches mode with it. That used to happen
-// silently and left near white text on a near white page. Grouping says it
-// once for the whole set, and each mismatched tile still carries a DARK or
-// LIGHT marker for when the heading has been scrolled past.
+// silently and left near white text on a near white page. The one word
+// heading between the groups says so once, instead of a label on every tile.
 function BgTiles({ value, entries, onChange, theme, swatch }) {
   const ids = Object.keys(entries)
   const mine = ids.filter((id) => entries[id].tone === theme)
   const other = ids.filter((id) => entries[id].tone !== theme)
-  const pass = { entries, value, onChange, swatch, theme }
+  const pass = { entries, value, onChange, swatch }
 
   if (!mine.length || !other.length) return <Tiles ids={ids} {...pass} />
 
@@ -163,9 +159,7 @@ function BgTiles({ value, entries, onChange, theme, swatch }) {
   return (
     <>
       <Tiles ids={mine} {...pass} />
-      <p className="bgsub">
-        <span>These switch to {otherTone} mode</span>
-      </p>
+      <p className="bgsub">{otherTone === 'light' ? 'Light' : 'Dark'}</p>
       <Tiles ids={other} {...pass} />
     </>
   )
@@ -257,10 +251,6 @@ export default function Settings({ open, onClose, settings, set, reset }) {
   }
 
   const active = LIBRARIES[settings.library]
-  // Only the credited community libraries count towards the total, because
-  // Lumin has no count of its own that can be verified against a file.
-  const credited = Object.values(LIBRARIES).filter((l) => l.credit)
-  const totalBooks = credited.reduce((n, l) => n + (l.count || 0), 0)
 
   const bgValue =
     settings.bgKind === 'slate'
@@ -282,9 +272,6 @@ export default function Settings({ open, onClose, settings, set, reset }) {
             </span>
             <span className="sheet-titletext">
               <strong>Settings</strong>
-              <em>
-                {totalBooks.toLocaleString()} books across {credited.length} libraries
-              </em>
             </span>
           </div>
           <button className="iconbtn" onClick={onClose} title="Close">
@@ -309,11 +296,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
         <div className="sheet-body">
           {tab === 'library' && (
             <>
-              <Group
-                title="Source"
-                value={active?.label}
-                hint="Every library is hosted by the people who built it. Picking one links straight to their host."
-              >
+              <Group title="Library" value={active?.label}>
                 <div className="libs">
                   {Object.entries(LIBRARIES).map(([id, lib]) => {
                     const on = id === settings.library
@@ -323,8 +306,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                           <span className="lib-badge">{lib.label.charAt(0)}</span>
                           <span className="lib-text">
                             <strong>{lib.label}</strong>
-                            <em>{lib.author ? `by ${lib.author}` : lib.note}</em>
-                            {lib.author && lib.note && <small>{lib.note}</small>}
+                            {lib.author && <em>by {lib.author}</em>}
                           </span>
                           {lib.count != null && (
                             <span className="lib-count">{lib.count.toLocaleString()}</span>
@@ -340,29 +322,8 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                   })}
                 </div>
 
-                {settings.library === 'lumin' && (
-                  <p className="snote">
-                    Loaded from a third party CDN. A school network can block it outright.
-                  </p>
-                )}
               </Group>
 
-              <Group title="Cover art">
-                <Field
-                  label="Borrow missing covers"
-                  hint="Fills blank tiles from the other libraries"
-                >
-                  <Toggle
-                    label="Borrow missing covers"
-                    value={settings.borrowCovers}
-                    onChange={(borrowCovers) => set({ borrowCovers })}
-                  />
-                </Field>
-                <p className="snote">
-                  The same book turns up in several libraries, so one that ships no cover
-                  can use another one&apos;s. Selenite fills 79 of its 105 blanks this way.
-                </p>
-              </Group>
             </>
           )}
 
@@ -380,11 +341,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                 />
               </Group>
 
-              <Group
-                title="Accent"
-                value={ACCENTS[settings.accent]?.label}
-                hint="Drives buttons, highlights and the generated cover art."
-              >
+              <Group title="Accent" value={ACCENTS[settings.accent]?.label}>
                 <Swatches
                   value={settings.accent}
                   entries={ACCENTS}
@@ -421,7 +378,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                     entries={GRADIENTS}
                     onChange={pickGradient}
                     theme={settings.theme}
-                    swatch={(def) => def.css}
+                    swatch={(def) => `${def.css}, ${def.base}`}
                   />
                 )}
 
@@ -449,7 +406,7 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                             Remove
                           </button>
                         </div>
-                        <Field label="Dim" hint="Keeps text readable over a busy photo">
+                        <Field label="Dim">
                           <span className="rangewrap">
                             <input
                               className="range"
@@ -497,22 +454,10 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                     />
 
                     {imgError && <p className="snote bad">{imgError}</p>}
-                    {!settings.bgImage && !imgError && (
-                      <p className="snote">
-                        Resized to 1920px and kept on this device only. Nothing is
-                        uploaded anywhere.
-                      </p>
-                    )}
+
                   </>
                 )}
 
-                <Field label="Moving background" hint="The accent drifts behind the wall">
-                  <Toggle
-                    label="Moving background"
-                    value={settings.bgAnimated}
-                    onChange={(bgAnimated) => set({ bgAnimated })}
-                  />
-                </Field>
               </Group>
             </>
           )}
@@ -554,49 +499,34 @@ export default function Settings({ open, onClose, settings, set, reset }) {
                     { value: 'full', label: 'Full effects' },
                   ]}
                 />
-                <p className="snote">
-                  Fast drops the background blur, the moving background and the
-                  animations. On a slow laptop it is the difference between
-                  scrolling and waiting.
-                </p>
+
               </Group>
 
               <Group title="Details">
-                <Field label="Titles" hint="The bar under each cover">
+                <Field label="Titles">
                   <Toggle
                     label="Show titles"
                     value={settings.showTitles}
                     onChange={(showTitles) => set({ showTitles })}
                   />
                 </Field>
-                <Field label="Coloured icons" hint="A distinct colour per category">
+                <Field label="Coloured icons">
                   <Toggle
                     label="Coloured icons"
                     value={settings.colorIcons}
                     onChange={(colorIcons) => set({ colorIcons })}
                   />
                 </Field>
-                <Field label="Idle shimmer" hint="One random card at a time">
-                  <Toggle
-                    label="Idle shimmer"
-                    value={settings.idleShimmer}
-                    onChange={(idleShimmer) => set({ idleShimmer })}
-                  />
-                </Field>
               </Group>
 
               <Group title="Player">
-                <Field label="Frame counter" hint="Shown in the bar while a book is open">
+                <Field label="Frame counter">
                   <Toggle
                     label="Frame counter"
                     value={settings.showFps}
                     onChange={(showFps) => set({ showFps })}
                   />
                 </Field>
-                <p className="snote">
-                  This is the frame rate of the page, not of the book. A book the browser
-                  has put in its own process can stutter while this still reads 60.
-                </p>
               </Group>
             </>
           )}
